@@ -1,6 +1,6 @@
 # Customize these two lines
 TARGETS=muii # Courses to compile
-NAME=scipy
+NAME=tools
 
 # Do not touch
 TEX=xelatex -interaction nonstopmode -halt-on-error -file-line-error
