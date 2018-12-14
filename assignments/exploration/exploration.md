@@ -1,4 +1,4 @@
-# Data exploration
+# Exploratory data analysis
 
 ## Objectives
 
