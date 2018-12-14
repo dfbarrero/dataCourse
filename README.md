@@ -22,6 +22,10 @@
 
 ## Notebooks
 
+* [Numpy](numpy/numpy.ipynb)
+
+* [Pandas](pandas/pandas.ipynb)
+
 * [Dataviz with Matplotlib](dataviz/DatavizWithMatplotlib.ipynb)
 
 * [Dataviz with Seaborn](dataviz/DatavizWithSeaborn.ipynb)
