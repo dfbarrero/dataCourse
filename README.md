@@ -10,13 +10,24 @@
 
 5.- [Machine Learning Foundations](mlfoundations/)
 
+
 ## Practical assignments
+
+* [Introduction to KNIME Analytics Platform](assignments/knime/intro.md)
+
+* [Machine-Learning based robot motion control](assignments/robot/robot.md)
+
+* [Regression analysis of exoplanets masses](assignments/exoplanets/exoplanets.md)
+
 
 ## Notebooks
 
 * [Dataviz with Matplotlib](dataviz/DatavizWithMatplotlib.ipynb)
 
 * [Dataviz with Seaborn](dataviz/DatavizWithSeaborn.ipynb)
+
+* [Introduction to Scikit-Learn](mlfoundations/scikit-learn.ipynb)
+
 
 ## Compilation
 
