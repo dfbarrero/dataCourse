@@ -1,0 +1,24 @@
+
+\usetikzlibrary{arrows,positioning,backgrounds}
+
+\tikzstyle{decision} = [diamond, draw, 
+    text width=1cm, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, node distance=3cm,
+	    text width=2cm, text centered, rounded corners]
+\tikzstyle{line} = [draw, -latex']
+
+\begin{tikzpicture}[scale=0.8]
+	\node [block] (problem) {Study problem};
+	\node [block, right of=problem] (center) {Train};
+	\node [decision, right of=center] (evaluate) {Evaluate};
+	\node [block, below of=center, node distance=1cm] (errors) {Analyze errors};
+	\node [block, above of=evaluate, node distance=1cm] (launch) {Launch!};
+	\node [block, trapezium, trapezium left angle=70,trapezium right angle=-70, above of=center, node distance=1cm, text width=0.7cm] (data) {Data};
+
+	\path [line] (problem) -- (center);
+	\path [line] (center) -- (evaluate);
+	\path [line, dotted] (data) -- (center);
+	\path [line] (evaluate) -- (launch);
+	\path [line] (evaluate) |- (errors);
+	\path [line] (errors) -| (problem);
+\end{tikzpicture}

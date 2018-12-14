@@ -8,6 +8,8 @@
 
 4.- [Data visualization with Matplotlib and Seaborn](dataviz/)
 
+5.- [Machine Learning Foundations](mlfoundations/)
+
 ## Practical assignments
 
 ## Notebooks
