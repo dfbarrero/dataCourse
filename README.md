@@ -13,6 +13,8 @@
 
 ## Practical assignments
 
+* [Exploratory data analysis](assignments/exoploration/exploration.md)
+
 * [Introduction to KNIME Analytics Platform](assignments/knime/intro.md)
 
 * [Machine-Learning based robot motion control](assignments/robot/robot.md)
