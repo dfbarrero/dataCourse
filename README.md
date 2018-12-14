@@ -24,7 +24,7 @@
 
 * [Numpy](numpy/numpy.ipynb)
 
-* [Pandas](pandas/pandas.ipynb)
+* [Pandas](pandas/Pandas.ipynb)
 
 * [Dataviz with Matplotlib](dataviz/DatavizWithMatplotlib.ipynb)
 
