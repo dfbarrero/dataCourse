@@ -80,3 +80,7 @@ The objective of model evaluation is to determine whether the model fit well the
 Introduce any change to the model to increase the model fit. You can change the regression model, add or remove attributes (perhaps orbital measures?), or build new attributes. Take into account that the model interpretation could provide you valuable information, for instance, the p-values or coefficients values.
 
 Analyze the results.
+
+# Pose and answer a question
+
+Pose and then answer that question based on the evidence found in the exoplanets dataset.
