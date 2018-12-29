@@ -16,6 +16,8 @@ First of all, select a dataset of your convenience from the ones available in [S
 * mpg.
 * planets.
 
+We recommend to read a notebook with an example of data exploration to better understand the whole process. An interesting notebook is [this one](https://www.kaggle.com/ekami66/detailed-exploratory-data-analysis-with-python).
+
 ## Assignment goal
 
 The goal of this assignment is to perform an exploratory data analysis of a simple dataset. To this end, apply techniques developed in along the lecture (summary statistics and/or graphical tools).
