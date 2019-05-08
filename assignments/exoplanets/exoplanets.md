@@ -29,7 +29,7 @@ It is usefull to remember the basic ML steps:
 5. Evaluate the model.
 6. Go to 2 until a good enough model is found.
 
-You will need a data analytics tools, for instance, [KNIME AnalYtics Platform](https://www.knime.com/knime-software/knime-analytics-platform), which is free in its basic version and pretty easy to use. 
+You will need a data analytics tools, for instance, [KNIME Analytics Platform](https://www.knime.com/knime-software/knime-analytics-platform), which is free in its basic version and pretty easy to use. 
 
 ## Assignment goal
 
