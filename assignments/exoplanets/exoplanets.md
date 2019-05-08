@@ -31,7 +31,7 @@ It is usefull to remember the basic ML steps:
 
 ## Assignment goal
 
-The goal of this assignment is to write a report developing an exoplanet mass predictor. To achieve this goal it is required to perform a descriptive analysis of the dataset complemented with the development of regression models able to predict an exoplanet mass.
+The goal of this assignment is to train a regression model of a exoplanet mass. To achieve this goal it is required to perform a basic descriptive analysis of the dataset complemented with the development of regression models.
 
 ## Data adquisition and selection
 
