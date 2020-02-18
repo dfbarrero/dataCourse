@@ -1,5 +1,7 @@
 ## Contents
 
+0.- [scientific Programming in Python crash course](crash/)
+
 1.- [Data Science tools in Python](tools/)
 
 2.- [NumPy](numpy/)
