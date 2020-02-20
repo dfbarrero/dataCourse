@@ -1,6 +1,6 @@
 ## Contents
 
-0.- [scientific Programming in Python crash course](crash/)
+0.- [Scientific programming in Python crash course](crash/)
 
 1.- [Data Science tools in Python](tools/)
 
