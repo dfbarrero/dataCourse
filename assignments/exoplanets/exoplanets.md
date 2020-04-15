@@ -29,9 +29,11 @@ It is usefull to remember the basic ML steps:
 5. Evaluate the model.
 6. Go to 2 until a good enough model is found.
 
+You will need a data analytics tools, for instance, [KNIME Analytics Platform](https://www.knime.com/knime-software/knime-analytics-platform), which is free in its basic version and pretty easy to use. 
+
 ## Assignment goal
 
-The goal of this assignment is to write a report developing an exoplanet mass predictor. To achieve this goal it is required to perform a descriptive analysis of the dataset complemented with the development of regression models able to predict an exoplanet mass.
+The goal of this assignment is to train a regression model of a exoplanet mass. To achieve this goal it is required to perform a basic descriptive analysis of the dataset complemented with the development of regression models.
 
 ## Data adquisition and selection
 
