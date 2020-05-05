@@ -266,7 +266,7 @@
 
 	Public data repositories
 		\begin{itemize}
-		\item \href{https://www.kaggle.com/}{(Kaggle)}, \href{https://data.nasa.gov/}{(NASA Open Data Portal)}, \href{https://archive.ics.uci.edu/ml/index.php}{(UCI Machine Learning Repository)}
+		\item \href{https://www.kaggle.com/}{(Kaggle)}, \href{https://data.nasa.gov/}{(NASA Open Data Portal)} \IfStrEq{\modo}{mcyte}{, \href{https://omniweb.gsfc.nasa.gov/}}{(Omniweb)}{},\href{https://archive.ics.uci.edu/ml/index.php}{(UCI Machine Learning Repository)}
 		\end{itemize}
 	Customized adquisition and integration
 		\begin{itemize}
@@ -424,6 +424,19 @@
 			\end{itemize}
 		\end{itemize}
 \end{frame}
+
+\IfStrEq{\modo}{mcyte}{
+\begin{frame}{The data analysis process}{Data processing levels}
+	Three levels of processing for data products
+	\begin{itemize}
+		\item Level 0: Unprocessed data from payload
+		\item Level 1: Processed data
+		\item Level 2: Processed data with geophysical variables
+	\end{itemize}
+
+	\href{(https://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/}{(More info)}
+\end{frame}
+}{}
 
 \subsection{Machine Learning}
 \begin{frame}{The data analysis process}{Machine Learning}
