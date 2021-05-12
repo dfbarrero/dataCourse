@@ -189,6 +189,41 @@
 	\end{itemize}
 \end{frame}
 
+\subsection{The alphabet soup of data analysis}
+\begin{frame}{Introduction}{The alphabet soup of data analysis}
+	\begin{columns}
+ 	   \column{.60\textwidth}
+	    \begin{center}
+	%\includegraphics[width=0.5\linewidth]{figs/terms.png}\\
+    %\tiny{\href{https://www.quora.com/What-is-machine-learning-and-how-it-is-linked-to-Big-Data-Data-Mining}{(Source)}}
+
+	    \includegraphics[width=0.8\linewidth]{figs/comparativa.png}\\
+        \tiny{\href{https://www.linkfluence.com/blog/ai-basics-how-ai-machine-learning-supercharge-social-media-marketing}{(Source)}}
+	    \end{center}
+
+ 	\column{.40\textwidth}
+	Many related terms
+		\begin{itemize}
+		\item Artificial Intelligence
+		\item Machine Learning
+		\item Deep Learning
+		\item Big Data
+	%	\item Data Mining
+	%	\item Predictive analytics
+	%	\item KDD
+        \end{itemize}
+    And new careers
+	    \begin{itemize}
+		\item Data Science
+		\item Data scientist
+		\item Data engineer
+		\item ML engineer
+		\end{itemize}
+    \end{columns}
+\end{frame}
+
+
+
 \begin{frame}{Introduction}{Definition (II)}
 	\begin{center}
 	\textbf{Traditional approach}\\
@@ -197,38 +232,6 @@
 	\textbf{ML approach}\\
 	\input{figs/ml.tex}
 	\end{center}	
-\end{frame}
-
-\subsection{The alphabet soup of data analysis}
-\begin{frame}{Introduction}{The alphabet soup of data analysis}
-	\begin{center}
-	\includegraphics[width=0.5\linewidth]{figs/terms.png}\\
-    \tiny{\href{https://www.quora.com/What-is-machine-learning-and-how-it-is-linked-to-Big-Data-Data-Mining}{(Source)}}
-	\end{center}
-
-	Many related terms:
-
-    \begin{columns}
- 	   \column{.30\textwidth}
-		\begin{itemize}
-		\item Big Data
-		\item Data Science
-		\item Business Intelligence
-		\end{itemize}
- 	   \column{.30\textwidth}
-		\begin{itemize}
-		\item Data Mining
-		\item Deep Learning
-		\item Predictive analytics
-		\item KDD
-		\end{itemize}
- 	   \column{.30\textwidth}
-		\begin{itemize}
-		\item Data scientist
-		\item Data engineer
-		\item ML engineer
-		\end{itemize}
-    \end{columns}
 \end{frame}
 
 \section{The data analysis process}
@@ -244,7 +247,7 @@
 		Steps in any ML application:
 		\begin{enumerate}
 			\item Data adquisition
-			\item Selection, cleaning and transformation
+			\item Selection, cleaning and transformation (\alert{preprocessing})
 			\item Machine Learning
 			\item Learning evaluation
 			\item Explotation
@@ -266,7 +269,7 @@
 
 	Public data repositories
 		\begin{itemize}
-		\item \href{https://www.kaggle.com/}{(Kaggle)}, \href{https://data.nasa.gov/}{(NASA Open Data Portal)} \IfStrEq{\modo}{mcyte}{, \href{https://omniweb.gsfc.nasa.gov/}}{(Omniweb)}{},\href{https://archive.ics.uci.edu/ml/index.php}{(UCI Machine Learning Repository)}
+		\item \href{https://www.kaggle.com/}{(Kaggle)}, \href{https://data.nasa.gov/}{(NASA Open Data Portal)} \IfStrEq{\modo}{mcyte}{, \href{https://omniweb.gsfc.nasa.gov/}{(Omniweb)}}{}, \href{https://archive.ics.uci.edu/ml/index.php}{(UCI Machine Learning Repository)}
 		\end{itemize}
 	Customized adquisition and integration
 		\begin{itemize}
@@ -427,14 +430,14 @@
 
 \IfStrEq{\modo}{mcyte}{
 \begin{frame}{The data analysis process}{Data processing levels}
-	Three levels of processing for data products
+	Three levels of processing for data products in space applications
 	\begin{itemize}
 		\item Level 0: Unprocessed data from payload
 		\item Level 1: Processed data
 		\item Level 2: Processed data with geophysical variables
 	\end{itemize}
 
-	\href{(https://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/}{(More info)}
+	\href{https://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/}{(More info)}
 \end{frame}
 }{}
 
@@ -901,9 +904,9 @@ else
 
 \subsection{Clustering}
 \begin{frame}{Types of Machine Learning systems}{Unsupervised learning: Clustering (I)}
-	Clustering is a set of techniques that identify groups of data
+	Clustering is a set of techniques that identify groups of data (\alert{clusters})
 		\begin{itemize}
-			\item Algorithms: K-means, Expectation Maximization (EM), ...
+			\item Algorithms: K-means, db-scan, Gaussian Mixture Models (GMM), Expectation Maximization (EM), ...
 		\end{itemize}
 
     \begin{columns}
