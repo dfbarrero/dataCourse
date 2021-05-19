@@ -39,7 +39,7 @@ The goal of this assignment is to train a regression model of a exoplanet mass. 
 
 Download the exoplanet dataset from the [NASA Exploplanet Archive](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS). This dataset contains a collection of confirmed exoplanets along with several attributes about them. Download the dataset in *CSV format* and *values-only*. *You might need to configure your browser to allow the website to open pop-ups*.
 
-Once the dataset was downloaded (consider only the default attributes), visualize its header using any tool of your choice (Linux command, text editor, etc) to get info about the dataset attributes names codification. If your are interested in getting a more detailed info about the attributes, [read this link](https://exoplanetarchive.ipac.caltech.edu/docs/API_exoplanet_columns.html).
+Once the dataset was downloaded (consider only the default attributes), visualize its header using any tool of your choice (Linux command, text editor, etc) to get info about the dataset attributes names codification. If your are interested in getting a more detailed info about the attributes, [read this link](https://exoplanetarchive.ipac.caltech.edu/docs/API_PS_columns.html).
 
 The first step in any ML project is to get a basic understanding of the data at hand. To this end, apply any technique at your disposal (Statistics, histograms, etc) to answer the following questions:
 
