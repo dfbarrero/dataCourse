@@ -18,7 +18,7 @@
 \documentclass[10pt,compress]{beamer} % Change 10pt to make fonts of a different size
 \mode<presentation>
 
-\usepackage[spanish]{babel}
+\usepackage[english,spanish]{babel}
 \usepackage{fontspec}
 \usepackage{tikz}
 \usepackage{etoolbox}
@@ -40,7 +40,7 @@
 \title[Dataviz]{Data visualization with Matplotlib and Seaborn}
 \author{\asignatura\\\carrera}
 \institute{}
-\date{Departamento de Automática}
+\date{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -54,7 +54,7 @@
 %% Opacidad de los logotipos
 \newcommand{\opacidad}{1}
 %% Descomentar para habilitar logotipo en pié de página de portada
-\renewcommand{\logoUno}{Images/isg.png}
+% \renewcommand{\logoUno}{Images/isg.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
 %\renewcommand{\logoDos}{Images/CCLogo.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
@@ -74,7 +74,7 @@
 %% Option B: Author and institute
 %\footlineB
 %% Option C: Title, Author and institute
-%\footlineC
+% \footlineC
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -244,26 +244,26 @@
     \column{0.5\textwidth}
 	\begin{block}{\footnotesize{Convention}}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}
-	import matplotlib as mpl
-	import matplotlib.pyplot as plt
-	\end{lstlisting}
+\begin{lstlisting}
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{block}
 
 	\begin{exampleblock}{\footnotesize{myplot.py}}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}
-	import matplotlib.pyplot as plt
-	import numpy as np
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import numpy as np
 
-	x = np.linspace(0, 10, 100)
+x = np.linspace(0, 10, 100)
 
-	plt.plot(x, np.sin(x))
-	plt.plot(x, np.cos(x))
+plt.plot(x, np.sin(x))
+plt.plot(x, np.cos(x))
 
-	plt.show()
-	\end{lstlisting}
+plt.show()
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -281,34 +281,34 @@
     \column{0.5\textwidth}
 	\begin{exampleblock}{Matlab API}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}
-	plt.figure()  # create a plot
+\begin{lstlisting}
+plt.figure()  # create a plot
 
-	# create the first of two panels and set current axis
-	plt.subplot(2, 1, 1) # (rows, columns, panel number)
-	plt.plot(x, np.sin(x))
+# create the first of two panels and set current axis
+plt.subplot(2, 1, 1) # (rows, columns, panel number)
+plt.plot(x, np.sin(x))
 
-	# create the second panel and set current axis
-	plt.subplot(2, 1, 2)
-	plt.plot(x, np.cos(x));
-	\end{lstlisting}
+# create the second panel and set current axis
+plt.subplot(2, 1, 2)
+plt.plot(x, np.cos(x));
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
     \column{0.5\textwidth}
 	\begin{exampleblock}{OO API}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}
-	plt.figure()  # create a plot
+\begin{lstlisting}
+plt.figure()  # create a plot
 
-	# create the first of two panels and set current axis
-	plt.subplot(2, 1, 1) # (rows, columns, panel number)
-	plt.plot(x, np.sin(x))
+# create the first of two panels and set current axis
+plt.subplot(2, 1, 1) # (rows, columns, panel number)
+plt.plot(x, np.sin(x))
 
-	# create the second panel and set current axis
-	plt.subplot(2, 1, 2)
-	plt.plot(x, np.cos(x));
-	\end{lstlisting}
+# create the second panel and set current axis
+plt.subplot(2, 1, 2)
+plt.plot(x, np.cos(x));
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
@@ -338,13 +338,13 @@
 	\centering \includegraphics[width=\textwidth]{figs/matplotlib-scatterplot.png}\\
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}[basicstyle=\tiny]
-	for marker in ['o', '.', ',', 'x', '+', 'v', '^', '<', '>', 's', 'd']:
-	    plt.plot(rng.rand(5), rng.rand(5), marker,
-	         label="marker='{0}'".format(marker))
-	 plt.legend(numpoints=1)
-	 plt.xlim(0, 1.8);
-	\end{lstlisting}
+\begin{lstlisting}[basicstyle=\tiny]
+for marker in ['o', '.', ',', 'x', '+', 'v', '^', '<', '>', 's', 'd']:
+	plt.plot(rng.rand(5), rng.rand(5), marker,
+			label="marker='{0}'".format(marker))
+	plt.legend(numpoints=1)
+	plt.xlim(0, 1.8);
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
@@ -357,17 +357,17 @@
 
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}[basicstyle=\tiny]
-	rng = np.random.RandomState(0)
-	x = rng.randn(100)
-	y = rng.randn(100)
-	colors = rng.rand(100)
-	sizes = 1000 * rng.rand(100)
+\begin{lstlisting}[basicstyle=\tiny]
+rng = np.random.RandomState(0)
+x = rng.randn(100)
+y = rng.randn(100)
+colors = rng.rand(100)
+sizes = 1000 * rng.rand(100)
 
-	plt.scatter(x, y, c=colors, s=sizes, alpha=0.3,
-	            cmap='viridis')
-				plt.colorbar();  # show color scale
-	\end{lstlisting}
+plt.scatter(x, y, c=colors, s=sizes, alpha=0.3,
+    cmap='viridis')
+    plt.colorbar();  # show color scale
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -375,13 +375,13 @@
 	\centering \includegraphics[width=\textwidth]{figs/matplotlib-histogram.png}\\
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}[basicstyle=\tiny]
-	data = np.random.randn(1000)
+\begin{lstlisting}[basicstyle=\ttfamily\tiny]
+data = np.random.randn(1000)
 
-	plt.hist(data, bins=30, normed=True, alpha=0.5,
-         histtype='stepfilled', color='steelblue',
-         edgecolor='none');
-	\end{lstlisting}
+plt.hist(data, bins=30, normed=True, alpha=0.5,
+    histtype='stepfilled', color='steelblue',
+    edgecolor='none');
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
@@ -607,7 +607,7 @@
 
 	\begin{exampleblock}{\footnotesize{Histogram + density plot}}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}[basicstyle=\small]
+	\begin{lstlisting}[basicstyle=\small,language=Python]
 	sns.distplot(tips['tip'], rug=True)
 	\end{lstlisting}
 	\vspace{-0.2cm} 
@@ -802,7 +802,7 @@
 	\begin{exampleblock}{\footnotesize{Barplot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.barplot(x="total_bill", y="day", hue="sex", data=tips, ci=None)
+sns.barplot(x="total_bill", y="day", hue="sex", data=tips, ci=None)
 	\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}

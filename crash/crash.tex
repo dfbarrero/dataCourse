@@ -40,7 +40,7 @@
 \title[Scientific programming crash course]{Scientific Programming in Python crash course}
 \author{\asignatura\\\carrera}
 \institute{}
-\date{Departamento de Automática}
+\date{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -54,7 +54,7 @@
 %% Opacidad de los logotipos
 \newcommand{\opacidad}{1}
 %% Descomentar para habilitar logotipo en pié de página de portada
-\renewcommand{\logoUno}{Images/isg.png}
+% \renewcommand{\logoUno}{Images/isg.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
 %\renewcommand{\logoDos}{Images/CCLogo.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
@@ -697,34 +697,34 @@ plt.show()
     \column{0.5\textwidth}
 	\begin{exampleblock}{Matlab API}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}
-	plt.figure()  # create a plot
+\begin{lstlisting}
+plt.figure()  # create a plot
 
-	# create the first of two panels and set current axis
-	plt.subplot(2, 1, 1) # (rows, columns, panel number)
-	plt.plot(x, np.sin(x))
+# create the first of two panels and set current axis
+plt.subplot(2, 1, 1) # (rows, columns, panel number)
+plt.plot(x, np.sin(x))
 
-	# create the second panel and set current axis
-	plt.subplot(2, 1, 2)
-	plt.plot(x, np.cos(x));
-	\end{lstlisting}
+# create the second panel and set current axis
+plt.subplot(2, 1, 2)
+plt.plot(x, np.cos(x));
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
     \column{0.5\textwidth}
 	\begin{exampleblock}{OO API}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}
-	plt.figure()  # create a plot
+\begin{lstlisting}
+plt.figure()  # create a plot
 
-	# create the first of two panels and set current axis
-	plt.subplot(2, 1, 1) # (rows, columns, panel number)
-	plt.plot(x, np.sin(x))
+# create the first of two panels and set current axis
+plt.subplot(2, 1, 1) # (rows, columns, panel number)
+plt.plot(x, np.sin(x))
 
-	# create the second panel and set current axis
-	plt.subplot(2, 1, 2)
-	plt.plot(x, np.cos(x));
-	\end{lstlisting}
+# create the second panel and set current axis
+plt.subplot(2, 1, 2)
+plt.plot(x, np.cos(x));
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
@@ -758,7 +758,7 @@ plt.show()
     \column{0.35\textwidth}
 	\begin{block}{\footnotesize{Convention}}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}
+\begin{lstlisting}
 import seaborn as sns
 \end{lstlisting}
 	\vspace{-0.2cm} 

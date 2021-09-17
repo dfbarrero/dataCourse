@@ -1,5 +1,5 @@
 # Customize these two lines
-TARGETS=mcyte muii # Courses to compile
+TARGETS=kuc # Courses to compile
 NAME=mlfoundations
 
 # Do not touch

@@ -72,26 +72,26 @@
 %%%
 \lstset{ %
   language=Python,                % the language of the code
-  basicstyle=\ttfamily\scriptsize,           % the size of the fonts that are used for the code
+  basicstyle=\footnotesize,           % the size of the fonts that are used for the code
   %numbers=left,                   % where to put the line-numbers
   numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
   numbersep=5pt,                  % how far the line-numbers are from the code
   %  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
-  %showspaces=false,               % show spaces adding particular underscores
-  %showstringspaces=false,         % underline spaces within strings
-  %showtabs=true,                 % show tabs within strings adding particular underscores
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
   %frame=single,                   % adds a frame around the code
-  %rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
-  %tabsize=2,                      % sets default tabsize to 2 spaces
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
   captionpos=b,                   % sets the caption-position to bottom
   breaklines=true,                % sets automatic line breaking
   breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
   %title=\lstname,                   % show the filename of files included with \lstinputlisting;
-  %keywordstyle=\color{marronUAH},          % keyword style
-  %commentstyle=\color{verdeUAH},       % comment style
-  %stringstyle=\color{rojoUAH},         % string literal style
-  %escapeinside={\%*}{*)},            % if you want to add a comment within your code
-  %morekeywords={*,...}               % if you want to add more keywords to the set
+  keywordstyle=\color{marronUAH},          % keyword style
+  commentstyle=\color{verdeUAH},       % comment style
+  stringstyle=\color{rojoUAH},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,11 +103,11 @@
   \leavevmode%
   \hbox{%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
-	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.10\paperwidth]{Images/KristianiaUniversityCollege_hvit_rgb.png}
+	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left,rightskip=.3cm]{title in head/foot}%
-     \vspace{0.05cm}%\hspace{-0.07cm}
-     \textsf{\fontsize{6pt}{0cm}\selectfont
+     \vspace{0.17cm}%\hspace{-0.07cm}
+     \textsf{\fontsize{4pt}{0cm}\selectfont
      \insertshorttitle  \newline
 	 \insertshortinstitute \hfill \insertframenumber / \inserttotalframenumber
      }
@@ -123,7 +123,7 @@
   \leavevmode%
   \hbox{%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
-	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.10\paperwidth]{Images/KristianiaUniversityCollege_hvit_rgb.png}
+	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left,rightskip=.3cm]{title in head/foot}%
      \vspace{0.17cm}%\hspace{-0.07cm}
@@ -144,7 +144,7 @@
   \leavevmode%
   \hbox{%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
-	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.10\paperwidth]{Images/KristianiaUniversityCollege_hvit_rgb.png}
+	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left,rightskip=.3cm]{title in head/foot}%
      \vspace{0.17cm}%\hspace{-0.07cm}
@@ -163,7 +163,7 @@
   \leavevmode%
   \hbox{%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
-	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.10\paperwidth]{Images/KristianiaUniversityCollege_hvit_rgb.png}
+	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left,rightskip=.3cm]{title in head/foot}%
      \vspace{0.17cm}\hspace{-0.07cm}
@@ -182,7 +182,7 @@
 \setbeamertemplate{footline}
   {\hbox{%
     \begin{beamercolorbox}[wd=\paperwidth,ht=7ex,dp=2ex,left]{author in head/foot}%
-      \hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.10\paperwidth]{Images/KristianiaUniversityCollege_rod_rgb.png}
+      \hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_pant293.pdf}
     %\vspace{0cm}\hspace{4cm} 
     \ifdefempty{\logoUno}{}{
 		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
@@ -226,7 +226,7 @@
 \setbeamertemplate{footline}
   {\hbox{%
     \begin{beamercolorbox}[wd=\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
-      \hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.10\paperwidth]{Images/KristianiaUniversityCollege_hvit_rgb.png}
+      \hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
     \ifdefempty{\logoUno}{}{
 		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
     	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoUno}};\end{tikzpicture}

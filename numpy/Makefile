@@ -1,5 +1,5 @@
 # Customize these two lines
-TARGETS=muii # Courses to compile
+TARGETS=kuc # Courses to compile
 NAME=numpy
 
 # Do not touch
