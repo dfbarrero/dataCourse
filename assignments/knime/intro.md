@@ -12,7 +12,11 @@
 
 ## KNIME first contact
 
-The KNIME installation instructions along with relevant information for a first contact can be found in this [link](https://www.knime.com/installation). Please, carefully read that document and watch the video contained in it. After that, watch the following videos:
+The KNIME installation instructions along with relevant information for a first contact can be found in this [link](https://www.knime.com/installation). Please, carefully read that document and watch the video contained in it. After that, read the [KNIME Getting Started Guide](https://www.knime.com/getting-started-guide) and the [KNIME Workbench Guide](https://docs.knime.com/latest/analytics_platform_workbench_guide/index.html). You may want to watch this [video tutorial](https://www.youtube.com/watch?v=A32NoHC4Uf8).
+
+<!--
+
+After that, watch the following videos:
 
 1. [What is a Node, What is a Workflow](https://www.knime.com/knime-introductory-course/chapter1/section2/what-is-a-node-what-is-a-workflow)
 
@@ -25,6 +29,7 @@ The KNIME installation instructions along with relevant information for a first 
 5. [Data Table Structure](https://www.knime.com/knime-introductory-course/chapter1/section3/data-table-structure)
 
 6. [Document your workflow: Annotations & Comments](https://www.knime.com/knime-introductory-course/chapter1/section3/document-your-workflow-annotations-and-comments)
+-->
 
 KNIME comes with an excellent collection of examples covering both basic and advanced Machine Learning workflows. Browing those examples is good way to getting down with KNIME and Machine Learning. KNIME provides a set of local examples, it also has access to an examples server, which reads and downloads examples on-demand. 
 
