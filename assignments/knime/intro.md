@@ -41,11 +41,11 @@ Go through the following examples trying to understand what is going on. You may
 
 3. *SERVER/04_Analytics/02_Statistics/01_Simple_Example_with_Statistics*
 
-4. *SERVER/04_Analytics/03_Clustering/01_Performing_a_k-Means_Clustering*
+4. *SERVER/04_Analytics/03_Clustering/01_Performing_a_k-Means_Clustering*. Try to explain what clustering is.
+ 
+6. *SERVER/04_Analytics/04_Classification_and_Predictive_Models/07_Decision_Tree*. Try to explain what classification is.
 
-5. *SERVER/04_Analytics/04_Classification_and_Predictive_Models/07_Decision_Tree*
-
-6. *SERVER/04_Analytics/05_Regressions/01_Learning_a_Simple_Regression_Tree*
+6. *SERVER/04_Analytics/05_Regressions/01_Learning_a_Simple_Regression_Tree*. Try to explain what regression is.
 
 ## Dataset preliminary steps
 
