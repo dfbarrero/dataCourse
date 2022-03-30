@@ -40,17 +40,13 @@ KNIME comes with an excellent collection of examples covering both basic and adv
 
 Go through the following examples trying to understand what is going on. You may want to inspect a node output by right-clicking the node and selecting the data table.
 
-1. *LOCAL/Basic Examples/Building a Simple Classifier*
+1. *SERVER/04_Analytics/02_Statistics/01_Simple_Example_with_Statistics*
 
-2. *LOCAL/Basic Examples/Data Blending*
-
-3. *SERVER/04_Analytics/02_Statistics/01_Simple_Example_with_Statistics*
-
-4. *SERVER/04_Analytics/03_Clustering/01_Performing_a_k-Means_Clustering*. Try to explain what clustering is.
+2. *SERVER/04_Analytics/03_Clustering/01_Performing_a_k-Means_Clustering*. Try to explain what clustering is.
  
-6. *SERVER/04_Analytics/04_Classification_and_Predictive_Models/07_Decision_Tree*. Try to explain what classification is.
+3. *SERVER/04_Analytics/04_Classification_and_Predictive_Models/07_Decision_Tree*. Try to explain what classification is.
 
-6. *SERVER/04_Analytics/05_Regressions/01_Learning_a_Simple_Regression_Tree*. Try to explain what regression is.
+4. *SERVER/04_Analytics/05_Regressions/01_Learning_a_Simple_Regression_Tree*. Try to explain what regression is.
 
 ## Dataset preliminary steps
 
