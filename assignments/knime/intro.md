@@ -14,13 +14,18 @@
 
 The KNIME installation instructions along with relevant information for a first contact can be found in this [link](https://www.knime.com/installation). Please, carefully read that document and watch the video contained in it. After that, read the [KNIME Getting Started Guide](https://www.knime.com/getting-started-guide) and the [KNIME Workbench Guide](https://docs.knime.com/latest/analytics_platform_workbench_guide/index.html). You may want to watch this [video tutorial](https://www.youtube.com/watch?v=A32NoHC4Uf8).
 
-<!--
-
 After that, watch the following videos:
 
-1. [What is a Node, What is a Workflow](https://www.knime.com/knime-introductory-course/chapter1/section2/what-is-a-node-what-is-a-workflow)
+1. [What is a Node, What is a Workflow](https://www.youtube.com/watch?v=4rETNe-Xx7k)
 
-2. [Node Repository](https://www.knime.com/knime-introductory-course/chapter1/section2/node-repository)
+2. [The Node Repository](https://www.youtube.com/watch?v=fdYXsHdJkfk)
+
+3. [How to Create, Configure, Reset, Execute a Node](https://www.youtube.com/watch?v=fMM_w4v5zZc)
+
+4. [Annotations & Comments](https://www.youtube.com/watch?v=AHURYB_O8sA)
+
+
+<!--
 
 3. [Workflows and Workflow Groups](https://www.knime.com/knime-introductory-course/chapter1/section3/workflows-and-workflow-groups)
 
