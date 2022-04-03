@@ -95,7 +95,8 @@ In this part of the assignment we will try to determine the detection method.
    * Remove attributes that contain duplicate information (for instance, planet mass expressed in different units).
    * Count the number of planets discovered by each method. Is the dataset balanced? In general, you should use Cohen's kappa to compare classifiers with unbalanced data. 
    * Drop all instances whose detection method is different than "Transit" or "Radial Velocity". (Hint: use the node "Value Filter").
-3. Classify the discovery method using a tree classifier.
+2. Classify the discovery method using a tree classifier.
    * Which variable does the classifier identify as most relevant? You may want to use the "Decision Tree View" node to ease the inspection of the classifier. 
    * Remove that attribute, retrain the classifier and assess its kappa. Repeat it several times, what does happen to the classifier performance?
+3. Experiment with different classifiers and try to improve the performance.
 4. Consider only pl_dens, pl_mass and pl_radj as in the previous exercise, and retrain the classifier. What happens?
