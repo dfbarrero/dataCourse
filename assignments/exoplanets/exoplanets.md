@@ -33,25 +33,25 @@ You will need a data analytics tools, for instance, [KNIME Analytics Platform](h
 
 ## Assignment goal
 
-The goal of this assignment is to train a regression model of a exoplanet mass. To achieve this goal it is required to perform a basic descriptive analysis of the dataset complemented with the development of regression models.
+The goal of this assignment is to train a regression model of exoplanets mass. To achieve this goal it is required first to perform a basic descriptive analysis of the dataset complemented with the development of the regression models.
 
 ## Data adquisition and selection
 
-Download the exoplanet dataset from the [NASA Exploplanet Archive](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS). This dataset contains a collection of confirmed exoplanets along with several attributes about them. Download the dataset in *CSV format* and *values-only*. *You might need to configure your browser to allow the website to open pop-ups*.
+Download the exoplanet dataset from the [NASA Exploplanet Archive](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS). This dataset contains a collection of confirmed exoplanets along with several attributes about them. Download the dataset in *CSV format* and *values-only*. You may need to configure your browser to allow the website to open pop-ups.
 
-Once the dataset was downloaded (consider only the default attributes), visualize its header using any tool of your choice (Linux command, text editor, etc) to get info about the dataset attributes names codification. If your are interested in getting a more detailed info about the attributes, [read this link](https://exoplanetarchive.ipac.caltech.edu/docs/API_PS_columns.html).
+Once the dataset was downloaded (consider only the default attributes), visualize its header using any tool of your choice (Linux command, text editor, etc) to get an insight about the attributes codification. If you are interested in getting a complete description, [read this link](https://exoplanetarchive.ipac.caltech.edu/docs/API_PS_columns.html).
 
 The first step in any ML project is to get a basic understanding of the data at hand. To this end, apply any technique at your disposal (Statistics, histograms, etc) to answer the following questions:
 
-1. How many instances and attributes does the dataset contain? (Hint: Use the Statistics node to get an insight to the data statistics)
+1. How many instances and attributes does the dataset contain? <!--(Hint: Use the Statistics node)-->
 
-2. How many exoplanets were discovered? How many exoplanets were discovered with each detection method? Which detection methods does the dataset contain? (Hint: The groupBy node is handy in to answer that kind of questions)
+2. How many exoplanets were discovered? How many exoplanets were discovered with each detection method? Which detection methods does the dataset contain? <!-- (Hint: The groupBy node is handy in to answer that kind of questions)-->
 
 3. Does the dataset contain missing values?
 
 ## Univariable exploratory analysis
 
-This assignment is interested in predicting the exoplanet mass, so many of the information contained in the dataset is irrelevant. However, distinguishing between relevant and irrelevant features is, itself, a challenging task most of the times.
+This assignment is interested in forecasting the exoplanet mass, so many of the information contained in the dataset is irrelevant. However, distinguishing between relevant and irrelevant features is, itself, a challenging task most of the times.
 
 In a first attempt to better understand our data, we will consider only those attributes which are directly associated with mass. Insert a KNIME node to drop all the attributes, with the exception of the following ones:
 
@@ -77,7 +77,7 @@ Implement a linear regression with *pl_mass* as target attribute. Train the mode
 
 <img align="center" src="regression.png" width="300">
 
-The objective of model evaluation is to determine whether the model fit well the data. For the purpose of this assignment, we will consider a satisfactory model that one with R2>0.65.
+The objective of model evaluation is to determine whether the model fits well the data. For the purpose of this assignment, we will consider a satisfactory model that one with R2>0.65.
 
 Introduce any change to the model to increase the model fit. You can change the regression model, add or remove attributes (perhaps orbital measures?), or build new attributes. Take into account that the model interpretation could provide you valuable information, for instance, the p-values or coefficients values.
 
