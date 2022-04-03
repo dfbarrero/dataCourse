@@ -37,7 +37,7 @@ The goal of this assignment is to train a regression model of exoplanets mass. T
 
 ## Data adquisition and selection
 
-Download the exoplanet dataset from the [NASA Exploplanet Archive](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS). This dataset contains a collection of confirmed exoplanets along with several attributes about them. Download the dataset in *CSV format* and **values-only**. You may need to configure your browser to allow the website to open pop-ups.
+Download the exoplanet dataset from the [NASA Exploplanet Archive](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS). This dataset contains a collection of confirmed exoplanets along with several attributes about them. Download the dataset in *CSV format* and **values-only**; please select the column "Planet Density" which is not selected by default. You may need to configure your browser to allow the website to open pop-ups.
 
 Once the dataset was downloaded (consider only the default attributes), visualize its header using any tool of your choice (Linux command, text editor, etc) to get an insight about the attributes codification. If you are interested in getting a complete description, [read this link](https://exoplanetarchive.ipac.caltech.edu/docs/API_PS_columns.html).
 
@@ -88,4 +88,14 @@ The output of this assignment is a figure of the forecasted and observed values 
 
 ## (Optional) Classification analysis
 
+In this part of the assignment we will try to determine the detection method. 
 
+1. Clean the dataset.
+   * Drop irrelevant attributes (for instance, planet name). Take into account that you could find interesting previously unknown relationships ... for instance, published confirmed planets (solution type) might be biased.
+   * Remove attributes that contain duplicate information (for instance, planet mass expressed in different units).
+   * Count the number of planets discovered by each method. Is the dataset balanced? In general, you should use Cohen's kappa to compare classifiers with unbalanced data. 
+   * Drop all instances whose detection method is different than "Transit" or "Radial Velocity". (Hint: use the node "Value Filter").
+3. Classify the discovery method using a tree classifier.
+   * Which variable does the classifier identify as most relevant? You may want to use the "Decision Tree View" node to ease the inspection of the classifier. 
+   * Remove that attribute, retrain the classifier and assess its kappa. Repeat it several times, what does happen to the classifier performance?
+4. Consider only pl_dens, pl_mass and pl_radj as in the previous exercise, and retrain the classifier. What happens?
