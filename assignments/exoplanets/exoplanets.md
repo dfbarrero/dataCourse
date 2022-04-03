@@ -81,4 +81,6 @@ The objective of model evaluation is to determine whether the model fits well th
 
 Introduce any change to the model to increase the model fit. You can change the regression model, add or remove attributes (perhaps orbital measures?), or build new attributes. Take into account that the model interpretation could provide you valuable information, for instance, the p-values or coefficients values.
 
+The output of this assignment is a figure the forecasted and observed values along with an estimation of the R2 of the regressor.
+
 Analyze the results.
