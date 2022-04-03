@@ -37,7 +37,7 @@ The goal of this assignment is to train a regression model of exoplanets mass. T
 
 ## Data adquisition and selection
 
-Download the exoplanet dataset from the [NASA Exploplanet Archive](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS). This dataset contains a collection of confirmed exoplanets along with several attributes about them. Download the dataset in *CSV format* and *values-only*. You may need to configure your browser to allow the website to open pop-ups.
+Download the exoplanet dataset from the [NASA Exploplanet Archive](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS). This dataset contains a collection of confirmed exoplanets along with several attributes about them. Download the dataset in *CSV format* and **values-only**. You may need to configure your browser to allow the website to open pop-ups.
 
 Once the dataset was downloaded (consider only the default attributes), visualize its header using any tool of your choice (Linux command, text editor, etc) to get an insight about the attributes codification. If you are interested in getting a complete description, [read this link](https://exoplanetarchive.ipac.caltech.edu/docs/API_PS_columns.html).
 
@@ -81,6 +81,11 @@ The objective of model evaluation is to determine whether the model fits well th
 
 Introduce any change to the model to increase the model fit. You can change the regression model, add or remove attributes (perhaps orbital measures?), or build new attributes. Take into account that the model interpretation could provide you valuable information, for instance, the p-values or coefficients values.
 
-The output of this assignment is a figure the forecasted and observed values along with an estimation of the R2 of the regressor.
-
 Analyze the results.
+
+The output of this assignment is a figure of the forecasted and observed values along with an estimation of R2.
+
+
+## (Optional) Classification analysis
+
+
