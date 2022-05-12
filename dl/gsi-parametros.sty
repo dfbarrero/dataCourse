@@ -1,0 +1,36 @@
+
+%\newcommand{\modo}[1][]{}
+%\renewcommand{\modo}{ASC} % DESCOMENTAR LINEA CORRECTA
+%\renewcommand{\modo}{MASTER-ESPACIO} 
+%\renewcommand{\modo}{VIDEOJUEGOS} 
+%\renewcommand{\modo}{INDUSTRIALES} 
+
+% Iniciamos variables con valores vacios
+\newcommand{\autor}{}
+\newcommand{\asignatura}{}
+\newcommand{\carrera}{}
+
+% Personalizar a partir de aqui
+\IfStrEq{\modo}{asc}{
+	\renewcommand{\autor}{}
+	\renewcommand{\asignatura}{Advanced Robot Control}
+	\renewcommand{\carrera}{Grado en Ingeniería Informática/Computadores}
+}{}
+
+\IfStrEq{\modo}{muii}{
+	\renewcommand{\autor}{}
+	\renewcommand{\asignatura}{Inteligencia Artificial en los Sistemas de Control Autónomo}
+	\renewcommand{\carrera}{Máster Universitario en Ingeniería Industrial}
+}{}
+
+\IfStrEq{\modo}{mcyte}{
+	\renewcommand{\autor}{}
+	\renewcommand{\asignatura}{Inteligencia Artificial en los Sistemas de Control Autónomo}
+	\renewcommand{\carrera}{Máster en Ciencia y Tecnología desde el Espacio}
+}{}
+
+\IfStrEq{\modo}{videojuegos}{
+	\renewcommand{\autor}{}
+	\renewcommand{\asignatura}{Videogames Technology}
+	\renewcommand{\carrera}{Asignatura transversal}
+}{}

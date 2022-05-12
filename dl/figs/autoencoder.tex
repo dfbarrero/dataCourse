@@ -1,0 +1,44 @@
+\documentclass[crop,tikz]{standalone}% 'crop' is the default for v1.0, before it was 'preview'
+
+\usetikzlibrary{shapes,arrows}
+
+\begin{document}
+
+
+\tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
+\tikzstyle{sum} = [draw, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+ \node [input, name=input] {};
+ \coordinate [right of=input, node distance=1.5cm] (sum){};
+ %\node [sum, right of=input] (sum) {};
+ \node [block, right of=sum] (autoencoder) {Autoencoder};
+ \node [sum, right of=autoencoder, node distance=2.5cm] (resta) {$-$};
+ \node [input, name=output, right of=resta, node distance = 2cm] {$-$};
+ \coordinate [below of=autoencoder, node distance=1.5cm] (abajo){};
+ %\node [block, right of=controller, node distance=3cm] (motor) {G$_{motor}$};
+ %\node [block, right of=motor, pin={[pinstyle]above:Störningar},
+ %       node distance=3cm] (system) {Dynamik$_{\varphi}$};
+
+ %\draw [->] (controller) -- node[name=u] {$u$} (motor);
+ %\node [output, right of=system] (output) {};
+ %\node [block, below of=motor] (msystem) {Mätsystem};
+
+	\draw [draw,->] (input) -- node {$\vec{x}$} (autoencoder);
+ %\draw [->] (sum) -- node {$e$} (autoencoder);
+	\draw [->] (autoencoder) -- node {$\vec{x}'$} (resta);
+	\draw [->] (resta) -- node {$\epsilon$} (output);
+	%\draw [->] (resta) -- node {$\epsilon=||\vec{x}'-\vec{x}'$||} (output);
+	\draw [->] (sum) |- (abajo) -| (resta);
+ %\draw [|-] (sum) -- node {} (abajo);
+ %\draw [-|] (abajo) -- node {} (resta);
+
+ %\draw [->] (system) -- node [name=y] {$\varphi$}(output);
+ %\draw [->] (y) |- (msystem);
+ %\draw [->] (msystem) -| node[pos=0.99] {$-$}  node [near end] {$\varphi_m$} (sum);
+\end{tikzpicture}
+
+\end{document} 
