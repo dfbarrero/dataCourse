@@ -118,17 +118,15 @@
 \begin{frame}[plain]{}
    \begin{block}{Objectives}
       \begin{enumerate}
-         \item Define Machine Learning (ML)
-		 \item Delimite ML scope
-         \item Introduce the main ML tasks
-         \item Recognize problems as ML tasks
+         \item Motivate Deep Learning
+		 \item Introduce main deep architectures
+         \item Describe state-of-the-art applications
       \end{enumerate} 
    \end{block}
 
    \begin{block}{Bibliography}
 	\begin{itemize}
-        \item Bishop, Christopher M. \textit{Pattern Recognition and Machine Learning}. 2nd edition. Springer-Verlag. 2011
-        \item M\"uller, Andreas C., Guido, Sarah. \textit{Introduction to Machine Learning with Python}. O'Reilly. 2016
+        \item Géron, Aurélien \textit{Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow}. 2nd edition. O'Reilly. 2019
 	\end{itemize}
    \end{block}
 \end{frame}
@@ -148,22 +146,44 @@
 \end{frame}
 }
 
-\subsection{Deep neural networks}
+%\section{Motivation}
+%\begin{frame}{Motivation (I)}
+%     Deep Learning is not just a network with many layers
+%	\begin{itemize}
+%		\item Gradient vanishing
+%		\item Multiple local optima -> difficult training
+%	\end{itemize}
 
-\begin{frame}{Algorithms}{Deep neural networks (I)}
+%	\centering
+%	\includegraphics[width=0.6\textwidth]{figs/gradients.png}\\
+%	\scriptsize\href{http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf?source=post\_page---------------------------}{(Source)}\\
+%
+%	\normalsize
+%	\flushleft
+%	Usual solutions
+%	\begin{itemize}
+%		\item Careful weights initialization
+%		\item ReLU and Leaky ReLU activation functions
+%		\item Regularization through \alert{dropout}
+%	\end{itemize}
+%\end{frame}
+
+\section{Deep Learning}
+
+\begin{frame}{Deep Learning (I)}
      Deep Learning is not just a network with many layers
 	\begin{itemize}
+		\item Multiple local optima $\Rightarrow$ difficult training
 		\item Gradient vanishing
-		\item Multiple local optima -> difficult training
 	\end{itemize}
 
 	\centering
 	\includegraphics[width=0.6\textwidth]{figs/gradients.png}\\
-	\scriptsize\href{http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf?source=post\_page---------------------------}{(Source)}\\
+%	\scriptsize\href{http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf?source=post\_page---------------------------}{(Source)}\\
 
 	\normalsize
 	\flushleft
-	Usual solutions
+	Need of tricks
 	\begin{itemize}
 		\item Careful weights initialization
 		\item ReLU and Leaky ReLU activation functions
@@ -171,47 +191,97 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Algorithms}{Deep neural networks (II)}
+\begin{frame}{Deep Learning (II)}
 	Two popular types of deep networks
 	\begin{itemize}
-		\item Convolutional Neural Networks (CNNs)
-		\item Long Short-Term Memory (LSTM) 
-		\item ... we use both
+		\item Convolutional Neural Networks (CNNs) - Image
+		\item Long Short-Term Memory (LSTM) - Time-series and NLP 
 	\end{itemize}
 
-	In Deep Learning, we think in layers \\
-
-	\centering
-	\includegraphics[width=0.7\textwidth]{figs/layers.png}\\
-	\scriptsize\href{https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53}{(Source)}\\
-
-	\end{frame}
-
-\subsection{1D convolution}
-
-\begin{frame}{Algorithms}{1D convolution}
-        CNNs are popular for Computer Vision applications
+	In Deep Learning, we think in layers
 	\begin{itemize}
-		\item Networks with convolutional layers
-		\item Convolutions in NN use to be 2D
-		\item \href{https://miro.medium.com/max/500/1*GcI7G-JLAQiEoCON7xFbhg.gif}{(Conv 2D example)}
+		\item Data input layers
+		\item Output layers
+        \item Fully connected (classic)
+        \item Convolutional layers
+        \item Recurrent layers
+        \item Dropout layers
+        \item More ...
 	\end{itemize}
 
-	Univariable time series are 1D
-	\begin{itemize}
-		\item \alert{1D convolution}
-	\end{itemize}
 
-	\centering
-	\includegraphics[width=0.5\textwidth]{figs/1dconv.png}
-
-    	\flushleft Related concept: \alert{deconvolution} \\
+    \vspace{-4cm}
+	\hfill \includegraphics[width=0.6\textwidth]{figs/layers.png}\\
+	%\scriptsize\href{https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53}{(Source)}\\
 \end{frame}
 
-\subsection{Max-pooling}
+\section{Convolutional Neural Networks}
+\subsection{Biological motivation}
+\begin{frame}{Convolutional Neural Networks}{Biological motivation}
+	\centering
+	\includegraphics[width=0.7\textwidth]{figs/cortex.png}\\
+	\scriptsize\href{https://www.researchgate.net/publication/267872860_Why_vision_is_not_both_hierarchical_and_feedforward/figures?lo=1}{(Source)}\\
+\end{frame}
 
-\begin{frame}{Algorithms}{Max-pooling}
-     	Max-pooling down-samples data instances
+\subsection{Convolutional layer}
+\begin{frame}{Convolutional Neural Networks}{Convolutional layers (I)}
+    CNNs are popular for Computer Vision applications
+	\begin{itemize}
+		\item Networks with convolutional layers
+        \item Convolutions are features extrators
+        \item Its behaviour can be learnt
+	\end{itemize}
+
+    \bigskip 
+	\centering 1D convolution \\
+    \bigskip 
+
+	\includegraphics[width=0.5\textwidth]{figs/1dconv.png}
+\end{frame}
+
+\begin{frame}{Convolutional Neural Networks}{Convolutional layers (II)}
+    \centering
+
+	\includegraphics[width=0.8\textwidth]{figs/2dconvolution.png}\\
+	\scriptsize\href{https://www.brilliantcode.net/1584/convolutional-neural-networks-1-convolution-layer-stride-padding-kernel/}{(Source)}\\
+    \bigskip
+	\normalsize \href{https://miro.medium.com/max/500/1*GcI7G-JLAQiEoCON7xFbhg.gif}{(Conv 2D example)}
+\end{frame}
+
+\begin{frame}{Convolutional Neural Networks}{Convolutional layers (III)}
+
+    \begin{columns}
+ 	\column{.50\textwidth}
+	    \centering Padding\\
+        \bigskip
+	    \includegraphics[width=\textwidth]{figs/padding.png}\\
+    	\scriptsize\href{https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}{(Source)}
+
+ 	\column{.50\textwidth}
+        \centering Stride\\
+        \bigskip
+	    \includegraphics[width=\textwidth]{figs/stride.png}\\
+	    \scriptsize\href{https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}{(Source)}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Convolutional Neural Networks}{Convolutional layers (IV)}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figs/convolution1.png}\\\bigskip
+	\includegraphics[width=0.45\textwidth]{figs/convolution2.png}
+	\includegraphics[width=0.45\textwidth]{figs/convolution3.png}\\
+    \bigskip
+    \href{https://setosa.io/ev/image-kernels/}{(Image kernels)}
+\end{frame}
+
+\subsection{Max-pooling layer}
+\begin{frame}{Convolutional Neural Networks}{Max-pooling}
+	\centering{\includegraphics[width=0.5\textwidth]{figs/maxpool.png}}
+
+    \bigskip
+
+    \begin{flushleft}
+    Max-pooling down-samples data instances
 	\begin{itemize}
 		\item Given a matrix, it takes its maximum value
 		\item Usually the matrix is $n x n$ (2D)
@@ -220,15 +290,13 @@
 	\begin{itemize}
 		\item Dimensionality reduction
 		\item Filters irrelevant information
+        \item Invariant to scale
 	\end{itemize}
-	\bigskip
-	\centering 
-	\includegraphics[width=0.5\textwidth]{figs/maxpool.png}
+    \end{flushleft}
 \end{frame}
 
-\subsection{Dropout}
-
-\begin{frame}{Algorithms}{Dropout}
+\subsection{Dropout layer}
+\begin{frame}{Convolutional Neural Networks}{Dropout layer}
 	\alert{Dropout} is a regularization technique for neural networks
 	\begin{itemize}
 		\item Dropout deactivates a neuron with probability $p$ for each iteration
@@ -244,16 +312,127 @@
 	\scriptsize\href{https://jmlr.org/papers/volume15/srivastava14a.old/srivastava14a.pdf}{(Srivastava et al. (2010))}
 \end{frame}
 
+\subsection{CNN architectures}
+\begin{frame}{Convolutional Neural Networks}{CNN architectures: standard (I)}
+	\centering
+        \includegraphics[width=\textwidth]{figs/layers.png}\\
+	    \scriptsize\href{https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53}{(Source)}\\
 
-\subsection{LSTM networks}
-
-\begin{frame}{LSTM networks}{Recurrent neural networks}
-    TODO
+	\normalsize \href{https://poloclub.github.io/cnn-explainer/\#article-convolution}{(Demo)}
 \end{frame}
 
-\begin{frame}{LSTM networks}{LSTM}
-    TODO
+{\blackSlide
+\begin{frame}{Convolutional Neural Networks}{CNN architectures: standard (II)}
+	\centering
+        \includegraphics[width=0.9\textwidth]{figs/features.png}
 \end{frame}
+}
+
+\subsubsection{CNN architectures}
+\begin{frame}{Convolutional Neural Networks}{CNN architectures: other}
+    Other CNN architectures
+    \begin{itemize}
+        \item LeNet-5
+        \item AlexNet
+        \item GoogLeNet
+        \item VGGNet
+        \item ResNet
+        \item Xception
+        \item SENet
+    \end{itemize}
+\end{frame}
+
+
+\section{Recurrent networks}
+\subsection{RNNs}
+\begin{frame}{Recurrent networks}{Recurrent neural networks (I)}
+    %\begin{columns}
+ 	%   \column{.50\textwidth}
+	Recurrent networks have connections pointing backward
+    \begin{itemize}
+        \item Time-series, NLP, audio, video, ...
+    \end{itemize}
+    Neurons have memory, or \textbf{state}
+    \begin{itemize}
+        \item Named \alert{cells}
+        \item In basic neurons, state is its output
+    \end{itemize}
+
+	\begin{figure}
+        \includegraphics[width=0.6\textwidth]{figs/recurrent.png}\\
+	    \scriptsize\href{https://www.bouvet.no/bouvet-deler/explaining-recurrent-neural-networks}{(Source)}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Recurrent networks}{Recurrent neural networks (II)}
+	\centering
+        \includegraphics[width=0.8\textwidth]{figs/seq2seq.jpg}
+
+    \begin{table}
+    \centering
+    \begin{tabular}{l|l|l}
+    One to many & Many to one & Many to many\\
+    vec2seq     & seq2vec     & seq2seq\\\hline
+    Image description & Spam classification & Machine translation \\
+                & Time series forecasting & \\
+                & Sentiment score         & \\
+    \end{tabular}
+    \end{table}
+\end{frame}
+
+
+
+\begin{frame}{Recurrent networks}{Recurrent neural networks (III)}
+    RNNs problems
+    \begin{itemize}
+        \item Gradient unstability
+            \begin{itemize}
+            \item Smaller learning rate
+            \item tanh as activation function
+            \item Usual DL tricks
+            \end{itemize}
+        \item Short memory
+            \begin{itemize}
+            \item Information vanishes fast
+            \item Much more difficult solution
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{LTSM networks}
+\begin{frame}{Recurrent networks}{LSTM networks}
+    \begin{columns}
+ 	   \column{.50\textwidth}
+            LSTM: Long-Short Term Memory
+            \begin{itemize}
+                \item Complex cell that improves long-term memory
+                \item Two states: short and long terms
+                \item Very much used as a basic cell
+                \item Much better performance
+                \item Lower training time
+            \end{itemize}
+ 	   \column{.50\textwidth}
+            \centering \includegraphics[width=\textwidth]{figs/LTSM.png}\\
+	        \scriptsize\href{https://en.wikipedia.org/wiki/Long_short-term_memory}{(Source)}
+    \end{columns}
+\end{frame}
+
+\subsection{GRU networks}
+\begin{frame}{Recurrent networks}{GRU}
+    \begin{columns}
+ 	   \column{.50\textwidth}
+            GRU: Gated Recurrent Unit
+            \begin{itemize}
+                \item Simplification of LSTM
+                \item Seems to perform as well as LSTM
+            \end{itemize}
+ 	   \column{.50\textwidth}
+            \centering \includegraphics[width=\textwidth]{figs/GRU.png}\\
+	        \scriptsize\href{https://en.wikipedia.org/wiki/Gated_recurrent_unit}{(Source)}
+    \end{columns}
+\end{frame}
+
+
 
 \section{Autoencoders}
 
@@ -334,11 +513,38 @@
 
 \end{frame}
 
+\section{Other topics}
+\begin{frame}{Other topics}
+	\begin{itemize}
+		\item Transfer learning
+		\item Data augmentation
+	\end{itemize}
+
+	\centering\includegraphics[width=0.5\linewidth]{figs/augmentation.png}\\
+	\scriptsize\href{https://medium.com/nanonets/how-to-use-deep-learning-when-you-have-limited-data-part-2-data-augmentation-c26971dc8ced}{(Source)}
+\end{frame}
 
 \section{Advanced topics}
 
-\subsection{Variational autoencoders}
+\subsection{GAN}
 
+\subsection{Advanced topics}
+\begin{frame}{Advanced topics}{Generative networks: GAN (I)}
+	\centering\includegraphics[width=0.7\linewidth]{figs/gan.png}\\
+	\scriptsize\href{https://www.oreilly.com/library/view/java-deep-learning/9781788997454/60579068-af4b-4bbf-83f1-e988fbe3b226.xhtml}{(Source)}
+   Examples:
+    \begin{itemize}
+        \item \href{https://www.nvidia.com/en-us/studio/canvas/}{(Faces)}, \href{https://thisartworkdoesnotexist.com/}{(art)}, \href{http://www.thisworddoesnotexist.com/}{(Words)}, \href{https://thesecatsdonotexist.com/}{(cats)}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Advanced topics}{Generative networks: GAN (II)}
+    \centering GauGAN \href{https://www.nvidia.com/en-us/studio/canvas/}{(Demo)}\\
+	\includegraphics[width=0.9\linewidth]{figs/gaugan.jpeg}
+\end{frame}
+
+\subsection{VAE}
 \begin{frame}{Advanced topics}{Variational Autoencoders (I)}
 	\centering\includegraphics[width=0.85\linewidth]{figs/vae.png}\\
 	\scriptsize\href{https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf}{(Source)}
@@ -373,28 +579,21 @@
 	\end{itemize}
 \end{frame}
 
-
-\subsection{VAE semantics}
-
-\begin{frame}{Advanced topics}{VAE semantics (I)}
+\begin{frame}{Advanced topics}{Variational Autoencoders: semantics (I)}
 	Astonishing VAE feature: latent space has semantics!
 	\centering\includegraphics[width=0.7\linewidth]{figs/faces.jpg}\\
 	\scriptsize\href{https://www.compthree.com/blog/autoencoder/}{(Source)}
-
 \end{frame}
 
-\begin{frame}{Advanced topics}{VAE semantics (II)}
+\begin{frame}{Advanced topics}{Variational Autoencoders: semantics (II)}
 	Another incredible VAE property: 'semantic' arithmetic operations
 	\centering\includegraphics[width=0.3\linewidth]{figs/vector-vae1.png}\quad
 	\centering\includegraphics[width=0.3\linewidth]{figs/vector-vae2.png}\\
 	\scriptsize\href{https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf}{(Source)}
 \end{frame}
 
-\begin{frame}{Advanced topics}
-    GANs\\
-    VAEs\\
-    Adversarial examples
+\begin{frame}{Advanced topics}{Adversarial examples}
+	\centering\includegraphics[width=0.7\linewidth]{figs/adversarial.png}\\
+	\scriptsize\href{https://medium.com/attentive-ai/fooling-cnns-via-adversarial-examples-877a9e0ee84e}{(Source)}
 \end{frame}
-
-
 \end{document}
