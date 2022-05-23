@@ -23,6 +23,8 @@
 
 * [Regression analysis of exoplanets masses](assignments/exoplanets/exoplanets.md)
 
+* [Paper "Deep Neural Networks With Convolutional and LSTM Layers for SYM-H and ASY-H Forecasting"](assignments/papers/symh.md)
+
 
 ## Notebooks
 
