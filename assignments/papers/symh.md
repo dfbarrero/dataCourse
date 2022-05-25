@@ -11,3 +11,4 @@
 7. ¿Qué modelo de referencia (baseline) utiliza? ¿qué función cumple este modelo?
 8. ¿Qué métricas se emplean para la evaluación del modelo?
 9. ¿Con qué datos se hace la validación?
+10. ¿En qué consiste la técnica de "early stop" mencionada en el paper?
