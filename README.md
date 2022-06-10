@@ -12,6 +12,8 @@
 
 5.- [Machine Learning Foundations](mlfoundations/)
 
+6.- [Deep learning](dl/)
+
 
 ## Practical assignments
 
