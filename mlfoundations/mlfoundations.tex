@@ -261,7 +261,7 @@
 \end{frame}
 
 \subsection{Data adquisition}
-\begin{frame}{The data analysis process}{Data adquisition}
+\begin{frame}{The data analysis process}{Data adquisition (I)}
 	Goal: Adquire data to perform ML
 		\begin{itemize}
 		\item From extremely easy -CSV file- to extremely complex -full Big Data system-
@@ -282,6 +282,115 @@
 		\end{figure}
 \end{frame}
 
+\begin{frame}[fragile]{The data analysis process}{Data adquisition (II): CSV}
+	\begin{columns}
+ 	  \column{.50\textwidth}
+	CSV (\textit{Comma-Separated Values}) 
+		\begin{itemize}
+		\item Text format for tabular data
+        \item Editable with system tools and Excel
+        \item Rows store records
+        \item Columns store attributes
+        \item Fields are separated by commas
+		\end{itemize}
+
+ 	  \column{.50\textwidth}
+		\includegraphics[width=\linewidth]{figs/csv.png}
+    \end{columns}
+
+	\begin{columns}
+ 	  \column{.90\textwidth}
+        \begin{exampleblock}{filename.csv}
+		\begin{lstlisting}[basicstyle=\scriptsize]
+Year,Make,Model,Description,Price
+1997,Ford,E350,"ac, abs, moon",3000.00
+1999,Chevy,"Venture ""Extended Edition""","",4900.00
+1999,Chevy,"Venture ""Extended Edition, Very Large""","",5000.00
+1996,Jeep,Grand Cherokee,"MUST SELL!
+air, moon roof, loaded",4799.00
+\end{lstlisting}
+        \end{exampleblock}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{The data analysis process}{Data adquisition (III): JSON}
+	\begin{columns}
+ 	  \column{.30\textwidth}
+	  JSON: Data format for hierarchical data
+		\begin{itemize}
+        \item Created in 2001 for stateless client-server communication
+        \item Text-based
+        \item Complex data structures
+		\end{itemize}
+
+ 	  \column{.60\textwidth}
+        \begin{exampleblock}{filename.json}
+		\begin{lstlisting}[basicstyle=\scriptsize]
+{
+  "firstName": "John",
+  "isAlive": true,
+  "age": 27,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    }
+  ]
+}
+\end{lstlisting}
+        \end{exampleblock}
+	\end{columns}
+\end{frame}
+
+\IfStrEq{\modo}{mcyte}{
+\begin{frame}{The data analysis process}{Data adquisition (IV): Space data formats}
+	Several formats designed for space applications
+	\begin{itemize}
+		\item NASA CDF (\textit{Common Data Format})
+            \begin{itemize}
+            \item \href{https://cdf.gsfc.nasa.gov/}{(More info)}
+            \end {itemize}
+		\item FITS (\textit{Flexible Image Transport System})
+            \begin{itemize}
+            \item Astronomical image format supported by NASA and IAU 
+            \item \href{https://heasarc.gsfc.nasa.gov/docs/heasarc/fits.html}{(More info)}
+            \end {itemize}
+		\item HDF5: Big Data format, not specific for space
+	\end{itemize}
+    Specific tools for files manipulation and loading
+\end{frame}
+}{}
+
+\IfStrEq{\modo}{mcyte}{
+\begin{frame}{The data analysis process}{Data adquisition (V): Space data sources}
+	Data sources highly dependent on domain and mission
+		\begin{itemize}
+		\item Many missions have their own website to download data
+        \item Each mission contains data from different instruments
+		\end{itemize}
+    There are, however, some integrated data products sources
+		\begin{itemize}
+		\item \href{https://omniweb.gsfc.nasa.gov/}{(OMNIWeb)} - Heliophysics / Space Weather
+        \item \href{https://cdaweb.gsfc.nasa.gov/index.html}{(CDAWeb)} - Non-solar heliophysics
+        \item \href{https://sscweb.gsfc.nasa.gov/}{(SSCWeb)} - Satellite situation 
+        \item \href{http://hapi-server.org/servers/}{(HAPI)} - ``Integration of integrated'' data sources
+        \item Python packages
+            \begin{itemize}
+            \item SunPy, AstroPy, SpacePy, PySat, PySPEDAS, etc
+            \end{itemize}
+		\end{itemize}
+\end{frame}
+}{}
+
 \subsection{Selection, cleaning and transformation}
 \begin{frame}{The data analysis process}{Selection, cleaning and transformation (I)}
 	\begin{columns}
@@ -299,7 +408,7 @@
 	 \end{itemize}
 	In some ML problems we use graphs instead of tables
 
- 	   \column{.40\textwidth}
+ 	  \column{.40\textwidth}
 		\begin{center}
 		\begin{tabular}{cccc}\hline
 		 	$f_1$     & $f_2$     & $\cdots$ & $f_n$     \\\hline
