@@ -1,0 +1,334 @@
+\ProvidesPackage{beamerthemeUAH}
+
+\makeatletter
+
+% Configuracion del curso
+\usepackage{../gsi-parametros}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FUENTES UAH
+% Mantener estas descoomentadaslíneas si las fuentes no están instaladas en el sistema
+%% UAH FONTS
+%\setsansfont[Path=fonts/,
+%    BoldItalicFont=SERIBC__.TTF,
+%    BoldFont      =SERIB___.TTF,
+%    ItalicFont    =SERII___.TTF,
+%    SmallCapsFont =SERIIC__.TTF,
+%    BoldItalicFont=SERIBI__.TTF]{SERIRG__.TTF}
+
+% Descomentar las siguientes líneas y comentar las anteriores si
+% las fuentes anteriores están instaladas en el sistema
+\setsansfont[
+    BoldItalicFont={SeriaBoldCaps},
+    BoldFont      ={SeriaBold},
+    ItalicFont    ={SeriaItalic},
+    SmallCapsFont ={SeriaItalicCaps},
+    BoldItalicFont={SeriaBoldItalic}]
+    {SeriaRegular}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Poner barras de navegación, o no
+%%
+\newcommand{\setNavigation}{
+    \setbeamertemplate{headline}{%
+        \begin{beamercolorbox}[ht=2.25ex,dp=3.75ex]{section in head/foot}
+            \insertnavigation{\paperwidth}
+        \end{beamercolorbox}%
+    }
+}%
+
+\newcommand{\disableNavigation}[1]{
+	\makeatletter
+	\setbeamercolor{section in head/foot}{bg=#1, fg=#1}
+	\setbeamercolor{mini frame}{bg=#1, fg=#1}
+	\makeatother
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Poner logotipos en portada
+%%
+\newcommand{\logoUno}{}
+\newcommand{\logoDos}{}
+\newcommand{\logoTres}{}
+\newcommand{\logoCuatro}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Format TOC
+%%
+\setbeamerfont{subsection in toc}{size=\small}
+\setbeamertemplate{section in toc}[circle]
+\setbeamertemplate{subsection in toc}[ball unnumbered]
+
+\setbeamertemplate{section in toc}{%
+  {\color{marronUAH}\inserttocsectionnumber.}~\inserttocsection}
+  \setbeamercolor{subsection in toc}{bg=white,fg=structure}
+  \setbeamertemplate{subsection in toc}{%
+    \hspace{1.2em}{\color{oroUAH}\rule[0.3ex]{3pt}{3pt}}~\inserttocsubsection\par}
+
+%%%%
+%% Format syntax highlight
+%%%
+\lstset{ %
+  language=Java,                % the language of the code
+  basicstyle=\footnotesize,           % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  %  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  %frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  %title=\lstname,                   % show the filename of files included with \lstinputlisting;
+  keywordstyle=\color{marronUAH},          % keyword style
+  commentstyle=\color{verdeUAH},       % comment style
+  stringstyle=\color{rojoUAH},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Create Footline for body slides. To modify content,
+%%
+\newcommand{\footlineA}{
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
+	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left,rightskip=.3cm]{title in head/foot}%
+     \vspace{0.17cm}%\hspace{-0.07cm}
+     \textsf{\fontsize{4pt}{0cm}\selectfont
+     \insertshorttitle  \newline
+	 \insertshortinstitute \hfill \insertframenumber / \inserttotalframenumber
+     }
+    \end{beamercolorbox}%
+    }%
+  \vskip0pt%
+}
+}
+
+\newcommand{\footlineB}{
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
+	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left,rightskip=.3cm]{title in head/foot}%
+     \vspace{0.17cm}%\hspace{-0.07cm}
+     \textsf{\fontsize{4pt}{0cm}\selectfont
+     \insertauthor  \newline
+     \insertshortinstitute
+\hfill \insertframenumber / \inserttotalframenumber
+     }
+    \end{beamercolorbox}%
+    }%
+  \vskip0pt%
+}
+}
+
+\newcommand{\footlineC}{
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
+	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left,rightskip=.3cm]{title in head/foot}%
+     \vspace{0.17cm}%\hspace{-0.07cm}
+     \textsf{\fontsize{4pt}{0cm}\selectfont
+     \insertshorttitle  \newline
+	 \insertauthor, \insertshortinstitute \hfill \insertframenumber / \inserttotalframenumber
+     }
+    \end{beamercolorbox}%
+    }%
+  \vskip0pt%
+}
+}
+\newcommand{\footlineTitle}{
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
+	\hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=7ex,dp=2ex,left,rightskip=.3cm]{title in head/foot}%
+     \vspace{0.17cm}\hspace{-0.07cm}
+     \textsf{\fontsize{4pt}{0cm}\selectfont
+     \insertshorttitle  \newline
+	 \insertauthor, \insertshortinstitute \hfill \insertframenumber
+     }
+    \end{beamercolorbox}%
+    }%
+  \vskip0pt%
+}
+}
+\newcommand{\titlepageBlue}{ % % This block is for the white background title page
+	%\setbeamercolor{section in head/foot}{bg=azulUAH, fg=azulUAH}
+	\disableNavigation{azulUAH}
+\setbeamertemplate{footline}
+  {\hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=7ex,dp=2ex,left]{author in head/foot}%
+      \hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_pant293.pdf}
+    %\vspace{0cm}\hspace{4cm} 
+    \ifdefempty{\logoUno}{}{
+		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
+    	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoUno}};\end{tikzpicture}
+	}
+    \ifdefempty{\logoDos}{}{
+		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
+    	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoDos}};\end{tikzpicture}
+	}
+    \ifdefempty{\logoTres}{}{
+		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
+    	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoTres}};\end{tikzpicture}
+	}
+    \ifdefempty{\logoCuatro}{}{
+		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
+    	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoCuatro}};\end{tikzpicture}
+	}
+    \end{beamercolorbox}%
+      }%
+    \vspace{2cm}
+    \vskip0pt%
+  }
+\setbeamertemplate{title page}
+  { 
+    \vspace{2cm}
+    \begin{beamercolorbox}[wd=0.9\paperwidth,dp=2ex,left]{title in head/foot}%
+    \usebeamerfont{title}{\Huge\inserttitle\par}
+    \bigskip
+    \usebeamerfont{author}{\normalsize\insertauthor\par}
+    \smallskip
+    \usebeamerfont{institute}{\normalsize\insertinstitute\par}
+    \bigskip
+    \usebeamerfont{date}\insertdate\par
+    \end{beamercolorbox}
+  }
+\setbeamercolor{background canvas}{bg=azulUAH}
+}
+
+\newcommand{\titlepageWhite}{ % % This block is for the white background title page
+\disableNavigation{white}
+\setbeamertemplate{footline}
+  {\hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=7ex,dp=2ex,left]{title in head/foot}%
+      \hspace{0.5cm} \vspace{-0.11cm} \includegraphics[width=.12\paperwidth]{Images/01_logo-vA_293-fondoTransp.png}
+    \ifdefempty{\logoUno}{}{
+		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
+    	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoUno}};\end{tikzpicture}
+	}
+    \ifdefempty{\logoDos}{}{
+		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
+    	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoDos}};\end{tikzpicture}
+	}
+    \ifdefempty{\logoTres}{}{
+		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
+    	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoTres}};\end{tikzpicture}
+	}
+    \ifdefempty{\logoCuatro}{}{
+		\hspace{0.2cm}%\includegraphics[width=0.1\paperwidth]{Images/isg.png}
+    	\begin{tikzpicture}\node[opacity=\opacidad] {\includegraphics[height=6.5ex]{\logoCuatro}};\end{tikzpicture}
+	}
+
+    \end{beamercolorbox}%
+      }%
+    \vspace{2cm}
+    \vskip0pt%
+  }
+\setbeamertemplate{title page}
+  { 
+    \vspace{2cm}
+  	\begin{beamercolorbox}[wd=0.9\paperwidth,dp=2ex,left]{author in head/foot}%
+    \usebeamerfont{title}{\Huge\inserttitle\par}
+    \bigskip
+    \usebeamerfont{author}{\normalsize\insertauthor\par}
+    \smallskip
+    \usebeamerfont{institute}{\normalsize\insertinstitute\par}
+    \bigskip
+    \usebeamerfont{date}\insertdate\par
+    \end{beamercolorbox}
+  }
+}
+
+\setbeamertemplate{itemize items}{$\bullet$}
+\setbeamerfont{framesubtitle}{parent=frametitle,size=\large}
+
+\newcommand{\blackSlide}{
+\setbeamercolor{background canvas}{bg=black}
+\setbeamercolor{palette primary}{fg=white, bg=black}
+\setbeamercolor{normal text}{fg=white}
+\setbeamercolor{structure}{fg=white}
+\setbeamercolor{itemize item}{fg=white}
+\setbeamercolor{itemize subitem}{fg=white}
+\setbeamercolor{itemize subsubitem}{fg=white}
+\setbeamercolor{itemize/enumerate body}{fg=white}
+\setbeamercolor{itemize/enumerate subbody}{fg=white}
+\setbeamercolor{itemize/enumerate subsubbody}{fg=white}
+}
+
+
+
+
+\newcommand{\sectionheaderWhite}{
+ \setbeamercolor{background canvas}{bg=white}
+ \disableNavigation{white}
+ \setbeamertemplate{frametitle}{\nointerlineskip
+   \begin{beamercolorbox}[sep=0.3cm,ht=7cm,wd=\paperwidth]{white}
+        \vbox{}\vskip-2ex
+        \Huge \hskip1ex \insertframetitle \par
+        \vskip0.25ex%
+        \hskip1ex \Large \strut\insertframesubtitle\strut \par
+   \end{beamercolorbox}
+ }
+}
+
+\newcommand{\sectionheaderGold}{
+ \setbeamercolor{background canvas}{bg=oroUAH}
+ \disableNavigation{oroUAH}
+ \setbeamertemplate{frametitle}{\nointerlineskip
+   \begin{beamercolorbox}[sep=0.3cm,ht=7cm,wd=\paperwidth]{oroUAH}
+        \vbox{}\vskip-2ex
+        \Huge \hskip1ex \insertframetitle \par
+        \vskip0.25ex%
+        \hskip1ex \Large \strut\insertframesubtitle\strut \par
+   \end{beamercolorbox}
+ }
+}
+
+\newcommand{\sectionheaderGrey}{
+ \setbeamercolor{background canvas}{bg=grisUAH}
+ \disableNavigation{grisUAH}
+ \setbeamertemplate{frametitle}{\nointerlineskip
+   \begin{beamercolorbox}[sep=0.3cm,ht=7cm,wd=\paperwidth]{grisUAH}
+        \vbox{}\vskip-2ex
+        \Huge \hskip1ex \insertframetitle \par
+        \vskip0.25ex%
+        \hskip1ex \Large \strut\insertframesubtitle\strut \par
+   \end{beamercolorbox}
+ }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% STYLING THE TITLEPAGE
+%\setbeamerfont{title}{family=\fontfamily{cmr}, size=\Huge}
+%\setbeamerfont{date}{family=\fontfamily{cmr}}
+%\setbeamerfont{institute}{family=\fontfamily{cmr}}
+%\setbeamerfont{author}{family=\fontfamily{cmr}}
+%\setbeamertemplate{title page}[default][left]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatother
