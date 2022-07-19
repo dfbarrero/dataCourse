@@ -1,0 +1,22 @@
+
+\usetikzlibrary{arrows,positioning,backgrounds}
+
+\tikzstyle{decision} = [diamond, draw, 
+    text width=1cm, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, node distance=3cm,
+	    text width=2cm, text centered, rounded corners]
+\tikzstyle{line} = [draw, -latex']
+
+\begin{tikzpicture}[scale=0.8]
+	\node [block] (problem) {Estudiar problema};
+	\node [block, right of=problem] (center) {Escribir reglas};
+	\node [decision, right of=center] (evaluate) {Evaluar};
+	\node [block, below of=center, node distance=1cm] (errors) {Analizar errores};
+	\node [block, above of=evaluate, node distance=1cm] (launch) {¡Lanzar!};
+
+	\path [line] (problem) -- (center);
+	\path [line] (center) -- (evaluate);
+	\path [line] (evaluate) -- (launch);
+	\path [line] (evaluate) |- (errors);
+	\path [line] (errors) -| (problem);
+\end{tikzpicture}
