@@ -12,8 +12,11 @@
 
 5.- [Machine Learning Foundations](mlfoundations/)
 
-6.- [Deep learning](dl/)
+6.- [Artificial Neural Networks](ann/)
 
+7.- [Deep learning](dl/)
+
+8.- [Neuroevolution](neuroevolution/)
 
 ## Practical assignments
 
