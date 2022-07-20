@@ -276,7 +276,40 @@
 			\end{figure}
     \end{columns}
 
+    Performance measures
+    \begin{itemize}       
+        \item Inertia: mean squared error between each instance and its closest centroid
+        \item Silhouette: $(b-a) / max (a, b)$, where $a$ mean intra-cluster distance, and $b$ is the mean nearest-cluster distance
+    \end{itemize}       
 \end{frame}
+
+\begin{frame}[fragile]{Algorithms}{K-means: summary}
+    \begin{columns}
+ 	   \column{.30\textwidth}
+        \begin{block}{Hyperparameters}
+           \begin{itemize}
+            \item $k$
+           \end{itemize} 
+        \end{block}
+ 	   \column{.30\textwidth}
+        \begin{block}{Advantages}
+           \begin{itemize}
+            \item Fast
+            \item Few hyperparameters
+            \item Scalable
+           \end{itemize} 
+        \end{block}
+ 	   \column{.30\textwidth}
+        \begin{block}{Disadvantages}
+           \begin{itemize}
+            \item Spherical shapes
+            \item Dependence on $k$
+           \end{itemize} 
+        \end{block}
+    \end{columns}
+
+\end{frame}
+
 
 \subsection{GMM}
 
