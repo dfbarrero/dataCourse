@@ -327,11 +327,12 @@
 \end{frame}
 
 \begin{frame}{The data analysis process}{Data adquisition: Famous datasets - MNIST}
-	\includegraphics[width=0.8\linewidth]{figs/mnist.png}
+	\includegraphics[width=0.8\linewidth]{figs/mnist.png} \includegraphics[width=0.15\linewidth]{figs/zero.png}
 
 	Hand-written digit recognition
 		\begin{itemize}
 		\item $60.000$ training samples, $10.000$ test samples
+        \item 8x8 images
         \item 10 classes
         \item \href{https://www.kaggle.com/datasets/hojjatk/mnist-dataset}{(More in Kaggle)}
 		\end{itemize}
@@ -729,9 +730,9 @@ air, moon roof, loaded",4799.00
 \subsection{Overview}
 
 \begin{frame}{Types of Machine Learning systems}{Overview}
-	We can classify ML systems based on several (non-exclusive) criteria
+    We can classify ML systems based on several (non-exclusive) criteria
 	\begin{itemize}
-		\item Whether or not they are trained with human supervision
+		\item Whether or not they are trained with supervision
 			\begin{itemize}
 			\item Supervised, unsupervised, semisupervised and Reinforcement Learning
 			\end{itemize}
@@ -751,8 +752,12 @@ air, moon roof, loaded",4799.00
 			\begin{itemize}
 			\item Discriminative models vs. generative models
 			\end{itemize}
+		\item The interpretation of the model
+			\begin{itemize}
+			\item Predictive models (blackbox) vs. explicative models (whitebox)
+			\end{itemize}
 	\end{itemize}
-	We focus on supervised and unsupervised model-based discriminative batch algorithms.
+	%We focus on supervised and unsupervised model-based discriminative batch algorithms.
 \end{frame}
 
 \begin{frame}[fragile]{Types of Machine Learning systems}{Supervised learning (I)}
