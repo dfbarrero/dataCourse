@@ -134,40 +134,42 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Algorithms}
+\section{Clustering}
 {
 \sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
-\begin{frame}{Algorithms}{K-means, GMM and PCA}
+\begin{frame}{Algorithms}{K-means, DBSCAN and GMM}
 \end{frame}
 }
 
-\subsection{K-means}
-\begin{frame}{Algorithms}{K-means (I)}
+\subsection{Aplications}
+\begin{frame}{Clustering}{Applications}
 	Clustering is a set of unsupervised techniques that identify groups of data (named \alert{clusters})
-	\begin{center}
-	\begin{tabular}{ccccc}\hline
-		 $f_1$     & $f_2$     & $f_3$     & $\cdots$ & $f_n$     \\\hline
-		 $a_{1,1}$ & $a_{2,1}$ & $a_{3,1}$ & $\cdots$ & $a_{n,1}$ \\
-		 $a_{1,2}$ & $a_{2,2}$ & $a_{3,2}$ & $\cdots$ & $a_{n,2}$ \\
-		 $a_{1,3}$ & $a_{2,3}$ & $a_{3,3}$ & $\cdots$ & $a_{n,3}$ \\
-		 $a_{1,4}$ & $a_{2,4}$ & $a_{3,4}$ & $\cdots$ & $a_{n,4}$ \\
-		 $a_{1,5}$ & $a_{2,5}$ & $a_{3,5}$ & $\cdots$ & $a_{n,5}$ \\
-		 \hline
-	 \end{tabular}
-	 \end{center}
+    \begin{itemize}
+        \item No universal definition of cluster
+        \begin{itemize}
+            \item Centroid, meroid, dense regions, etc
+        \end{itemize}
+    \end{itemize}
 
-     Main algorithms
-		\begin{itemize}
-			\item K-means
-            \item DBScan
-            \item Gaussian Mixture Models (GMM)
-            \item Expectation Maximization (EM)
-            \item ...
-		\end{itemize}
+    Applications
+	\begin{itemize}
+		\item Customer segmentation
+           \item Data analysis
+           \item Dimensionality reduction
+           \item Anomaly detection
+           \item Semi-supervised learning
+           \item Search engines
+           \item Image segmentation
+	\end{itemize}
 
+    Main algorithms
+	\begin{itemize}
+		\item K-means, DBScan, Gaussian Mixture Models (GMM), Expectation Maximization (EM), ...
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{Algorithms}{K-means (II)}
+\subsection{K-means}
+\begin{frame}{Algorithms}{K-means (I)}
     \begin{columns}
  	   \column{.5\textwidth}
        \centering Original data\\
@@ -185,8 +187,74 @@
     \end{flushleft}
 \end{frame}
 
+\begin{frame}{Algorithms}{K-means (II)}
+    \begin{columns}
+ 	   \column{.5\textwidth}
+       \begin{block}{K-means algorithm}
+       \begin{enumerate}
+        \item Set $k$ random centroids
+        \item Assign each data point to its closest centroid
+        \item Recompute centroids
+        \item Go to 2 until no point reassignment
+       \end{enumerate}
+       \end{block}
 
-\begin{frame}[fragile]{Algorithms}{K-means (III)}
+       k is an hyperparameter
+       \begin{itemize}
+        \item Number of clusters
+       \end{itemize}
+
+ 	   \column{.5\textwidth}
+		\includegraphics[width=\textwidth]{figs/kmeans.jpeg}\\
+
+    \centering \tiny{\href{https://dendroid.sk/2011/05/09/k-means-clustering/}{(Source)}}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Algorithms}{K-means (III)}
+    New data points are assigned to its closest centroid
+    \begin{columns}
+ 	   \column{.5\textwidth}
+		\includegraphics[width=\textwidth]{figs/kmeans-2.png}
+
+ 	   \column{.5\textwidth}
+		\includegraphics[width=\textwidth]{figs/voronoi.png}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Algorithms}{K-means (IV)}
+    K-means can fail in several conditions
+       \begin{enumerate}
+        \item Incorrect number of clusters
+        \item Different clusters ``diameter''
+        \item Non-spheric clusters
+       \end{enumerate}
+	\centering \includegraphics[width=0.5\textwidth]{figs/kmeans-fails.png}\\
+    \tiny{\href{https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_assumptions.html}{(Source)}}
+\end{frame}
+
+\begin{frame}{Algorithms}{K-means (V)}
+    New data points are assigned to its closest centroid
+    \begin{columns}
+ 	   \column{.5\textwidth}
+       \begin{block}{K-means algorithm}
+       \begin{enumerate}
+        \item Set random centroids
+        \item Assign each data point to its closest centroid
+        \item Recompute centroids
+        \item Repeat 2 until no point reassignment
+       \end{enumerate}
+       \end{block}
+
+ 	   \column{.5\textwidth}
+		\includegraphics[width=\textwidth]{figs/kmeans.jpeg}\\
+
+        \centering \tiny{\href{https://dendroid.sk/2011/05/09/k-means-clustering/}{(Source)}}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Algorithms}{K-means (VI)}
     K-means drawbacks
     \begin{itemize}
         \item Initial seed
@@ -230,6 +298,13 @@
 	\centering\includegraphics[width=0.31\linewidth]{figs/gmm1.png}\\
 	\scriptsize\href{https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html}{(Source)}
 \end{frame}
+
+\section{Dimensionality reduction}
+{
+\sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
+\begin{frame}{Algorithms}{PCA and manifold learning}
+\end{frame}
+}
 
 \subsection{PCA}
 
