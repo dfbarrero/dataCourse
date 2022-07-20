@@ -1,5 +1,5 @@
 # Customize these two lines
-TARGETS=kuc # Courses to compile
+TARGETS=uah # Courses to compile
 NAME=mlfoundations
 
 # Do not touch

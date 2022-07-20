@@ -261,7 +261,7 @@
 \end{frame}
 
 \subsection{Data adquisition}
-\begin{frame}{The data analysis process}{Data adquisition (I)}
+\begin{frame}{The data analysis process}{Data adquisition}
 	Goal: Adquire data to perform ML
 		\begin{itemize}
 		\item From extremely easy -CSV file- to extremely complex -full Big Data system-
@@ -282,7 +282,63 @@
 		\end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{The data analysis process}{Data adquisition (II): CSV}
+\IfStrEq{\modo}{mcyte}{
+\begin{frame}{The data analysis process}{Data adquisition: Space data sources}
+	Data sources highly dependent on domain and mission
+		\begin{itemize}
+		\item Many missions have their own website to download data
+        \item Each mission contains data from different instruments
+		\end{itemize}
+    There are, however, some integrated data products sources
+		\begin{itemize}
+		\item \href{https://omniweb.gsfc.nasa.gov/}{(OMNIWeb)} - Heliophysics / Space Weather
+        \item \href{https://cdaweb.gsfc.nasa.gov/index.html}{(CDAWeb)} - Non-solar Heliophysics
+        \item \href{https://sscweb.gsfc.nasa.gov/}{(SSCWeb)} - Satellite situation 
+        \item \href{https://heliophysicsdata.gsfc.nasa.gov/websearch/dispatcher}{(Heliophysics Data Portal)} - Heliophysics
+        \item \href{http://hapi-server.org/servers/}{(HAPI)} - ``Integration of integrated'' data sources
+        \item Python packages
+            \begin{itemize}
+            \item SunPy, AstroPy, SpacePy, PySat, PySPEDAS, etc
+            \end{itemize}
+		\end{itemize}
+\end{frame}
+}{}
+
+
+\begin{frame}{The data analysis process}{Data adquisition: Famous datasets - Iris (I)}
+    \begin{centering}
+	\includegraphics[width=0.7\linewidth]{figs/iris.png}
+    \end{centering}
+
+	Iris dataset
+		\begin{itemize}
+		\item First used by Roland Fisher in 1936
+        \item Classification problem: three iris species
+        \item Balanced dataset: 150 instances, three classes, 50 instances each
+        \item Four attributes (petal width, petal length, sepal width, sepal length)
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{The data analysis process}{Data adquisition: Famous datasets - Iris (II)}
+	\centering
+    \includegraphics[width=0.6\linewidth]{figs/iris-head.png}\\
+    \bigskip
+    \href{https://www.kaggle.com/datasets/arshid/iris-flower-dataset}{(More info in Kaggle)}
+\end{frame}
+
+\begin{frame}{The data analysis process}{Data adquisition: Famous datasets - MNIST}
+	\includegraphics[width=0.8\linewidth]{figs/mnist.png} \includegraphics[width=0.15\linewidth]{figs/zero.png}
+
+	Hand-written digit recognition
+		\begin{itemize}
+		\item $60.000$ training samples, $10.000$ test samples
+        \item 8x8 images
+        \item 10 classes
+        \item \href{https://www.kaggle.com/datasets/hojjatk/mnist-dataset}{(More in Kaggle)}
+		\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{The data analysis process}{Data adquisition: data file formats - CSV}
 	\begin{columns}
  	  \column{.50\textwidth}
 	CSV (\textit{Comma-Separated Values}) 
@@ -313,7 +369,7 @@ air, moon roof, loaded",4799.00
 	\end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{The data analysis process}{Data adquisition (III): JSON}
+\begin{frame}[fragile]{The data analysis process}{Data adquisition: data file formats - JSON}
 	\begin{columns}
  	  \column{.30\textwidth}
 	  JSON: Data format for hierarchical data
@@ -352,7 +408,7 @@ air, moon roof, loaded",4799.00
 \end{frame}
 
 \IfStrEq{\modo}{mcyte}{
-\begin{frame}{The data analysis process}{Data adquisition (IV): Space data formats}
+\begin{frame}{The data analysis process}{Data adquisition: data file formats - Space data}
 	Several formats designed for space applications
 	\begin{itemize}
 		\item NASA CDF (\textit{Common Data Format})
@@ -367,28 +423,6 @@ air, moon roof, loaded",4799.00
 		\item HDF5: Big Data format, not specific for space
 	\end{itemize}
     Specific tools for files manipulation and loading
-\end{frame}
-}{}
-
-\IfStrEq{\modo}{mcyte}{
-\begin{frame}{The data analysis process}{Data adquisition (V): Space data sources}
-	Data sources highly dependent on domain and mission
-		\begin{itemize}
-		\item Many missions have their own website to download data
-        \item Each mission contains data from different instruments
-		\end{itemize}
-    There are, however, some integrated data products sources
-		\begin{itemize}
-		\item \href{https://omniweb.gsfc.nasa.gov/}{(OMNIWeb)} - Heliophysics / Space Weather
-        \item \href{https://cdaweb.gsfc.nasa.gov/index.html}{(CDAWeb)} - Non-solar Heliophysics
-        \item \href{https://sscweb.gsfc.nasa.gov/}{(SSCWeb)} - Satellite situation 
-        \item \href{https://heliophysicsdata.gsfc.nasa.gov/websearch/dispatcher}{(Heliophysics Data Portal)} - Heliophysics
-        \item \href{http://hapi-server.org/servers/}{(HAPI)} - ``Integration of integrated'' data sources
-        \item Python packages
-            \begin{itemize}
-            \item SunPy, AstroPy, SpacePy, PySat, PySPEDAS, etc
-            \end{itemize}
-		\end{itemize}
 \end{frame}
 }{}
 
@@ -696,9 +730,9 @@ air, moon roof, loaded",4799.00
 \subsection{Overview}
 
 \begin{frame}{Types of Machine Learning systems}{Overview}
-	We can classify ML systems based on several (non-exclusive) criteria
+    We can classify ML systems based on several (non-exclusive) criteria
 	\begin{itemize}
-		\item Whether or not they are trained with human supervision
+		\item Whether or not they are trained with supervision
 			\begin{itemize}
 			\item Supervised, unsupervised, semisupervised and Reinforcement Learning
 			\end{itemize}
@@ -718,8 +752,12 @@ air, moon roof, loaded",4799.00
 			\begin{itemize}
 			\item Discriminative models vs. generative models
 			\end{itemize}
+		\item The interpretation of the model
+			\begin{itemize}
+			\item Predictive models (blackbox) vs. explicative models (whitebox)
+			\end{itemize}
 	\end{itemize}
-	We focus on supervised and unsupervised model-based discriminative batch algorithms.
+	%We focus on supervised and unsupervised model-based discriminative batch algorithms.
 \end{frame}
 
 \begin{frame}[fragile]{Types of Machine Learning systems}{Supervised learning (I)}
