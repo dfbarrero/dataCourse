@@ -27,6 +27,7 @@
 \usepackage{listings}
 
 % Custom packages
+\usepackage{svg}
 \usepackage{standalone}
 \usepackage{multicol}
 \usepackage{multirow} % Confusion matrix
@@ -103,17 +104,14 @@
 \begin{frame}[plain]{}
    \begin{block}{Objectives}
       \begin{enumerate}
-         \item Define Machine Learning (ML)
-		 \item Delimite ML scope
-         \item Introduce the main ML tasks
-         \item Recognize problems as ML tasks
+         \item TODO
       \end{enumerate} 
    \end{block}
 
    \begin{block}{Bibliography}
 	\begin{itemize}
-        \item Bishop, Christopher M. \textit{Pattern Recognition and Machine Learning}. 2nd edition. Springer-Verlag. 2011
-        \item M\"uller, Andreas C., Guido, Sarah. \textit{Introduction to Machine Learning with Python}. O'Reilly. 2016
+        \item TODO Bishop, Christopher M. \textit{Pattern Recognition and Machine Learning}. 2nd edition. Springer-Verlag. 2011
+        \item TODO M\"uller, Andreas C., Guido, Sarah. \textit{Introduction to Machine Learning with Python}. O'Reilly. 2016
 	\end{itemize}
    \end{block}
 \end{frame}
@@ -137,18 +135,15 @@
 \section{Clustering}
 {
 \sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
-\begin{frame}{Algorithms}{K-means, DBSCAN and GMM}
+\begin{frame}{Clustering}{K-means, agglomerative clustering, DBSCAN and GMM}
 \end{frame}
 }
 
 \subsection{Aplications}
 \begin{frame}{Clustering}{Applications}
-	Clustering is a set of unsupervised techniques that identify groups of data (named \alert{clusters})
+	Set of unsupervised techniques that identify groups of data (named \alert{clusters})
     \begin{itemize}
-        \item No universal definition of cluster
-        \begin{itemize}
-            \item Centroid, meroid, dense regions, etc
-        \end{itemize}
+        \item No universal definition of cluster: Centroid, medoid, dense regions, etc
     \end{itemize}
 
     Applications
@@ -164,12 +159,13 @@
 
     Main algorithms
 	\begin{itemize}
-		\item K-means, DBScan, Gaussian Mixture Models (GMM), Expectation Maximization (EM), ...
+		\item K-means, DBScan, GMM, hierarchical clustering, EM, ...
 	\end{itemize}
 \end{frame}
 
-\subsection{K-means}
-\begin{frame}{Algorithms}{K-means (I)}
+\section{K-means}
+\subsection{Overview}
+\begin{frame}{K-means}{Overview}
     \begin{columns}
  	   \column{.5\textwidth}
        \centering Original data\\
@@ -187,7 +183,8 @@
     \end{flushleft}
 \end{frame}
 
-\begin{frame}{Algorithms}{K-means (II)}
+\subsection{K-means algorithm}
+\begin{frame}{K-means}{K-means algorithm (I)}
     \begin{columns}
  	   \column{.5\textwidth}
        \begin{block}{K-means algorithm}
@@ -212,7 +209,7 @@
 
 \end{frame}
 
-\begin{frame}{Algorithms}{K-means (III)}
+\begin{frame}{K-means}{K-means algorithm (II)}
     New data points are assigned to its closest centroid
     \begin{columns}
  	   \column{.5\textwidth}
@@ -223,27 +220,33 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Algorithms}{K-means (IV)}
+\subsection{K-means limitations}
+\begin{frame}{K-means}{K-means limitations}
+    \begin{columns}
+ 	   \column{.5\textwidth}
     K-means can fail in several conditions
-       \begin{enumerate}
+       \begin{itemize}
         \item Incorrect number of clusters
-        \item Different clusters ``diameter''
-        \item Non-spheric clusters
-       \end{enumerate}
-	\centering \includegraphics[width=0.5\textwidth]{figs/kmeans-fails.png}\\
+        \item Different clusters variance
+        \item Non-spheric clusters $\Rightarrow$ normalization
+       \end{itemize}
+ 	   \column{.5\textwidth}
+	\centering \includegraphics[width=\textwidth]{figs/kmeans-fails.png}\\
     \tiny{\href{https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_assumptions.html}{(Source)}}
+    \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Algorithms}{K-means (V)}
-    K-means drawbacks
+\subsection{Elbow's method}
+\begin{frame}{K-means}{Elbow's method}
+    Election of $k$
     \begin{itemize}
-        \item Initial seed
-        \item K election
+        \item Not a problem when domain information is available
+        \item ... that is rarely the case
     \end{itemize}
 
     \begin{columns}
  	   \column{.50\textwidth}
-        \begin{block}{Elbow method}
+        \begin{block}{Elbow's method}
            \begin{enumerate}
             \item Select $K=1, ..., n$
             \item Visualize performance for each k
@@ -263,9 +266,9 @@
     \end{itemize}       
 \end{frame}
 
-\subsection{K-means: Image segmentation}
-\begin{frame}[plain]{Algorithms}{K-means: Image segmentation}
-	\includegraphics[width=0.9\textwidth]{figs/segmentation1.png}\\
+\subsection{Application: Image segmentation}
+\begin{frame}[plain]{K-means}{Application: Image segmentation}
+	\includegraphics[width=0.8\textwidth]{figs/segmentation1.png}\\
         \centering \tiny{\href{https://www.kdnuggets.com/2019/08/introduction-image-segmentation-k-means-clustering.html}{(Source)}}
 
     \medskip
@@ -274,8 +277,8 @@
         \centering \tiny{\href{https://up42.com/blog/tech/satellite-image-processing-made-simple}{(Source)}}
 \end{frame}
 
-\subsection{K-means: Clustering for semi-supervised learning}
-\begin{frame}[plain]{Algorithms}{K-means: Clustering for semi-supervised learning}
+\subsection{Application: for semi-supervised learning}
+\begin{frame}[plain]{K-means}{Application: Clustering for semi-supervised learning}
     Semi-supervised learning: Only a subset of the dataset is labeled
     \begin{itemize}
        \item Supervised and unsupervised learning
@@ -303,8 +306,15 @@
     \end{block}
 \end{frame}
 
-\subsection{K-means: Summary}
-\begin{frame}[fragile]{Algorithms}{K-means: Summary}
+\IfStrEq{\modo}{muii}{
+    \subsection{K-means: Scikit-Learn}
+    \begin{frame}{Clustering}{K-means: Scikit-learn}
+        TODO: SCikit-Learn
+    \end{frame}
+}{}
+
+\subsection{Summary}
+\begin{frame}[fragile]{K-means}{K-means: Summary}
 	\begin{center}
 	\begin{tabular}{cll}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
@@ -316,32 +326,12 @@
 	\end{center}
 \end{frame}
 
-\subsection{DBSCAN}
 
-\begin{frame}{Algorithms}{DBSCAN}
-	GMM builds a probabilic model of our data
-	\begin{itemize}
-		\item GMM is a generative clustering algorithm
-		\item Assumes data coming from a set of multidimensional gaussian distributions
-			\begin{itemize}
-				\item GMM fits a set $\{(\mu_i, \sigma_i)\}_{i=1,\dots, K}$
-				\item $\mu$ is a vector
-				\item $\sigma$ is a covariance matrix
-			\end{itemize}
-	\end{itemize}
-
-	\bigskip
-	\centering \includegraphics[width=0.31\linewidth]{figs/gmm2.png}
-	\includegraphics[width=0.31\linewidth]{figs/gmm3.png}
-	\centering\includegraphics[width=0.31\linewidth]{figs/gmm1.png}\\
-	\scriptsize\href{https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html}{(Source)}
-\end{frame}
-
-
+\section{Other clustering algorithms}
 
 \subsection{GMM}
 
-\begin{frame}{Algorithms}{Gaussian Mixure Model (GMM)}
+\begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM)}
 	GMM builds a probabilic model of our data
 	\begin{itemize}
 		\item GMM is a generative clustering algorithm
@@ -359,6 +349,144 @@
 	\centering\includegraphics[width=0.31\linewidth]{figs/gmm1.png}\\
 	\scriptsize\href{https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html}{(Source)}
 \end{frame}
+
+\subsection{DBSCAN}
+
+\begin{frame}{Other clustering algorithms}{DBSCAN (I)}
+	DBSCAN: Density-Based Spatial Clustering of Applications with Noise
+	\begin{itemize}
+		\item Identifies high density regions (dense regions) in feature space
+        \item Asumtion: Clusters form dense regions separated by empty areas
+	\end{itemize}
+    Hyperparameters
+    \begin{itemize}
+        \item $\epsilon$: Radius of a neighborhood
+        \item $min\_samples$: Minumun cluster size
+    \end{itemize}
+
+    Type of points
+    \begin{itemize}
+        \item Core instance
+        \item Outliers
+    \end{itemize}
+
+    \vspace{-3cm}
+	\begin{flushright} 
+        \includegraphics[width=0.5\linewidth]{figs/dbscan.png}
+	    \scriptsize\href{https://en.wikipedia.org/wiki/DBSCAN}{(Source)}\hspace{20cm}
+    \end{flushright}
+\end{frame}
+
+%\begin{frame}{Other clustering algorithms}{DBSCAN (II)}
+%    \begin{columns}
+% 	   \column{.5\textwidth}
+%       \begin{block}{DBSCAN algorithm}
+%            \begin{enumerate}
+%                \item For each instance, take the neighbors located within a distance of $\epsilon$
+%                \item If it has $>min_samples$ neighbors, consider it as core instance
+%            \end{enumerate}
+%       \end{block}
+%    \end{columns}
+%\end{frame}
+
+\begin{frame}{Other clustering algorithms}{DBSCAN (II)}
+    \begin{columns}
+ 	   \column{.5\textwidth}
+        \centering $\epsilon$=0.05, $min\_samples=5$\\
+	    \includegraphics[width=\textwidth]{figs/dbscan1.png}\\
+        
+ 	   \column{.5\textwidth}
+       \centering $\epsilon$=0.2, $min\_samples=5$\\
+	   \includegraphics[width=\textwidth]{figs/dbscan2.png}\\
+    \end{columns}
+    \centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/09.Unsupervised_learning.ipynb}{(Source)}}
+\end{frame}
+
+
+\IfStrEq{\modo}{muii}{
+    \subsection{DBSCAN: Scikit-Learn}
+    \begin{frame}{Other clustering algorithms}{DBSCAN: Scikit-learn}
+        TODO: SCikit-Learn
+    \end{frame}
+}{}
+
+
+\subsection{Summary}
+\begin{frame}{Other clustering algorithms}{DBSCAN: Summary}
+	\begin{center}
+	\begin{tabular}{cll}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}     & \texttt{Disadvantages} \\\hline
+	 	$\epsilon$                & No explicit number of clusters  & Slower than K-means \\
+	    $min\_samples$	          & Scales relatively well  & Clusters with different densities \\
+	                 	          & Almost deterministic    &  \\
+	                 	          & Robust to outliers      &  \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\subsection{Agglomerative clustering}
+
+\begin{frame}{Other clustering algorithms}{Agglomerative clustering (I)}
+
+    \begin{columns}
+ 	   \column{.8\textwidth}
+            \begin{block}{Agglomerative clustering}
+            \begin{enumerate}
+                \item Initially, each instance forms a cluster
+                \item Merge the two most similar clusters according to a metric
+                \item Repeat 2 until a stop criterion is satisfied
+            \end{enumerate}
+            \end{block}
+    \end{columns}
+
+    \medskip
+    \begin{center}
+	\includegraphics[width=0.7\linewidth]{figs/agglomerative.png}\\
+    \end{center}
+    \medskip
+
+    We need a similarity measure between two clusters
+    \begin{itemize}
+        \item \textit{Ward}: Minimizes variance within merged clusters. Leads to equally sized clusters
+        \item \textit{Average}: Minimizes average distances between their points
+        \item \textit{Complete}: Minimizes maximun distance between their points
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Other clustering algorithms}{Agglomerative clustering (II)}
+    Agglomerative clustering is a special case of hierarchical clustering
+    
+    \bigskip
+
+	\centering Dendrogram\\ \includegraphics[width=0.5\linewidth]{figs/dendrogram.png}
+
+	\includegraphics[width=0.7\linewidth]{figs/agglomerative.png}\\
+	\scriptsize\href{https://stackoverflow.com/questions/8016313/agglomerative-clustering-in-matlab}{(Source)}
+\end{frame}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Agglomerative clustering: Scikit-Learn}
+    \begin{frame}{Other clustering algorithms}{DBSCAN: Scikit-learn}
+        TODO: SCikit-Learn
+    \end{frame}
+}{}
+
+\subsection{Agglomerative clustering: Summary}
+\begin{frame}[fragile]{Algorithms}{K-means: Summary}
+	\begin{center}
+	\begin{tabular}{cll}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	                 & Complex shapes                &  \\
+	    $\epsilon$       &         &  \\
+	 	                 &         &  \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+
+
 
 \section{Dimensionality reduction}
 {
