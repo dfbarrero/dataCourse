@@ -313,7 +313,7 @@
     \end{frame}
 }{}
 
-\subsection{Summary}
+\subsection{K-means summary}
 \begin{frame}[fragile]{K-means}{K-means: Summary}
 	\begin{center}
 	\begin{tabular}{cll}\hline
@@ -331,24 +331,112 @@
 
 \subsection{GMM}
 
-\begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM)}
-	GMM builds a probabilic model of our data
+\begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM) (I)}
+	GMM is a generative clustering algorithm
 	\begin{itemize}
-		\item GMM is a generative clustering algorithm
 		\item Assumes data coming from a set of multidimensional gaussian distributions
-			\begin{itemize}
-				\item GMM fits a set $\{(\mu_i, \sigma_i)\}_{i=1,\dots, K}$
-				\item $\mu$ is a vector
-				\item $\sigma$ is a covariance matrix
-			\end{itemize}
+	\end{itemize}
+
+    GMM fits a set $\{(\phi_i, \mu_i, \sigma_i)\}_{i=1,\dots, k}$
+	\begin{itemize}
+			\item $\phi$ is a weight
+			\item $\mu$ is a multidimensional mean
+			\item $\sigma$ is a covariance matrix
+            \item $k$ is the number of clusters (hyperparameter)
 	\end{itemize}
 
 	\bigskip
 	\centering \includegraphics[width=0.31\linewidth]{figs/gmm2.png}
-	\includegraphics[width=0.31\linewidth]{figs/gmm3.png}
-	\centering\includegraphics[width=0.31\linewidth]{figs/gmm1.png}\\
+	\includegraphics[width=0.31\linewidth]{figs/gmm3.png}\\
+	%\centering\includegraphics[width=0.31\linewidth]{figs/gmm1.png}\\
 	\scriptsize\href{https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html}{(Source)}
 \end{frame}
+
+\begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM) (II)}
+    Gaussian parameters are fit with the Expectation-Maximization (E-M) algorithm
+       \begin{itemize}
+            \item E-M is a generalization of K-means
+       \end{itemize}
+
+    \begin{block}{Expectation-Maximization algorithm}
+    \begin{enumerate}
+       \item Init parameters randomly
+       \item Expectation step: Assign each instance to a cluster
+            \begin{itemize}
+            \item Assignment is probabilistic
+            \end{itemize}
+       \item Maximization step: Update cluster parameters
+            \begin{itemize}
+            \item Each cluster is updated using \textit{all} the data
+            \item Instances contribution to a cluster parameters is weighted by the probability that it belongs to it
+            \end{itemize}
+       \item Go to 2
+    \end{enumerate} 
+    \end{block}
+
+    GMM can be seen as a fuzzy clustering algorithm
+\end{frame}
+
+\begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM) (III)}
+    Gaussian parameters are fit with the Expectation-Maximization (E-M) algorithm
+       \begin{itemize}
+            \item E-M is a generalization of K-means
+       \end{itemize}
+
+    \begin{block}{Expectation-Maximization algorithm}
+    \begin{enumerate}
+       \item Init parameters randomly
+       \item Expectation step: Assign each instance to a cluster
+            \begin{itemize}
+            \item Assignment is probabilistic
+            \end{itemize}
+       \item Maximization step: Update cluster parameters
+            \begin{itemize}
+            \item Each cluster is updated using \textit{all} the data
+            \item Instances contribution to a cluster parameters is weighted by the probability that it belongs to it
+            \end{itemize}
+       \item Go to 2
+    \end{enumerate} 
+    \end{block}
+
+    GMM can be seen as a fuzzy clustering algorithm
+\end{frame}
+
+
+\begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM) (IV)}
+    GMM provides a probability of an instance to belong to a cluster
+    \begin{itemize}
+         \item This can be used to detect anomalies
+         \item Just assign a probability threshold
+    \end{itemize} 
+    
+    \bigskip
+
+    \centering
+	\includegraphics[width=0.4\textwidth]{figs/gmm-anomaly.png}
+	\includegraphics[width=0.4\textwidth]{figs/gmm-anomaly2.png}\\
+	\scriptsize\href{https://www.kaggle.com/code/albertmistu/detect-anomalies-using-gmm}{(Source)}
+\end{frame}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{DBSCAN: Scikit-Learn}
+    \begin{frame}{Other clustering algorithms}{DBSCAN: Scikit-learn}
+        TODO: Scikit-Learn
+    \end{frame}
+}{}
+
+\begin{frame}{Other clustering algorithms}{GMM: Summary}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}      & \texttt{Disadvantages} \\\hline
+	 	Number of clusters        & Probabilistic clustering & Number of clusters \\
+	    Covariance matrix type	  & Generative model         & Gaussian data \\
+	    	                      & Anomaly detection        & Sensitive to outliers \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
 
 \subsection{DBSCAN}
 
@@ -402,11 +490,10 @@
     \centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/09.Unsupervised_learning.ipynb}{(Source)}}
 \end{frame}
 
-
 \IfStrEq{\modo}{muii}{
     \subsection{DBSCAN: Scikit-Learn}
     \begin{frame}{Other clustering algorithms}{DBSCAN: Scikit-learn}
-        TODO: SCikit-Learn
+        TODO: Scikit-Learn
     \end{frame}
 }{}
 
@@ -414,12 +501,13 @@
 \subsection{Summary}
 \begin{frame}{Other clustering algorithms}{DBSCAN: Summary}
 	\begin{center}
-	\begin{tabular}{cll}\hline
-	 	\texttt{Hyperparameters}  & \texttt{Advantages}     & \texttt{Disadvantages} \\\hline
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}    & \texttt{Disadvantages} \\\hline
 	 	$\epsilon$                & No explicit number of clusters  & Slower than K-means \\
-	    $min\_samples$	          & Scales relatively well  & Clusters with different densities \\
-	                 	          & Almost deterministic    &  \\
-	                 	          & Robust to outliers      &  \\
+	    $min\_samples$	          & Scales relatively well & Clusters with different densities \\
+	                 	          & Almost deterministic   &  \\
+	                 	          & Robust to outliers     &  \\
+	                 	          & Anomaly detection      &  \\
 	 	\hline
 	\end{tabular}
 	\end{center}
@@ -467,37 +555,41 @@
 
 \IfStrEq{\modo}{muii}{
     \subsection{Agglomerative clustering: Scikit-Learn}
-    \begin{frame}{Other clustering algorithms}{DBSCAN: Scikit-learn}
+    \begin{frame}{Other clustering algorithms}{Agglomerative clustering: Scikit-Learn}
         TODO: SCikit-Learn
     \end{frame}
 }{}
 
 \subsection{Agglomerative clustering: Summary}
-\begin{frame}[fragile]{Algorithms}{K-means: Summary}
+\begin{frame}{Other clustering algorithms}{Agglomerative clustering: Summary}
 	\begin{center}
-	\begin{tabular}{cll}\hline
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
 	 	                 & Complex shapes                &  \\
-	    $\epsilon$       &         &  \\
+	                     & Hierarchical clustering        &  \\
 	 	                 &         &  \\
 	 	\hline
 	\end{tabular}
 	\end{center}
 \end{frame}
 
+\section{Anomaly detection}
 
+\begin{frame}{Anomaly detection}
+    TODO
+\end{frame}
 
 
 \section{Dimensionality reduction}
 {
 \sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
-\begin{frame}{Algorithms}{PCA and manifold learning}
+\begin{frame}{Dimensionality reduction}{PCA and manifold learning}
 \end{frame}
 }
 
 \subsection{PCA}
 
-\begin{frame}{Algorithms}{Principal Components Analysis (I)}
+\begin{frame}{Dimensionality reduction}{Principal Components Analysis (I)}
 	Dimensionality reduction transforms data into more convenient representations
 	\begin{itemize}
 		\item Reduce data dimensionality
@@ -513,7 +605,7 @@
 
 \end{frame}
 
-\begin{frame}{Algorithms}{Principal Components Analysis (II)}
+\begin{frame}{Dimensionality reduction}{Principal Components Analysis (II)}
 	PCA maximizes data variance
 
     \begin{columns}
@@ -523,7 +615,7 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Algorithms}{Principal Components Analysis (III)}
+\begin{frame}{Dimensionality reduction}{Principal Components Analysis (III)}
 	\vspace{-0.5cm}
     \begin{columns}
  	   \column{.70\textwidth}
