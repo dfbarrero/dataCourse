@@ -576,7 +576,25 @@
 \section{Anomaly detection}
 
 \begin{frame}{Anomaly detection}
-    TODO
+    Two related concepts
+    \begin{itemize}
+        \item Outlayer detection and novelty detection
+    \end{itemize}
+
+    Adaptation of clustering and classification algorithms
+    \begin{itemize}
+        \item PCA, GMM, autoencoders, etc
+    \end{itemize}
+
+	\begin{center}
+	\begin{tabular}{ccc}
+	 	One-Class SVM & LOF    & Isolation Forest \\
+	    \includegraphics[width=0.33\textwidth]{figs/oneclasssvm.png} &
+	    \includegraphics[width=0.33\textwidth]{figs/lof.png} &
+	    \includegraphics[width=0.33\textwidth]{figs/isolationforest.png} \\
+	\end{tabular}
+	\end{center}
+	\centering \scriptsize\href{https://scikit-learn.org/stable/modules/outlier_detection.html}{(Source)}
 \end{frame}
 
 
@@ -589,28 +607,44 @@
 
 \subsection{Main approaches for dimensionality reduction}
 
-\begin{frame}{Dimensionality reduction}{Main approaches for dimensionality reduction}
-	Dimensionality reduction transforms data into more convenient representations
-	\begin{itemize}
-		\item Reduce data dimensionality
-		\item Visualize multidimensional data
-	\end{itemize}
+\begin{frame}{Dimensionality reduction}{Main approaches for dimensionality reduction (I)}
+	Two main approaches to dimensionality reduction: Projection and \alert{manifold learning}
 
     \bigskip
 
+    \centering Projection
     \begin{columns}
  	   \column{.5\textwidth}
-            \textbf{Projection}
-	        \begin{itemize}
-		        \item TODO
-	        \end{itemize}
-
+	    \includegraphics[width=\textwidth]{figs/subspace_projection.png} 
  	   \column{.5\textwidth}
-            \textbf{Manyfold learning}
-	        \begin{itemize}
-		        \item TODO
-	        \end{itemize}
+	    \includegraphics[width=\textwidth]{figs/2d_projection.png} 
     \end{columns}
+	\scriptsize\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/08.Dim_Reduction.ipynb}{(Source)}
+
+    \normalsize
+    \flushleft
+    Algorithms
+	\begin{itemize}
+		\item Principal Components Analysis (PCA), kernelized PCA, ...
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Dimensionality reduction}{Main approaches for dimensionality reduction (II)}
+    \centering Manyfold learning
+    \begin{columns}
+ 	   \column{.5\textwidth}
+	    \includegraphics[width=\textwidth]{figs/manifold2.jpeg} 
+ 	   \column{.5\textwidth}
+	    \includegraphics[width=\textwidth]{figs/manifold.jpeg} 
+    \end{columns}
+	\scriptsize\href{https://www.quora.com/What-is-manifold-learning}{(Source)}
+    \normalsize
+    \flushleft
+
+    Manifold learning algorithms
+    \begin{itemize}
+		\item Isomap, T-distributed Stochastic Neighbor Embedding (t-SNE), Multi-dimensional Scaling (MDS), Locally Linear Embedding (LLE), ...
+    \end{itemize}
 \end{frame}
 
 
@@ -623,11 +657,6 @@
 	\end{itemize}
 
 	Main algorithms
-	\begin{itemize}
-		\item Isomap
-		\item T-distributed Stochastic Neighbor Embedding (t-SNE)
-		\item Principal Components Analysis (PCA)
-	\end{itemize}
 
 \end{frame}
 
