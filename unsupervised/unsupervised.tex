@@ -664,30 +664,75 @@
 \subsection{PCA}
 
 \begin{frame}{Dimensionality reduction}{Principal Components Analysis (I)}
-	Dimensionality reduction transforms data into more convenient representations
-	\begin{itemize}
-		\item Reduce data dimensionality
-		\item Visualize multidimensional data
-	\end{itemize}
+	PCA create a new coordinate system
+    \begin{itemize}
+        \item New axes capture maximum variance and are orthogonal
+            \begin{itemize}
+            \item They are named \textbf{principal components}
+            \end{itemize}
+        \item The amount of variance captured by each principal component is captured
+        \item PCA does not change the original dimensionality
+    \end{itemize}
 
-	Main algorithms
-	\begin{itemize}
-		\item Isomap
-		\item T-distributed Stochastic Neighbor Embedding (t-SNE)
-		\item Principal Components Analysis (PCA)
-	\end{itemize}
-
+    \begin{columns}
+ 	   \column{.60\textwidth}
+			\includegraphics[width=\linewidth]{figs/2d_variance_projection.png}
+    		\centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/08.Dim_Reduction.ipynb}{(Source)}}
+ 	   \column{.40\textwidth}
+	        \includegraphics[width=\linewidth]{figs/pcavariance.png}
+    		\centering \tiny{\href{https://www.kaggle.com/code/mirzarahim/introduction-to-pca-image-compression-example}{(Source)}}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Dimensionality reduction}{Principal Components Analysis (II)}
-	PCA maximizes data variance
+	PCA application: Image compression
+
+    \bigskip
 
     \begin{columns}
  	   \column{.50\textwidth}
-			\includegraphics[width=\linewidth]{figs/pca.png}
-    		\centering \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb}{(Source)}}
+            Original image
+			\includegraphics[width=\linewidth]{figs/pcaoriginal.png}\\
+ 	   \column{.50\textwidth}
+            Compressed image (38 dimensions)
+			\includegraphics[width=\linewidth]{figs/pca150comps.png}
     \end{columns}
+
+   	\centering \tiny{\href{https://www.kaggle.com/code/mirzarahim/introduction-to-pca-image-compression-example}{(Source)}}
 \end{frame}
+
+\begin{frame}[plain]{Dimensionality reduction}{Principal Components Analysis (III)}
+-	\includegraphics[width=\linewidth]{figs/pcaexample.png}\\
+   	\centering \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb}{(Source)}}
+\end{frame}
+
+\begin{frame}[plain]{Dimensionality reduction}{Principal Components Analysis (IV)}
+	PCA application: Anomaly detection to predict bearing failure
+		\begin{itemize}
+            \item Vibrations of four bearings
+		\end{itemize}
+
+    \begin{columns}
+ 	   \column{.50\textwidth}
+            Vibration time series
+			\includegraphics[width=\linewidth]{figs/bearings1.png}
+ 	   \column{.50\textwidth}
+            First component
+			\includegraphics[width=\linewidth]{figs/bearingspca.png}
+    \end{columns}
+
+    \begin{columns}
+ 	   \column{.50\textwidth}
+            Reconstructed time series
+			\includegraphics[width=\linewidth]{figs/bearings2.png}
+ 	   \column{.50\textwidth}
+            Reconstruction error
+			\includegraphics[width=\linewidth]{figs/bearingerror.png}
+    \end{columns}
+
+   	\centering \tiny{\href{https://www.atmosera.com/blog/pca-based-anomaly-detection/}{(Source)}}
+\end{frame}
+
 
 \begin{frame}{Dimensionality reduction}{Principal Components Analysis (III)}
 	\vspace{-0.5cm}
@@ -714,6 +759,23 @@
    	\centering \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb}{(Source)}}
 \end{frame}
 
+\subsection{Kernel PCA}
+\begin{frame}{Dimensionality reduction}{Kernel PCA}
+	The kernel trick applies to PCA
+		\begin{itemize}
+        \item kPCA captures non-linear structures
+		\end{itemize}
 
+	\includegraphics[width=\linewidth]{figs/kpca.png}
+   	\centering \tiny{\href{https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}{(Source)}}
+\end{frame}
+
+\subsection{Manifold learning}
+\begin{frame}{Dimensionality reduction}{Manifold learning}
+	TODO
+
+	\includegraphics[width=\linewidth]{figs/lle.png}
+   	\centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/08.Dim_Reduction.ipynb}{(Source)}}
+\end{frame}
 
 \end{document}
