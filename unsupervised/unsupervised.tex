@@ -706,7 +706,7 @@
    	\centering \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb}{(Source)}}
 \end{frame}
 
-\begin{frame}[plain]{Dimensionality reduction}{Principal Components Analysis (IV)}
+\begin{frame}[plain]{Dimensionality reduction}{Principal Components Analysis (III)}
 	PCA application: Anomaly detection to predict bearing failure
 		\begin{itemize}
             \item Vibrations of four bearings
@@ -734,7 +734,7 @@
 \end{frame}
 
 
-\begin{frame}{Dimensionality reduction}{Principal Components Analysis (III)}
+\begin{frame}{Dimensionality reduction}{Principal Components Analysis (IV)}
 	\vspace{-0.5cm}
     \begin{columns}
  	   \column{.70\textwidth}
@@ -766,16 +766,50 @@
         \item kPCA captures non-linear structures
 		\end{itemize}
 
+	\includegraphics[width=0.4\linewidth]{figs/swiss.jpeg}\\
+    \centering
 	\includegraphics[width=\linewidth]{figs/kpca.png}
-   	\centering \tiny{\href{https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}{(Source)}}
+   	\tiny{\href{https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}{(Source)}}
 \end{frame}
 
 \subsection{Manifold learning}
 \begin{frame}{Dimensionality reduction}{Manifold learning}
 	TODO
 
-	\includegraphics[width=\linewidth]{figs/lle.png}
+	\includegraphics[width=0.8\linewidth]{figs/lle.png}
    	\centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/08.Dim_Reduction.ipynb}{(Source)}}
 \end{frame}
+
+\subsection{Locally Linear Embedding (LLE)}
+\begin{frame}{Dimensionality reduction}{Manifold learning}
+	Measures how mach each training instance linearly relates to ists closest neighbors\\
+    preservers local relations
+
+	\includegraphics[width=0.7\linewidth]{figs/lle.png}
+   	\centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/08.Dim_Reduction.ipynb}{(Source)}}
+\end{frame}
+
+\subsection{Other manyfold techniques}
+\begin{frame}{Dimensionality reduction}{Manifold learning}
+	Multidimensional Scaling (MDS)
+        \begin{itemize}
+        \item Preserves distances
+        \end{itemize}
+    Isomap
+        \begin{itemize}
+        \item Preserves geodesic distance
+        \end{itemize}
+    t-Distributed Stochastic Neighbor Embedding (t-SNE)
+        \begin{itemize}
+        \item Preserves local distances and keep dissimilar instances apart
+        \end{itemize}
+        
+
+	\includegraphics[width=0.8\linewidth]{figs/manifold.png}
+   	\centering \tiny{\href{https://scikit-learn.org/0.21/auto_examples/manifold/plot_compare_methods.html}{(Source)}}
+\end{frame}
+
+
+
 
 \end{document}
