@@ -103,18 +103,16 @@
 \begin{frame}[plain]{}
    \begin{block}{Objectives}
       \begin{enumerate}
-         \item Define Machine Learning (ML)
-		 \item Delimite ML scope
-         \item Introduce the main ML tasks
-         \item Recognize problems as ML tasks
+         \item Extend supervised learning algorithms
+         \item Apply supervised learning to real-world problems
       \end{enumerate} 
    \end{block}
 
    \begin{block}{Bibliography}
-	\begin{itemize}
-        \item Bishop, Christopher M. \textit{Pattern Recognition and Machine Learning}. 2nd edition. Springer-Verlag. 2011
+    \begin{itemize}
+        \item G\'eron, Aur\'elien. \textit{Hands-On Machine Learning with Scikit-Learn, Keras \& TensorFlow}. O'Reilly. 2020
         \item M\"uller, Andreas C., Guido, Sarah. \textit{Introduction to Machine Learning with Python}. O'Reilly. 2016
-	\end{itemize}
+    \end{itemize}
    \end{block}
 \end{frame}
 
@@ -133,9 +131,74 @@
 \end{frame}
 }
 
-\subsection{Linear regression}
+\section{k-Nearest Neighbors}
+\subsection{kNN classification}
 
-\begin{frame}{Algorithms}{Linear regression (I)}
+\begin{frame}{k-Nearest Neighbors}{kNN classification (I)}
+    Diagrama 1-NN y 3-NN.
+\end{frame}
+
+\begin{frame}{k-Nearest Neighbors}{kNN classification (II)}
+    Diagrama frontera para varios valores de K
+\end{frame}
+
+\subsection{kNN regression}
+
+\begin{frame}{k-Nearest Neighbors}{kNN regression}
+    TODO
+\end{frame}
+
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
+    \begin{frame}{k-Nearest Neighbors}{Scikit-learn}
+        TODO
+        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{n\_clusters}: int
+                    \item \texttt{labels\_}: ndarray (n\_samples)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+\subsection{Summary}
+\begin{frame}{k-Nearest Neighbors}{Summary}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	                          &                               &   \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\section{Linear models}
+\subsection{Ordinary least squares}
+\begin{frame}{Linear models}{Linear regression (I)}
      Lineal regression assumes a linear relationship among variables
 	\begin{itemize}
 		\item This limitation can be easely overcome
@@ -185,7 +248,7 @@
 %    \end{columns}
 %\end{frame}
 
-\begin{frame}{Algorithms}{Linear regression (II)}
+\begin{frame}{Linear models (II)}
 	Several methods to fit coefficients
 	\begin{itemize}
 		\item Ordinary Least Squares (OLS)
@@ -218,6 +281,336 @@
     \end{columns}
 
 \end{frame}
+
+\subsection{Ridge regression}
+\subsection{Lasso regression}
+\subsection{ElasticNet}
+\subsection{Linear models for classification}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
+    \begin{frame}{Linear models}{Scikit-learn}
+        TODO
+        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{n\_clusters}: int
+                    \item \texttt{labels\_}: ndarray (n\_samples)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+\subsection{Summary}
+\begin{frame}{Linear models}{Summary}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	                          &                               &   \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+
+
+\section{Naive Bayes Classifiers}
+
+\begin{frame}{Naive Bayes Classifiers}
+    TODO
+\end{frame}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
+    \begin{frame}{Naive Bayes Classifiers}{Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{n\_clusters}: int
+                    \item \texttt{labels\_}: ndarray (n\_samples)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+\subsection{Summary}
+\begin{frame}{Naive Bayes Classifiers}{Summary}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	                          &                               &   \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\section{Decission Trees}
+
+\begin{frame}{Decission Trees}
+    TODO
+\end{frame}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
+    \begin{frame}{Decission Trees}{Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{n\_clusters}: int
+                    \item \texttt{labels\_}: ndarray (n\_samples)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+\subsection{Summary}
+\begin{frame}{Decission Trees}{Summary}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	                          &                               &   \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\section{Ensembles of Decision Trees}
+
+\begin{frame}{Ensembles of Decision Trees}
+    TODO
+\end{frame}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
+    \begin{frame}{Ensembles of Decision Trees}{Ensembles of Decision Trees : Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{n\_clusters}: int
+                    \item \texttt{labels\_}: ndarray (n\_samples)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+\subsection{Summary}
+\begin{frame}{Ensembles of Decision Trees}{Summary}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	                          &                               &   \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\section{Support Vector Machines}
+
+\begin{frame}{Support Vector Machines}
+    TODO
+\end{frame}
+
+\subsection{Kernelized Support Vector Machines}
+\begin{frame}{Support Vector Machines}{Kernelized Support Vector Machines}
+    TODO
+\end{frame}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Support Vector Machines}{Scikit-Learn}
+
+    \begin{frame}{Support Vector Machines}{Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{n\_clusters}: int
+                    \item \texttt{labels\_}: ndarray (n\_samples)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+\subsection{Summary}
+\begin{frame}{Support Vector Machines}{Summary}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	                          &                               &   \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+
+
+
+
+
+\section{A}
+\subsection{b}
+
+\begin{frame}{A}{B}
+    TODO
+\end{frame}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{A: Scikit-Learn}
+
+    \begin{frame}{A}{B: Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{n\_clusters}: int
+                    \item \texttt{labels\_}: ndarray (n\_samples)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+\subsection{A: Summary}
+\begin{frame}{A}{B: Summary}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	                          &                               &   \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+
+
+
+
 
 \subsection{ARIMA}
 \begin{frame}{Algorithms}{ARIMA (I)}
