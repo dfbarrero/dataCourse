@@ -104,14 +104,15 @@
 \begin{frame}[plain]{}
    \begin{block}{Objectives}
       \begin{enumerate}
-         \item TODO
+         \item Extend unsupervised learning algorithms
+         \item Apply unsupervised learning to real-world problems
       \end{enumerate} 
    \end{block}
 
    \begin{block}{Bibliography}
 	\begin{itemize}
-        \item TODO Bishop, Christopher M. \textit{Pattern Recognition and Machine Learning}. 2nd edition. Springer-Verlag. 2011
-        \item TODO M\"uller, Andreas C., Guido, Sarah. \textit{Introduction to Machine Learning with Python}. O'Reilly. 2016
+        \item G\'eron, Aur\'elien. \textit{Hands-On Machine Learning with Scikit-Learn, Keras \& TensorFlow}. O'Reilly. 2020
+        \item M\"uller, Andreas C., Guido, Sarah. \textit{Introduction to Machine Learning with Python}. O'Reilly. 2016
 	\end{itemize}
    \end{block}
 \end{frame}
@@ -132,15 +133,17 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Clustering}
-{
-\sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
-\begin{frame}{Clustering}{K-means, agglomerative clustering, DBSCAN and GMM}
-\end{frame}
-}
+%\section{Clustering}
+%{
+%\sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
+%\begin{frame}{Clustering}{K-means, agglomerative clustering, DBSCAN and GMM}
+%\end{frame}
+%}
 
-\subsection{Aplications}
-\begin{frame}{Clustering}{Applications}
+
+\section{Clustering}
+
+\begin{frame}{Clustering}
 	Set of unsupervised techniques that identify groups of data (named \alert{clusters})
     \begin{itemize}
         \item No universal definition of cluster: Centroid, medoid, dense regions, etc
@@ -148,18 +151,12 @@
 
     Applications
 	\begin{itemize}
-		\item Customer segmentation
-           \item Data analysis
-           \item Dimensionality reduction
-           \item Anomaly detection
-           \item Semi-supervised learning
-           \item Search engines
-           \item Image segmentation
+		\item Customer segmentation, data analysis, dimensionality reduction, anomaly detection, semi-supervised learning, search engines, image segmentation
 	\end{itemize}
 
     Main algorithms
 	\begin{itemize}
-		\item K-means, DBScan, GMM, hierarchical clustering, EM, ...
+		\item K-means, DBScan, GMM, hierarchical clustering, ...
 	\end{itemize}
 \end{frame}
 
@@ -309,7 +306,35 @@
 \IfStrEq{\modo}{muii}{
     \subsection{K-means: Scikit-Learn}
     \begin{frame}{Clustering}{K-means: Scikit-learn}
-        TODO: SCikit-Learn
+        \begin{exampleblock}{\texttt{class sklearn.cluster.KMeans()}}
+         %\texttt{class sklearn.cluster.KMeans()}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{init}: \{‘k-means++’, ‘random’\}
+                    \item \texttt{n\_init}: int, default=10
+                    \item \texttt{max\_iter}: int, default=300
+                \end{itemize}
+
+ 	        \column{.50\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{cluster\_centers\_}: ndarray (n\_clusters, n\_features)
+                    \item \texttt{labels\_}: ndarray (n\_samples,)
+                    \item \texttt{inertia\_}: float
+                \end{itemize}
+            \end{columns}
+
+            Methods: \texttt{fit()}, \texttt{predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html}{(Scikit-Learn reference)}
     \end{frame}
 }{}
 
@@ -337,17 +362,17 @@
 		\item Assumes data coming from a set of multidimensional gaussian distributions
 	\end{itemize}
 
-    GMM fits a set $\{(\phi_i, \mu_i, \sigma_i)\}_{i=1,\dots, k}$
+    GMM fits a set $\{(\phi_i, \mu_i, \sigma_i)\}_{i=1,\dots, k}$, where $k$ is the number of clusters and
 	\begin{itemize}
 			\item $\phi$ is a weight
 			\item $\mu$ is a multidimensional mean
 			\item $\sigma$ is a covariance matrix
-            \item $k$ is the number of clusters (hyperparameter)
+            %\item $k$ is the number of clusters (hyperparameter)
 	\end{itemize}
 
 	\bigskip
-	\centering \includegraphics[width=0.31\linewidth]{figs/gmm2.png}
-	\includegraphics[width=0.31\linewidth]{figs/gmm3.png}\\
+	\centering \includegraphics[width=0.41\linewidth]{figs/gmm2.png}
+	\includegraphics[width=0.41\linewidth]{figs/gmm3.png}\\
 	%\centering\includegraphics[width=0.31\linewidth]{figs/gmm1.png}\\
 	\scriptsize\href{https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html}{(Source)}
 \end{frame}
@@ -378,32 +403,24 @@
 \end{frame}
 
 \begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM) (III)}
-    Gaussian parameters are fit with the Expectation-Maximization (E-M) algorithm
-       \begin{itemize}
-            \item E-M is a generalization of K-means
-       \end{itemize}
-
-    \begin{block}{Expectation-Maximization algorithm}
-    \begin{enumerate}
-       \item Init parameters randomly
-       \item Expectation step: Assign each instance to a cluster
+    \begin{columns}
+ 	    \column{.5\textwidth}
+            Covariance matrices can be constrained
             \begin{itemize}
-            \item Assignment is probabilistic
+                \item Full: No restriction
+                \item Spherical: Sheprical shapes, different diameters
+                \item Diag: Ellipsoidal shapes, axes parallel to the coordinate system
+                \item Tied: Same ellipsoidal shapes, size and orientation
             \end{itemize}
-       \item Maximization step: Update cluster parameters
-            \begin{itemize}
-            \item Each cluster is updated using \textit{all} the data
-            \item Instances contribution to a cluster parameters is weighted by the probability that it belongs to it
-            \end{itemize}
-       \item Go to 2
-    \end{enumerate} 
-    \end{block}
 
-    GMM can be seen as a fuzzy clustering algorithm
+ 	    \column{.5\textwidth}
+	        \includegraphics[width=\textwidth]{figs/gmm-covariances.png}
+    \end{columns}
 \end{frame}
 
+\subsection{GMM for anomaly detection}
 
-\begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM) (IV)}
+\begin{frame}{Other clustering algorithms}{GMM for anomaly detection}
     GMM provides a probability of an instance to belong to a cluster
     \begin{itemize}
          \item This can be used to detect anomalies
@@ -413,15 +430,45 @@
     \bigskip
 
     \centering
-	\includegraphics[width=0.4\textwidth]{figs/gmm-anomaly.png}
-	\includegraphics[width=0.4\textwidth]{figs/gmm-anomaly2.png}\\
+	\includegraphics[width=0.45\textwidth]{figs/gmm-anomaly.png}
+	\includegraphics[width=0.45\textwidth]{figs/gmm-anomaly2.png}\\
 	\scriptsize\href{https://www.kaggle.com/code/albertmistu/detect-anomalies-using-gmm}{(Source)}
 \end{frame}
 
 \IfStrEq{\modo}{muii}{
-    \subsection{DBSCAN: Scikit-Learn}
-    \begin{frame}{Other clustering algorithms}{DBSCAN: Scikit-learn}
-        TODO: Scikit-Learn
+    \subsection{GMM: Scikit-Learn}
+    \begin{frame}{Other clustering algorithms}{GMM: Scikit-learn}
+        \begin{exampleblock}{\texttt{class sklearn.mixture.GMM}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{n\_components}: int, default=1
+                    \item \texttt{covariance\_type}: \{‘full’, ‘spherical’, 'diag', 'tied'\}
+                    \item \texttt{n\_iter:}: int, default=100
+                    \item \texttt{n\_init}: int, default=1
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{weights\_}: (n\_components,)
+                    \item \texttt{means\_}: (n\_components, n\_features)
+                    \item \texttt{covars\_}: See documention
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{predict()}, \texttt{predict\_proba()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/0.16/modules/generated/sklearn.mixture.GMM.html}{(Scikit-Learn reference)}
     \end{frame}
 }{}
 
@@ -437,7 +484,6 @@
 	\end{center}
 \end{frame}
 
-
 \subsection{DBSCAN}
 
 \begin{frame}{Other clustering algorithms}{DBSCAN (I)}
@@ -448,20 +494,21 @@
 	\end{itemize}
     Hyperparameters
     \begin{itemize}
+        \item $min\_samples$: Minimun cluster size
         \item $\epsilon$: Radius of a neighborhood
-        \item $min\_samples$: Minumun cluster size
     \end{itemize}
 
     Type of points
     \begin{itemize}
         \item Core instance
+        \item Frontier instance
         \item Outliers
     \end{itemize}
 
-    \vspace{-3cm}
+    \vspace{-3.7cm}
 	\begin{flushright} 
-        \includegraphics[width=0.5\linewidth]{figs/dbscan.png}
-	    \scriptsize\href{https://en.wikipedia.org/wiki/DBSCAN}{(Source)}\hspace{20cm}
+        \includegraphics[width=0.5\linewidth]{figs/dbscan.png}\\
+	    \scriptsize\href{https://en.wikipedia.org/wiki/DBSCAN}{(Source)}\hspace{10cm}
     \end{flushright}
 \end{frame}
 
@@ -487,25 +534,53 @@
        \centering $\epsilon$=0.2, $min\_samples=5$\\
 	   \includegraphics[width=\textwidth]{figs/dbscan2.png}\\
     \end{columns}
-    \centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/09.Unsupervised_learning.ipynb}{(Source)}}
+    \centering \scriptsize{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/09.Unsupervised_learning.ipynb}{(Source)}}
 \end{frame}
 
 \IfStrEq{\modo}{muii}{
     \subsection{DBSCAN: Scikit-Learn}
     \begin{frame}{Other clustering algorithms}{DBSCAN: Scikit-learn}
-        TODO: Scikit-Learn
+        \begin{exampleblock}{\texttt{class sklearn.cluster.DBSCAN}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{eps}: float, default=0.5
+                    \item \texttt{min\_samples}: int, default=5
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{labels\_}: ndarray (n\_samples), -1 for outlayers
+                    % components: Core instances in the dataset
+                    \item \texttt{components\_}: ndarray (n\_core\_samples, n\_features)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html}{(Scikit-Learn reference)}
+
     \end{frame}
 }{}
 
-
-\subsection{Summary}
+\subsection{DBSCAN: Summary}
 \begin{frame}{Other clustering algorithms}{DBSCAN: Summary}
 	\begin{center}
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}    & \texttt{Disadvantages} \\\hline
-	 	$\epsilon$                & No explicit number of clusters  & Slower than K-means \\
-	    $min\_samples$	          & Scales relatively well & Clusters with different densities \\
-	                 	          & Almost deterministic   &  \\
+	 	$\epsilon$                & Unknown number of clusters  & Slower than K-means \\
+	    $min\_samples$	          & Scales relatively well & No model \\
+	                 	          & Almost deterministic   & Clusters with different densities \\
 	                 	          & Robust to outliers     &  \\
 	                 	          & Anomaly detection      &  \\
 	 	\hline
@@ -536,9 +611,10 @@
 
     We need a similarity measure between two clusters
     \begin{itemize}
-        \item \textit{Ward}: Minimizes variance within merged clusters. Leads to equally sized clusters
-        \item \textit{Average}: Minimizes average distances between their points
-        \item \textit{Complete}: Minimizes maximun distance between their points
+        \item \textit{Ward}: Variance within merged clusters. Leads to equally sized clusters
+        \item \textit{Average}: Average distances 
+        \item \textit{Complete}: Maximun distance 
+        \item \textit{Single}: Minimum distance
     \end{itemize}
 \end{frame}
 
@@ -553,10 +629,44 @@
 	\scriptsize\href{https://stackoverflow.com/questions/8016313/agglomerative-clustering-in-matlab}{(Source)}
 \end{frame}
 
+\begin{frame}{Other clustering algorithms}{Agglomerative clustering (III)}
+	\centering Iris dataset dendrogram\\
+    \includegraphics[width=0.6\linewidth]{figs/iris-dendrogram.png}\\
+	\scriptsize\href{https://scikit-learn.org/stable/auto\_examples/cluster/plot\_agglomerative\_dendrogram.html\#sphx-glr-auto-examples-cluster-plot-agglomerative-dendrogram-py}{(Source)}
+\end{frame}
+
 \IfStrEq{\modo}{muii}{
     \subsection{Agglomerative clustering: Scikit-Learn}
-    \begin{frame}{Other clustering algorithms}{Agglomerative clustering: Scikit-Learn}
-        TODO: SCikit-Learn
+
+    \begin{frame}{Other clustering algorithms}{DBSCAN: Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{n\_clusters}: int
+                    \item \texttt{labels\_}: ndarray (n\_samples)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+
     \end{frame}
 }{}
 
@@ -565,8 +675,8 @@
 	\begin{center}
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	                 & Complex shapes                &  \\
-	                     & Hierarchical clustering        &  \\
+	 	                 & Complex shapes                &  Slow \\
+	     Similarity      & Hierarchical clustering       &  No model    \\
 	 	                 &         &  \\
 	 	\hline
 	\end{tabular}
@@ -598,39 +708,39 @@
 \end{frame}
 
 
+%\section{Dimensionality reduction}
+%{
+%\sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
+%\begin{frame}{Dimensionality reduction}{PCA and manifold learning}
+%\end{frame}
+%}
+
 \section{Dimensionality reduction}
-{
-\sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
-\begin{frame}{Dimensionality reduction}{PCA and manifold learning}
-\end{frame}
-}
+\subsection{Main approaches}
 
-\subsection{Main approaches for dimensionality reduction}
-
-\begin{frame}{Dimensionality reduction}{Main approaches for dimensionality reduction (I)}
+\begin{frame}{Dimensionality reduction}{Main approaches (I)}
 	Two main approaches to dimensionality reduction: Projection and \alert{manifold learning}
 
     \bigskip
 
     \centering Projection
     \begin{columns}
- 	   \column{.5\textwidth}
+ 	   \column{.05\textwidth}
+ 	   \column{.45\textwidth}
 	    \includegraphics[width=\textwidth]{figs/subspace_projection.png} 
- 	   \column{.5\textwidth}
+ 	   \column{.45\textwidth}
 	    \includegraphics[width=\textwidth]{figs/2d_projection.png} 
+ 	   \column{.05\textwidth}
     \end{columns}
 	\scriptsize\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/08.Dim_Reduction.ipynb}{(Source)}
 
     \normalsize
     \flushleft
-    Algorithms
-	\begin{itemize}
-		\item Principal Components Analysis (PCA), kernelized PCA, ...
-	\end{itemize}
+    Algorithms: Principal Components Analysis (PCA), kernelized PCA, ...
 \end{frame}
 
-\begin{frame}{Dimensionality reduction}{Main approaches for dimensionality reduction (II)}
-    \centering Manyfold learning
+\begin{frame}{Dimensionality reduction}{Main approaches (II)}
+    \centering Manifold learning
     \begin{columns}
  	   \column{.5\textwidth}
 	    \includegraphics[width=\textwidth]{figs/manifold2.jpeg} 
@@ -647,23 +757,9 @@
     \end{itemize}
 \end{frame}
 
-
-
-\begin{frame}{Dimensionality reduction}{Principal Components Analysis (I)}
-	Dimensionality reduction transforms data into more convenient representations
-	\begin{itemize}
-		\item Reduce data dimensionality
-		\item Visualize multidimensional data
-	\end{itemize}
-
-	Main algorithms
-
-\end{frame}
-
-
 \subsection{PCA}
 
-\begin{frame}{Dimensionality reduction}{Principal Components Analysis (I)}
+\begin{frame}{Dimensionality reduction}{Principal Components Analysis}
 	PCA create a new coordinate system
     \begin{itemize}
         \item New axes capture maximum variance and are orthogonal
@@ -684,7 +780,7 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Dimensionality reduction}{Principal Components Analysis (II)}
+\begin{frame}{Dimensionality reduction}{Principal Components Analysis: Applications (I)}
 	PCA application: Image compression
 
     \bigskip
@@ -701,32 +797,31 @@
    	\centering \tiny{\href{https://www.kaggle.com/code/mirzarahim/introduction-to-pca-image-compression-example}{(Source)}}
 \end{frame}
 
-\begin{frame}[plain]{Dimensionality reduction}{Principal Components Analysis (III)}
--	\includegraphics[width=\linewidth]{figs/pcaexample.png}\\
+\begin{frame}{Dimensionality reduction}{Principal Components Analysis: Applications (II)}
+	\includegraphics[width=\linewidth]{figs/pcaexample.png}\\
    	\centering \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb}{(Source)}}
 \end{frame}
 
-\begin{frame}[plain]{Dimensionality reduction}{Principal Components Analysis (III)}
-	PCA application: Anomaly detection to predict bearing failure
-		\begin{itemize}
-            \item Vibrations of four bearings
-		\end{itemize}
+\begin{frame}{Dimensionality reduction}{Principal Components Analysis: Applications (III)}
+	Application: Anomaly detection to predict bearing failure, vibrations of four bearings
+
+    \smallskip
 
     \begin{columns}
  	   \column{.50\textwidth}
-            Vibration time series
+            \centering Vibration time series
 			\includegraphics[width=\linewidth]{figs/bearings1.png}
  	   \column{.50\textwidth}
-            First component
+            \centering First component
 			\includegraphics[width=\linewidth]{figs/bearingspca.png}
     \end{columns}
 
     \begin{columns}
  	   \column{.50\textwidth}
-            Reconstructed time series
+            \centering Reconstructed time series
 			\includegraphics[width=\linewidth]{figs/bearings2.png}
  	   \column{.50\textwidth}
-            Reconstruction error
+            \centering Reconstruction error
 			\includegraphics[width=\linewidth]{figs/bearingerror.png}
     \end{columns}
 
@@ -734,82 +829,144 @@
 \end{frame}
 
 
-\begin{frame}{Dimensionality reduction}{Principal Components Analysis (IV)}
-	\vspace{-0.5cm}
-    \begin{columns}
- 	   \column{.70\textwidth}
-		Example: Hand-written digits recognition
-		\begin{itemize}
-			\item Images of hand-written digits
-			\item 8x8 images (64 dimensions)
-			\item $10$ digits
-			\item Classification problem
-		\end{itemize}
- 	   \column{.30\textwidth}
-			\includegraphics[width=\linewidth]{figs/zero.png}
-    \end{columns}
+%\begin{frame}{Dimensionality reduction}{Principal Components Analysis (IV)}
+%	\vspace{-0.5cm}
+%    \begin{columns}
+% 	   \column{.70\textwidth}
+%		Example: Hand-written digits recognition
+%		\begin{itemize}
+%			\item Images of hand-written digits
+%			\item 8x8 images (64 dimensions)
+%			\item $10$ digits
+%			\item Classification problem
+%		\end{itemize}
+% 	   \column{.30\textwidth}
+%			\includegraphics[width=\linewidth]{figs/zero.png}
+%    \end{columns}
 
-    \begin{columns}
- 	   \column{.50\textwidth}
-			\includegraphics[width=\linewidth]{figs/handdigitspca.png}
- 	   \column{.50\textwidth}
-			\includegraphics[width=\linewidth]{figs/pcacomponents.png}
-    \end{columns}
+%    \begin{columns}
+% 	   \column{.50\textwidth}
+%			\includegraphics[width=\linewidth]{figs/handdigitspca.png}
+% 	   \column{.50\textwidth}
+%			\includegraphics[width=\linewidth]{figs/pcacomponents.png}
+%    \end{columns}
 
-   	\centering \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb}{(Source)}}
-\end{frame}
+%   	\centering \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb}{(Source)}}
+%\end{frame}
 
 \subsection{Kernel PCA}
 \begin{frame}{Dimensionality reduction}{Kernel PCA}
-	The kernel trick applies to PCA
-		\begin{itemize}
-        \item kPCA captures non-linear structures
-		\end{itemize}
+    \begin{columns}
+ 	   \column{.50\textwidth}
+	        The kernel trick applies to PCA
+		    \begin{itemize}
+            \item kPCA captures non-linear structures
+		    \end{itemize}
 
-	\includegraphics[width=0.4\linewidth]{figs/swiss.jpeg}\\
+ 	   \column{.30\textwidth}
+	        \includegraphics[width=\linewidth]{figs/swiss.jpeg}\\
+ 	   \column{.20\textwidth}
+    \end{columns}
+
     \centering
 	\includegraphics[width=\linewidth]{figs/kpca.png}
    	\tiny{\href{https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/}{(Source)}}
 \end{frame}
 
-\subsection{Manifold learning}
-\begin{frame}{Dimensionality reduction}{Manifold learning}
-	TODO
+\IfStrEq{\modo}{muii}{
+    \subsection{PCA: Scikit-Learn}
+    \begin{frame}{Dimensionality reduction}{PCA: Scikit-Learn (I)}
+        \begin{exampleblock}{\texttt{sklearn.decomposition.PCA}}
+         \medskip
 
-	\includegraphics[width=0.8\linewidth]{figs/lle.png}
-   	\centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/08.Dim_Reduction.ipynb}{(Source)}}
-\end{frame}
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{n\_components}: int, float or ‘mle’, default=None
+                \end{itemize}
 
-\subsection{Locally Linear Embedding (LLE)}
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{components\_}: ndarray (n\_components, n\_features)
+                    \item \texttt{explained\_variance\_}: ndarray (n\_components,)
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{transform()}, \texttt{inverse\_transform()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{(Scikit-Learn reference)}
+    \end{frame}
+
+    \begin{frame}{Dimensionality reduction}{PCA: Scikit-Learn (II)}
+        \begin{exampleblock}{\texttt{sklearn.decomposition.KernelPCA}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                     \item \texttt{n\_components}: int, default=None
+                     \item \texttt{kernel}: \{‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘cosine’, ‘precomputed’\}
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{transform()}, \texttt{inverse\_transform()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.KernelPCA.html\#sklearn.decomposition.KernelPCA}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+\subsection{Manifold learning: Locally Linear Embedding}
 \begin{frame}{Dimensionality reduction}{Manifold learning}
-	Measures how mach each training instance linearly relates to ists closest neighbors\\
-    preservers local relations
+	Locally Linear Embedding (LLE)
+    \begin{itemize}
+        \item  Measures how mach each training instance linearly relates to its closest neighbors preserving local relations
+    \end{itemize}
 
 	\includegraphics[width=0.7\linewidth]{figs/lle.png}
    	\centering \tiny{\href{https://github.com/Akramz/Hands-on-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow/blob/master/08.Dim_Reduction.ipynb}{(Source)}}
 \end{frame}
 
-\subsection{Other manyfold techniques}
-\begin{frame}{Dimensionality reduction}{Manifold learning}
-	Multidimensional Scaling (MDS)
-        \begin{itemize}
-        \item Preserves distances
-        \end{itemize}
-    Isomap
-        \begin{itemize}
-        \item Preserves geodesic distance
-        \end{itemize}
-    t-Distributed Stochastic Neighbor Embedding (t-SNE)
-        \begin{itemize}
-        \item Preserves local distances and keep dissimilar instances apart
-        \end{itemize}
+\subsection{Other manifold techniques}
+\begin{frame}[plain]{Dimensionality reduction}{Other manifold learning techniques}
+    %\begin{columns}
+ 	%   \column{.50\textwidth}
+    \begin{itemize}
+	    \item Multidimensional Scaling (MDS): Preserves distances
+        \item Isomap: Preserves geodesic distance 
+        \item t-Distributed Stochastic Neighbor Embedding (t-SNE):
+            Preserves local distances and keep dissimilar instances apart
+    \end{itemize}
         
-
-	\includegraphics[width=0.8\linewidth]{figs/manifold.png}
-   	\centering \tiny{\href{https://scikit-learn.org/0.21/auto_examples/manifold/plot_compare_methods.html}{(Source)}}
+ 	%   \column{.50\textwidth}
+    \centering
+	\includegraphics[width=\linewidth]{figs/manifold.png}\\
+   	\tiny{\href{https://scikit-learn.org/0.21/auto_examples/manifold/plot_compare_methods.html}{(Source)}}
+   % \end{columns}
 \end{frame}
 
-
-
+\begin{frame}{Dimensionality reduction}{Manifold learning demo}
+% Show PCA/t-SNE with Iris
+% Give time for MNIST dataset
+\href{http://projector.tensorflow.org/}{(Interactive demo)}
+\end{frame}
 
 \end{document}
