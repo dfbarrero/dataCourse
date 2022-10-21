@@ -318,18 +318,18 @@
 
 \section{Linear models}
 \subsection{Ordinary least squares}
-\begin{frame}{Linear models}{Linear regression (I)}
-     Lineal regression assumes a linear relationship among variables
-	\begin{itemize}
-		\item This limitation can be easely overcome
-		\item Surprisingly good results in high dimensional spaces
-	\end{itemize}
-
+\begin{frame}{Linear models}{Linear model (I)}
     \begin{columns}
  	   \column{.60\textwidth}
-        \begin{block}{Lineal regression}
+        \begin{block}{Linear model}
             $y = a_0 + a_1 x_1  + a_2 x_2 + \dots + a_n x_n$
         \end{block}
+        
+        for a single feature $y = a_0 + a_1 x_1$, where
+        \begin{itemize}
+            \item $a_0$ is the intercept
+            \item $a_1$ is the slope
+        \end{itemize}
 
  	   \column{.40\textwidth}
 		\begin{figure}
@@ -337,36 +337,22 @@
 		\end{figure}
     \end{columns}
 
+    \begin{columns}
+ 	   \column{1.00\textwidth}
+    Lineal models assume a linear relationship among variables
+	\begin{itemize}
+		\item This limitation can be easely overcomed
+		\item Surprisingly good results in high dimensional spaces
+	\end{itemize}
+
+    Different linear models for regression
+        \begin{itemize}
+            \item The difference lies in how $a_i$ parameters are learned
+        \end{itemize}
+    \end{columns}
+
+
 \end{frame}
-
-%\begin{frame}{Linear regression (II)}
-%    Example: Does money make people happier? (example from (G\'eron, 2017))
-%    \bigskip
-
-%    \begin{columns}
-%       \column{.40\textwidth}
-%        \begin{tabular}{ccc}\hline
-%            \texttt{Country} & \texttt{GDP} & \texttt{\textit{LS}} \\\hline
-%            Hungary& 12,240  & \textit{4.9}   \\
-%            Korea   & 27,195  & \textit{5.8}   \\
-%            France & 37,675  & \textit{6.5}   \\
-%            Australia & 50,962 & \textit{7.3} \\
-%            USA     & 55,805  & \textit{7.2}   \\
-%            \hline
-%        \end{tabular}\\
-%        LS =Life satisfaction
-
-%       \column{.60\textwidth}
-%            \begin{exampleblock}{Linear regression}
-%                \centering \includegraphics[width=0.9\linewidth]{Images/scattergdpregression.png}
-%                \vspace{-0.4cm}
-%                \begin{equation*}
-%                life\_satisfaction = \theta_0 + \theta_1 \times GDP\_per\_capita
-%                \end{equation*}
-%                \vspace{-0.2cm}
-%            \end{exampleblock}
-%    \end{columns}
-%\end{frame}
 
 \begin{frame}{Linear models (II)}
 	Several methods to fit coefficients
