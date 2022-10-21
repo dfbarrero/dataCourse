@@ -110,10 +110,10 @@
 
    \begin{block}{Bibliography}
     \begin{itemize}
-        \item G\'eron, Aur\'elien. \textit{Hands-On Machine Learning with Scikit-Learn, Keras \& TensorFlow}. O'Reilly. 2020
         \item M\"uller, Andreas C., Guido, Sarah. \textit{Introduction to Machine Learning with Python}. O'Reilly. 2016
     \end{itemize}
    \end{block}
+   All figures have been taken from \url{https://github.com/amueller/introduction_to_ml_with_python/blob/master/02-supervised-learning.ipynb}
 \end{frame}
 
 {
@@ -131,30 +131,74 @@
 \end{frame}
 }
 
+\section[Generalization]{Generalization, overfitting and underfitting}
+\begin{frame}{Generalization, overfitting and underfitting}
+    Generalization: accurate predictions on unseen data
+    \begin{itemize}
+	\item i.e. there is no overfitting neither underfitting
+	\item Depends on model  complexity and data variability
+    \end{itemize}
+
+    \medskip
+
+    \centering \includegraphics[width=0.6\linewidth]{figs/overfitting_underfitting_cartoon.png}
+    \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/02-supervised-learning.ipynb}{(Source)}}
+\end{frame}
+
+
+
 \section{k-Nearest Neighbors}
-\subsection{kNN classification}
+\subsection{k-NN classification}
 
-\begin{frame}{k-Nearest Neighbors}{kNN classification (I)}
-    Diagrama 1-NN y 3-NN.
+\begin{frame}{k-Nearest Neighbors}{k-NN classification (I)}
+
+     k-NN (k-Nearest Neighbors): Likely, the simplest classifier
+	\begin{itemize}
+		\item Given a data point, it takes its $k$ closests neighbors
+		\item Same prediction than its neighbors
+	\end{itemize}
+
+    \begin{columns}
+ 	   \column{.40\textwidth}
+        \centering 1-NN\\
+	        \includegraphics[width=\textwidth]{figs/1-nn.png}
+ 	   \column{.40\textwidth}
+         \centering   3-NN\\
+	        \includegraphics[width=\textwidth]{figs/3-nn.png}
+    \end{columns}
+
+    k-NN does not generate a model
+    \begin{itemize}
+		\item The whole dataset must be stored
+	\end{itemize}
+    $k$ uses to be an odd number (1-NN, 3-NN, 5-NN, ...)
 \end{frame}
 
-\begin{frame}{k-Nearest Neighbors}{kNN classification (II)}
-    Diagrama frontera para varios valores de K
+\begin{frame}{k-Nearest Neighbors}{k-NN classification (II)}
+    \centering 
+	\includegraphics[width=0.7\textwidth]{figs/knnboundary.png}
+
+    \flushleft
+
+    $k$ determines the model complexity
+    \begin{itemize}
+        \item Smoother boundaries in larger $k$ values
+        \item Model complexity decreases with $k$
+        \item If $k$ equals the number of samples, k-NN always predicts the most frequent class
+    \end{itemize}
+    How to figure out the best $k$?
 \end{frame}
 
-\subsection{kNN regression}
-
-\begin{frame}{k-Nearest Neighbors}{kNN regression}
-    TODO
+\begin{frame}{k-Nearest Neighbors}{k-NN classification (III)}
+    \centering 
+	\includegraphics[width=0.5\textwidth]{figs/k-complexity.png}
 \end{frame}
-
 
 \IfStrEq{\modo}{muii}{
     \subsection{Scikit-Learn}
 
-    \begin{frame}{k-Nearest Neighbors}{Scikit-learn}
-        TODO
-        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+    \begin{frame}{k-Nearest Neighbors classifier}{Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.neighbors.KNeighborsClassifier}}
          \medskip
 
          \begin{columns}[T]
@@ -162,35 +206,111 @@
  	        \column{.49\textwidth}
                 Constructor arguments:
                 \begin{itemize}
-                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                    \item \texttt{n\_neighbors}: int, default=5
+                    \item \texttt{metric}: string, default='minkowski'
+                    \item \texttt{p}: int, default=2 ($p=1$ Manhatan distance, $p=2$ euclidean distance)
                 \end{itemize}
 
  	        \column{.49\textwidth}
                 Attributes:
                 \begin{itemize}
-                    \item \texttt{n\_clusters}: int
-                    \item \texttt{labels\_}: ndarray (n\_samples)
+                    \item \texttt{classes\_}: ndarray (n\_samples)
                 \end{itemize}
             \end{columns}
 
             \medskip
 
-            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+            Methods: \texttt{fit()}, \texttt{predict()}
         \end{exampleblock}
 
         \medskip
 
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}{(Scikit-Learn reference)}
 
     \end{frame}
 }{}
+
+
+
+\subsection{kNN regression}
+
+\begin{frame}{k-Nearest Neighbors}{kNN regression (I)}
+    \begin{columns}
+ 	   \column{.50\textwidth}
+        \begin{block}{k-NN regression}
+         Given a data point
+        \begin{enumerate}
+            \item Take the $k$ closest data points
+            \item Predict same target value (1-NN) or averate target value (k-NN)
+        \end{enumerate}
+        \end{block}
+
+        Performace is measured with a regression metric, by default, $R^2$
+
+ 	   \column{.40\textwidth}
+        \centering 1-NN\\
+	        \includegraphics[width=\textwidth]{figs/1-nn-reg.png}
+         \centering   3-NN\\
+	        \includegraphics[width=\textwidth]{figs/3-nn-reg.png}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{k-Nearest Neighbors}{kNN regression (II)}
+    \includegraphics[width=\textwidth]{figs/knn-boundary-reg.png}
+
+    $k$ determines boundary smoothness
+    \begin{enumerate}
+        \item With $k=1$, prediction visits all data points
+        \item With large $k$ values, fit is worse
+    \end{enumerate}
+\end{frame}
+
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
+    \begin{frame}{k-Nearest Neighbors regressor}{Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.neighbors.KNeighborsRegressor}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{n\_neighbors}: int, default=5
+                    \item \texttt{metric}: string, default='minkowski'
+                    \item \texttt{p}: int, default=2 ($p=1$ Manhatan distance, $p=2$ euclidean distance)
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html}{(Scikit-Learn reference)}
+
+    \end{frame}
+}{}
+
+
+
 
 \subsection{Summary}
 \begin{frame}{k-Nearest Neighbors}{Summary}
 	\begin{center}
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	                          &                               &   \\
+	 	$k$                       & Simple               & Slow with large datasets  \\
+	 	Distance                  & Baseline             & Bad performance with hundreds or more attributes  \\
+                                  &                      & No model \\
+                                  &                      & Dataset must be stored in memory \\
 	 	\hline
 	\end{tabular}
 	\end{center}
