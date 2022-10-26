@@ -453,7 +453,7 @@
     Two hyperparameters
 	\begin{itemize}
         \item $\alpha$ controls the model complexity
-		\item $\lambda$ balances L1 and L2
+		\item $\lambda$ balances between L1 and L2
 	\end{itemize}
 \end{frame}
 
@@ -466,21 +466,189 @@
     \centering \includegraphics[width=0.7\linewidth]{figs/lasso.png}
 \end{frame}
 
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
+    \begin{frame}{Linear models}{Scikit-learn (I)}
+        \begin{exampleblock}{\texttt{sklearn.linear\_model.LinearRegression}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{fit\_intercept}: boolean, default=True
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{coef\_}:  ndarray (n\_features, )
+                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{n\_features\_in\_}: int
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{predict()}
+        \end{exampleblock}
+
+        \medskip
+
+    \end{frame}
+
+    \begin{frame}{Linear models}{Scikit-learn (II)}
+        \begin{exampleblock}{\texttt{sklearn.linear\_model.Ridge}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{fit\_intercept}: boolean, default=True
+                    \item \texttt{alpha}: float, default=1.0
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{coef\_}:  ndarray (n\_features, )
+                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{n\_features\_in\_}: int
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{predict()}
+        \end{exampleblock}
+
+        \medskip
+
+    \end{frame}
+
+    \begin{frame}{Linear models}{Scikit-learn (IV)}
+        \begin{exampleblock}{\texttt{sklearn.linear\_model.ElasticNet}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{fit\_intercept}: boolean, default=True
+                    \item \texttt{alpha}: float, default=1.0
+                    \item \texttt{l1\_ratio}: float, default=0.5
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{coef\_}:  ndarray (n\_features, )
+                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{n\_features\_in\_}: int
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{predict()}
+        \end{exampleblock}
+
+        \medskip
+
+    \end{frame}
+
+    \begin{frame}{Linear models}{Scikit-learn (III)}
+        \begin{exampleblock}{\texttt{sklearn.linear\_model.Lasso}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{fit\_intercept}: boolean, default=True
+                    \item \texttt{alpha}: float, default=1.0
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{coef\_}:  ndarray (n\_features, )
+                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{n\_features\_in\_}: int
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{predict()}
+        \end{exampleblock}
+
+        \medskip
+
+    \end{frame}
+
+
+
+}{}
+
+
+
 \subsection{Linear models for classification}
 
-\begin{frame}{Linear models}{Linear models for classification}
-    Three regularizations
+\begin{frame}{Linear models}{Linear models for classification (I)}
+    A linear regression can be used as classifier
 	\begin{itemize}
-		\item L1 (Lasso regression) 
-		\item L2 (Ridge regression)
-		\item ElasticNet: L1 and L2
+		\item Just compare the prediction with a threshold (0, for instance)
+            \begin{itemize}
+                \item If $\hat{y} > 0$, assign class 1
+                \item If $\hat{y} <= 0$, assign class -1
+            \end{itemize}
+        \item The decision boundary for any binary linal classifier is a line, plane or hyperplane
 	\end{itemize}
 
+    A \alert{logistic regression} is a generalization of a linear regression
+    \begin{itemize}
+        \item It is a binary classifier
+        \item Its output is a probability
+    \end{itemize}
+    \begin{equation*}
+        p = \sigma\left(\beta_0+\sum_{i=1}^{n} \beta_i x_i\right),
+    \end{equation*}
+    where $\sigma(t)$ is the logistic function, defined as $\sigma(t) = \frac{1}{1 + e^t}$
+
+    \vspace{-3cm}
+    \flushright
+   	\begin{tikzpicture}[scale=0.4]
+    	\begin{axis}[ 
+        	xlabel=$x$,
+          	ylabel={$g(x) = \frac{1}{1+e^{-x}}$}
+      	] 
+       	\addplot[mark=none, red] {1/(1+e^(-x))}; 
+    	\end{axis}
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Linear models}{Linear models for classification (II)}
+    \centering \includegraphics[width=0.8\linewidth]{figs/logistic.png}
+\end{frame}
+
+\begin{frame}{Linear models}{Linear models for classification (III)}
     \begin{columns}
- 	   \column{.3\textwidth}
-    		\begin{block}{Lasso}
-            	$\lambda \sum_j^n \beta_j^2$
-        	\end{block}
+ 	   \column{.5\textwidth}
+        The model can be regularized with L1, L2 and ElasticNet
+        \begin{itemize}
+            \item In Scikit-Learn, regularization strength is given by C
+            \item Lower values of C correspond to smaller regularization strength
+        \end{itemize}
+
+ 	   \column{.5\textwidth}
+        \centering \includegraphics[width=\linewidth]{figs/logistic-c.png}
     \end{columns}
 \end{frame}
 
@@ -488,8 +656,7 @@
     \subsection{Scikit-Learn}
 
     \begin{frame}{Linear models}{Scikit-learn}
-        TODO
-        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+        \begin{exampleblock}{\texttt{sklearn.linear\_model.ElasticNet}}
          \medskip
 
          \begin{columns}[T]
@@ -497,131 +664,48 @@
  	        \column{.49\textwidth}
                 Constructor arguments:
                 \begin{itemize}
-                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                    \item \texttt{penalty}: {‘l1’, ‘l2’, ‘elasticnet’, ‘none’}, default=’l2’
+                    \item \texttt{fit\_intercept}: boolean, default=True
+                    \item \texttt{alpha}: float, default=1.0
+                    \item \texttt{l1\_ratio}: float, default=0.5
                 \end{itemize}
 
  	        \column{.49\textwidth}
                 Attributes:
                 \begin{itemize}
-                    \item \texttt{n\_clusters}: int
-                    \item \texttt{labels\_}: ndarray (n\_samples)
+                    \item \texttt{coef\_}:  ndarray (n\_features, )
+                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{n\_features\_in\_}: int
                 \end{itemize}
             \end{columns}
 
             \medskip
 
-            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+            Methods: \texttt{fit()}, \texttt{predict()}
         \end{exampleblock}
 
         \medskip
 
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
-
     \end{frame}
+
 }{}
 
 \subsection{Summary}
-\begin{frame}{Linear models}{Summary (I)}
+\begin{frame}{Linear models}{Summary}
 	\begin{center}
-    Linear regression
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
 	 	 -                        & Fast train and predict        & No complexity tuning  \\
-	 	                          & Scales well to large datasets &   \\
-	 	                          &                               &   \\
-	 	                          &                               &   \\
-	 	                          &                               &   \\
+	 	 $\alpha$ (L1, L2, ElasticNet) & Scales well to large datasets & Limited in low dimensional spaces  \\
+	 	 $l1\_ratio$ (ElasticNet) & Better in high dimensional spaces  &   \\
+	 	                          & Few hyperparameters           &   \\
+	 	                          & Interpretable                 &   \\
 	 	\hline
 	\end{tabular}
-
-    \bigskip
-
-    Ridge regression
-	\begin{tabular}{cp{3cm}p{3cm}}\hline
-	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	$\alpha$                  & Election by default  &   \\
-	 	\hline
-	\end{tabular}
-
     \end{center}
 
-\end{frame}
+    Better when the number of features is large compared to the number of samples
 
-\begin{frame}{Linear models}{Summary (II)}
-	\begin{center}
-    Lasso regression
-	\begin{tabular}{cp{3cm}p{3cm}}\hline
-	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	$\alpha$                  & Interpretation       &   \\
-	 	\hline
-	\end{tabular}
-
-    \bigskip
-
-
-    ElasticNet
-	\begin{tabular}{cp{3cm}p{3cm}}\hline
-	 	\texttt{Hyperparameters} & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	$\alpha$                 &                      &   \\
-	 	$\lambda$                &                      &   \\
-	 	\hline
-	\end{tabular}
-	\end{center}
-
-\end{frame}
-
-
-
-\section{Naive Bayes Classifiers}
-
-\begin{frame}{Naive Bayes Classifiers}
-    TODO
-\end{frame}
-
-\IfStrEq{\modo}{muii}{
-    \subsection{Scikit-Learn}
-
-    \begin{frame}{Naive Bayes Classifiers}{Scikit-learn}
-        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
-         \medskip
-
-         \begin{columns}[T]
- 	        \column{.01\textwidth}
- 	        \column{.49\textwidth}
-                Constructor arguments:
-                \begin{itemize}
-                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
-                \end{itemize}
-
- 	        \column{.49\textwidth}
-                Attributes:
-                \begin{itemize}
-                    \item \texttt{n\_clusters}: int
-                    \item \texttt{labels\_}: ndarray (n\_samples)
-                \end{itemize}
-            \end{columns}
-
-            \medskip
-
-            Methods: \texttt{fit()}, \texttt{fit\_predict()}
-        \end{exampleblock}
-
-        \medskip
-
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
-
-    \end{frame}
-}{}
-
-\subsection{Summary}
-\begin{frame}{Naive Bayes Classifiers}{Summary}
-	\begin{center}
-	\begin{tabular}{cp{3cm}p{3cm}}\hline
-	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	                          &                               &   \\
-	 	\hline
-	\end{tabular}
-	\end{center}
 \end{frame}
 
 \section{Decission Trees}
