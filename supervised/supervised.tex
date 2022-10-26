@@ -299,9 +299,6 @@
     \end{frame}
 }{}
 
-
-
-
 \subsection{Summary}
 \begin{frame}{k-Nearest Neighbors}{Summary}
 	\begin{center}
@@ -316,19 +313,22 @@
 	\end{center}
 \end{frame}
 
+
+
 \section{Linear models}
 \subsection{Ordinary least squares}
 \begin{frame}{Linear models}{Linear model (I)}
     \begin{columns}
  	   \column{.60\textwidth}
         \begin{block}{Linear model}
-            $y = a_0 + a_1 x_1  + a_2 x_2 + \dots + a_n x_n$
+            $y = \beta_0 + \beta_1 x_1  + \beta_2 x_2 + \dots + \beta_n x_n$
         \end{block}
         
-        for a single feature $y = a_0 + a_1 x_1$, where
+        for a single feature $y = \beta_0 + \beta_1 x_1$, where
         \begin{itemize}
-            \item $a_0$ is the intercept
-            \item $a_1$ is the slope
+            \item $\beta_0$ is the intercept
+            \item $\beta_1$ is the slope
+            \item Intepretable model
         \end{itemize}
 
  	   \column{.40\textwidth}
@@ -337,33 +337,139 @@
 		\end{figure}
     \end{columns}
 
-    \begin{columns}
- 	   \column{1.00\textwidth}
+    \bigskip
+
     Lineal models assume a linear relationship among variables
 	\begin{itemize}
 		\item This limitation can be easely overcomed
 		\item Surprisingly good results in high dimensional spaces
 	\end{itemize}
-
-    Different linear models for regression
-        \begin{itemize}
-            \item The difference lies in how $a_i$ parameters are learned
-        \end{itemize}
-    \end{columns}
-
-
 \end{frame}
 
-\begin{frame}{Linear models (II)}
-	Several methods to fit coefficients
+\subsection{Linear regression}
+\begin{frame}{Linear models}{Linear regression}
+    Different linear models for regression
+    \begin{itemize}
+        \item The difference lies in how $\beta_i$ parameters are learned
+    \end{itemize}
+
+	Ordinary Least Squares (OLS): Minimizes mean squared error
 	\begin{itemize}
-		\item Ordinary Least Squares (OLS)
-        \item Generalized Least Squares (GSL)
-        \item Weighted Least Squares (WLS)
-		\item Generalized Least Squares with AR Covariance Structure (GLSAR)
+        \item OLS does not have any hyperparameter
+        \item No complexity control
+        %\item Generalized Least Squares (GSL)
+        %\item Weighted Least Squares (WLS)
+		%\item Generalized Least Squares with AR Covariance Structure (GLSAR)
+	\end{itemize}
+    
+    \begin{equation*}
+    MSE = \frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2
+    \end{equation*}
+
+    Linear regression can be used to fit non-linear models    
+    \begin{itemize}
+        \item Just adding new attributes
+    \end{itemize}
+\end{frame}
+
+\subsection{Regularized linear models}
+\begin{frame}{Linear models}{Regularized linear models}
+	\alert{Regularization}: Term that penalizes complexity
+	\begin{itemize}
+		\item Added to the cost function
+        \item Lineal models remain the same
+        \item Train to minimize cost function and coefficients
+        \item Intercepts are not part of regularization
 	\end{itemize}
 
-	\alert{Regularization}: Term that penalizes complexity
+    Three regularizations
+	\begin{itemize}
+		\item L1 (Lasso regression),  L2 (Ridge regression) and ElasticNet (L1 and L2)
+	\end{itemize}
+
+    \begin{columns}
+ 	   \column{.2\textwidth}
+    		\begin{block}{Lasso (L1)}
+            	$\alpha \sum_j^n |\beta_j|$
+        	\end{block}
+
+	   \column{.2\textwidth}
+     		\begin{block}{Ridge (L2)}
+            	$\frac{\alpha}{2} \sum_j^n \beta_j^2$
+        	\end{block}
+
+	   \column{.5\textwidth}
+     		\begin{block}{ElasticNet}
+			$\alpha \left( \frac{\lambda}{2} \sum_j^n \beta_j^2 + (1-\lambda) \sum_j^n |\beta_j| \right)$
+        	\end{block}
+    \end{columns}
+\end{frame}
+
+\subsection{Ridge regression}
+\begin{frame}{Linear models}{Ridge regression}
+	Ridge regression (or L2 regularization) adds a new term to cost function
+    \begin{equation*}
+        MSE + \alpha \sum_{i=1}^n \beta_i^2
+    \end{equation*}
+    $\alpha$ controls the model complexity
+	\begin{itemize}
+		\item If $\alpha = 0$ Ridge becomes a regular linear regression
+        \item Optimal $\alpha$ depends on the problem
+	\end{itemize}
+    Ridge by default
+\end{frame}
+
+\subsection{Lasso regression}
+\begin{frame}{Linear models}{Lasso regression (I)}
+	Lasso regression (or L1 regularization) adds a new term to cost function
+    \begin{equation*}
+        MSE + \alpha \frac{1}{2} \sum_{i=1}^n |\beta_i|
+    \end{equation*}
+    $\alpha$ controls the model complexity
+	\begin{itemize}
+		\item If $\alpha = 0$ Ridge becomes a regular linear regression
+        \item Optimal $\alpha$ depends on the problem
+	\end{itemize}
+
+    Some coefficiets may be exactly zero
+    \begin{itemize}
+        \item Implicit feature selection
+        \item Easier interpretation
+        \item Better with large number of attributes
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linear models}{Lasso regression (II)}
+    \centering \includegraphics[width=0.7\linewidth]{figs/lasso-ridge.png}\\
+    \tiny{\href{https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b}{(Source)}}
+\end{frame}
+
+\subsection{ElasticNet}
+\begin{frame}{Linear models}{ElasticNet}
+	Lasso and Ridge can be combined
+    \begin{equation*}
+        MSE + \alpha \left( \lambda \frac{1}{2} \sum_{i=1}^n |\beta_i| + (1-\lambda) \sum_{i=1}^n \beta_i^2 \right)
+    \end{equation*}
+    Two hyperparameters
+	\begin{itemize}
+        \item $\alpha$ controls the model complexity
+		\item $\lambda$ balances L1 and L2
+	\end{itemize}
+\end{frame}
+
+\subsection{Regularized linear models comparison}
+\begin{frame}{Linear models}{Regularized linear models comparison}
+    \centering
+    Ridge - L2\\
+    \centering \includegraphics[width=0.7\linewidth]{figs/ridge.png}\\
+    Lasso - L1\\
+    \centering \includegraphics[width=0.7\linewidth]{figs/lasso.png}
+\end{frame}
+
+\subsection{Linear models for classification}
+
+\begin{frame}{Linear models}{Linear models for classification}
+    Three regularizations
 	\begin{itemize}
 		\item L1 (Lasso regression) 
 		\item L2 (Ridge regression)
@@ -375,23 +481,8 @@
     		\begin{block}{Lasso}
             	$\lambda \sum_j^n \beta_j^2$
         	\end{block}
-
-	   \column{.3\textwidth}
-     		\begin{block}{Ridge}
-            	$\lambda \sum_j^n |\beta_j|$
-        	\end{block}
-	   \column{.4\textwidth}
-     		\begin{block}{ElasticNet}
-			$\alpha  \sum_j^n \beta_j^2 + (1-\alpha) \sum_j^n |\beta_j|$
-        	\end{block}
     \end{columns}
-
 \end{frame}
-
-\subsection{Ridge regression}
-\subsection{Lasso regression}
-\subsection{ElasticNet}
-\subsection{Linear models for classification}
 
 \IfStrEq{\modo}{muii}{
     \subsection{Scikit-Learn}
@@ -430,14 +521,53 @@
 }{}
 
 \subsection{Summary}
-\begin{frame}{Linear models}{Summary}
+\begin{frame}{Linear models}{Summary (I)}
 	\begin{center}
+    Linear regression
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	 -                        & Fast train and predict        & No complexity tuning  \\
+	 	                          & Scales well to large datasets &   \\
+	 	                          &                               &   \\
+	 	                          &                               &   \\
 	 	                          &                               &   \\
 	 	\hline
 	\end{tabular}
+
+    \bigskip
+
+    Ridge regression
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	$\alpha$                  & Election by default  &   \\
+	 	\hline
+	\end{tabular}
+
+    \end{center}
+
+\end{frame}
+
+\begin{frame}{Linear models}{Summary (II)}
+	\begin{center}
+    Lasso regression
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	$\alpha$                  & Interpretation       &   \\
+	 	\hline
+	\end{tabular}
+
+    \bigskip
+
+
+    ElasticNet
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters} & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	$\alpha$                 &                      &   \\
+	 	$\lambda$                &                      &   \\
+	 	\hline
+	\end{tabular}
 	\end{center}
+
 \end{frame}
 
 
