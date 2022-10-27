@@ -708,17 +708,188 @@
 
 \end{frame}
 
-\section{Decission Trees}
+\section{Decision Trees}
 
-\begin{frame}{Decission Trees}
-    TODO
+\begin{frame}{Decision Trees}
+    \begin{columns}
+ 	   \column{.5\textwidth}
+            Decision trees are a family of algorithms for classification and regression
+            \begin{itemize}
+                \item They learn a tree data strucure
+                \item Hierarchy of if/else questions (test, or node)
+                \item Decision (terminal node or leaf)
+            \end{itemize}
+
+            Usually, datasets does not contain binary attributes
+            \begin{itemize}
+                \item Continous features
+                \item Is feature $i$ larger than value $a$?
+            \end{itemize}
+
+ 	    \column{.5\textwidth}
+            \centering \includegraphics[width=\linewidth]{figs/tree-game.png}
+    \end{columns}
+\end{frame}
+
+\subsection{Building decision trees}
+
+\begin{frame}{Decision Trees}{Building decision trees (I)}
+    \begin{columns}
+ 	   \column{.6\textwidth}
+            %Learning a tree means learning the sequence of questions that gets the true answer most quickly
+
+            \begin{block}{Tree learning algorithm}
+                \begin{enumerate}
+                    \item Begin with the root node
+                    \item Searches all possible tests (according to a purity measure)
+                    \item The most informative test is taken
+                    \item Repeat recursively
+                \end{enumerate}
+            \end{block}
+            Prediction of a new data point
+            \begin{itemize}
+                \item Classification: Majority class in the partition
+                \item Regression: Average value of target values in the partition
+            \end{itemize}
+ 	    \column{.4\textwidth}
+            \centering \includegraphics[width=\linewidth]{figs/tree-example.png}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[plain]{Decision Trees}{Building decision trees (II)}
+    \begin{columns}
+ 	    \column{.65\textwidth}
+            \centering \includegraphics[width=\linewidth]{figs/tree-d1.png}
+            \centering \includegraphics[width=\linewidth]{figs/tree-d2.png}
+            \centering \includegraphics[width=\linewidth]{figs/tree-d9.png}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[plain]{Decision Trees}{Building decision trees (III)}
+    Let $p_{mk}$ be the propotion of  class $k$ in node $m$, and $Q_m$ the data in node $m$
+
+    \centering
+    \bigskip
+
+    \begin{columns}
+ 	    \column{.5\textwidth}
+        \centering Gini \\
+        \begin{equation*}
+            G(Q_m) = \sum_k p_{mk} (1 - p_{ml})
+        \end{equation*}
+
+ 	    \column{.5\textwidth}
+        \centering Log Loss or Entropy
+        \begin{equation*}
+            H(Q_m) = - \sum_k p_{mk} log(p_{ml})
+        \end{equation*}
+    \end{columns}
+\end{frame}
+
+
+
+%\begin{frame}[plain]{Decision Trees}{Building decision trees (III)}
+%    Purity measures
+%    \begin{columns}
+% 	    \column{.5\textwidth}
+%            Gini\\
+%            \begin{equation*}
+%                I_G(p) = 1 - \sum_{i=1}^J p_i^2
+%            \end{equation*}
+%            where J is the number of classes and $p_i$ the fraction of items labeled with class $i$
+%            Used in CART
+% 	    \column{.5\textwidth}
+%            Information gain\\
+%            \begin{equation*}
+%            H(T) = - \sum_{i=1}^J p_i log_2p_i
+%            \end{equation*}
+%            Used in ID3 and C4.5
+%    \end{columns}
+%\end{frame}
+
+\subsection{Controlling complexity of decision trees}
+
+\begin{frame}{Decision Trees}{Controlling complexity of decision trees}
+    Trees tend to grow until all leaves are pure
+    \begin{itemize}
+        \item Very big trees in real problems
+        \item Big trees use to be overfitted models
+    \end{itemize}
+
+    Two strategies to prevent overfitting 
+    \begin{itemize}
+        \item Pre-prunning: Stop the creation of the tree early accorgind to some criteria
+            \begin{itemize}
+                \item Maximum depth, number of leaves, minimum number of points in a node, ...
+                \item Implemented in Sciki-Learn
+            \end{itemize}
+        \item Post-prunning: Build the tree and then remove nodes with little information
+    \end{itemize}
+
+            %\centering \includegraphics[width=\linewidth]{figs/tree-d9.png}
+\end{frame}
+
+\subsection{Analyzing decision trees}
+
+\begin{frame}{Decision Trees}{Analyzing decision trees}
+    Decision trees is easily explained to nonexperts
+    \begin{itemize}
+        \item Interpretable models
+        \item Deep trees are overwhelming
+        \item Trick: Observe the path with most data
+    \end{itemize}
+
+    \centering \includegraphics[width=\linewidth]{figs/tree-cancer.png}
+\end{frame}
+
+\subsection{Feature importance in trees}
+
+\begin{frame}{Decision Trees}{Analyzing decision trees}
+    \textbf{Feature importace} is a metric that summarizes features
+    \begin{itemize}
+        \item Number between 0 (not used at all) and 1 (perfect prediction)
+        \item Feature importances sum to one
+        \item Useful for feature selection and model interpretation
+    \end{itemize}
+
+   \centering \includegraphics[width=0.5\linewidth]{figs/tree-importance.png}
+
+   \flushleft
+
+   \vspace{-0.5cm}
+
+   Some considerations
+   \begin{itemize}
+       \item It does not inform about the relationship between attribute and target
+       \item It quantifies the importance in the tree
+       \begin{itemize} 
+            \item Correlated attributes may score low importance
+       \end{itemize}
+   \end{itemize}
+
+\end{frame}
+
+\subsection{Decision trees in regression}
+
+\begin{frame}{Decision Trees}{Decision trees in regression}
+   \begin{columns}
+      \column{.5\textwidth}
+           Decision trees are not able to extrapolate
+           \begin{itemize}
+                \item i. e. to predict outside of the range of the training data
+                \item It is specially important in regression problems
+           \end{itemize}
+ 
+     \column{.5\textwidth}
+        \includegraphics[width=\linewidth]{figs/tree-regression.png}
+    \end{columns}
 \end{frame}
 
 \IfStrEq{\modo}{muii}{
     \subsection{Scikit-Learn}
 
-    \begin{frame}{Decission Trees}{Scikit-learn}
-        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+    \begin{frame}{Decision Trees}{Scikit-learn (I)}
+        \begin{exampleblock}{\texttt{sklearn.tree.DecisionTreeClassifier}}
          \medskip
 
          \begin{columns}[T]
@@ -726,35 +897,74 @@
  	        \column{.49\textwidth}
                 Constructor arguments:
                 \begin{itemize}
-                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                    \item \texttt{criterion}: {`gini', `entropy', `log\_loss'}, default=`gini'
+                    \item \texttt{max\_depth}: int, default=None
+                    \item \texttt{max\_leaf\_nodes}: int, default=None
+                    \item \texttt{min\_samples\_leaf}: int or float, default=1
                 \end{itemize}
 
  	        \column{.49\textwidth}
                 Attributes:
                 \begin{itemize}
-                    \item \texttt{n\_clusters}: int
-                    \item \texttt{labels\_}: ndarray (n\_samples)
+                    \item \texttt{classes\_}: ndarray (n\_classes,)
+                    \item \texttt{feature\_importances\_}: ndarray (n\_features,)
+                    \item \texttt{tree\_}: Tree instance
                 \end{itemize}
             \end{columns}
 
             \medskip
 
-            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+            Methods: \texttt{fit()}, \texttt{predict()}, \texttt{decision\_path()}, \texttt{get\_depth()}, \texttt{get\_n\_leaves()}
         \end{exampleblock}
 
         \medskip
 
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html}{(Scikit-Learn reference)}
+    \end{frame}
 
+    \begin{frame}{Decision Trees}{Scikit-learn (II)}
+        \begin{exampleblock}{\texttt{sklearn.tree.DecisionTreeRegressor}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{criterion}: {“squared\_error”, “absolute\_error”}, default=”squared\_error”
+                    \item \texttt{max\_depth}: int, default=None
+                    \item \texttt{max\_leaf\_nodes}: int, default=None
+                    \item \texttt{min\_samples\_leaf}: int or float, default=1
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{feature\_importances\_}: ndarray (n\_features,)
+                    \item \texttt{tree\_}: Tree instance
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{predict()}, \texttt{decision\_path()}, \texttt{get\_depth()}, \texttt{get\_n\_leaves()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html}{(Scikit-Learn reference)}
     \end{frame}
 }{}
 
 \subsection{Summary}
-\begin{frame}{Decission Trees}{Summary}
+\begin{frame}{Decision Trees}{Summary}
 	\begin{center}
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	                          &                               &   \\
+	 	\texttt{max\_depth}       & Visualization        & Tend to overfit  \\
+	 	\texttt{max\_leaf\_nodes} & Interpretable by non-experts     & Poor generalization  \\
+	 	\texttt{min\_samples\_leaf} & Invariant to scale     &   \\
+	 	\texttt{'criterion'} & Mix of categorial and numerical data     &   \\
 	 	\hline
 	\end{tabular}
 	\end{center}
