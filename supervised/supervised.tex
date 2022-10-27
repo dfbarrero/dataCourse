@@ -972,15 +972,80 @@
 
 \section{Ensembles of Decision Trees}
 
-\begin{frame}{Ensembles of Decision Trees}
-    TODO
+\subsection{Ensembles}
+\begin{frame}{Ensembles of Decision Trees}{Ensembles}
+    \alert{Ensembles}, in ML, refers to the combination of several models
+    \begin{itemize}
+        \item For instance, an ensemble of three classifers voting
+    \end{itemize}
+
+    Two common aprochaes to build ensembles
+    \begin{itemize}
+        \item \alert{Bagging} (or \textit{bootstrap}) samples the dataset with replacement
+            \begin{itemize}
+                \item The ensemble make prediction by aggregating its predictors
+            \end{itemize}
+        \item \alert{Boosting} trains models to correct previous models
+   \end{itemize}
+
+    \centering \includegraphics[width=0.5\linewidth]{figs/baggingboosting.png}\\
+    \centering\tiny{\href{https://medium.com/@maniyaswanth123/bagging-and-boosting-a0b39e312117}{(Source)}}
 \end{frame}
+
+\subsection{Random forests}
+\begin{frame}{Ensembles of Decision Trees}{Random forests}
+    Trees have poor generalization
+    \begin{itemize}
+        \item A tree is good doing his job, but does not generalize well
+        \item Different trees could overfit in differentways
+        \item Idea: Using many trees and averaging their result
+    \end{itemize}
+
+    \alert{Random forest} is an algorithm that trains different trees injecting randomness
+    \begin{itemize}
+        \item Selecting data - bootstrap
+        \item Selecting features in each test
+            \begin{itemize}
+                \item It does not look for the best test
+                \item It looks for the best test involving a random subset of features
+                \item The size of the features subset is a critical hyperparameter
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{Analyzing random forests}
+\begin{frame}{Ensembles of Decision Trees}{Analyzing random forests (I)}
+    Random forest with five trees\\
+    \centering \includegraphics[width=0.8\linewidth]{figs/forest.png}
+\end{frame}
+
+\begin{frame}{Ensembles of Decision Trees}{Analyzing random forests (II)}
+    \centering \includegraphics[width=0.8\linewidth]{figs/forest-importance.png}\\
+    \vspace{-0.2cm}
+    \flushleft Feature importance can be aggregated
+    \begin{itemize}
+        \item More informative than single trees
+        \item The algorithms must consider many possible explanations
+    \end{itemize}
+\end{frame}
+
+\subsection{Gradient boosted regression trees}
+
+\begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (I)}
+    \alert{Random forest} is an algorithm that trains different trees
+    \begin{itemize}
+        \item It encourages diversity by injecting randomness
+        \item Selecting data - bootstraping
+        \item Selecting features in each test
+    \end{itemize}
+\end{frame}
+
 
 \IfStrEq{\modo}{muii}{
     \subsection{Scikit-Learn}
 
     \begin{frame}{Ensembles of Decision Trees}{Ensembles of Decision Trees : Scikit-learn}
-        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+        \begin{exampleblock}{\texttt{sklearn.ensemble.RandomForestClassifier}}
          \medskip
 
          \begin{columns}[T]
@@ -988,14 +1053,18 @@
  	        \column{.49\textwidth}
                 Constructor arguments:
                 \begin{itemize}
-                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                    \item \texttt{n\_estimators}: int, default=100
+                    \item \texttt{max\_features}: {“sqrt”, “log2”, None}, int or float, default=”sqrt”
+                    \item \texttt{bootstrap}: bool, default=True
+                    \item \texttt{max\_samples}: int or float, default=None
+                    Same than RandomForestClassifier
                 \end{itemize}
 
  	        \column{.49\textwidth}
                 Attributes:
                 \begin{itemize}
-                    \item \texttt{n\_clusters}: int
-                    \item \texttt{labels\_}: ndarray (n\_samples)
+                    \item \texttt{feature\_importances\_}: ndarray (n\_features,)
+                    \item \texttt{estimators\_}: List of DecisionTreeClassifier
                 \end{itemize}
             \end{columns}
 
@@ -1006,8 +1075,41 @@
 
         \medskip
 
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html}{(Scikit-Learn reference)}
+    \end{frame}
 
+    \begin{frame}{Ensembles of Decision Trees}{Ensembles of Decision Trees : Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.ensemble.RandomForestRegressor}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{n\_estimators}: int, default=100
+                    \item \texttt{max\_features}: {“sqrt”, “log2”, None}, int or float, default=n\_features
+                    \item \texttt{bootstrap}: bool, default=True
+                    \item \texttt{max\_samples}: int or float, default=None
+                    Same than RandomForestRegressor
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{feature\_importances\_}: ndarray (n\_features,)
+                    \item \texttt{estimators\_}: List of DecisionTreeRegressor
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+        \end{exampleblock}
+
+        \medskip
+
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html}{(Scikit-Learn reference)}
     \end{frame}
 }{}
 
@@ -1078,66 +1180,6 @@
 	\end{tabular}
 	\end{center}
 \end{frame}
-
-
-
-
-
-
-\section{A}
-\subsection{b}
-
-\begin{frame}{A}{B}
-    TODO
-\end{frame}
-
-\IfStrEq{\modo}{muii}{
-    \subsection{A: Scikit-Learn}
-
-    \begin{frame}{A}{B: Scikit-learn}
-        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
-         \medskip
-
-         \begin{columns}[T]
- 	        \column{.01\textwidth}
- 	        \column{.49\textwidth}
-                Constructor arguments:
-                \begin{itemize}
-                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
-                \end{itemize}
-
- 	        \column{.49\textwidth}
-                Attributes:
-                \begin{itemize}
-                    \item \texttt{n\_clusters}: int
-                    \item \texttt{labels\_}: ndarray (n\_samples)
-                \end{itemize}
-            \end{columns}
-
-            \medskip
-
-            Methods: \texttt{fit()}, \texttt{fit\_predict()}
-        \end{exampleblock}
-
-        \medskip
-
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
-
-    \end{frame}
-}{}
-
-\subsection{A: Summary}
-\begin{frame}{A}{B: Summary}
-	\begin{center}
-	\begin{tabular}{cp{3cm}p{3cm}}\hline
-	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	                          &                               &   \\
-	 	\hline
-	\end{tabular}
-	\end{center}
-\end{frame}
-
-
 
 
 
