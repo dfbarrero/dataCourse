@@ -1192,21 +1192,137 @@
 \end{frame}
 
 \section{Support Vector Machines}
+\subsection{Linear SVM}
 
-\begin{frame}{Support Vector Machines}
-    TODO
+\begin{frame}{Support Vector Machines}{Linear SVM (I)}
+    \alert{SVM}, or \textit{Support Vector Machines}, is a popular and flexible learning model
+    \begin{itemize}
+        \item Classification, regression and outlayer detection
+        \item Linear and non-linear models
+        \item Quite popular with small and medium datasets
+    \end{itemize}
+
+    \begin{columns}
+ 	    \column{.5\textwidth}
+            Learning algorithm
+            \begin{enumerate}
+               \item It localizes data points in the boundary of the classes
+               \begin{itemize}
+                  \item They are named \textit{support vectors}
+               \end{itemize}
+               \item Determine an hyperplane that splits them maxizing \textit{margin}
+            \end{enumerate}
+
+ 	    \column{.5\textwidth}
+            \includegraphics[width=\linewidth]{figs/svm.jpeg}\\
+            \centering\tiny{\href{https://www.researchgate.net/figure/Support-Vector-Machine-visualization_fig5_332248436}{(Source)}}
+    \end{columns}
 \end{frame}
 
-\subsection{Kernelized Support Vector Machines}
-\begin{frame}{Support Vector Machines}{Kernelized Support Vector Machines}
-    TODO
+\begin{frame}{Support Vector Machines}{Linear SVM (II)}
+    \centering \includegraphics[width=0.8\linewidth]{figs/svm-linear.png}\\
+    \flushleft
+
+    Two big problems with hard margins
+    \begin{itemize}
+        \item Most datasets are not linearly separable
+        \item Outlayers
+    \end{itemize}
+
+    We look for a balance between good fit and margin violations: C
+    \begin{itemize}
+        \item C sets the tolerance to margin violations
+        \item Low C $\rightarrow$ Low tolerance
+    \end{itemize}
+
+    \centering \includegraphics[width=0.8\linewidth]{figs/svm-c.png}
+\end{frame}
+
+\subsection{Linear models and nonlinear features}
+
+\begin{frame}{Support Vector Machines}{Linear models and nonlinear features (I)}
+    Plain SVMs are limited in low-dimensional spaces
+    \begin{itemize}
+        \item Lines, planes and hyperplanes
+        \item Adding new features is a way to overcome this limitation
+    \end{itemize}
+
+    \begin{columns}[T]
+ 	    \column{.5\textwidth}
+            \includegraphics[width=\linewidth]{figs/svm-1.png}
+ 	    \column{.5\textwidth}
+            \includegraphics[width=\linewidth]{figs/svm-2.png}
+            \centering $feature\_3 = feature\_1^2$
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Support Vector Machines}{Linear models and nonlinear features (II)}
+    \begin{columns}[T]
+ 	    \column{.5\textwidth}
+            \includegraphics[width=\linewidth]{figs/svm-3.png}
+ 	    \column{.5\textwidth}
+            \includegraphics[width=\linewidth]{figs/svm-4.png}
+    \end{columns}
+\end{frame}
+
+\subsection{The kernel trick}
+\begin{frame}{Support Vector Machines}{The kernel trick}
+    Adding nonlinear attributes makes linear models much more powerful
+    \begin{itemize}
+        \item Which features should we add?
+        \item How we compute interations in a 100-dimensional feature space?
+    \end{itemize}
+
+    Some mathematical magic: The \textit{kernel trick}
+    \begin{itemize}
+        \item It computes data distances for expanded feature representation ...
+        \item ... without computing the expansion!
+    \end{itemize}
+
+    It applies a function named \texttt{kernel}
+    \begin{itemize}
+        \item Polynomial kernel, up to a certain degree
+        \item Radial basis function (RBF) kernel (Gaussian kernel)
+        \item Linear kernel, no expansion is done
+    \end{itemize}
+    The kernel trick can be used in other techniques like PCA
+\end{frame}
+
+\subsection{Understanding SVMs}
+\begin{frame}{Support Vector Machines}{Understanding SVMs (I)}
+    To predict a new point, the distance to each of the support vector is computed
+    \begin{itemize}
+        \item Distance is measured by the Gaussian kernel
+        \item Decision is taken based on the distance and learned importance
+    \end{itemize}
+    \begin{equation*}
+        k_{rbf}(x_1, x_2) = \exp (- \gamma || x_1 - x_2 ||^2)
+    \end{equation*}
+    where $|| \dot ||$ denotes Euclidean distance and $\gamma$ is an hyperparameter
+    \begin{itemize}
+        \item $\gamma$ determines how far the influence of a single point reaches
+        \item Low $\gamma$, higher complexity
+    \end{itemize}
+    Remember, $C$ is a regularization parameter
+\end{frame}
+
+\begin{frame}[plain]{Support Vector Machines}{Understanding SVMs (II)}
+    \includegraphics[width=0.9\linewidth]{figs/svm-hyperparam.png}
+\end{frame}
+
+\begin{frame}{Support Vector Machines}{Understanding SVMs (III)}
+    SVM is very sensitive to scale
+    \begin{itemize}
+        \item Always use standarized or normalized data
+    \end{itemize}
+    \includegraphics[width=0.9\linewidth]{figs/svm-scale.png}
 \end{frame}
 
 \IfStrEq{\modo}{muii}{
     \subsection{Support Vector Machines}{Scikit-Learn}
 
     \begin{frame}{Support Vector Machines}{Scikit-learn}
-        \begin{exampleblock}{\texttt{sklearn.cluster.AgglomerativeClustering}}
+        \begin{exampleblock}{\texttt{sklearn.svm.SVC}}
          \medskip
 
          \begin{columns}[T]
@@ -1214,25 +1330,26 @@
  	        \column{.49\textwidth}
                 Constructor arguments:
                 \begin{itemize}
-                    \item \texttt{linkage}: {‘ward’, ‘complete’, ‘average’, ‘single’}
+                    \item \texttt{C}: float, default=1.0
+                    \item \texttt{kernel}: {‘linear’, ‘poly’, ‘rbf’}, default=’rbf’
+                    \item \texttt{degree}: int, default=3
+                    \item \texttt{gamma}: {‘scale’, ‘auto’} or float, default=’scale’
                 \end{itemize}
 
  	        \column{.49\textwidth}
                 Attributes:
-                \begin{itemize}
-                    \item \texttt{n\_clusters}: int
-                    \item \texttt{labels\_}: ndarray (n\_samples)
-                \end{itemize}
             \end{columns}
 
             \medskip
 
-            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+            Methods: \texttt{fit()}, \texttt{predict()}
         \end{exampleblock}
 
         \medskip
 
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html}{(Scikit-Learn reference)}
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html}{(Scikit-Learn reference)}\\
+        \href{https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html}{(See also SVR)}
+        \href{https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html}{(See also LinearSVC)}
 
     \end{frame}
 }{}
@@ -1242,72 +1359,71 @@
 	\begin{center}
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	                          &                               &   \\
+	 	$C$                       & Powerful             & Memory and CPU  \\
+	 	$\gamma$                  & Low and high dimensional & Number of samples   \\
+	 	Kernel                    & Flexible             & Scaling  \\
+	 	                          &                      & No interpretable  \\
 	 	\hline
 	\end{tabular}
 	\end{center}
 \end{frame}
 
 
+%\subsection{ARIMA}
+%\begin{frame}{Algorithms}{ARIMA (I)}
+%    \begin{columns}
+% 	   \column{.5\textwidth}
+%	   AR: Autoregressive model
+%	    \begin{itemize}
+%		\item Current observation depends on the last $p$ observations
+%		\item Long term memory
+%	    \end{itemize}
 
+%	   \column{.5\textwidth}
+%		\begin{block}{AR(p)}
+%			$X_t = c+\sum_{i=1}^p \phi_i X_{t-1}+\epsilon_t$
+%        	\end{block}
+%    \end{columns}
 
-\subsection{ARIMA}
-\begin{frame}{Algorithms}{ARIMA (I)}
-    \begin{columns}
- 	   \column{.5\textwidth}
-	   AR: Autoregressive model
-	    \begin{itemize}
-		\item Current observation depends on the last $p$ observations
-		\item Long term memory
-	    \end{itemize}
+%    \smallskip
 
-	   \column{.5\textwidth}
-		\begin{block}{AR(p)}
-			$X_t = c+\sum_{i=1}^p \phi_i X_{t-1}+\epsilon_t$
-        	\end{block}
-    \end{columns}
+%    \begin{columns}
+% 	   \column{.5\textwidth}
+%	   MA: Moving Average model
+%	    \begin{itemize}
+%		\item Current observation linearly depends on the last $q$ innovations
+%		\item Short term memory
+%	    \end{itemize}
 
-    \smallskip
+%	   \column{.5\textwidth}
+%		\begin{block}{MA(q)}
+%			$X_t =  \mu + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}$
+%        	\end{block}
+%    \end{columns}
 
-    \begin{columns}
- 	   \column{.5\textwidth}
-	   MA: Moving Average model
-	    \begin{itemize}
-		\item Current observation linearly depends on the last $q$ innovations
-		\item Short term memory
-	    \end{itemize}
+%    \bigskip
 
-	   \column{.5\textwidth}
-		\begin{block}{MA(q)}
-			$X_t =  \mu + \epsilon_t + \theta_1 \epsilon_{t-1} + ... + \theta_q \epsilon_{t-q}$
-        	\end{block}
-    \end{columns}
+%    ARMA model = AR + MA
+%	\begin{itemize}
+%		\item ARMA(p, q): Two hyperparameters, p and q
+%	\end{itemize}
 
-    \bigskip
+%\end{frame}
 
-    ARMA model = AR + MA
-	\begin{itemize}
-		\item ARMA(p, q): Two hyperparameters, p and q
-	\end{itemize}
+%\begin{frame}{Algorithms}{ARIMA (II)}
+%	ARIMA = AR + i + MA (AR integrated MA)
+ %   \begin{itemize}
+%	\item ARIMA(p, d, q)
+%	\item Three integer parameters: p, q and d (in practice, low order models)
+%    \end{itemize}
 
-\end{frame}
+%    \centering \includegraphics[width=0.6\linewidth]{figs/arima.png}
 
-\begin{frame}{Algorithms}{ARIMA (II)}
-	ARIMA = AR + i + MA (AR integrated MA)
-    \begin{itemize}
-	\item ARIMA(p, d, q)
-	\item Three integer parameters: p, q and d (in practice, low order models)
-    \end{itemize}
+%    \tiny{\href{https://itnext.io/understanding-the-forecasting-algorithm-stlf-model-29d74b3a0336?gi=282b647b24a7}{(Source)}}
 
-    \centering \includegraphics[width=0.6\linewidth]{figs/arima.png}
-
-    \tiny{\href{https://itnext.io/understanding-the-forecasting-algorithm-stlf-model-29d74b3a0336?gi=282b647b24a7}{(Source)}}
-
-    \normalsize
-	\flushleft
-    \alert{autoarima}: search over p, q and d
-\end{frame}
-
-
+%    \normalsize
+%	\flushleft
+%    \alert{autoarima}: search over p, q and d
+%\end{frame}
 
 \end{document}
