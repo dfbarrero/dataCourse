@@ -964,7 +964,7 @@
 	 	\texttt{max\_depth}       & Visualization        & Tend to overfit  \\
 	 	\texttt{max\_leaf\_nodes} & Interpretable by non-experts     & Poor generalization  \\
 	 	\texttt{min\_samples\_leaf} & Invariant to scale     &   \\
-	 	\texttt{'criterion'} & Mix of categorial and numerical data     &   \\
+	 	\texttt{criterion} & Mix of categorial and numerical data     &   \\
 	 	\hline
 	\end{tabular}
 	\end{center}
@@ -1016,6 +1016,7 @@
 \subsection{Analyzing random forests}
 \begin{frame}{Ensembles of Decision Trees}{Analyzing random forests (I)}
     Random forest with five trees\\
+    \bigskip
     \centering \includegraphics[width=0.8\linewidth]{figs/forest.png}
 \end{frame}
 
@@ -1030,30 +1031,18 @@
 \end{frame}
 
 \begin{frame}{Ensembles of Decision Trees}{Analyzing random forests (III)}
+    Random forest classifier with MNIST dataset\\
+    \bigskip
     \begin{columns}
  	        %\column{.01\textwidth}
- 	        \column{.45\textwidth}
+ 	        \column{.49\textwidth}
     \centering \includegraphics[width=\linewidth]{figs/mnist.png}
  	        %\column{.1\textwidth}
- 	        \column{.45\textwidth}
+ 	        \column{.49\textwidth}
     \centering \includegraphics[width=\linewidth]{figs/forest-importance2.png}\\
  	        %\column{.05\textwidth}
     \end{columns}
 \end{frame}
-
-
-
-\subsection{Gradient boosted regression trees}
-
-\begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (I)}
-    \alert{Random forest} is an algorithm that trains different trees
-    \begin{itemize}
-        \item It encourages diversity by injecting randomness
-        \item Selecting data - bootstraping
-        \item Selecting features in each test
-    \end{itemize}
-\end{frame}
-
 
 \IfStrEq{\modo}{muii}{
     \subsection{Scikit-Learn}
@@ -1065,13 +1054,13 @@
          \begin{columns}[T]
  	        \column{.01\textwidth}
  	        \column{.49\textwidth}
+                Same than RandomForestClassifier\\
                 Constructor arguments:
                 \begin{itemize}
                     \item \texttt{n\_estimators}: int, default=100
                     \item \texttt{max\_features}: {“sqrt”, “log2”, None}, int or float, default=”sqrt”
                     \item \texttt{bootstrap}: bool, default=True
                     \item \texttt{max\_samples}: int or float, default=None
-                    Same than RandomForestClassifier
                 \end{itemize}
 
  	        \column{.49\textwidth}
@@ -1090,10 +1079,71 @@
         \medskip
 
         \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html}{(Scikit-Learn reference)}
+
+        \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html}{(See also RandomForestRegressor)}
     \end{frame}
+}{}
+
+\subsection{Summary: Random forest}
+\begin{frame}{Ensembles of Decision Trees}{Summary: Random forest}
+	\begin{center}
+	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
+	 	Same than trees           & Same than trees      & Interpretation  \\
+	 	Number of trees           & High performance     & High dimensional data  \\
+	 	Pre-pruning               & Robust               & Sparse data  \\
+	 	                          & Widely used          & Memory and CPU  \\
+	 	                          & Parallelized         &   \\
+	 	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\subsection{Gradient boosted regression trees}
+\begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (I)}
+    \alert{Gradient boosting} is an esemble of classification and regression trees 
+    \begin{itemize}
+        \item Based on boosting, builds trees in a serial manner
+        \item One tree corrects the mistakes of the previous one
+    \end{itemize}
+
+    A set of \textit{weak learners} is used
+    \begin{itemize}
+        \item Shallow trees (by default, $3$ in Sklearn)
+        \item No data randomization
+        \item Strong pre-pruning
+    \end{itemize}
+
+    A new hyperparameter: learning rate
+    \begin{itemize}
+        \item How strongly each tree tries to correct
+        \item High learning rate makes stronger corrections
+        \begin{itemize}
+            \item More complex models
+        \end{itemize}
+        \item More trees also adds more complexity
+    \end{itemize}
+
+    State of the art results
+    \begin{itemize}
+        \item Widely adopted by industry
+        \item Comparable in performance with deep neural networks
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (II)}
+    Feature importances with cancer dataset\\
+    \bigskip
+    \centering \includegraphics[width=0.8\linewidth]{figs/gradientboosting.png}\\
+    \medskip
+    \flushleft The \href{https://xgboost.ai/}{(XGBoost)} package provides a high performance implementation of gradient boosted trees
+\end{frame}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
 
     \begin{frame}{Ensembles of Decision Trees}{Ensembles of Decision Trees : Scikit-learn}
-        \begin{exampleblock}{\texttt{sklearn.ensemble.RandomForestRegressor}}
+        \begin{exampleblock}{\texttt{sklearn.ensemble.GradientBoostingClassifier}}
          \medskip
 
          \begin{columns}[T]
@@ -1102,37 +1152,40 @@
                 Constructor arguments:
                 \begin{itemize}
                     \item \texttt{n\_estimators}: int, default=100
-                    \item \texttt{max\_features}: {“sqrt”, “log2”, None}, int or float, default=n\_features
-                    \item \texttt{bootstrap}: bool, default=True
-                    \item \texttt{max\_samples}: int or float, default=None
-                    Same than RandomForestRegressor
+                    \item \texttt{learning\_rate}: float, default=0.1\\
+                    Same than DecisionTreeClassifier
                 \end{itemize}
 
  	        \column{.49\textwidth}
                 Attributes:
                 \begin{itemize}
                     \item \texttt{feature\_importances\_}: ndarray (n\_features,)
-                    \item \texttt{estimators\_}: List of DecisionTreeRegressor
                 \end{itemize}
             \end{columns}
 
             \medskip
 
-            Methods: \texttt{fit()}, \texttt{fit\_predict()}
+            Methods: \texttt{fit()}, \texttt{predict()}
         \end{exampleblock}
 
         \medskip
 
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html}{(Scikit-Learn reference)}
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html}{(Scikit-Learn reference)}
+
+        \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html}{(See also GradientBoostingClassifier)}
     \end{frame}
 }{}
+
 
 \subsection{Summary}
 \begin{frame}{Ensembles of Decision Trees}{Summary}
 	\begin{center}
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	                          &                               &   \\
+	 	Same than trees           & Very high performance& Slow  \\
+	 	Number of trees           & Invariant to scale   & High dimensional data  \\
+	 	Learning rate             & Mix of categorial and numerical data & Tricky hyperparameter tuning  \\
+	 	                          &                      & Overfitting  \\
 	 	\hline
 	\end{tabular}
 	\end{center}
