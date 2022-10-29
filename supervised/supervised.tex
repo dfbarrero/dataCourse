@@ -27,6 +27,7 @@
 \usepackage{listings}
 
 % Custom packages
+\usepackage{nccmath} % Equation left align
 \usepackage{standalone}
 \usepackage{multicol}
 \usepackage{multirow} % Confusion matrix
@@ -105,15 +106,17 @@
       \begin{enumerate}
          \item Extend supervised learning algorithms
          \item Apply supervised learning to real-world problems
+         \IfStrEq{\modo}{muii}{\item Introduce Scikit-Learn API for supervised algorithms}{}
       \end{enumerate} 
    \end{block}
 
    \begin{block}{Bibliography}
     \begin{itemize}
         \item M\"uller, Andreas C., Guido, Sarah. \textit{Introduction to Machine Learning with Python}. O'Reilly. 2016
+        \item G\'eron, Aur\'elien. \textit{Hands-On Machine Learning with Scikit-Learn, Keras \& TensorFlow}. 2nd Edition. O'Reilly. 2019
     \end{itemize}
    \end{block}
-   All figures have been taken from \url{https://github.com/amueller/introduction_to_ml_with_python/blob/master/02-supervised-learning.ipynb}
+   Most figures have been taken from \href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/02-supervised-learning.ipynb}{(A. M\"uller)} and \href{https://github.com/tuitet/Hands-On-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow-3rd-Edition/blob/main/05_support_vector_machines.ipynb}{(A. G\'eron)}
 \end{frame}
 
 {
@@ -141,7 +144,7 @@
 
     \medskip
 
-    \centering \includegraphics[width=0.6\linewidth]{figs/overfitting_underfitting_cartoon.png}
+    \centering \includegraphics[width=0.6\linewidth]{figs/overfitting_underfitting_cartoon.png}\\
     \tiny{\href{https://github.com/amueller/introduction_to_ml_with_python/blob/master/02-supervised-learning.ipynb}{(Source)}}
 \end{frame}
 
@@ -152,10 +155,11 @@
 
 \begin{frame}{k-Nearest Neighbors}{k-NN classification (I)}
 
-     k-NN (k-Nearest Neighbors): Likely, the simplest classifier
+     k-NN (\texttt{k-Nearest Neighbors}): Likely, the simplest learner
 	\begin{itemize}
 		\item Given a data point, it takes its $k$ closests neighbors
-		\item Same prediction than its neighbors
+		\item Same prediction than the majority of its neighbors
+        \item $k$ uses to be an odd number (1-NN, 3-NN, 5-NN, ...)
 	\end{itemize}
 
     \begin{columns}
@@ -171,7 +175,6 @@
     \begin{itemize}
 		\item The whole dataset must be stored
 	\end{itemize}
-    $k$ uses to be an odd number (1-NN, 3-NN, 5-NN, ...)
 \end{frame}
 
 \begin{frame}{k-Nearest Neighbors}{k-NN classification (II)}
@@ -230,8 +233,6 @@
     \end{frame}
 }{}
 
-
-
 \subsection{kNN regression}
 
 \begin{frame}{k-Nearest Neighbors}{kNN regression (I)}
@@ -241,7 +242,7 @@
          Given a data point
         \begin{enumerate}
             \item Take the $k$ closest data points
-            \item Predict same target value (1-NN) or averate target value (k-NN)
+            \item Predict same target value (1-NN) or averaged target value (k-NN)
         \end{enumerate}
         \end{block}
 
@@ -258,13 +259,12 @@
 \begin{frame}{k-Nearest Neighbors}{kNN regression (II)}
     \includegraphics[width=\textwidth]{figs/knn-boundary-reg.png}
 
-    $k$ determines boundary smoothness
-    \begin{enumerate}
+    $k$ determines the boundary smoothness
+    \begin{itemize}
         \item With $k=1$, prediction visits all data points
         \item With large $k$ values, fit is worse
-    \end{enumerate}
+    \end{itemize}
 \end{frame}
-
 
 \IfStrEq{\modo}{muii}{
     \subsection{Scikit-Learn}
@@ -328,7 +328,6 @@
         \begin{itemize}
             \item $\beta_0$ is the intercept
             \item $\beta_1$ is the slope
-            \item Intepretable model
         \end{itemize}
 
  	   \column{.40\textwidth}
@@ -344,6 +343,7 @@
 		\item This limitation can be easely overcomed
 		\item Surprisingly good results in high dimensional spaces
 	\end{itemize}
+    Intepretable model
 \end{frame}
 
 \subsection{Linear regression}
@@ -400,7 +400,7 @@
 
 	   \column{.5\textwidth}
      		\begin{block}{ElasticNet}
-			$\alpha \left( \frac{\lambda}{2} \sum_j^n \beta_j^2 + (1-\lambda) \sum_j^n |\beta_j| \right)$
+			   $\alpha \left( r \sum_j^n |\beta_j| + \frac{1-r}{2} \sum_j^n \beta_j^2 \right)$
         	\end{block}
     \end{columns}
 \end{frame}
@@ -409,7 +409,7 @@
 \begin{frame}{Linear models}{Ridge regression}
 	Ridge regression (or L2 regularization) adds a new term to cost function
     \begin{equation*}
-        MSE + \alpha \sum_{i=1}^n \beta_i^2
+        MSE + \frac{\alpha}{2} \sum_{i=1}^n \beta_i^2
     \end{equation*}
     $\alpha$ controls the model complexity
 	\begin{itemize}
@@ -448,13 +448,14 @@
 \begin{frame}{Linear models}{ElasticNet}
 	Lasso and Ridge can be combined
     \begin{equation*}
-        MSE + \alpha \left( \lambda \frac{1}{2} \sum_{i=1}^n |\beta_i| + (1-\lambda) \sum_{i=1}^n \beta_i^2 \right)
+        MSE + \alpha \left( r \sum_{i=1}^n |\beta_i| + \frac{(1-r)}{2} \sum_{i=1}^n \beta_i^2 \right)
     \end{equation*}
     Two hyperparameters
 	\begin{itemize}
         \item $\alpha$ controls the model complexity
-		\item $\lambda$ balances between L1 and L2
+		\item $r$ balances between L1 and L2
 	\end{itemize}
+    ElasticNet is not a neural network!
 \end{frame}
 
 \subsection{Regularized linear models comparison}
@@ -486,7 +487,7 @@
                 \begin{itemize}
                     \item \texttt{coef\_}:  ndarray (n\_features, )
                     \item \texttt{intercept\_}:  ndarray (n\_targets, )
-                    \item \texttt{n\_features\_in\_}: int
+                    %\item \texttt{n\_features\_in\_}: int
                 \end{itemize}
             \end{columns}
 
@@ -496,7 +497,7 @@
         \end{exampleblock}
 
         \medskip
-
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html}{(Scikit-Learn reference)}
     \end{frame}
 
     \begin{frame}{Linear models}{Scikit-learn (II)}
@@ -517,7 +518,7 @@
                 \begin{itemize}
                     \item \texttt{coef\_}:  ndarray (n\_features, )
                     \item \texttt{intercept\_}:  ndarray (n\_targets, )
-                    \item \texttt{n\_features\_in\_}: int
+                    %\item \texttt{n\_features\_in\_}: int
                 \end{itemize}
             \end{columns}
 
@@ -527,39 +528,7 @@
         \end{exampleblock}
 
         \medskip
-
-    \end{frame}
-
-    \begin{frame}{Linear models}{Scikit-learn (IV)}
-        \begin{exampleblock}{\texttt{sklearn.linear\_model.ElasticNet}}
-         \medskip
-
-         \begin{columns}[T]
- 	        \column{.01\textwidth}
- 	        \column{.49\textwidth}
-                Constructor arguments:
-                \begin{itemize}
-                    \item \texttt{fit\_intercept}: boolean, default=True
-                    \item \texttt{alpha}: float, default=1.0
-                    \item \texttt{l1\_ratio}: float, default=0.5
-                \end{itemize}
-
- 	        \column{.49\textwidth}
-                Attributes:
-                \begin{itemize}
-                    \item \texttt{coef\_}:  ndarray (n\_features, )
-                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
-                    \item \texttt{n\_features\_in\_}: int
-                \end{itemize}
-            \end{columns}
-
-            \medskip
-
-            Methods: \texttt{fit()}, \texttt{predict()}
-        \end{exampleblock}
-
-        \medskip
-
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html}{(Scikit-Learn reference)}
     \end{frame}
 
     \begin{frame}{Linear models}{Scikit-learn (III)}
@@ -590,72 +559,10 @@
         \end{exampleblock}
 
         \medskip
-
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html}{(Scikit-Learn reference)}
     \end{frame}
 
-
-
-}{}
-
-
-
-\subsection{Linear models for classification}
-
-\begin{frame}{Linear models}{Linear models for classification (I)}
-    A linear regression can be used as classifier
-	\begin{itemize}
-		\item Just compare the prediction with a threshold (0, for instance)
-            \begin{itemize}
-                \item If $\hat{y} > 0$, assign class 1
-                \item If $\hat{y} <= 0$, assign class -1
-            \end{itemize}
-        \item The decision boundary for any binary linal classifier is a line, plane or hyperplane
-	\end{itemize}
-
-    A \alert{logistic regression} is a generalization of a linear regression
-    \begin{itemize}
-        \item It is a binary classifier
-        \item Its output is a probability
-    \end{itemize}
-    \begin{equation*}
-        p = \sigma\left(\beta_0+\sum_{i=1}^{n} \beta_i x_i\right),
-    \end{equation*}
-    where $\sigma(t)$ is the logistic function, defined as $\sigma(t) = \frac{1}{1 + e^t}$
-
-    \vspace{-3cm}
-    \flushright
-   	\begin{tikzpicture}[scale=0.4]
-    	\begin{axis}[ 
-        	xlabel=$x$,
-          	ylabel={$g(x) = \frac{1}{1+e^{-x}}$}
-      	] 
-       	\addplot[mark=none, red] {1/(1+e^(-x))}; 
-    	\end{axis}
-	\end{tikzpicture}
-\end{frame}
-
-\begin{frame}{Linear models}{Linear models for classification (II)}
-    \centering \includegraphics[width=0.8\linewidth]{figs/logistic.png}
-\end{frame}
-
-\begin{frame}{Linear models}{Linear models for classification (III)}
-    \begin{columns}
- 	   \column{.5\textwidth}
-        The model can be regularized with L1, L2 and ElasticNet
-        \begin{itemize}
-            \item In Scikit-Learn, regularization strength is given by C
-            \item Lower values of C correspond to smaller regularization strength
-        \end{itemize}
-
- 	   \column{.5\textwidth}
-        \centering \includegraphics[width=\linewidth]{figs/logistic-c.png}
-    \end{columns}
-\end{frame}
-
-\IfStrEq{\modo}{muii}{
-    \subsection{Scikit-Learn}
-
-    \begin{frame}{Linear models}{Scikit-learn}
+    \begin{frame}{Linear models}{Scikit-learn (IV)}
         \begin{exampleblock}{\texttt{sklearn.linear\_model.ElasticNet}}
          \medskip
 
@@ -664,7 +571,6 @@
  	        \column{.49\textwidth}
                 Constructor arguments:
                 \begin{itemize}
-                    \item \texttt{penalty}: {‘l1’, ‘l2’, ‘elasticnet’, ‘none’}, default=’l2’
                     \item \texttt{fit\_intercept}: boolean, default=True
                     \item \texttt{alpha}: float, default=1.0
                     \item \texttt{l1\_ratio}: float, default=0.5
@@ -675,7 +581,7 @@
                 \begin{itemize}
                     \item \texttt{coef\_}:  ndarray (n\_features, )
                     \item \texttt{intercept\_}:  ndarray (n\_targets, )
-                    \item \texttt{n\_features\_in\_}: int
+%                    \item \texttt{n\_features\_in\_}: int
                 \end{itemize}
             \end{columns}
 
@@ -685,6 +591,103 @@
         \end{exampleblock}
 
         \medskip
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html}{(Scikit-Learn reference)}
+    \end{frame}
+}{}
+
+
+\subsection{Linear models for classification}
+
+\begin{frame}{Linear models}{Linear models for classification (I)}
+    A linear regression can be used as classifier
+	\begin{itemize}
+		\item Just compare the prediction with a threshold (0, for instance)
+            \begin{itemize}
+                \item If $\hat{y} > 0$, assign $C_1$; if $\hat{y} \le 0$, assign $C_2$
+            \end{itemize}
+        \item The decision boundary is a line, plane or hyperplane
+	\end{itemize}
+
+    A \alert{logistic regression} is a generalization of a linear regression
+    \begin{itemize}
+        \item Probabilistic binary classifier
+    \end{itemize}
+
+    \begin{fleqn}
+    \begin{equation*}
+        \hat{p} = \sigma\left(\beta_0+\sum_{i=1}^{n} \beta_i x_i\right),
+        \hat{y} = \begin{cases}C_1, & \text{if } \hat{p} < 0.5 \\ C_2, & \text{if } \hat{p} \ge 0.5\end{cases} 
+    \end{equation*}
+    \end{fleqn}
+
+    where $\sigma(t)$ is the \textit{logistic function}, defined as $\sigma(t) = \frac{1}{1 + e^-t}$
+
+    \vspace{-3cm}
+    \flushright
+   	\begin{tikzpicture}[scale=0.4]
+    	\begin{axis}[ 
+        	xlabel=$x$,
+          	ylabel={$\sigma(x) = \frac{1}{1+e^{-x}}$}
+      	] 
+       	\addplot[mark=none, red] {1/(1+e^(-x))}; 
+    	\end{axis}
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Linear models}{Linear models for classification (II)}
+    \begin{columns}
+ 	   \column{.5\textwidth}
+        Regularization with L1, L2 and ElasticNet
+        \begin{itemize}
+            \item In Scikit-Learn, regularization strength is given by C
+            \item C is the inverse of regularization strength
+            \item Smaller values of C correspond to stronger regularization
+        \end{itemize}
+
+ 	   \column{.5\textwidth}
+        \centering \includegraphics[width=\linewidth]{figs/logistic-c.png}
+    \end{columns}
+\end{frame}
+
+%\begin{frame}{Linear models}{Linear models for classification (III)}
+%    \centering \includegraphics[width=0.8\linewidth]{figs/logistic.png}
+%\end{frame}
+
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
+    \begin{frame}{Linear models}{Scikit-learn}
+        \begin{exampleblock}{\texttt{sklearn.linear\_model.LogisticRegression}}
+         \medskip
+
+         \begin{columns}[T]
+ 	        \column{.01\textwidth}
+ 	        \column{.49\textwidth}
+                Constructor arguments:
+                \begin{itemize}
+                    \item \texttt{penalty}: {‘l1’, ‘l2’, ‘elasticnet’, ‘none’}, default=’l2’
+                    \item \texttt{fit\_intercept}: boolean, default=True
+                    \item \texttt{C}: float, default=1.0
+                    \item \texttt{l1\_ratio}: float, default=0.5
+                \end{itemize}
+
+ 	        \column{.49\textwidth}
+                Attributes:
+                \begin{itemize}
+                    \item \texttt{coef\_}:  ndarray (n\_features, )
+                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    %\item \texttt{n\_features\_in\_}: int
+                \end{itemize}
+            \end{columns}
+
+            \medskip
+
+            Methods: \texttt{fit()}, \texttt{predict()}
+        \end{exampleblock}
+
+        \medskip
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}{(Scikit-Learn reference)}
 
     \end{frame}
 
@@ -695,8 +698,8 @@
 	\begin{center}
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
-	 	 -                        & Fast train and predict        & No complexity tuning  \\
-	 	 $\alpha$ (L1, L2, ElasticNet) & Scales well to large datasets & Limited in low dimensional spaces  \\
+	 	                          & Fast train and predict        & Limited in low dimensional spaces  \\
+	 	 $\alpha$ (L1, L2, ElasticNet) & Scales well to large datasets & Limited generalization  \\
 	 	 $l1\_ratio$ (ElasticNet) & Better in high dimensional spaces  &   \\
 	 	                          & Few hyperparameters           &   \\
 	 	                          & Interpretable                 &   \\
@@ -708,13 +711,14 @@
 
 \end{frame}
 
-\section{Decision Trees}
 
+\section{Decision Trees}
 \begin{frame}{Decision Trees}
     \begin{columns}
- 	   \column{.5\textwidth}
-            Decision trees are a family of algorithms for classification and regression
+ 	   \column{.6\textwidth}
+            Decision trees are a family of algorithms
             \begin{itemize}
+                \item Classification, regression and anomaly detection
                 \item They learn a tree data strucure
                 \item Hierarchy of if/else questions (test, or node)
                 \item Decision (terminal node or leaf)
@@ -726,8 +730,9 @@
                 \item Is feature $i$ larger than value $a$?
             \end{itemize}
 
- 	    \column{.5\textwidth}
-            \centering \includegraphics[width=\linewidth]{figs/tree-game.png}
+ 	    \column{.4\textwidth}
+            \centering \includegraphics[width=\linewidth]{figs/tree-game.png}\\
+            \centering \includegraphics[width=0.8\linewidth]{figs/tree-example2.png}
     \end{columns}
 \end{frame}
 
@@ -766,24 +771,12 @@
 \end{frame}
 
 \begin{frame}[plain]{Decision Trees}{Building decision trees (III)}
-    Let $p_{mk}$ be the propotion of  class $k$ in node $m$, and $Q_m$ the data in node $m$
-
-    \centering
-    \bigskip
-
-    \begin{columns}
- 	    \column{.5\textwidth}
-        \centering Gini \\
-        \begin{equation*}
-            G(Q_m) = \sum_k p_{mk} (1 - p_{ml})
-        \end{equation*}
-
- 	    \column{.5\textwidth}
-        \centering Log Loss or Entropy
-        \begin{equation*}
-            H(Q_m) = - \sum_k p_{mk} log(p_{ml})
-        \end{equation*}
-    \end{columns}
+    We need a measure of `impurity'
+    \begin{itemize}
+        \item Gini: $G(Q_m) = \sum_k p_{mk} (1 - p_{ml})$
+        \item Entropy: $H(Q_m) = - \sum_k p_{mk} log(p_{ml})$
+    \end{itemize}
+    where $p_{mk}$ is the propotion of class $k$ in node $m$, and $Q_m$ the data in node $m$
 \end{frame}
 
 
@@ -832,7 +825,7 @@
 \subsection{Analyzing decision trees}
 
 \begin{frame}{Decision Trees}{Analyzing decision trees}
-    Decision trees is easily explained to nonexperts
+    Decision trees are easily explained to nonexperts
     \begin{itemize}
         \item Interpretable models
         \item Deep trees are overwhelming
@@ -861,7 +854,7 @@
    Some considerations
    \begin{itemize}
        \item It does not inform about the relationship between attribute and target
-       \item It quantifies the importance in the tree
+       \item It quantifies the importance in \textit{the tree}
        \begin{itemize} 
             \item Correlated attributes may score low importance
        \end{itemize}
@@ -888,7 +881,7 @@
 \IfStrEq{\modo}{muii}{
     \subsection{Scikit-Learn}
 
-    \begin{frame}{Decision Trees}{Scikit-learn (I)}
+    \begin{frame}{Decision Trees}{Scikit-learn}
         \begin{exampleblock}{\texttt{sklearn.tree.DecisionTreeClassifier}}
          \medskip
 
@@ -919,41 +912,42 @@
 
         \medskip
 
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html}{(Scikit-Learn reference)}
+        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html}{(Scikit-Learn reference)}\\
+        \href{https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html}{(See also DecisionTreeRegressor)}
     \end{frame}
 
-    \begin{frame}{Decision Trees}{Scikit-learn (II)}
-        \begin{exampleblock}{\texttt{sklearn.tree.DecisionTreeRegressor}}
-         \medskip
+%    \begin{frame}{Decision Trees}{Scikit-learn (II)}
+%        \begin{exampleblock}{\texttt{sklearn.tree.DecisionTreeRegressor}}
+%         \medskip
 
-         \begin{columns}[T]
- 	        \column{.01\textwidth}
- 	        \column{.49\textwidth}
-                Constructor arguments:
-                \begin{itemize}
-                    \item \texttt{criterion}: {“squared\_error”, “absolute\_error”}, default=”squared\_error”
-                    \item \texttt{max\_depth}: int, default=None
-                    \item \texttt{max\_leaf\_nodes}: int, default=None
-                    \item \texttt{min\_samples\_leaf}: int or float, default=1
-                \end{itemize}
+%         \begin{columns}[T]
+% 	        \column{.01\textwidth}
+% 	        \column{.49\textwidth}
+%                Constructor arguments:
+%                \begin{itemize}
+%                    \item \texttt{criterion}: {“squared\_error”, “absolute\_error”}, default=”squared\_error”
+%                    \item \texttt{max\_depth}: int, default=None
+%                    \item \texttt{max\_leaf\_nodes}: int, default=None
+%                    \item \texttt{min\_samples\_leaf}: int or float, default=1
+%                \end{itemize}
 
- 	        \column{.49\textwidth}
-                Attributes:
-                \begin{itemize}
-                    \item \texttt{feature\_importances\_}: ndarray (n\_features,)
-                    \item \texttt{tree\_}: Tree instance
-                \end{itemize}
-            \end{columns}
+% 	        \column{.49\textwidth}
+%                Attributes:
+%                \begin{itemize}
+%                    \item \texttt{feature\_importances\_}: ndarray (n\_features,)
+%                    \item \texttt{tree\_}: Tree instance
+%                \end{itemize}
+%            \end{columns}
 
-            \medskip
+%            \medskip
 
-            Methods: \texttt{fit()}, \texttt{predict()}, \texttt{decision\_path()}, \texttt{get\_depth()}, \texttt{get\_n\_leaves()}
-        \end{exampleblock}
+%            Methods: \texttt{fit()}, \texttt{predict()}, \texttt{decision\_path()}, \texttt{get\_depth()}, \texttt{get\_n\_leaves()}
+%        \end{exampleblock}
 
-        \medskip
+%        \medskip
 
-        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html}{(Scikit-Learn reference)}
-    \end{frame}
+%        \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html}{(Scikit-Learn reference)}
+%    \end{frame}
 }{}
 
 \subsection{Summary}
@@ -979,7 +973,7 @@
         \item For instance, an ensemble of three classifers voting
     \end{itemize}
 
-    Two common aprochaes to build ensembles
+    Two common aproaches to build ensembles
     \begin{itemize}
         \item \alert{Bagging} (or \textit{bootstrap}) samples the dataset with replacement
             \begin{itemize}
@@ -994,23 +988,29 @@
 
 \subsection{Random forests}
 \begin{frame}{Ensembles of Decision Trees}{Random forests}
-    Trees have poor generalization
+    A tree is good doing his job, but does not generalize well
     \begin{itemize}
-        \item A tree is good doing his job, but does not generalize well
-        \item Different trees could overfit in differentways
-        \item Idea: Using many trees and averaging their result
+        \item Different trees could overfit in different ways
+        \item Idea: Use many trees and aggregate their results
     \end{itemize}
 
-    \alert{Random forest} is an algorithm that trains different trees injecting randomness
+    \alert{Random forest} is a popular algorithm based on ensembles of trees
     \begin{itemize}
-        \item Selecting data - bootstrap
-        \item Selecting features in each test
-            \begin{itemize}
-                \item It does not look for the best test
-                \item It looks for the best test involving a random subset of features
-                \item The size of the features subset is a critical hyperparameter
-            \end{itemize}
+        \item Classification and regression
+        \item Limits overfitting found in trees
     \end{itemize}
+
+    It encourages tree diversity through training set and feature selection
+    \begin{itemize}
+        \item Selecting data: Bootstrap
+        \item Selecting features in each test
+        \begin{itemize}
+           \item It does not look for the best test
+           \item It looks for the best test involving a random subset of features
+           \item The size of the features subset is a critical hyperparameter
+        \end{itemize}
+    \end{itemize}
+    Same hyperparameters than decision trees
 \end{frame}
 
 \subsection{Analyzing random forests}
@@ -1026,7 +1026,7 @@
     \flushleft Feature importance can be aggregated
     \begin{itemize}
         \item More informative than single trees
-        \item The algorithms must consider many possible explanations
+        \item The algorithm must consider many possible explanations
     \end{itemize}
 \end{frame}
 
@@ -1091,7 +1091,7 @@
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
 	 	Same than trees           & Same than trees      & Interpretation  \\
 	 	Number of trees           & High performance     & High dimensional data  \\
-	 	Pre-pruning               & Robust               & Sparse data  \\
+	    Number of features        & Robust               & Sparse data  \\
 	 	                          & Widely used          & Memory and CPU  \\
 	 	                          & Parallelized         &   \\
 	 	\hline
@@ -1101,7 +1101,7 @@
 
 \subsection{Gradient boosted regression trees}
 \begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (I)}
-    \alert{Gradient boosting} is an esemble of classification and regression trees 
+    \alert{Gradient boosting} trees is an esemble of trees 
     \begin{itemize}
         \item Based on boosting, builds trees in a serial manner
         \item One tree corrects the mistakes of the previous one
@@ -1110,17 +1110,13 @@
     A set of \textit{weak learners} is used
     \begin{itemize}
         \item Shallow trees (by default, $3$ in Sklearn)
-        \item No data randomization
-        \item Strong pre-pruning
+        \item No data randomization, strong pre-pruning
     \end{itemize}
 
     A new hyperparameter: learning rate
     \begin{itemize}
         \item How strongly each tree tries to correct
-        \item High learning rate makes stronger corrections
-        \begin{itemize}
-            \item More complex models
-        \end{itemize}
+        \item High learning rate makes stronger corrections: More complex models
         \item More trees also adds more complexity
     \end{itemize}
 
@@ -1172,7 +1168,7 @@
 
         \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html}{(Scikit-Learn reference)}
 
-        \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html}{(See also GradientBoostingClassifier)}
+        \href{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html}{(See also GradientBoostingRegressor)}
     \end{frame}
 }{}
 
@@ -1204,7 +1200,7 @@
 
     \begin{columns}
  	    \column{.5\textwidth}
-            Learning algorithm
+            \begin{block}{Learning SVMs}
             \begin{enumerate}
                \item It localizes data points in the boundary of the classes
                \begin{itemize}
@@ -1212,6 +1208,7 @@
                \end{itemize}
                \item Determine an hyperplane that splits them maxizing \textit{margin}
             \end{enumerate}
+            \end{block}
 
  	    \column{.5\textwidth}
             \includegraphics[width=\linewidth]{figs/svm.jpeg}\\
@@ -1298,7 +1295,7 @@
     \begin{equation*}
         k_{rbf}(x_1, x_2) = \exp (- \gamma || x_1 - x_2 ||^2)
     \end{equation*}
-    where $|| \dot ||$ denotes Euclidean distance and $\gamma$ is an hyperparameter
+    where $|| \cdot ||$ denotes Euclidean distance and $\gamma$ is an hyperparameter
     \begin{itemize}
         \item $\gamma$ determines how far the influence of a single point reaches
         \item Low $\gamma$, higher complexity
@@ -1315,11 +1312,14 @@
     \begin{itemize}
         \item Always use standarized or normalized data
     \end{itemize}
+
+    \bigskip
+
     \includegraphics[width=0.9\linewidth]{figs/svm-scale.png}
 \end{frame}
 
 \IfStrEq{\modo}{muii}{
-    \subsection{Support Vector Machines}{Scikit-Learn}
+    \subsection{Scikit-Learn}
 
     \begin{frame}{Support Vector Machines}{Scikit-learn}
         \begin{exampleblock}{\texttt{sklearn.svm.SVC}}
