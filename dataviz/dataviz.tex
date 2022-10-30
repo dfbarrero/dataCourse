@@ -245,25 +245,25 @@
 	\begin{block}{\footnotesize{Convention}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}
-	import matplotlib as mpl
-	import matplotlib.pyplot as plt
-	\end{lstlisting}
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{block}
 
 	\begin{exampleblock}{\footnotesize{myplot.py}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}
-	import matplotlib.pyplot as plt
-	import numpy as np
+import matplotlib.pyplot as plt
+import numpy as np
 
-	x = np.linspace(0, 10, 100)
+x = np.linspace(0, 10, 100)
 
-	plt.plot(x, np.sin(x))
-	plt.plot(x, np.cos(x))
+plt.plot(x, np.sin(x))
+plt.plot(x, np.cos(x))
 
-	plt.show()
-	\end{lstlisting}
+plt.show()
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -282,16 +282,16 @@
 	\begin{exampleblock}{Matlab API}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}
-	plt.figure()  # create a plot
+plt.figure()  # create a plot
 
-	# create the first of two panels and set current axis
-	plt.subplot(2, 1, 1) # (rows, columns, panel number)
-	plt.plot(x, np.sin(x))
+# create the first of two panels and set current axis
+plt.subplot(2, 1, 1) # (rows, columns, panel number)
+plt.plot(x, np.sin(x))
 
-	# create the second panel and set current axis
-	plt.subplot(2, 1, 2)
-	plt.plot(x, np.cos(x));
-	\end{lstlisting}
+# create the second panel and set current axis
+plt.subplot(2, 1, 2)
+plt.plot(x, np.cos(x));
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -299,16 +299,14 @@
 	\begin{exampleblock}{OO API}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}
-	plt.figure()  # create a plot
+# First create a grid of plots
+# ax will be an array of two Axes objects
+fig, ax = plt.subplots(2)
 
-	# create the first of two panels and set current axis
-	plt.subplot(2, 1, 1) # (rows, columns, panel number)
-	plt.plot(x, np.sin(x))
-
-	# create the second panel and set current axis
-	plt.subplot(2, 1, 2)
-	plt.plot(x, np.cos(x));
-	\end{lstlisting}
+# Call plot() method on the appropriate object
+ax[0].plot(x, np.sin(x))
+ax[1].plot(x, np.cos(x));
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
@@ -329,8 +327,8 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}
-	plt.plot(x, np.sin(x), '-ok', color='black')
-	\end{lstlisting}
+plt.plot(x, np.sin(x), '-ok', color='black')
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -339,12 +337,12 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	for marker in ['o', '.', ',', 'x', '+', 'v', '^', '<', '>', 's', 'd']:
-	    plt.plot(rng.rand(5), rng.rand(5), marker,
-	         label="marker='{0}'".format(marker))
-	 plt.legend(numpoints=1)
-	 plt.xlim(0, 1.8);
-	\end{lstlisting}
+for marker in ['o', '.', ',', 'x', '+', 'v', '^', '<', '>', 's', 'd']:
+    plt.plot(rng.rand(5), rng.rand(5), marker,
+         label="marker='{0}'".format(marker))
+ plt.legend(numpoints=1)
+ plt.xlim(0, 1.8);
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
@@ -357,17 +355,17 @@
 
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
-	\begin{lstlisting}[basicstyle=\tiny]
-	rng = np.random.RandomState(0)
-	x = rng.randn(100)
-	y = rng.randn(100)
-	colors = rng.rand(100)
-	sizes = 1000 * rng.rand(100)
+\begin{lstlisting}[basicstyle=\tiny]
+rng = np.random.RandomState(0)
+x = rng.randn(100)
+y = rng.randn(100)
+colors = rng.rand(100)
+sizes = 1000 * rng.rand(100)
 
-	plt.scatter(x, y, c=colors, s=sizes, alpha=0.3,
-	            cmap='viridis')
-				plt.colorbar();  # show color scale
-	\end{lstlisting}
+plt.scatter(x, y, c=colors, s=sizes, alpha=0.3,
+   cmap='viridis')
+plt.colorbar();  # show color scale
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -376,12 +374,12 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	data = np.random.randn(1000)
+data = np.random.randn(1000)
 
-	plt.hist(data, bins=30, normed=True, alpha=0.5,
-         histtype='stepfilled', color='steelblue',
-         edgecolor='none');
-	\end{lstlisting}
+plt.hist(data, bins=30, normed=True, alpha=0.5,
+    histtype='stepfilled', color='steelblue',
+    edgecolor='none');
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
@@ -393,20 +391,20 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	ax = plt.axes(projection='3d')
+ax = plt.axes(projection='3d')
 
-	# Data for a three-dimensional line
-	zline = np.linspace(0, 15, 1000)
-	xline = np.sin(zline)
-	yline = np.cos(zline)
-	ax.plot3D(xline, yline, zline, 'gray')
+# Data for a three-dimensional line
+zline = np.linspace(0, 15, 1000)
+xline = np.sin(zline)
+yline = np.cos(zline)
+ax.plot3D(xline, yline, zline, 'gray')
 
-	# Data for three-dimensional scattered points
-	zdata = 15 * np.random.random(100)
-	xdata = np.sin(zdata) + 0.1 * np.random.randn(100)
-	ydata = np.cos(zdata) + 0.1 * np.random.randn(100)
-	ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens');
-	\end{lstlisting}
+# Data for three-dimensional scattered points
+zdata = 15 * np.random.random(100)
+xdata = np.sin(zdata) + 0.1 * np.random.randn(100)
+ydata = np.cos(zdata) + 0.1 * np.random.randn(100)
+ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens');
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -415,7 +413,18 @@
 	\end{columns}
 \end{frame}
 
-\subsection{Seaborn}
+\subsection{Matplotlib notebook}
+\begin{frame}{Matplotlib}{Matplotlib notebook}
+    \begin{columns}
+ 	   \column{0.5\textwidth}
+			\begin{block}{Matplotlib notebook}
+			\href{https://github.com/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithMatplotlib.ipynb}{(Link to notebook)}
+			\end{block}
+	\end{columns}
+\end{frame}
+
+
+\section{Seaborn}
 
 \begin{frame}[fragile]{Seaborn (I)}
 	\begin{columns}
@@ -429,20 +438,18 @@
 		\item Advanced visualizations
 		\item Easy to use
 	\end{itemize}
-	Still under development! (v. 0.9)
+	Still under development!
     \column{0.35\textwidth}
 	\begin{block}{\footnotesize{Convention}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}
-	import seaborn as sns
-	\end{lstlisting}
+import seaborn as sns
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{block}
 
 	\begin{alertblock}{}
-	\vspace{-0.2cm} 
 	\footnotesize{This documentation is for Seaborn 0.9 or newer}
-	\vspace{-0.2cm} 
 	\end{alertblock}
 
 	\end{columns}
@@ -498,19 +505,19 @@
 		\begin{exampleblock}{}
 			\vspace{-0.2cm} 
 			\begin{lstlisting}[basicstyle=\tiny]
-			import matplotlib.pyplot as plt
-			import seaborn as sns
-			# Prepare data
-			tips = sns.load_dataset("tips")
-			# Set up aesthetics
-			sns.set_style("whitegrid")
-			# Plot
-			g = sns.lmplot(x="tip",y="total_bill", data=tips,aspect=2)
-			# Plot customization
-			g = (g.set_axis_labels("Tip","Total bill(USD)").set(xlim=(0,10),ylim=(0,100)))
-			plt.title("title")
-			plt.show(g)
-			\end{lstlisting}
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Prepare data
+tips = sns.load_dataset("tips")
+# Set up aesthetics
+sns.set_style("whitegrid")
+# Plot
+g = sns.lmplot(x="tip",y="total_bill", data=tips,aspect=2)
+# Plot customization
+g = (g.set_axis_labels("Tip","Total bill(USD)").set(xlim=(0,10),ylim=(0,100)))
+plt.title("title")
+plt.show(g)
+\end{lstlisting}
 			\vspace{-0.2cm} 
 		\end{exampleblock}
 
@@ -583,8 +590,8 @@
 	\begin{exampleblock}{\footnotesize{Histogram}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\small]
-	sns.distplot(tips['tip'], kde=False)
-	\end{lstlisting}
+sns.distplot(tips['tip'], kde=False)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -593,8 +600,8 @@
 	\begin{exampleblock}{\footnotesize{Density plot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\small]
-	sns.distplot(tips['tip'], hist=False)
-	\end{lstlisting}
+sns.distplot(tips['tip'], hist=False)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
@@ -608,8 +615,8 @@
 	\begin{exampleblock}{\footnotesize{Histogram + density plot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\small]
-	sns.distplot(tips['tip'], rug=True)
-	\end{lstlisting}
+sns.distplot(tips['tip'], rug=True)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -618,13 +625,15 @@
 	\begin{exampleblock}{\footnotesize{Density plot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\small]
-	sns.kdeplot(tips['tip'])
-	sns.kdeplot(tips['total_bill'], shade=True)
-	\end{lstlisting}
+sns.kdeplot(tips['tip'])
+sns.kdeplot(tips['total_bill'], shade=True)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
 \end{frame}
+
+\subsection{Relationships}
 
 \begin{frame}[fragile]{Seaborn}{Relationships (I)}
 	\centering Scatterplots
@@ -635,8 +644,8 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.relplot(x="total_bill", y="tip", data=tips)
-	\end{lstlisting}
+sns.relplot(x="total_bill", y="tip", data=tips)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -645,8 +654,8 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.relplot(x="total_bill", y="tip", hue="smoker", style="smoker", data=tips)
-	\end{lstlisting}
+sns.relplot(x="total_bill", y="tip", hue="smoker", style="smoker", data=tips)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -655,14 +664,13 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.relplot(x="total_bill", y="tip", size="size", sizes=(15, 200), data=tips);
-	\end{lstlisting}
+sns.relplot(x="total_bill", y="tip", size="size", sizes=(15, 200), data=tips);
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
 	\end{columns}
-
-	Seaborn >= 0.9
+	%Seaborn >= 0.9
 \end{frame}
 
 \begin{frame}[fragile]{Seaborn}{Relationships (II)}
@@ -672,8 +680,8 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.jointplot("total_bill", "tip", tips, kind="reg")
-	\end{lstlisting}
+sns.jointplot("total_bill", "tip", tips, kind="reg")
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -682,8 +690,8 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.jointplot("total_bill", "tip", tips , kind="hex")
-	\end{lstlisting}
+sns.jointplot("total_bill", "tip", tips , kind="hex")
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -697,8 +705,8 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.kdeplot(tips['tip'], tips['total_bill'])
-	\end{lstlisting}
+sns.kdeplot(tips['tip'], tips['total_bill'])
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -707,8 +715,8 @@
 	\begin{exampleblock}{}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.jointplot("total_bill", "tip", tips , kind="hex")
-	\end{lstlisting}
+sns.jointplot("total_bill", "tip", tips , kind="hex")
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -722,8 +730,8 @@
 	\begin{exampleblock}{\footnotesize{Scatterplot matrix}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.pairplot(iris, hue="species", palette="husl", markers=["o", "s", "D"], diag_kind='kde')
-	\end{lstlisting}
+sns.pairplot(iris, hue="species", palette="husl", markers=["o", "s", "D"], diag_kind='kde')
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -732,13 +740,15 @@
 	\begin{exampleblock}{\footnotesize{Scatterplot matrix}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.pairplot(iris, vars=["sepal_length", "sepal_width"])
-	\end{lstlisting}
+sns.pairplot(iris, vars=["sepal_length", "sepal_width"])
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
 	\end{columns}
 \end{frame}
+
+\subsection{Comparisons}
 
 \begin{frame}[fragile]{Seaborn}{Comparisons (I)}
 	\begin{columns}
@@ -747,10 +757,10 @@
 	\begin{exampleblock}{\footnotesize{Boxplot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	with sns.axes_style(style='ticks'):
-	    g = sns.factorplot("day", "total_bill", "sex", data=tips, kind="box")
-		g.set_axis_labels("Day", "Total Bill")
-	\end{lstlisting}
+with sns.axes_style(style='ticks'):
+    g = sns.factorplot("day", "total_bill", "sex", data=tips, kind="box")
+g.set_axis_labels("Day", "Total Bill")
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -759,8 +769,8 @@
 	\begin{exampleblock}{\footnotesize{Violin plot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.violinplot("day", "total_bill", "sex", data=tips)
-	\end{lstlisting}
+sns.violinplot("day", "total_bill", "sex", data=tips)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -774,8 +784,8 @@
 	\begin{exampleblock}{\footnotesize{Violin plot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.violinplot(x="day", y="total_bill", hue="sex", data=tips, split=True)
-	\end{lstlisting}
+sns.violinplot(x="day", y="total_bill", hue="sex", data=tips, split=True)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -785,6 +795,7 @@
 	\end{columns}
 \end{frame}
 
+\subsection{Barplots}
 \begin{frame}[fragile]{Seaborn}{Barplots}
 	\begin{columns}
     \column{0.5\textwidth}
@@ -792,8 +803,8 @@
 	\begin{exampleblock}{\footnotesize{Barplot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.barplot(x="day", y="total_bill", hue="sex", data=tips)
-	\end{lstlisting}
+sns.barplot(x="day", y="total_bill", hue="sex", data=tips)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 
@@ -802,13 +813,14 @@
 	\begin{exampleblock}{\footnotesize{Barplot}}
 	\vspace{-0.2cm} 
 	\begin{lstlisting}[basicstyle=\tiny]
-	sns.barplot(x="total_bill", y="day", hue="sex", data=tips, ci=None)
-	\end{lstlisting}
+sns.barplot(x="total_bill", y="day", hue="sex", data=tips, ci=None)
+\end{lstlisting}
 	\vspace{-0.2cm} 
 	\end{exampleblock}
 	\end{columns}
 \end{frame}
 
+\subsection{Continuity}
 \begin{frame}[fragile]{Seaborn}{Continuity}
 	\begin{columns}
     \column{0.5\textwidth}
@@ -816,9 +828,9 @@
 		\begin{exampleblock}{\footnotesize{}}
 		\vspace{-0.2cm} 
 		\begin{lstlisting}[basicstyle=\tiny]
-		fmri = sns.load_dataset("fmri")
-		sns.relplot(x="timepoint", y="signal", kind="line", data=fmri)
-		\end{lstlisting}
+fmri = sns.load_dataset("fmri")
+sns.relplot(x="timepoint", y="signal", kind="line", data=fmri)
+\end{lstlisting}
 		\vspace{-0.2cm} 
 		\end{exampleblock}
 
@@ -827,14 +839,15 @@
 		\begin{exampleblock}{\footnotesize{}}
 		\vspace{-0.2cm} 
 		\begin{lstlisting}[basicstyle=\tiny]
-		sns.relplot(x="timepoint", y="signal", hue="event", kind="line", data=fmri)
-		\end{lstlisting}
+sns.relplot(x="timepoint", y="signal", hue="event", kind="line", data=fmri)
+\end{lstlisting}
 		\vspace{-0.2cm} 
 		\end{exampleblock}
 	\end{columns}
-	Seaborn >= 0.9
+%	Seaborn >= 0.9
 \end{frame}
 
+\subsection{FacetGrid}
 \begin{frame}[fragile]{Seaborn}{\texttt{FacetGrid}}
 	\begin{columns}
     \column{0.5\textwidth}
@@ -842,9 +855,9 @@
 		\begin{exampleblock}{\footnotesize{}}
 		\vspace{-0.2cm} 
 		\begin{lstlisting}[basicstyle=\tiny]
-		fmri = sns.load_dataset("fmri")
-		sns.relplot(x="timepoint", y="signal", kind="line", data=fmri)
-		\end{lstlisting}
+fmri = sns.load_dataset("fmri")
+sns.relplot(x="timepoint", y="signal", kind="line", data=fmri)
+\end{lstlisting}
 		\vspace{-0.2cm} 
 		\end{exampleblock}
 
@@ -855,9 +868,9 @@
 		\begin{exampleblock}{\footnotesize{}}
 		\vspace{-0.2cm} 
 		\begin{lstlisting}[basicstyle=\tiny]
-		g = sns.FacetGrid(tips, col="time", row="sex")
-		g.map(sns.distplot, "tip")
-		\end{lstlisting}
+g = sns.FacetGrid(tips, col="time", row="sex")
+g.map(sns.distplot, "tip")
+\end{lstlisting}
 		\vspace{-0.2cm} 
 		\end{exampleblock}
 	\end{columns}
@@ -870,18 +883,15 @@
 	\end{center}
 \end{frame}
 
-%\begin{frame}[plain]{Solved exercise. Serializando objetos \texttt{Parcela}}{}
-%	\vspace{-0.4cm}
-  %  \begin{columns}
- %	   \column{0.8\textwidth}
-%			\begin{block}{\footnotesize{tasaparcela\_pickle.py}}
-%			\vspace{-0.2cm} 
-%				\lstinputlisting[basicstyle=\ttfamily\scriptsize]{code/tasaparcela_pickle.py} % contar elementos
-%			\vspace{-0.2cm} 
-%			\end{block}
-%	\end{columns}
-	
-%\end{frame}
+\subsection{Seaborn notebook}
+\begin{frame}{Seaborn}{Seaborn notebook}
+    \begin{columns}
+ 	   \column{0.5\textwidth}
+			\begin{block}{Seaborn notebook}
+			\href{https://github.com/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithSeaborn.ipynb}{(Link to notebook)}
+			\end{block}
+	\end{columns}
+\end{frame}
 
 
 \end{document}
