@@ -1,5 +1,5 @@
 # Customize these two lines
-TARGETS=muii # Courses to compile
+TARGETS=muii mcyte # Courses to compile
 NAME=crash
 
 # Do not touch
