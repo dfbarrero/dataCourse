@@ -12,9 +12,9 @@
 
 5.- [Machine Learning Foundations](mlfoundations/)
 
-6.- [Supervised](supervised/)
+6.- [Supervised learning](supervised/)
 
-7.- [Unsupervised](unsupervised/)
+7.- [Unsupervised learning](unsupervised/)
 
 8.- [Artificial Neural Networks](ann/)
 
