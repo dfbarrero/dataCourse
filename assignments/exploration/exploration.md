@@ -24,7 +24,7 @@ import seaborn as sns
 df = sns.load_dataset('planets')
 ```
 
-We recommend to read a notebook with an example of data exploration to better understand the whole process. An interesting notebook is [this one](https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/).
+We recommend you to read a notebook with an example of data exploration to better understand the whole process. An interesting one is [this one](https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/), which uses the famous iris dasaset.
 
 ## Assignment goal
 
