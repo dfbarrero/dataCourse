@@ -20,7 +20,8 @@ You can load those datasets with the following code:
 
 ```Python
 import seaborn as sns
-iris = sns.load_dataset('planets')
+
+df = sns.load_dataset('planets')
 ```
 
 We recommend to read a notebook with an example of data exploration to better understand the whole process. An interesting notebook is [this one](https://www.geeksforgeeks.org/exploratory-data-analysis-on-iris-dataset/).
