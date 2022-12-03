@@ -1,5 +1,5 @@
 # Customize these two lines
-TARGETS=muii # Courses to compile
+TARGETS=mcyte muii # Courses to compile
 NAME=pandas
 
 # Do not touch
