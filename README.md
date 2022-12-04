@@ -37,15 +37,15 @@
 
 ## Notebooks
 
-* [Numpy](numpy/numpy.ipynb)
+* [Numpy](numpy/numpy.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/numpy/numpy.ipynb)
 
-* [Pandas](pandas/Pandas.ipynb)
+* [Pandas](pandas/Pandas.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/pandas/Pandas.ipynb)
 
-* [Dataviz with Matplotlib](dataviz/DatavizWithMatplotlib.ipynb)
+* [Dataviz with Matplotlib](dataviz/DatavizWithMatplotlib.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithMatplotlib.ipynb)
 
-* [Dataviz with Seaborn](dataviz/DatavizWithSeaborn.ipynb)
+* [Dataviz with Seaborn](dataviz/DatavizWithSeaborn.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithSeaborn.ipynb)
 
-* [Introduction to Scikit-Learn](mlfoundations/scikit-learn.ipynb)
+* [Introduction to Scikit-Learn](mlfoundations/scikit-learn.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/mlfoundations/scikit-learn.ipynb)
 
 
 ## Compilation
