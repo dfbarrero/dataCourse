@@ -44,7 +44,7 @@ Create a single notebook in which the following tasks are implemented. Take care
     - Perform a new linear regression by adding the categorical attribute "origin". Reflect on how a categorical attribute can be introduced into a purely numerical technique such as linear regression. After reaching a conclusion, investigate something called *one-hot encoding* and use it.
     - Compare the result with the regression based on numerical attributes and interpret the model.
     - Obtain different linear models by grouping the data by origin and see if the fit improves.
-<!--    - Implement a polynomial regression between 'mpg' and 'weight' by adding a new attribute that is the square of the weight and apply a linear regression. Alternatively, you can use the *sklearn.preprocessing.PolynomialFeatures* class from Scikit-Learn, see the documentation for more information.-->
     - Bonus track: Obtain the best fit of 'mpg' that you can.
     - Bonus track: Try something named regression tree. Use Google and Scikit reference documentation.
+<!--    - Implement a polynomial regression between 'mpg' and 'weight' by adding a new attribute that is the square of the weight and apply a linear regression. Alternatively, you can use the *sklearn.preprocessing.PolynomialFeatures* class from Scikit-Learn, see the documentation for more information.-->
 
