@@ -1,11 +1,11 @@
 # MPG dataset classification and regression
 
 ## Objectives of the project
-    - To practice the basic Scikit-Learn API.
-    - To assimilate the basic EDA-modeling-model analysis-refinement workflow.
-    - Understand the relationship between EDA and predictive modeling.
-    - Understand how to add categorical variables to numerical modeling.
-    - Understand the importance of attribute engineering in predictive modeling.
+- To practice the basic Scikit-Learn API.
+- To assimilate the basic EDA-modeling-model analysis-refinement workflow.
+- Understand the relationship between EDA and predictive modeling.
+- Understand how to add categorical variables to numerical modeling.
+- Understand the importance of attribute engineering in predictive modeling.
 
 ## Introduction
 
