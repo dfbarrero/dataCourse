@@ -1,6 +1,6 @@
 # MPG dataset classification and regression
 
-## Objectives of the project
+## Objectives
 - To practice the basic Scikit-Learn API.
 - To assimilate the basic EDA-modeling-model analysis-refinement workflow.
 - Understand the relationship between EDA and predictive modeling.
