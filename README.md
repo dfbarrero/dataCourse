@@ -28,6 +28,8 @@
 
 * [Introduction to KNIME Analytics Platform](assignments/knime/intro.md)
 
+* [MPG dataset classification and regression](assignments/mpg/mpg.md)
+
 * [Machine-Learning based robot motion control](assignments/robot/robot.md)
 
 * [Regression analysis of exoplanets masses](assignments/exoplanets/exoplanets.md)
