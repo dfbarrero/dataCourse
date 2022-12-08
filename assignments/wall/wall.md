@@ -21,6 +21,9 @@ La forma más directa de balancear las clases es submuestreando la clase mayorit
 ## Hyperparameter optimization
 El desempeño de los modelos depende fuertemente de los hiperparámetros. Dado que el desempeño se puede cuantificar, podemos ver este problema como un problema puro de optimización, para el que hay multitud de técnicas en el ámbito de la IA. 
 
+<img align="center" src="random.png" width="300">
+<img align="center" src="grid.png" width="300">
+
 Una de las técnicas de optimización de hyperparámetros más usado en Aprendizaje Automático es la aportada por la función de Scikit-Learn *GridSearch()*, a la que se la aportan los hiperparámetros que se desean optimizar y un rango de valores en donde hacer la búsqueda. La función crea una combinación de hyperparámetros y entrena al modelo con cada combinación, devolviendo la combinación que obtiene un mejor rendimiento.
 
 ```Python
