@@ -14,7 +14,7 @@ There are several actions that can be taken to address an unbalanced dataset, th
 
 The usual precision and recall metrics used in classification, when there is unbalanced classes, lose reliability. Imagine, for example, a dataset with 99% of instances of a class A, and only 1% of class B. If we apply a dummy classifier that classifies everything as A, we will obtain an accuracy of 99%, which suggests excellent performance, but clearly this classifier will not be working correctly. For this reason accuracy and recall are rarely used with unbalanced datasets.
 
-One of the most commonly used metrics with unbalanced data is F1, which is defined as the harmonic mean of the precision and recall.
+One of the most commonly used metrics with unbalanced data is F1, which is defined as the harmonic mean of the precision and recall:
 
 $F1 = 2 \times \frac{\text{precision} \times \text{recall}}{\text{precision} + \text{recall}}$.
 
