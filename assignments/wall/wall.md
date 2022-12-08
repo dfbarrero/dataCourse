@@ -47,7 +47,7 @@ svc = svm.SVC()
 clf = GridSearchCV(svc, parameters)
 clf.fit(iris.data, iris.target)
 clf.best_params_
-'''
+```
 
 Please observe that *GridSearchCV()* returns an object that contains the result of the search, but behaves like a model.
 
