@@ -15,7 +15,7 @@ Lo que es común en todas las circunstancias es que las métricas habituales de 
 
 $F1 = 2 \times \frac{\text{precission} \times \text{recall}}{\text{precission} + \text{recall}}$
 
-F1 está definida en un rango de 0 a 1, correspondiendo 1 a una clasificación perfecta.
+F1 está definida en un rango de cero a uno, correspondiendo uno a una clasificación perfecta.
 
 La forma más directa de balancear las clases es submuestreando la clase mayoritaria o sobremuestreando la minoritaria. Una variación de este último enfoque es agregar de forma controlada ruido al sobremuestreo, de forma que se aporte una mayor variedad al dataset, evitando que haya un sobreaprendizaje. En el contexto del Aprendizaje Profundo a esta técnica se la conoce como "data augmentation".
 
