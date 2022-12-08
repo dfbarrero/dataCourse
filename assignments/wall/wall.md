@@ -15,6 +15,8 @@ Lo que es común en todas las circunstancias es que las métricas habituales de 
 
 $F1 = 2 \times \frac{\text{precission} \times \text{recall}}{\text{precission} + \text{recall}}$
 
+F1 está definida en un rango de 0 a 1, correspondiendo 1 a una clasificación perfecta.
+
 La forma más directa de balancear las clases es submuestreando la clase mayoritaria o sobremuestreando la minoritaria. Una variación de este último enfoque es agregar de forma controlada ruido al sobremuestreo, de forma que se aporte una mayor variedad al dataset, evitando que haya un sobreaprendizaje. En el contexto del Aprendizaje Profundo a esta técnica se la conoce como "data augmentation".
 
 Técnicas más avanzadas implican generar sintéticamente nuevas instancias de la clase minoritaria. Por ejemplo, [SMOTE](https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/) es una técnica de cierta sofisticación y bastante popular que crea nuevas instancias de la clase minoritaria muestreando la recta que una instancia minoritaria con algún vecino cercano. 
