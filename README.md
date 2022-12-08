@@ -30,8 +30,6 @@
 
 * [Control of a wall-following robot with hyperparameters optimization](assignments/wall/wall.md)
 
-* [Regression analysis of exoplanets masses](assignments/exoplanets/exoplanets.md)
-
 * [Sunsplots forecasting with an autoregressive neural network](assignments/sunspots/sunspots-ar.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/sunspots/sunspots-ar.ipynb)
 
 * [Sunsplots forecasting with a deep autoregressive neural network](assignments/sunspots/sunspots-LSTM.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/sunspots/sunspots-LSTM.ipynb)
@@ -44,6 +42,7 @@
 
 * [Machine-Learning based robot motion control](assignments/robot/robot.md)
 
+* [Regression analysis of exoplanets masses](assignments/exoplanets/exoplanets.md)
 
 ## Notebooks
 
