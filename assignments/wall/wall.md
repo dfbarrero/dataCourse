@@ -16,9 +16,6 @@ The usual precision and recall metrics used in classification, when there is unb
 
 One of the most commonly used metrics with unbalanced data is F1, which is defined as the harmonic mean of the precision and recall.
 
-
-
-$F1 = 2 \times \frac{a}{b}$.
 $F1 = 2 \times \frac{precision{text} \times \text{recall}}{\text{precision} + \text{recall}}$.
 
 F1 is defined in a range from zero to one, with one corresponding to a perfect classification. The definition is made for binary classification problems, so it needs to be adapted to multi-label problems like the one we are dealing with. Scikit applies F1 to each class separately, obtaining several F1 values, which it then groups by means of an average. There are several methods to do this grouping, we will use the 'weighted' method, which weights the average by number of instances of each class, and is suitable for unbalanced datasets.
