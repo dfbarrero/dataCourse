@@ -14,7 +14,7 @@ Hay diversas acciones que se pueden realizar para abordar un conjunto de entrena
 
 Lo que es común en todas las circunstancias es que las métricas habituales de precision y recall usadas ne clasificación, cuando hay datos desbalanceados, son engañosas. Imagine, por ejemplo, un dataset con un 99% de instancias de una clase A, y sólo un 1% de la clase B. Si aplicamos un clasificador dummy que todo lo clasifique como A, este clasificador tendrá un ap recisión del 99%, lo que numéricamente es muy buen desempeño, pero claramente este clasificador no funcionar correctamente. Por este motivo ante datos desbalanceados se suele prescindir del accuracy y recall, y se utilizan otras métricas con mayour robustez, como F1, que se define como la media armónica del precission y recall.
 
-$F1 = 2 \frac{\text{precission} \mul \text{recall}}{\text{precission} + \text{recall}}$
+$F1 = 2 \times \frac{\text{precission} \times \text{recall}}{\text{precission} + \text{recall}}$
 
 La forma más directa de balancear las clases es submuestreando la clase mayoritaria o sobremuestreando la minoritaria. Una variación de este último enfoque es agregar de forma controlada ruido al sobremuestreo, de forma que se aporte una mayor variedad al dataset, evitando que haya un sobreaprendizaje. En el contexto del Aprendizaje Profundo a esta técnica se la conoce como "data augmentation".
 
