@@ -1,10 +1,9 @@
-# Control of a wall-following robot with an unbalanced dataset and hyperparameter optimization
+# Control of a wall-following robot 
 
 ## Objetivos
-- Implementar un flujo de trabajo completo de Aprendizaje Automático.
+- Entender las dificultades de un dataset desbalanceado.
+- Aplicar técnicas para abordar un dataset desbalanceado.
 - Aplicar una búsqueda exhaustiva para optimizar hiperparámetros.
-- Entender las dificultades de un dataset desvalanceado.
-- Aplicar técnicas adecuadas para abordar el desbalanceo de datos.
 
 ## Introducción
 En esta práctica se va a entrenar el controlador de un robot para que siga las paredes. La percepción del controlador está basada en las lecturas de 24 sensores repartidos por el robot, separados con un ángulo constante. El robot puede realizar cuatro acciones: Mover hacia delante, girar suave a la izquierda, girar suave a la derecha o girar fuerte a la derecha. El entrenamiento del controlador se realizará con un conjunto de datos disponible en este enlace.
@@ -17,6 +16,10 @@ Lo que es común en todas las circunstancias es que las métricas habituales de 
 $F1 = 2 \times \frac{\text{precission} \times \text{recall}}{\text{precission} + \text{recall}}$
 
 La forma más directa de balancear las clases es submuestreando la clase mayoritaria o sobremuestreando la minoritaria. Una variación de este último enfoque es agregar de forma controlada ruido al sobremuestreo, de forma que se aporte una mayor variedad al dataset, evitando que haya un sobreaprendizaje. En el contexto del Aprendizaje Profundo a esta técnica se la conoce como "data augmentation".
+
+Técnicas más avanzadas implican generar sintéticamente nuevas instancias de la clase minoritaria. Por ejemplo, [SMOTE](https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/) es una técnica de cierta sofisticación y bastante popular que crea nuevas instancias de la clase minoritaria muestreando la recta que una instancia minoritaria con algún vecino cercano. 
+
+<img align="center" src="https://machinelearningmastery.com/wp-content/uploads/2019/10/Scatter-Plot-of-Imbalanced-Binary-Classification-Problem-Transformed-by-SMOTE.png" width="300">
 
 ## Hyperparameter optimization
 El desempeño de los modelos depende fuertemente de los hiperparámetros. Dado que el desempeño se puede cuantificar, podemos ver este problema como un problema puro de optimización, para el que hay multitud de técnicas en el ámbito de la IA. 
