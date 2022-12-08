@@ -44,3 +44,33 @@ clf = GridSearchCV(svc, parameters)
 clf.fit(iris.data, iris.target)
 clf.best_params_
 ```
+## Observaciones
+Dada la naturaleza de este dataset, y los objetivos de la práctica, tenga en cuenta las siguientes consideraciones:
+
+- Usar F1 como métrica de calidad de los clasificadores.
+- Aplicar validación cruzada con un número de folders de su elección.
+- Tenga en cuenta que el problema es de optimización multiclase, por lo que ciertos algoritmos no son de aplicación, y otros algoritmos necesitan adaptaciones.
+
+## Tareas
+Cree un notebook en el que se realicen las siguientes tareas.
+
+Empezaremos la práctica cargando los datos:
+
+- Descargue el [conjunto de datos](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv). 
+- Construya un dataframe de Pandas a partir del CSV. Observe que el CSV no tiene cabeceras, por lo que tendrá que agregarlas de algún modo.
+
+Seguiremos con un EDA, que a diferencia de práctica anteriores incorporaremos un análisis multivariable.
+
+- Haga un EDA incluyendo los aspectos habituales: presencia de valores vacíos, outlaiers, número de instancias, número y tipo de atributos, principales propiedades estadísticas de los atributos, análisis univariable y bivariable, incluyendo correlaciones entre atributos. 
+- Amplíe el EDA con un análisis multivariable. Para ello utilice el PCA de los datos: visualice en 2D (o 3D, si lo desea) los componentes con más información y visualice la cantidad de varianza explicada por cada componente. Evalúe la dificultad de la clasificación en base a esta información.
+
+Comencemos con el modelado predictivo. El objetivo es predecir la acción del robot en base a las lecturas de sus sensores sónar.
+
+- Establezca un baseline para comparar con próximos resultados. Utilice como métrica F1.
+- Aplique los clasificadores que estime oportuno con los hiperparámetros por defecto.
+- Haga una optimización de hiperparámetros para cada uno de esos clasificadores y compare los resultados.
+
+Vamos a intentar mejorar el rendimiento del clasificador jugando con el preprocesado de los datos aplicando PCA.
+- Aplicaremos los clasificadores sobre PCA. PCA elimina correlaciones entre los atributos, es decir, elimina las relaciones lineales entre atributos, por lo que potencialmente puede facilitar el aprendizaje del modelo. Extraiga los componentes principales que estime oportuno y entrene un clasificador de su elección. Compare el resultado.
+- Suele ser conveniente realizar pequeños experimentos que fundamenten las decisiones que tomamos. En el apartado anterior se seleccionó un número de componentes de forma algo arbitraria, vamos a reevaluar esta decisión de forma más científica. Entrene diversos clasificadores alimentándolos un número variable de componentes y determine experimentalmente qué número de componentes conducen a un mejor clasificador. Para esto puede iterar manualmente sobre el parámetro a establecer, o bien puede usar la función *GridSearchCV()*.
+
