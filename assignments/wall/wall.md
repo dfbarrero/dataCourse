@@ -1,9 +1,8 @@
 # Control of a wall-following robot 
 
 ## Objetivos
-- Entender las dificultades de un dataset desbalanceado.
-- Aplicar técnicas para abordar un dataset desbalanceado.
-- Aplicar una búsqueda exhaustiva para optimizar hiperparámetros.
+- Conocer técnicas para abordar un dataset desbalanceado.
+- Realizar una optimización de hiperparámetros sistem.
 
 ## Introducción
 En esta práctica se va a entrenar el controlador de un robot para que siga las paredes. La percepción del controlador está basada en las lecturas de 24 sensores repartidos por el robot, separados con un ángulo constante. El robot puede realizar cuatro acciones: Mover hacia delante, girar suave a la izquierda, girar suave a la derecha o girar fuerte a la derecha. El entrenamiento del controlador se realizará con un conjunto de datos disponible en este enlace.
