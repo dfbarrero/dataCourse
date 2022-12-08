@@ -1,38 +1,41 @@
-# Control of a wall-following robot 
+# Control of a wall-following robot with hyperparameters optimization
 
-## Objetivos
-- Conocer técnicas para abordar un dataset desbalanceado.
-- Realizar una optimización de hiperparámetros sistemática.
-- Aplicar diversos algoritmos de clasificación.
-- Entender varios usos de PCA.
+## Objectives
+- To learn techniques to deal with an unbalanced datasets.
+- To perform a systematic hyperparameter optimization.
+- Apply various multilabel classification algorithms.
+- To understand various uses of PCA.
 
-## Introducción
-En esta práctica se va a entrenar el controlador de un robot para que siga las paredes. La percepción del controlador está basada en las lecturas de 24 sensores repartidos por el robot, separados con un ángulo constante. El robot puede realizar cuatro acciones: Mover hacia delante, girar suave a la izquierda, girar suave a la derecha o girar fuerte a la derecha. El entrenamiento del controlador se realizará con un conjunto de datos disponible en este enlace.
+## Introduction
+In this practice a robot controller is going to be trained to follow walls. The controller's perception is based on readings from 24 sensors spread around the robot, spaced at a constant angle. The robot can perform four actions: Move-Forward, Sharp-Right-Turn, Slight-Right-Turn and Slight-Left-Turn. The training of the controller will be performed with a dataset available at [this link](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv).
 
 ## Unbalanced classes
-Hay diversas acciones que se pueden realizar para abordar un conjunto de entrenamiento desbalanceado, el mejor enfoque dependerá del problema y el conjunto de datos en sí. 
+There are several actions that can be taken to address an unbalanced dataset, the best approach will depend on the problem and the data itself. 
 
-Lo que es común en todas las circunstancias es que las métricas habituales de precision y recall usadas ne clasificación, cuando hay datos desbalanceados, son engañosas. Imagine, por ejemplo, un dataset con un 99% de instancias de una clase A, y sólo un 1% de la clase B. Si aplicamos un clasificador dummy que todo lo clasifique como A, este clasificador tendrá un ap recisión del 99%, lo que numéricamente es muy buen desempeño, pero claramente este clasificador no funcionar correctamente. Por este motivo ante datos desbalanceados se suele prescindir del accuracy y recall, y se utilizan otras métricas con mayour robustez, como F1, que se define como la media armónica del precission y recall.
+The usual precision and recall metrics used in classification, when there is unbalanced classes, lose reliability. Imagine, for example, a dataset with 99% of instances of a class A, and only 1% of class B. If we apply a dummy classifier that classifies everything as A, we will obtain an accuracy of 99%, which suggests excellent performance, but clearly this classifier will not be working correctly. For this reason accuracy and recall are rarely used with unbalanced datasets.
 
-$F1 = 2 \times \frac{\text{precission} \times \text{recall}}{\text{precission} + \text{recall}}$
+One of the most commonly used metrics with unbalanced data is F1, which is defined as the harmonic mean of the precision and recall.
 
-F1 está definida en un rango de cero a uno, correspondiendo uno a una clasificación perfecta.
+F1 = 2 \times \frac{precision{text} \times \text{recall}}{precision} + \text{recall}}$.
 
-La forma más directa de balancear las clases es submuestreando la clase mayoritaria o sobremuestreando la minoritaria. Una variación de este último enfoque es agregar de forma controlada ruido al sobremuestreo, de forma que se aporte una mayor variedad al dataset, evitando que haya un sobreaprendizaje. En el contexto del Aprendizaje Profundo a esta técnica se la conoce como "data augmentation".
+F1 is defined in a range from zero to one, with one corresponding to a perfect classification. The definition is made for binary classification problems, so it needs to be adapted to multi-label problems like the one we are dealing with. Scikit applies F1 to each class separately, obtaining several F1 values, which it then groups by means of an average. There are several methods to do this grouping, we will use the 'weighted' method, which weights the average by number of instances of each class, and is suitable for unbalanced datasets.
 
-Técnicas más avanzadas implican generar sintéticamente nuevas instancias de la clase minoritaria. Por ejemplo, [SMOTE](https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/) es una técnica de cierta sofisticación y bastante popular que crea nuevas instancias de la clase minoritaria muestreando la recta que una instancia minoritaria con algún vecino cercano. 
+The most straightforward way to balance the classes is to undersample the majority class or oversample the minority class. A variation of the latter approach is to add noise to the oversampling in a controlled way, so as to bring more variety to the dataset, avoiding overlearning. In the context of Deep Learning this technique is known as "data augmentation".
 
 <img align="center" src="https://machinelearningmastery.com/wp-content/uploads/2019/10/Scatter-Plot-of-Imbalanced-Binary-Classification-Problem-Transformed-by-SMOTE.png" width="300">
 
+More advanced techniques involve synthetically generating new instances of the minority class. For example, [SMOTE](https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/) is a technique of some sophistication and quite popular that creates new instances of the minority class by sampling the straight line joining minority instance with some close neighbor. 
+
 ## Hyperparameter optimization
-El desempeño de los modelos depende fuertemente de los hiperparámetros. Dado que el desempeño se puede cuantificar, podemos ver este problema como un problema puro de optimización, para el que hay multitud de técnicas en el ámbito de la IA. 
+
+The performance of the models depends strongly on the hyperparameters, which is more clear when dealing with real-world problems. Since performance can be quantified, we can view this problem as a pure optimization problem, for which there are a multitude of techniques in the field of AI. 
 
 <img align="center" src="random.png" width="300">
 <img align="center" src="grid.png" width="300">
 
-Una de las técnicas de optimización de hyperparámetros más usado en Aprendizaje Automático es la aportada por la función de Scikit-Learn *GridSearch()*, a la que se la aportan los hiperparámetros que se desean optimizar y un rango de valores en donde hacer la búsqueda. La función crea una combinación de hyperparámetros y entrena al modelo con cada combinación, devolviendo la combinación que obtiene un mejor rendimiento.
+One of the most widely used hyperparameter optimization techniques in Machine Learning is provided by the Scikit-Learn function *GridSearchCV()*, which is provided with the hyperparameters to be optimized and a range of values to be searched. The function creates a combination of hyperparameters and trains the model with each combination, returning the combination that performs best. It can apply cross-validation if required to.
 
-```Python
+````Python
 from sklearn import svm, datasets
 from sklearn.model_selection import GridSearchCV
 
@@ -45,37 +48,34 @@ clf = GridSearchCV(svc, parameters)
 clf.fit(iris.data, iris.target)
 clf.best_params_
 ```
-## Observaciones
-Dada la naturaleza de este dataset, y los objetivos de la práctica, tenga en cuenta las siguientes consideraciones:
 
-- Usar F1 como métrica de calidad de los clasificadores.
-- Aplicar validación cruzada con un número de folders de su elección.
-- Tenga en cuenta que el problema es de optimización multiclase, por lo que ciertos algoritmos no son de aplicación, y otros algoritmos necesitan adaptaciones.
+Please observe that *GridSearchCV()* returns an object that contains the result of the search, but behaves like a model.
 
-## Tareas
-Cree un notebook en el que se realicen las siguientes tareas.
+Since the search space increases exponentially with the number of hyperparameters to be optimized, grid search becomes computationally intractable with some ease. A randomized search may be useful in these cases (*see RandomizedSearchCV()*).
 
-Empezaremos la práctica cargando los datos:
+## Tasks
 
-- Descargue el [conjunto de datos](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv). 
-- Construya un dataframe de Pandas a partir del CSV. Observe que el CSV no tiene cabeceras, por lo que tendrá que agregarlas de algún modo.
+We will start the practice by loading the data:
 
-Seguiremos con un EDA, que a diferencia de prácticas anteriores, incorporaremos un análisis multivariable.
+- Download the [dataset](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv). 
+- Build a Pandas dataframe from the CSV. Note that the CSV has no headers, so you will have to add them somehow. Please, try not to write down a 24-elements list by hand.
 
-- Haga un EDA incluyendo los aspectos habituales: presencia de valores vacíos, outlaiers, número de instancias, número y tipo de atributos, principales propiedades estadísticas de los atributos, análisis univariable y bivariable, incluyendo correlaciones entre atributos. 
-- Normalice los datos, para ello utilice la clase *MinMaxScaler* de Scikit-Learn. En este caso la normalización no es muy relevante porque todos los atributos tienen las mismas unidades y comparten magnitudes similares, pero algunos algoritmos como PCA se pueden ver beneficiados.
-- Amplíe el EDA con un análisis multivariable. Para ello utilice el PCA de los datos: visualice en 2D (o 3D, si lo desea) los componentes con más información y visualice la cantidad de varianza explicada por cada componente. Evalúe la dificultad de la clasificación en base a esta información y la conveniencia de reducir la dimensionalidad del conjunto de datos. 
+We will continue with an EDA, which unlike previous practices, it will incorporate a multivariate analysis.
 
-Proseguimos con el modelado predictivo. El objetivo es predecir la acción del robot en base a las lecturas de sus sensores sónar. 
+- Do an EDA including the usual aspects: presence of empty values, outliers, number of instances, number and type of attributes, main statistical properties of attributes, univariate and bivariate analysis, including correlations among attributes. 
+- Normalize the data, for this purpose use the *MinMaxScaler* class of Scikit-Learn. In this case normalization is not very relevant because all attributes have the same units and share similar magnitudes, but some algorithms such as PCA may benefit.
+- Extend the EDA with a multivariate analysis. To do this end apply PCA and visualize the components in 2D (or 3D, if desired) and visualize the amount of variance explained by each component. Evaluate the difficulty of classification based on this information along with the convenience of reducing the dimensionality of the data set with PCA. 
 
-- Establezca un baseline para comparar con próximos resultados. Calcule la accuracy y F1 (busque la función *f1_score()* de Scikit-Learn). ¿A que se debe la diferencia entre ambas?
-- Aplique los clasificadores que estime oportuno con los hiperparámetros por defecto, obteniendo tanto el accuracy y F1. Dado que el dataset es desbalanceado, estratifique la división entre los conjuntos de entrenamiento y test para garantizar que todas las clases están presentes en la misma proporción.
-- Haga una optimización de hiperparámetros para cada uno de esos clasificadores y compare los resultados. Utilice para ello la función *GridSearchCV()*.
-  * Hint: Esta operación requiere ejecutar el entrenamiento de multitud de modelos y potencialmente puede ser computaconalmente muy demandante, especialmente si se añade validación cruzada (no requerido para esta práctica, pero es recomendable). Una manera de acelerar la ejecución es paralelizando la búsqueda, para lo que se usa el parámetro *n_jobs* en la función *GridSearchCV()*. *n_jobs* contiene el número de procesadores con el que se hará la búsqueda, por defecto vale 1, un valor de -1 indica la utilización de todos los procesadores.
-  * Almacena el mejor modelo en una variable para usarla posteriormente.
- - Valida la estimación de F1 obtenida aplicando validación cruzada con cinco folds. 
-    * Hint: Usa la función *cross_val_score()*.
- - Obtén la matriz de confusión y un informe completo de las métricas del mejor modelo.
- - Interpreta, si es posible, el mejor modelo.
+We continue with predictive modeling. The goal is to predict the robot's action based on its sonar sensor readings. 
 
-Intenta mejorar el modelo anterior con cualquier medio que estime oportuno. Se puede, por ejemplo, balancear el conjunto de entrenamiento sobremuestreando la clase minoritaria, utilizar el PCA como entrada al clasificador o aplicar clasificadores basados en ensembles.
+- Set a baseline to compare with future results. Calculate the accuracy and F1 (look for the Scikit-Learn function *f1_score()*, with a weighted average) of a dummy classifier. What is the difference between the two?
+- Apply appropriate classifiers with the default hyperparameters, obtaining F1. Since the dataset is unbalanced, stratify the split between the training and test sets to ensure that all classes are present in the same proportion. Note that the dataset is multi-class, so certain algorithms do not apply, and other algorithms will need adaptations.
+- Do a hyperparameter optimization for each of the previous classifiers and compare the results. Use the *GridSearchCV()* function for this with weighted F1 as score.
+  * Hint: This operation requires the training of a multitude of models and can potentially be computationally very demanding, especially if cross validation is added (not required for this practice, but recommended). One way to speed up the execution is to parallelize the search, for which the *n_jobs* parameter is used in the *GridSearchCV()* function. *n_jobs* contains the number of processors with which the search will be performed, by default it is 1, a value of -1 indicates the use of all processors.
+  * Store the best model in a variable for later use.
+ - Validate the F1 estimate obtained by applying cross validation with five folds. 
+    * Hint: Use the function *cross_val_score()*.
+ - Obtain the confusion matrix and a full report of the metrics of the best model.
+ - Interpret, if possible, the best model.
+
+Try to improve the above model by any means you deem appropriate. You can, for example, balance the training set by oversampling the minority class, use the PCA as input to the classifier, or apply ensemble-based classifiers.
