@@ -26,11 +26,9 @@
 
 * [Exploratory data analysis](assignments/exploration/exploration.md)
 
-* [Introduction to KNIME Analytics Platform](assignments/knime/intro.md)
-
 * [MPG dataset classification and regression](assignments/mpg/mpg.md)
 
-* [Machine-Learning based robot motion control](assignments/robot/robot.md)
+* [Control of a wall-following robot with hyperparameters optimization](assignments/wall/wall.md)
 
 * [Regression analysis of exoplanets masses](assignments/exoplanets/exoplanets.md)
 
@@ -39,6 +37,12 @@
 * [Sunsplots forecasting with a deep autoregressive neural network](assignments/sunspots/sunspots-LSTM.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/sunspots/sunspots-LSTM.ipynb)
 
 * [Paper "Deep Neural Networks With Convolutional and LSTM Layers for SYM-H and ASY-H Forecasting"](assignments/papers/symh.md)
+
+### Old assignments
+
+* [Introduction to KNIME Analytics Platform](assignments/knime/intro.md)
+
+* [Machine-Learning based robot motion control](assignments/robot/robot.md)
 
 
 ## Notebooks
