@@ -2,8 +2,9 @@
 
 ## Objetivos
 - Conocer técnicas para abordar un dataset desbalanceado.
-- Realizar una optimización de hiperparámetros sistem.
-- Aplicar diversos algoritmos de clasificaci
+- Realizar una optimización de hiperparámetros sistemática.
+- Aplicar diversos algoritmos de clasificación.
+- Entender varios usos de PCA.
 
 ## Introducción
 En esta práctica se va a entrenar el controlador de un robot para que siga las paredes. La percepción del controlador está basada en las lecturas de 24 sensores repartidos por el robot, separados con un ángulo constante. El robot puede realizar cuatro acciones: Mover hacia delante, girar suave a la izquierda, girar suave a la derecha o girar fuerte a la derecha. El entrenamiento del controlador se realizará con un conjunto de datos disponible en este enlace.
@@ -59,18 +60,22 @@ Empezaremos la práctica cargando los datos:
 - Descargue el [conjunto de datos](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv). 
 - Construya un dataframe de Pandas a partir del CSV. Observe que el CSV no tiene cabeceras, por lo que tendrá que agregarlas de algún modo.
 
-Seguiremos con un EDA, que a diferencia de práctica anteriores incorporaremos un análisis multivariable.
+Seguiremos con un EDA, que a diferencia de prácticas anteriores, incorporaremos un análisis multivariable.
 
 - Haga un EDA incluyendo los aspectos habituales: presencia de valores vacíos, outlaiers, número de instancias, número y tipo de atributos, principales propiedades estadísticas de los atributos, análisis univariable y bivariable, incluyendo correlaciones entre atributos. 
-- Amplíe el EDA con un análisis multivariable. Para ello utilice el PCA de los datos: visualice en 2D (o 3D, si lo desea) los componentes con más información y visualice la cantidad de varianza explicada por cada componente. Evalúe la dificultad de la clasificación en base a esta información.
+- Normalice los datos, para ello utilice la clase *MinMaxScaler* de Scikit-Learn. En este caso la normalización no es muy relevante porque todos los atributos tienen las mismas unidades y comparten magnitudes similares, pero algunos algoritmos como PCA se pueden ver beneficiados.
+- Amplíe el EDA con un análisis multivariable. Para ello utilice el PCA de los datos: visualice en 2D (o 3D, si lo desea) los componentes con más información y visualice la cantidad de varianza explicada por cada componente. Evalúe la dificultad de la clasificación en base a esta información y la conveniencia de reducir la dimensionalidad del conjunto de datos. 
 
-Comencemos con el modelado predictivo. El objetivo es predecir la acción del robot en base a las lecturas de sus sensores sónar.
+Proseguimos con el modelado predictivo. El objetivo es predecir la acción del robot en base a las lecturas de sus sensores sónar. 
 
-- Establezca un baseline para comparar con próximos resultados. Utilice como métrica F1.
-- Aplique los clasificadores que estime oportuno con los hiperparámetros por defecto.
-- Haga una optimización de hiperparámetros para cada uno de esos clasificadores y compare los resultados.
+- Establezca un baseline para comparar con próximos resultados. Calcule la accuracy y F1 (busque la función *f1_score()* de Scikit-Learn). ¿A que se debe la diferencia entre ambas?
+- Aplique los clasificadores que estime oportuno con los hiperparámetros por defecto, obteniendo tanto el accuracy y F1. Dado que el dataset es desbalanceado, estratifique la división entre los conjuntos de entrenamiento y test para garantizar que todas las clases están presentes en la misma proporción.
+- Haga una optimización de hiperparámetros para cada uno de esos clasificadores y compare los resultados. Utilice para ello la función *GridSearchCV()*.
+  * Hint: Esta operación requiere ejecutar el entrenamiento de multitud de modelos y potencialmente puede ser computaconalmente muy demandante, especialmente si se añade validación cruzada (no requerido para esta práctica, pero es recomendable). Una manera de acelerar la ejecución es paralelizando la búsqueda, para lo que se usa el parámetro *n_jobs* en la función *GridSearchCV()*. *n_jobs* contiene el número de procesadores con el que se hará la búsqueda, por defecto vale 1, un valor de -1 indica la utilización de todos los procesadores.
+  * Almacena el mejor modelo en una variable para usarla posteriormente.
+ - Valida la estimación de F1 obtenida aplicando validación cruzada con cinco folds. 
+    * Hint: Usa la función *cross_val_score()*.
+ - Obtén la matriz de confusión y un informe completo de las métricas del mejor modelo.
+ - Interpreta, si es posible, el mejor modelo.
 
-Vamos a intentar mejorar el rendimiento del clasificador jugando con el preprocesado de los datos aplicando PCA.
-- Aplicaremos los clasificadores sobre PCA. PCA elimina correlaciones entre los atributos, es decir, elimina las relaciones lineales entre atributos, por lo que potencialmente puede facilitar el aprendizaje del modelo. Extraiga los componentes principales que estime oportuno y entrene un clasificador de su elección. Compare el resultado.
-- Suele ser conveniente realizar pequeños experimentos que fundamenten las decisiones que tomamos. En el apartado anterior se seleccionó un número de componentes de forma algo arbitraria, vamos a reevaluar esta decisión de forma más científica. Entrene diversos clasificadores alimentándolos un número variable de componentes y determine experimentalmente qué número de componentes conducen a un mejor clasificador. Para esto puede iterar manualmente sobre el parámetro a establecer, o bien puede usar la función *GridSearchCV()*.
-
+Intenta mejorar el modelo anterior con cualquier medio que estime oportuno. Se puede, por ejemplo, balancear el conjunto de entrenamiento sobremuestreando la clase minoritaria, utilizar el PCA como entrada al clasificador o aplicar clasificadores basados en ensembles.
