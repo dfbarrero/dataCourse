@@ -35,7 +35,7 @@ The performance of the models depends strongly on the hyperparameters, which is 
 
 One of the most widely used hyperparameter optimization techniques in Machine Learning is provided by the Scikit-Learn function *GridSearchCV()*, which is provided with the hyperparameters to be optimized and a range of values to be searched. The function creates a combination of hyperparameters and trains the model with each combination, returning the combination that performs best. It can apply cross-validation if required to.
 
-```Python
+'''Python
 from sklearn import svm, datasets
 from sklearn.model_selection import GridSearchCV
 
@@ -47,7 +47,7 @@ svc = svm.SVC()
 clf = GridSearchCV(svc, parameters)
 clf.fit(iris.data, iris.target)
 clf.best_params_
-
+'''
 
 Please observe that *GridSearchCV()* returns an object that contains the result of the search, but behaves like a model.
 
