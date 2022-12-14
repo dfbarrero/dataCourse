@@ -56,7 +56,7 @@
 
 * [Introduction to Scikit-Learn](mlfoundations/scikit-learn.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/mlfoundations/scikit-learn.ipynb)
 
-* [Introduction to Keras)(ann/keras.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/ann/keras.ipynb)
+* [Introduction to Keras](ann/keras.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/ann/keras.ipynb)
 
 
 ## Compilation
