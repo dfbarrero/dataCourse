@@ -61,7 +61,7 @@ We will start the practice by loading the data:
 - Download the [dataset](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv). 
 - Build a Pandas dataframe from the CSV. Note that the CSV has no headers, so you will have to add them somehow. Please, try not to write down a 25-elements list by hand.
 
-We will continue with an EDA, which unlike previous practices, it will incorporate a multivariate analysis.
+We will continue with an EDA, but on the contrary than previous assignments, it will incorporate a multivariate analysis.
 
 - Do an EDA including the usual aspects: presence of empty values, outliers, number of instances, number and type of attributes, main statistical properties of attributes, univariate and bivariate analysis, including correlations among attributes. 
 - Normalize the data, for this purpose use the *MinMaxScaler* class of Scikit-Learn. In this case normalization is not very relevant because all attributes have the same units and share similar magnitudes, but some algorithms such as PCA may benefit.
