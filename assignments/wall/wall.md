@@ -69,13 +69,14 @@ We will continue with an EDA, but on the contrary than previous assignments, it 
 
 We continue with predictive modeling. The goal is to predict the robot's action based on its sonar sensor readings. 
 
-- Set a baseline to compare with future results. Calculate the accuracy and F1 (look for the Scikit-Learn function *f1_score()*, with a weighted average) of a dummy classifier. What is the difference between the two?
+- Set a baseline to compare with future results. Calculate the accuracy and F1 (look for the Scikit-Learn function *f1_score()*, with a weighted average) of a dummy classifier. What is the difference between them?
+- Get a train, validation and test set.
 - Apply appropriate classifiers with the default hyperparameters, obtaining F1. Since the dataset is unbalanced, stratify the split between the training and test sets to ensure that all classes are present in the same proportion. Note that the dataset is multi-class, so certain algorithms do not apply, and other algorithms will need adaptations.
-- Do a hyperparameter optimization for each of the previous classifiers and compare the results. Use the *GridSearchCV()* function for this with weighted F1 as score.
+- Optimize hyperparameters for each of the previous classifiers and compare the results. Use the *GridSearchCV()* function for this with weighted F1 as score.
   * Hint: This operation requires the training of a multitude of models and can potentially be computationally very demanding, especially if cross validation is added (not required for this practice, but recommended). One way to speed up the execution is to parallelize the search, for which the *n_jobs* parameter is used in the *GridSearchCV()* function. *n_jobs* contains the number of processors with which the search will be performed, by default it is 1, a value of -1 indicates the use of all processors.
   * Store the best model in a variable for later use.
- - Validate the F1 estimate obtained by applying cross validation with five folds. 
-    * Hint: Use the function *cross_val_score()*.
+ - Validate the F1 estimate obtained on the validation set. 
+ <!--  * Hint: Use the function *cross_val_score()*.-->
  - Obtain the confusion matrix and a full report of the metrics of the best model.
  - Interpret, if possible, the best model.
 
