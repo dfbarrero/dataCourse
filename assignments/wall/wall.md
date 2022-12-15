@@ -59,7 +59,7 @@ Since the search space increases exponentially with the number of hyperparameter
 We will start the practice by loading the data:
 
 - Download the [dataset](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv). 
-- Build a Pandas dataframe from the CSV. Note that the CSV has no headers, so you will have to add them somehow. Please, try not to write down a 24-elements list by hand.
+- Build a Pandas dataframe from the CSV. Note that the CSV has no headers, so you will have to add them somehow. Please, try not to write down a 25-elements list by hand.
 
 We will continue with an EDA, which unlike previous practices, it will incorporate a multivariate analysis.
 
