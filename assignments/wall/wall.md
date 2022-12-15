@@ -63,7 +63,7 @@ We will start the practice by loading the data:
 
 We will continue with an EDA, but on the contrary than previous assignments, it will incorporate a multivariate analysis.
 
-- Do an EDA including the usual aspects: presence of empty values, outliers, number of instances, number and type of attributes, main statistical properties of attributes, univariate and bivariate analysis, including correlations among attributes. 
+- Do an EDA including the usual aspects: presence of empty values, outliers, number of instances, number and type of attributes, main statistical properties of attributes, univariate and bivariate analysis, including correlations. 
 - Normalize the data, for this purpose use the *MinMaxScaler* class of Scikit-Learn. In this case normalization is not very relevant because all attributes have the same units and share similar magnitudes, but some algorithms such as PCA may benefit.
 - Extend the EDA with a multivariate analysis. To do this end apply PCA and visualize the components in 2D (or 3D, if desired) and visualize the amount of variance explained by each component. Evaluate the difficulty of classification based on this information along with the convenience of reducing the dimensionality of the data set with PCA. 
 
