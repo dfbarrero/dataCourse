@@ -41,7 +41,8 @@ from sklearn.model_selection import GridSearchCV
 
 iris = datasets.load_iris()
 
-parameters = {'kernel':('linear', 'rbf'), 'C':[1, 10]}
+parameters = {'kernel':('linear', 'rbf'), 
+              'C':[1, 10]}
 
 svc = svm.SVC()
 clf = GridSearchCV(svc, parameters)
@@ -51,7 +52,7 @@ clf.best_params_
 
 Please observe that *GridSearchCV()* returns an object that contains the result of the search, but behaves like a model.
 
-Since the search space increases exponentially with the number of hyperparameters to be optimized, grid search becomes computationally intractable with some ease. A randomized search may be useful in these cases (*see RandomizedSearchCV()*).
+Since the search space increases exponentially with the number of hyperparameters to be optimized, grid search becomes computationally intractable with some ease. A randomized search may be useful in these cases (*see RandomizedSearchCV()*), or other much more advanced methods such as bayesian optimization of Genetic Algorithms.
 
 ## Tasks
 
