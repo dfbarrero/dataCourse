@@ -97,6 +97,6 @@ Predict the robot's action with a MLP.
     * Activation function: ‘identity’, ‘logistic’, ‘tanh’ and ‘relu’.
     * Learning rate.
     * Momentum. 
-    * Observation: Some combinations of hyperparameters might affect the network convergence and in that case it rises a ConvergenceWarning warning. You may want to increase the number of epochs, with an increase of the training time, or just get rid of those warnings. 
+    * Observation: Some combinations of hyperparameters might affect the network convergence and in that case it rises a ConvergenceWarning warning. You may want to increase the number of epochs, with an increase of the training time, or just get rid of those warnings. More information (here)[https://stackoverflow.com/questions/53784971/how-to-disable-convergencewarning-using-sklearn].
 
 Try to improve the above model by any means you deem appropriate. You can, for example, balance the training set by oversampling the minority class, use the PCA as input to the classifier, or apply ensemble-based classifiers.
