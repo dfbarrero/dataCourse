@@ -81,7 +81,7 @@ We continue with predictive modeling. The goal is to predict the robot's action 
  - Interpret, if possible, the best model.
 
 Predict the robot's action with a MLP.
-  - Train a MLP classifier as implemented in Scikit-Learn (class *MLPClassifier*, please check out the reference documentation) to predict the robot action. Manually set a collection of hyperparameters keeping 'sgd' as optimizer.
+  - Train a MLP classifier as implemented in Scikit-Learn (class *MLPClassifier*), please check out the reference documentation) to predict the robot action. Manually set a collection of hyperparameters keeping 'sgd' as optimizer.
   - Use hyperparameter tuning to select a good set of the following hyperparameters:
     * Number of hidden layers.
     * Number of neurons per layer.
