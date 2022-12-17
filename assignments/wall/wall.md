@@ -86,7 +86,7 @@ Predict the robot's action with a MLP.
     * Hint: Use Scikit-Learn reference documentation: [MLPClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
   - Manually choose a reasonable network architecture (number of layers and neurons) with the argument *hidden_layer_sizes*.
   - Plot the loss function (attribute *loss_curve_* of the trained model) during training with very high learning rate, high learning rate, low learning rate and low learning rate setting the rest of hyperparameters to their default values. The learning rate is given by *learning_rate_init*. Use the following figure as reference.
-    * Observation: Take into account that Scikit stops the training by default when the loss function does not improve by an amount given by the hyperparameter 'tol'; set this hyperparameter to 0 if you want a nicer plot.
+    * Observation: Take into account that Scikit stops the training by default when the loss function does not improve by an amount given by the hyperparameter *tol*; set this hyperparameter to 0 if you want a nicer plot.
   <img align="center" src="learningrate.png" width="300">
   - Plot the loss function during training with different values of momentum.
   - Plot the loss function during training with *sgd* and *adam* optimizers. 
