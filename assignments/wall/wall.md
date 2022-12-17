@@ -83,7 +83,7 @@ We continue with predictive modeling. The goal is to predict the robot's action 
 
 Predict the robot's action with a MLP.
   - Train a MLP classifier as implemented in Scikit-Learn (class *MLPClassifier*), please check out the reference documentation) to predict the robot action. Manually set a collection of hyperparameters keeping 'sgd' as optimizer.
-  - Plot the loss function (attribute *loss_curve_* of the trained model) during training with different optimizers: ‘lbfgs’, ‘sgd’ and ‘adam’. Use Scikit-Learn default hyperparameters. ‘lbfgs’ is an optimization method in the family of quasi-newton methods.
+  - Plot the loss function (attribute *loss_curve_* of the trained model) during training with ‘sgd’ and ‘adam’ optimizers. Use Scikit-Learn default hyperparameters. 
   - Plot the loss function (attribute *loss_curve_* of the trained model) during training with different adaptative learning rate strategies: ‘constant’, ‘invscaling’ and ‘adaptive’. Use Scikit-Learn default hyperparameters.
   -   - Use hyperparameter tuning to select a good set of the following hyperparameters. Some combinations of hyperparameters might affect the network convergence and in that case it rises a ConvergenceWarning warning. You may want to increase the number of epochs, with an increase of the training time, or just get rid of those warnings. Compare the result with the previous models and discuss it.
     * Number of hidden layers.
