@@ -71,7 +71,7 @@ We continue with predictive modeling. The goal is to predict the robot's action 
 
 - Set a baseline to compare with future results. Calculate the accuracy and F1 (look for the Scikit-Learn function *f1_score()*, with a weighted average) of a dummy classifier. What is the difference between them?
 - Get a train, validation and test set.
-- Apply appropriate classifiers with the default hyperparameters, obtaining F1. Since the dataset is unbalanced, stratify the split between the training and test sets to ensure that all classes are present in the same proportion. Note that the dataset is multi-class, so certain algorithms do not apply, and other algorithms will need adaptations.
+- Apply appropriate classifiers with the default hyperparameters, obtaining F1. Since the dataset is unbalanced, stratify the split between the training and test sets to ensure that all classes are present in the same proportion. Note that the dataset is multi-class, so certain algorithms do not apply, and other algorithms will need adaptations. Use any collection of classifiers of your election with the exception of a MLP (artificial neural network).
 - Optimize hyperparameters for each of the previous classifiers and compare the results. Use the *GridSearchCV()* function for this with weighted F1 as score.
   * Hint: This operation requires the training of a multitude of models and can potentially be computationally very demanding, especially if cross validation is added (not required for this practice, but recommended). One way to speed up the execution is to parallelize the search, for which the *n_jobs* parameter is used in the *GridSearchCV()* function. *n_jobs* contains the number of processors with which the search will be performed, by default it is 1, a value of -1 indicates the use of all processors.
   * Store the best model in a variable for later use.
@@ -79,5 +79,16 @@ We continue with predictive modeling. The goal is to predict the robot's action 
  <!--  * Hint: Use the function *cross_val_score()*.-->
  - Obtain the confusion matrix and a full report of the metrics of the best model.
  - Interpret, if possible, the best model.
+
+Predict the robot's action with a MLP.
+  - Train a MLP classifier as implemented in Scikit-Learn (class *MLPClassifier*, please check out the reference documentation) to predict the robot action. Manually set a collection of hyperparameters keeping 'sgd' as optimizer.
+  - Use hyperparameter tuning to select a good set of the following hyperparameters:
+    * Number of hidden layers.
+    * Number of neurons per layer.
+    * Activation function: ‘identity’, ‘logistic’, ‘tanh’ and ‘relu’.
+    * Learning rate (argument *learning_rate_init* in Scikit-Learn's *MLPClassifier()*).
+    * Momentum.
+  - Compare the loss function during training with different optimizers: ‘lbfgs’, ‘sgd’ and ‘adam’. Use Scikit-Learn default hyperparameters.
+  - Compare the loss function during training with different adaptative learning rate strategies: ‘constant’, ‘invscaling’ and ‘adaptive’. Use Scikit-Learn default hyperparameters.
 
 Try to improve the above model by any means you deem appropriate. You can, for example, balance the training set by oversampling the minority class, use the PCA as input to the classifier, or apply ensemble-based classifiers.
