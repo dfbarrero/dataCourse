@@ -89,7 +89,7 @@ Predict the robot's action with a MLP.
     * Observation: Take into account that Scikit stops the training by default when the loss function does not improve by an amount given by the hyperparameter 'tol'; set this hyperparameter to 0 if you want a nicer plot.
   <img align="center" src="learningrate.png" width="300">
   - Plot the loss function during training with different values of momentum.
-  - Plot the loss function during training with ‘sgd’ and ‘adam’ optimizers. 
+  - Plot the loss function during training with *sgd* and *adam* optimizers. 
   - Manually set the hyperparameters to obtain the best performance you can, do not spend too much time in this task, just try a few shots and keep the results.
   - Use grid or random search to select a good set of the following hyperparameters. Compare the result with the previous models and discuss it.
     * Number of hidden layers.
