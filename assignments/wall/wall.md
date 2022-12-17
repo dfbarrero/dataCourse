@@ -89,7 +89,7 @@ Predict the robot's action with a MLP.
     * Activation function: ‘identity’, ‘logistic’, ‘tanh’ and ‘relu’.
     * Learning rate (argument *learning_rate_init* in Scikit-Learn's *MLPClassifier()*).
     * Momentum.
-  - Compare the loss function during training with different optimizers: ‘lbfgs’, ‘sgd’ and ‘adam’. Use Scikit-Learn default hyperparameters.
-  - Compare the loss function during training with different adaptative learning rate strategies: ‘constant’, ‘invscaling’ and ‘adaptive’. Use Scikit-Learn default hyperparameters.
+  - Compare the loss function (attribute *loss_curve_* of the trained model) during training with different optimizers: ‘lbfgs’, ‘sgd’ and ‘adam’. Use Scikit-Learn default hyperparameters. ‘lbfgs’ is an optimization method in the family of quasi-newton methods.
+  - Compare the loss function (attribute *loss_curve_* of the trained model) during training with different adaptative learning rate strategies: ‘constant’, ‘invscaling’ and ‘adaptive’. Use Scikit-Learn default hyperparameters.
 
 Try to improve the above model by any means you deem appropriate. You can, for example, balance the training set by oversampling the minority class, use the PCA as input to the classifier, or apply ensemble-based classifiers.
