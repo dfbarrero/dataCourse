@@ -96,7 +96,7 @@ Predict the robot's action with a MLP.
     * Number of neurons per layer.
     * Activation function: ‘identity’, ‘logistic’, ‘tanh’ and ‘relu’.
     * Learning rate.
-    * Momentum.
+    * Momentum. 
     * Observation: Some combinations of hyperparameters might affect the network convergence and in that case it rises a ConvergenceWarning warning. You may want to increase the number of epochs, with an increase of the training time, or just get rid of those warnings. 
 
 Try to improve the above model by any means you deem appropriate. You can, for example, balance the training set by oversampling the minority class, use the PCA as input to the classifier, or apply ensemble-based classifiers.
