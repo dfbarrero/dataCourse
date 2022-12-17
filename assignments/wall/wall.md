@@ -83,7 +83,7 @@ We continue with predictive modeling. The goal is to predict the robot's action 
 
 Predict the robot's action with a MLP.
   - Train a MLP classifier as implemented in Scikit-Learn (class *MLPClassifier*), please check out the reference documentation) to predict the robot action. Keep Scikit-Learn's default configuration. 
-    * Hint: Use Scikit-Learn reference documentation: (MLPClassifier)[https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html].
+    * Hint: Use Scikit-Learn reference documentation: [MLPClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
   - Manually choose a reasonable network architecture (number of layers and neurons) with the argument *hidden_layer_sizes*.
   - Plot the loss function (attribute *loss_curve_* of the trained model) during training with very high learning rate, high learning rate, low learning rate and low learning rate setting the rest of hyperparameters to their default values. The learning rate is given by *learning_rate_init*. Use the following figure as reference.
     * Observation: Take into account that Scikit stops the training by default when the loss function does not improve by an amount given by the hyperparameter 'tol'; set this hyperparameter to 0 if you want a nicer plot.
@@ -97,6 +97,6 @@ Predict the robot's action with a MLP.
     * Activation function: ‘identity’, ‘logistic’, ‘tanh’ and ‘relu’.
     * Learning rate.
     * Momentum. 
-    * Observation: Some combinations of hyperparameters might affect the network convergence and in that case it rises a ConvergenceWarning warning. You may want to increase the number of epochs, with an increase of the training time, or just get rid of those warnings. More information (here)[https://stackoverflow.com/questions/53784971/how-to-disable-convergencewarning-using-sklearn].
+    * Observation: Some combinations of hyperparameters might affect the network convergence and in that case it rises a ConvergenceWarning warning. You may want to increase the number of epochs, with an increase of the training time, or just get rid of those warnings. More information in [StackOverflow](https://stackoverflow.com/questions/66938102/hide-scikit-learn-convergencewarning-increase-the-number-of-iterations-max-it).
 
 Try to improve the above model by any means you deem appropriate. You can, for example, balance the training set by oversampling the minority class, use the PCA as input to the classifier, or apply ensemble-based classifiers.
