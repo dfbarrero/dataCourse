@@ -5,6 +5,7 @@
 - To perform a systematic hyperparameter optimization.
 - Apply various multilabel classification algorithms.
 - To understand various uses of PCA.
+- Use Scikit-Learn implementation of MLPs.
 
 ## Introduction
 In this practice a robot controller is going to be trained to follow walls. The controller's perception is based on readings from 24 sensors spread around the robot, spaced at a constant angle. The robot can perform four actions: Move-Forward, Sharp-Right-Turn, Slight-Right-Turn and Slight-Left-Turn. The training of the controller will be performed with a dataset available at [this link](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv).
