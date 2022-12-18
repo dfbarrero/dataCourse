@@ -18,12 +18,12 @@ Perform an EDA, if it has not been previously done.
 
 We continue with predictive modeling. The goal is to predict the robot's action based on its sonar sensor readings. 
 
-- Implement a neural network with Keras that classifies the robot action. Remember that the output layer activation should be 'sigmoid' and the input data should be scaled. Compute the loss and accuracy on validation and use a 'sparse_crossentropy_loss' as loss function.
+- Implement a neural network with Keras that classifies the robot action. Remember that the output layer activation should be 'sigmoid' and the input data should be scaled. Compute the loss and accuracy on validation and apply a 'sparse_categorical_crossentropy' as loss function.
   * On the contrary than Scikit-Learn, Keras does not accept string labels as targets, it must be integers. Please check out the class [sklearn.preprocessing.LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html).
-- Manually choose (i.e. do not use grid or random search)  a good learning rate. 
-- Manually choose the best performing optimizer: ""XXX
-- Now we will play with some hyperparameters. Do not expect an improvement of the model performance.
+- Manually choose (i.e. do not use grid or random search) a good learning rate by plotting the loss and accuracy on validation over time. 
+- Compare the evolution of loss and accuracy over time of the network trained with "sgd", "adam", "rmsprop", "adagrad" and "adam".
+- Now we will play with some hyperparameters. In the following, do not expect an improvement of the model performance.
   * Change the output layer activation function to linear or ReLu. How does the performance change?.
-  * Train the network with unscaled data. What happens?
+  * Train the network with unscaled data and the best hyperparameters you have found. What happens?
 
 
