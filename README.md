@@ -32,6 +32,8 @@
 
 * [Control of a wall-following robot with Keras](assignments/wall/wall-keras.md)
 
+* [Solar System planets image classification](assignments/planets/planets.md)
+
 * [Sunsplots forecasting with an autoregressive neural network](assignments/sunspots/sunspots-ar.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/sunspots/sunspots-ar.ipynb)
 
 * [Sunsplots forecasting with a deep autoregressive neural network](assignments/sunspots/sunspots-LSTM.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/sunspots/sunspots-LSTM.ipynb)
