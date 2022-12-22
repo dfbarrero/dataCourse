@@ -203,20 +203,22 @@
  	   \column{.5\textwidth}
 	   \begin{block}{Conda environment for Data Science}
 	   	\begin{enumerate}
-			\item \texttt{conda create --name ml seaborn=0.9.0}
+			\item \texttt{conda create --name ml}
 			\item \texttt{source activate ml}
-			\item \texttt{conda install ipython}
-			\item \texttt{conda install nb\_conda}
+			\item \texttt{conda install jupyter}
 			\item \texttt{conda install scikit-learn}
+			\item \texttt{conda install matplotlib}
+			\item \texttt{conda install seaborn}
 		\end{enumerate}
 	   \end{block}
 
  		\column{.5\textwidth}
 		List environments: \\ \quad \texttt{conda info --envs}\\
-		Create env.: \\ \quad \texttt{conda create --name <name>}\\
+		Create env.: \\ \quad \texttt{conda create --name <env>}\\
 		Activate environment: \\ \quad \texttt{source activate <env>}\\
 		Install package: \\ \quad \texttt{conda install <package>}\\
 		List packages: \\ \quad \texttt{conda list}\\
+		Remove environment: \\ \quad \texttt{conda env remove -n <env>}\\
 		Exit environment: \\ \quad \indent \texttt{conda deactivate}
 	\end{columns}
 \end{frame}
