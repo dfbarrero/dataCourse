@@ -9,14 +9,14 @@ In this practice a robot controller is going to be trained to follow walls. The 
 
 ## Tasks
 
-We will start the practice by loading the data:
+1.- We will start the practice by loading the data:
 
 - Download the [dataset](https://raw.githubusercontent.com/dfbarrero/dataCourse/master/assignments/wall/sensor_readings_24.csv). 
 - Build a Pandas dataframe from the CSV. Note that the CSV has no headers, so you will have to add them somehow. Please, try not to write down a 25-elements list by hand.
 
-Perform an EDA, if it has not been previously done.
+2.- Perform an EDA, if it has not been previously done.
 
-We continue with predictive modeling. The goal is to predict the robot's action based on its sonar sensor readings. 
+3.- We continue with predictive modeling. The goal is to predict the robot's action based on its sonar sensor readings. 
 
 - Implement a neural network with Keras that classifies the robot action. Remember that the output layer activation should be 'sigmoid' and the input data should be scaled. Compute the loss and accuracy on validation and apply a 'sparse_categorical_crossentropy' as loss function.
   * On the contrary than Scikit-Learn, Keras does not accept string labels as targets, it must be integers. Please check out the class [sklearn.preprocessing.LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html).
