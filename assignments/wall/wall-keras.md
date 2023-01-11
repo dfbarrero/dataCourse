@@ -23,7 +23,7 @@ In this practice a robot controller is going to be trained to follow walls. The 
 - Manually choose (i.e. do not use grid or random search) a good learning rate by plotting the loss and accuracy on validation over time. 
 - Compare the evolution of loss and accuracy over time of the network trained with "sgd", "adam", "rmsprop", "adagrad" and "adam".
 - Now we will play with some hyperparameters. In the following, do not expect an improvement of the model performance.
-  * Change the output layer activation function to linear or ReLu. How does the performance change?.
+  * Change the output layer activation function to linear or ReLu. How does the performance change?
   * Train the network with unscaled data and the best hyperparameters you have found. What happens?
 
 
