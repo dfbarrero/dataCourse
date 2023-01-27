@@ -32,6 +32,8 @@
 
 * [Control of a wall-following robot with Keras](assignments/wall/wall-keras.md)
 
+* [Stellar objects identification with Machine Learning](https://github.com/dfbarrero/dataCourse/blob/master/assignments/stellar/stellar.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/stellar/stellar.ipynb)
+
 * [Solar System planets image classification](assignments/planets/planets.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/planets/planets.ipynb)
 
 * [Sunsplots forecasting with a deep autoregressive neural network](assignments/sunspots/sunspots-LSTM.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/sunspots/sunspots-LSTM.ipynb)
