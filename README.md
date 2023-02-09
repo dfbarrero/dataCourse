@@ -50,6 +50,8 @@
 
 ## Notebooks
 
+* [iPython](tools/iPython.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/tools/iPython.ipynb)
+
 * [Numpy](numpy/numpy.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/numpy/numpy.ipynb)
 
 * [Pandas](pandas/Pandas.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/pandas/Pandas.ipynb)
