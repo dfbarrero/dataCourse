@@ -50,11 +50,11 @@
 
 ## Notebooks
 
-* [iPython](tools/ipython.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/tools/ipython.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/tools/ipython.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
+* [iPython](tools/ipython.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/tools/ipython.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
 
-* [Numpy](numpy/numpy.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/numpy/numpy.ipynb)
+* [Numpy](numpy/numpy.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/numpy/numpy.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
 
-* [Pandas](pandas/Pandas.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/pandas/Pandas.ipynb)
+* [Pandas](pandas/Pandas.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/pandas/Pandas.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
 
 * [Dataviz with Matplotlib](dataviz/DatavizWithMatplotlib.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithMatplotlib.ipynb)
 
