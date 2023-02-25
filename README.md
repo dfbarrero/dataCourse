@@ -32,11 +32,11 @@
 
 * [Control of a wall-following robot with Keras](assignments/wall/wall-keras.md)
 
-* [Stellar objects identification with Machine Learning](https://github.com/dfbarrero/dataCourse/blob/master/assignments/stellar/stellar.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/stellar/stellar.ipynb)
+* [Stellar objects identification with Machine Learning](https://github.com/dfbarrero/dataCourse/blob/master/assignments/stellar/stellar.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/assignments/stellar/stellar.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a> 
 
-* [Solar System planets image classification](assignments/planets/planets.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/planets/planets.ipynb)
+* [Solar System planets image classification](assignments/planets/planets.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/assignments/planets/planets.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a> 
 
-* [Sunsplots forecasting with a deep autoregressive neural network](assignments/sunspots/sunspots-LSTM.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/assignments/sunspots/sunspots-LSTM.ipynb)
+* [Sunsplots forecasting with a deep autoregressive neural network](assignments/sunspots/sunspots-LSTM.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/assignments/sunspots/sunspots-LSTM.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>  
 
 * [Paper "Deep Neural Networks With Convolutional and LSTM Layers for SYM-H and ASY-H Forecasting"](assignments/papers/symh.md)
 
