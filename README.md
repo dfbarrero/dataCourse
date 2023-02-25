@@ -50,20 +50,19 @@
 
 ## Notebooks
 
-* [iPython](tools/ipython.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/tools/ipython.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
+* [iPython](tools/ipython.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/tools/ipython.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
 
-* [Numpy](numpy/numpy.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/numpy/numpy.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
+* [Numpy](numpy/numpy.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/numpy/numpy.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
 
-* [Pandas](pandas/Pandas.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/pandas/Pandas.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
+* [Pandas](pandas/Pandas.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/pandas/Pandas.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
 
-* [Dataviz with Matplotlib](dataviz/DatavizWithMatplotlib.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithMatplotlib.ipynb)
+* [Dataviz with Matplotlib](dataviz/DatavizWithMatplotlib.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithMatplotlib.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a> 
 
-* [Dataviz with Seaborn](dataviz/DatavizWithSeaborn.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithSeaborn.ipynb)
+* [Dataviz with Seaborn](dataviz/DatavizWithSeaborn.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/dataviz/DatavizWithSeaborn.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a> 
 
-* [Introduction to Scikit-Learn](mlfoundations/scikit-learn.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/mlfoundations/scikit-learn.ipynb)
+* [Introduction to Scikit-Learn](mlfoundations/scikit-learn.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/mlfoundations/scikit-learn.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a> 
 
-* [Introduction to Keras](ann/keras.ipynb) [(Open in Colab)](https://githubtocolab.com/dfbarrero/dataCourse/blob/master/ann/keras.ipynb)
-
+* [Introduction to Keras](ann/keras.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/dl/cnn.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a> 
 
 ## Compilation
 
