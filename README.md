@@ -32,6 +32,8 @@
 
 * [Control of a wall-following robot with Keras](assignments/wall/wall-keras.md)
 
+* [Robotic control based on hand gestures](assignments/gesture/gesture.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/assignments/gesture/gesture.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a>
+
 * [Stellar objects identification with Machine Learning](https://github.com/dfbarrero/dataCourse/blob/master/assignments/stellar/stellar.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/assignments/stellar/stellar.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a> 
 
 * [Solar System planets image classification](assignments/planets/planets.ipynb) <a href="https://colab.research.google.com/github/dfbarrero/dataCourse/blob/master/assignments/planets/planets.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/></a> 
