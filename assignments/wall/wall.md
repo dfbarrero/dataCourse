@@ -27,6 +27,12 @@ The most straightforward way to balance the classes is to undersample the majori
 
 More advanced techniques involve synthetically generating new instances of the minority class. For example, [SMOTE](https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/) is a technique of some sophistication and quite popular that creates new instances of the minority class by sampling the straight line joining a minority class instance with some close neighbor. 
 
+[link text](https://)SMOTE is not supported by Sckit-Learn, we need another library named imblearn.
+
+~~~iPython
+!pip install imblearn
+~~~
+
 ## Hyperparameter optimization
 
 The performance of the models depends strongly on the hyperparameters, which is more clear when dealing with real-world problems. Since performance can be quantified, we can view this problem as a pure optimization problem, for which there are a multitude of techniques in the field of AI. 
