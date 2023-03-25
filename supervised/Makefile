@@ -1,6 +1,9 @@
 # Customize these two lines
-TARGETS=muii mcyte # Courses to compile
+#TARGETS=muii mcyte # Courses to compile
+TARGETS=mcyte # Courses to compile
 NAME=supervised
+
+$(warning MUII deshabilitado)
 
 # Do not touch
 TEX=xelatex -interaction nonstopmode -halt-on-error -file-line-error

@@ -246,7 +246,7 @@
         \end{enumerate}
         \end{block}
 
-        Performace is measured with a regression metric, by default, $R^2$
+        Performace is measured with a regression metric %, by default, $R^2$
 
  	   \column{.40\textwidth}
         \centering 1-NN\\
@@ -390,17 +390,17 @@
     \begin{columns}
  	   \column{.2\textwidth}
     		\begin{block}{Lasso (L1)}
-            	$\alpha \sum_j^n |\beta_j|$
+            	$\alpha \sum_{j=1}^n |\beta_j|$
         	\end{block}
 
 	   \column{.2\textwidth}
      		\begin{block}{Ridge (L2)}
-            	$\frac{\alpha}{2} \sum_j^n \beta_j^2$
+            	$\alpha \sum_{j=1}^n \beta_j^2$
         	\end{block}
 
 	   \column{.5\textwidth}
      		\begin{block}{ElasticNet}
-			   $\alpha \left( r \sum_j^n |\beta_j| + \frac{1-r}{2} \sum_j^n \beta_j^2 \right)$
+			   $\alpha \left( r \sum_{j=1}^n |\beta_j| + (1-r) \sum_{j=1}^n \beta_j^2 \right)$
         	\end{block}
     \end{columns}
 \end{frame}
@@ -409,7 +409,7 @@
 \begin{frame}{Linear models}{Ridge regression}
 	Ridge regression (or L2 regularization) adds a new term to cost function
     \begin{equation*}
-        MSE + \frac{\alpha}{2} \sum_{i=1}^n \beta_i^2
+        MSE + \alpha \sum_{i=1}^n \beta_i^2
     \end{equation*}
     $\alpha$ controls the model complexity
 	\begin{itemize}
@@ -448,7 +448,7 @@
 \begin{frame}{Linear models}{ElasticNet}
 	Lasso and Ridge can be combined
     \begin{equation*}
-        MSE + \alpha \left( r \sum_{i=1}^n |\beta_i| + \frac{(1-r)}{2} \sum_{i=1}^n \beta_i^2 \right)
+        MSE + \alpha \left( r \sum_{i=1}^n |\beta_i| + (1-r) \sum_{i=1}^n \beta_i^2 \right)
     \end{equation*}
     Two hyperparameters
 	\begin{itemize}
@@ -634,6 +634,9 @@
 	\end{tikzpicture}
 \end{frame}
 
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
 \begin{frame}{Linear models}{Linear models for classification (II)}
     \begin{columns}
  	   \column{.5\textwidth}
@@ -648,6 +651,8 @@
         \centering \includegraphics[width=\linewidth]{figs/logistic-c.png}
     \end{columns}
 \end{frame}
+
+}{}
 
 %\begin{frame}{Linear models}{Linear models for classification (III)}
 %    \centering \includegraphics[width=0.8\linewidth]{figs/logistic.png}
@@ -814,7 +819,7 @@
         \item Pre-prunning: Stop the creation of the tree early accorgind to some criteria
             \begin{itemize}
                 \item Maximum depth, number of leaves, minimum number of points in a node, ...
-                \item Implemented in Sciki-Learn
+                \item Implemented in Scikit-Learn
             \end{itemize}
         \item Post-prunning: Build the tree and then remove nodes with little information
     \end{itemize}
@@ -855,9 +860,9 @@
    \begin{itemize}
        \item It does not inform about the relationship between attribute and target
        \item It quantifies the importance in \textit{the tree}
-       \begin{itemize} 
-            \item Correlated attributes may score low importance
-       \end{itemize}
+       %\begin{itemize} 
+       %     \item Correlated attributes may score low importance
+       %\end{itemize}
    \end{itemize}
 
 \end{frame}
@@ -1113,7 +1118,7 @@
         \item No data randomization, strong pre-pruning
     \end{itemize}
 
-    A new hyperparameter: learning rate
+    A new hyperparameter: \textit{learning rate}
     \begin{itemize}
         \item How strongly each tree tries to correct
         \item High learning rate makes stronger corrections: More complex models
@@ -1127,6 +1132,8 @@
     \end{itemize}
 \end{frame}
 
+\IfStrEq{\modo}{muii}{
+
 \begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (II)}
     Feature importances with cancer dataset\\
     \bigskip
@@ -1135,7 +1142,6 @@
     \flushleft The \href{https://xgboost.ai/}{(XGBoost)} package provides a high performance implementation of gradient boosted trees
 \end{frame}
 
-\IfStrEq{\modo}{muii}{
     \subsection{Scikit-Learn}
 
     \begin{frame}{Ensembles of Decision Trees}{Ensembles of Decision Trees : Scikit-learn}
@@ -1174,7 +1180,7 @@
 
 
 \subsection{Summary}
-\begin{frame}{Ensembles of Decision Trees}{Summary}
+\begin{frame}{Ensembles of Decision Trees}{Summary: Gradient boosting}
 	\begin{center}
 	\begin{tabular}{cp{3cm}p{3cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
@@ -1276,7 +1282,7 @@
         \item ... without computing the expansion!
     \end{itemize}
 
-    It applies a function named \texttt{kernel}
+    It applies a function named \alert{kernel}
     \begin{itemize}
         \item Polynomial kernel, up to a certain degree
         \item Radial basis function (RBF) kernel (Gaussian kernel)
@@ -1286,6 +1292,10 @@
 \end{frame}
 
 \subsection{Understanding SVMs}
+
+\IfStrEq{\modo}{muii}{
+    \subsection{Scikit-Learn}
+
 \begin{frame}{Support Vector Machines}{Understanding SVMs (I)}
     To predict a new point, the distance to each of the support vector is computed
     \begin{itemize}
@@ -1306,6 +1316,8 @@
 \begin{frame}[plain]{Support Vector Machines}{Understanding SVMs (II)}
     \includegraphics[width=0.9\linewidth]{figs/svm-hyperparam.png}
 \end{frame}
+
+}{}
 
 \begin{frame}{Support Vector Machines}{Understanding SVMs (III)}
     SVM is very sensitive to scale
