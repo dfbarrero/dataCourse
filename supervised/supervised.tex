@@ -187,7 +187,7 @@
     \begin{itemize}
         \item Smoother boundaries in larger $k$ values
         \item Model complexity decreases with $k$
-        \item If $k$ equals the number of samples, k-NN always predicts the most frequent class
+       % \item If $k$ equals the number of samples, k-NN always predicts the most frequent class
     \end{itemize}
     How to figure out the best $k$?
 \end{frame}
@@ -261,8 +261,8 @@
 
     $k$ determines the boundary smoothness
     \begin{itemize}
-        \item With $k=1$, prediction visits all data points
-        \item With large $k$ values, fit is worse
+        %\item With $k=1$, prediction visits all data points
+        \item With large $k$ values, fit is smoother
     \end{itemize}
 \end{frame}
 
@@ -363,13 +363,15 @@
 	\end{itemize}
     
     \begin{equation*}
-    MSE = \frac{1}{n} \sum_{i=1}^n (x_i - y_i)^2
+    MSE = \frac{1}{m} \sum_{i=1}^m (y_i - \hat{y}_i)^2
     \end{equation*}
 
-    Linear regression can be used to fit non-linear models    
-    \begin{itemize}
-        \item Just adding new attributes
-    \end{itemize}
+    where $m$ is the number of instances
+
+    %Linear regression can be used to fit non-linear models    
+    %\begin{itemize}
+    %    \item Just adding new attributes
+    %\end{itemize}
 \end{frame}
 
 \subsection{Regularized linear models}
@@ -378,7 +380,7 @@
 	\begin{itemize}
 		\item Added to the cost function
         \item Lineal models remain the same
-        \item Train to minimize cost function and coefficients
+        \item Train to minimize cost function and penalty
         \item Intercepts are not part of regularization
 	\end{itemize}
 
@@ -411,7 +413,7 @@
     \begin{equation*}
         MSE + \alpha \sum_{i=1}^n \beta_i^2
     \end{equation*}
-    $\alpha$ controls the model complexity
+    $\alpha$ controls the penalty
 	\begin{itemize}
 		\item If $\alpha = 0$ Ridge becomes a regular linear regression
         \item Optimal $\alpha$ depends on the problem
@@ -425,7 +427,7 @@
     \begin{equation*}
         MSE + \alpha \frac{1}{2} \sum_{i=1}^n |\beta_i|
     \end{equation*}
-    $\alpha$ controls the model complexity
+    $\alpha$ controls the penalty (and model complexity)
 	\begin{itemize}
 		\item If $\alpha = 0$ Ridge becomes a regular linear regression
         \item Optimal $\alpha$ depends on the problem
@@ -712,7 +714,7 @@
 	\end{tabular}
     \end{center}
 
-    Better when the number of features is large compared to the number of samples
+    %Better when the number of features is large compared to the number of samples
 
 \end{frame}
 
