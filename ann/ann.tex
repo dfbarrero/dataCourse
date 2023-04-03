@@ -102,17 +102,16 @@
    \begin{block}{Objectives}
       \begin{enumerate}
          \item Describe biological neurons and networks
-         \item Basics of artifical neurons and networks
+         \item Describe artifical neurons
+	 \item Introduce the MLP
          \item Understand the role of trainning in ANNs
-         \item Strengths and weaknesses of ANNs
+	 \item Understand MLP hyperparameters
       \end{enumerate} 
    \end{block}
 
    \begin{block}{Bibliography}
 	\begin{itemize}
-        \item A. Tettamanzi, M. Tomassini. \textit{Soft Computing. Integrating Evolutionary, Neural, and Fuzzy Systems}. Springer-Verlag. 2001
-	    \item McCulloch, W. and Pitts, W. (1943). \textit{A logical calculus of the ideas immanent in nervous activity}. Bulletin of Mathematical Biophysics, 7:115 - 133. 
-	    \item Rosenblatt, Frank.  (1958). \textit{The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain}. Psychological Review, 65:386-408
+        \item G\'eron, Aur\'elien. \textit{Hands-On Machine Learning with Scikit-Learn, Keras \& TensorFlow}. 2nd Edition. O'Reilly. 2019
 	\end{itemize}
    \end{block}
 \end{frame}
@@ -173,8 +172,12 @@
 	Scaling problem: connection weights may grow infinitely}
 	\item[1986] \textit{Rumelhart et al}. Re-emergence of ANN: Backpropagation
 	\note{Backpropagation learning for multi-layer feed forward nets (with non-linear, differentiable node functions)}
-	\item[201x] Convolutional Neural Networks (CNNs) - Deep learning
+	\item[2012] CNNs popularity - AlexNet - Rise of Deep Learning
 	\item[2014] \textit{Goodfellow et al.} Generative Adversarial Networks (GANs)
+	\item[2021] \textit{OpenAI}. Dall-e 2
+	\item[2022] Large Language Models (ChatGPT, GPT-3, new Bing)
+	\item[2023] Multimodal Large Language Models (GPT-4)
+	\item[20xx] ... AGI?
 	\end{itemize}
 
  	   \column{.20\textwidth}
@@ -182,50 +185,55 @@
 	   \end{columns}
 \end{frame}
 
-\subsection{Structure of neurons}
-\begin{frame}{Introduction}{Structure of neurons (I)}
-    \vspace{-0.3cm}
-    \begin{columns}
- 	   \column{.50\textwidth}
-		\begin{tabular}{r|r}\hline
-		\sc{Animal} & \sc{Neurons} \\\hline
-		Sponge & 0 \\
-		Roundworm & 302 \\
-		Jellyfish & 800 \\
-		Ant & 250,000 \\
-		Cockroach & 1,000,000 \\
-		Frog & 16,000,000 \\
-		Mouse & 71,000,000 \\
-		Cat & 760,000,000 \\
-		Macaque & 6,376,000,000 \\
-		Human & 86,000,000,000 \\
-		Elephant & 267,000,000,000 \\\hline
-		\end{tabular}
+\subsection{Biological neurons}
+%\begin{frame}{Introduction}{Structure of neurons (I)}
+%    \vspace{-0.3cm}
+%    \begin{columns}
+% 	   \column{.50\textwidth}
+%		\begin{tabular}{r|r}\hline
+%		\sc{Animal} & \sc{Neurons} \\\hline
+%		Sponge & 0 \\
+%		Roundworm & 302 \\
+%		Jellyfish & 800 \\
+%		Ant & 250,000 \\
+%		Cockroach & 1,000,000 \\
+%		Frog & 16,000,000 \\
+%		Mouse & 71,000,000 \\
+%		Cat & 760,000,000 \\
+%		Macaque & 6,376,000,000 \\
+%		Human & 86,000,000,000 \\
+%		Elephant & 267,000,000,000 \\\hline
+%		\end{tabular}
 
- 	   \column{.50\textwidth}
-	   \begin{block}{Human brain}
-		Neuron switching time: ~ 0.001 s\\
-  		Synapsis: ~10-100 thousand\\
-   		Scene recognition time: ~0.1 s
-	\end{block}
+% 	   \column{.50\textwidth}
+%	   \begin{block}{Human brain}
+%		Neuron switching time: ~ 0.001 s\\
+%  		Synapsis: ~10-100 thousand\\
+%   		Scene recognition time: ~0.1 s
+%	\end{block}
 
-    \begin{center}
-	        \includegraphics[width=0.9\linewidth]{figs/power.jpg}\\
-	        \tiny{\href{http://www.sjef.nu/a-basic-introduction-to-singularity-skepticism/}{(Source)}}
-	\end{center}
-    \end{columns}
-\end{frame}
+%    \begin{center}
+%	        \includegraphics[width=0.9\linewidth]{figs/power.jpg}\\
+%	        \tiny{\href{http://www.sjef.nu/a-basic-introduction-to-singularity-skepticism/}{(Source)}}
+%	\end{center}
+%    \end{columns}
+%\end{frame}
 
-\begin{frame}{Introduction}{Structure of neurons (II)}
+\begin{frame}{Introduction}{Biological neurons (I)}
 	%\centering\includegraphics[width=0.7\linewidth]{figs/neuronabio.png}\\
-	A neuron has a cell body ...
+	A neuron has a cell body (soma) ...
 		\begin{itemize}
-			\item ... a branching \textit{input} structure (dendrite) and 
-			\item ... a branching \textit{output} structure (axon)
+		\item ... a branching \textit{input} structure (dendrite) and 
+		\item ... a branching \textit{output} structure (axon)
+		\item ... an axon termination named \textit{synapses}
 		\end{itemize}
-	Axons connect to dendrites via \alert{synapses}
+	An \textit{action potential} (or signal) may propagate from dentrites to synapses
+		\begin{itemize}
+		\item The synapses release a chemical named \textit{neurotransmitter}
+		\item Given enougth neurotransmitters, a new neuron can fire
+		\end{itemize}
 
-	\bigskip
+	\medskip
 
 	\begin{columns}[c]
 	    \column{.1\textwidth}
@@ -237,17 +245,26 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Introduction}{Structure of neurons (III)}
-	A neuron only fires if its input signal exceeds a threshold
-	\begin{itemize}
-	\item Good connections allowing a large signal
-	\item Slight connections allowing a weak signal
-	\item Synapses may be either excitatory or inhibitory
-	\end{itemize}
-	Synapses vary in strength
-	\begin{itemize}
+\begin{frame}{Introduction}{Biological neurons (II)}
+	\begin{columns}[c]
+	    \column{.7\textwidth}
+		A neuron only fires if its input signal exceeds a threshold
+		\begin{itemize}
+		\item Good connections allowing a large signal
+		\item Slight connections allowing a weak signal
+		\item Synapses may be either excitatory or inhibitory
+		\end{itemize}
+
+		Synapses vary in strength
+		\begin{itemize}
 		\item Biological learning involves setting that strength
-	\end{itemize}
+		\end{itemize}
+		Biological neurons often are organized in layers
+
+	\column{.3\textwidth}
+		\includegraphics[width=\linewidth]{figs/cortex.png}
+	        \centering \tiny{\href{https://en.wikipedia.org/wiki/Cerebral_cortex}{(Source)}}
+    \end{columns}
 \end{frame}
 
 \section{Artificial neurons}
@@ -256,46 +273,39 @@
 
 \begin{frame}{Artificial neurons}{Definition (I)}
 
+    TLU: Threshold logic unit\\
+
     \input{figs/neuron.tex}
 
 	\bigskip
     \begin{columns}
  	   \column{.70\textwidth}
 		\begin{description}
-		\item[$a_i$] Normalized input ($0 \le a_i \le 1$)
+		\item[$a_i$] Input
 		\item[$w_{i}$] Weight of input $j$
 		\item[$\theta$] Threshold
 		\item[$g$] Activation function
 		\end{description}
 
  	   \column{.30\textwidth}
-	   \begin{block}{Neuron model (perceptron)}
+	    \begin{block}{Neuron model (TLU)}
 	   \vspace{-0.5cm}
 	   \begin{equation*}
-	   y=g\left( \sum_{i=1}^n w_{i} a_i \right)
+	   y=g\left( \sum_{i} w_{i} a_i \right)
 	   \end{equation*}
 	   \end{block}
     \end{columns}
 \end{frame}
 
 \begin{frame}{Artificial neurons}{Definition (II)}
-	\begin{itemize}
-	\item Each neuron has a threshold value
-	\item Each neuron has weighted inputs
-	\item The input signals form a weighted sum
-	\item If the activation level exceeds the threshold, the neuron activates
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Artificial neurons}{Definition (III)}
 	\begin{columns}
 	\column{0.60\textwidth}
 	The idealized activation function is a step function
 	\begin{equation*}
 	g(x) =
 	  \begin{cases}
-	      1  & \text{if } \sum_{i=1}^{N} w_i x_i > \theta\\
-		  0  & \text{otherwise}\\
+	      	1  & \text{if } \sum_{i=1}^{N} w_i x_i > \theta\\
+	  	0  & \text{otherwise}\\
 	  \end{cases}
 	\end{equation*}
 	The step function is rarely used in practice
@@ -322,6 +332,18 @@
  	\end{columns}
 
 \end{frame}
+
+\begin{frame}{Artificial neurons}{Definition (III)}
+	A single neuron can be used for \textit{linear binary classification}
+	\begin{itemize}
+	\item Computes linear combination of inputs
+	\item If the output exceeds the threshold, it assigns a positive class
+	\item ... othershise it assigns a negative class
+	\end{itemize}
+
+	Comparable to logistic regression or SVM
+\end{frame}
+
 
 \subsection{Logical gates with a neuron}
 \begin{frame}{Artificial neurons}{Logical gates with a neuron}
@@ -369,7 +391,7 @@
     \begin{columns}
  	   \column{.70\textwidth}
 		\begin{description}
-		\item[$a_i$] Normalized input ($0 \le a_i \le 1$)
+		\item[$a_i$] Input
 		\item[$w_{i}$] Weight of input $j$
 		\item[$w_0$] Bias
 		\item[$g$] Activation function
@@ -379,7 +401,7 @@
 	   \begin{block}{Neuron model}
 	   \vspace{-0.5cm}
 	   \begin{equation*}
-	   y=g\left( \sum_{i=0}^n w_{i} a_i \right)
+	   y=g\left( \sum_{i} w_{i} a_i \right)
 	   \end{equation*}
 	   \end{block}
     \end{columns}
@@ -403,12 +425,13 @@
 
 \subsection{Activation functions}
 \begin{frame}{Artificial neurons}{Activation functions: Sigmoid function}
+	Also known as the logistic function
 	\begin{itemize}
 		\item Biological motivation
 		\item S-shaped, continuous and everywhere differentiable
 		\item Asymptotically approach saturation points
 		\item Derivative fast computation
-        \item Range $\in [0, 1]$
+        	\item Range $\in [0, 1]$
 	\end{itemize}
 
 	\medskip
@@ -565,97 +588,207 @@
     The lack of non-linear activation function makes a network a simple linear regression
 \end{frame}
 
+\subsection{The Perceptron}
+\begin{frame}{Artificial neurons}{The Perceptron}
+	The Perceptron is a very simple ANN architecture
+	\begin{itemize}
+	\item Disclaimer: different defintions of Perceptron
+	\item Proposed by Rosenblatt in 1957
+	\end{itemize}
+
+	Perceptron: Layer of TLUs connected to all the inputs
+	\begin{itemize}
+	\item \textit{Input layer} contains special passthrough neurons
+	\item Multilabel classification
+	\end{itemize}
+
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{figs/perceptron.jpg}\\
+	\centering \tiny{\href{https://hackmd.io/@imkushwaha/perceptron}{(Source)}}
+	\end{center}
+\end{frame}
+
 \subsection{Learning limits}
 \begin{frame}{Artificial neurons}{Learning limits (I)}
 	\begin{center}
 	\includegraphics[width=0.9\linewidth]{figs/linear2.png}
 	\end{center}
-	Problem: A single neuron only can solve linearly separable problems
-	\note{Explicar sobre la pizarra funciones booleanas}
+	Problem: A single perceptron only can solve linearly separable problems
 \end{frame}
 
 \begin{frame}{Artificial neurons}{Learning limits (II)}
-	XOR cannot be implemented with a neuron
+	XOR cannot be implemented with a perceptron
 	\begin{center}
 	\includegraphics[width=0.7\linewidth]{figs/xor.jpg}
 	\end{center}
-	Solution: Neuronal networks
+	Solution: Stack several perceptrons 
 \end{frame}
 
-\section{Artificial Neural Networks}
+\section{The Multilayer Perceptron}
 \subsection{Definition}
 
-\begin{frame}{Artificial Neural Networks}{Definition (I)}
-    \begin{columns}
-	   \column{.80\textwidth}
-	\begin{itemize}
-	\item A very much simplified version of biological nerve systems
-	\item A set of nodes (neurons) 
-		\begin{itemize}
-		\item Each node has input and output
-		\item Each node performs a simple computation 
-		\end{itemize}
-	\item Weighted connections between nodes
-		\begin{itemize}
-		\item Connectivity gives the structure of the net
-		\item What can be computed by an ANN is primarily determined by the connections and their weights
-		\end{itemize}
-	\item It can \alert{recognize patterns}, \alert{learn} and \alert{generalize}
-	\end{itemize}
+\begin{frame}{The Multilayer Perceptron}{Definition (I)}
+	Neurons are arranged in \alert{layers} of TLU neurons
 
- 	   \column{.40\textwidth}
-	\includegraphics[width=\linewidth]{figs/network2.png}
-	\tiny{\href{https://tex.stackexchange.com/questions/540287/tikz-randomly-drop-connections-in-neural-network}{(Source)}}
-    \end{columns}
+	\begin{description}
+	\item[\textit{Input}] Which consists of our data
+	\item[\textit{Output}] Which are the net outcome
+	\item[\textit{Hidden}] (Optional) No direct interaction
+	\end{description}
+	Multilayer Perceptron, or simply \alert{MLP}
+	\bigskip
+
+        \input{figs/ann.tex}
 \end{frame}
 
-\begin{frame}{Artificial Neural Networks}{Definition (II)}
-	ANN properties
-	\begin{itemize}
-	\item General function approximator
-	\item Noise tolerance
-	\end{itemize}
+%\begin{frame}{The Multilayer Perceptron}{Definition (II)}
+%    \begin{columns}
+% 	\column{.6\textwidth}
+%	The input layer
+%	\begin{itemize}
+%	\item Introduces input values into the network
+%	\item No activation function or other processing
+%	\end{itemize}
+%	The hidden layer(s)
+%	\begin{itemize}
+%	\item Perform classification of features
+%	\item Two hidden layers are sufficient to solve any problem
+%	%\item Features imply more layers may be better
+%	\end{itemize}
+%	The output layer
+%	\begin{itemize}
+%	\item Functionally just like the hidden layers
+%	\item Outputs are passed on to the world outside the neural network
+%	\end{itemize}
 
-	Machine Learning tasks
-	\begin{itemize}
-	\item Supervised learning (classification and regression)
-	\item Unsupervised learning (known as \alert{self-organizing maps} in ANN terminology)
-	\end{itemize}
+% 	\column{.4\textwidth}
+%	\includegraphics[width=\linewidth]{figs/network2.png}
+%	\tiny{\href{https://tex.stackexchange.com/questions/540287/tikz-randomly-drop-connections-in-neural-network}{(Source)}}
+%    \end{columns}
+%\end{frame}
 
-	Many topologies
-	\begin{itemize}
-		\item Feed Forward networks (MLPs)
-		\item Recurrent, modular, etc
-	\end{itemize}
-
-    \bigskip
-
-	\centering \textit{Human readability less important than performance}
+\begin{frame}{The Multilayer Perceptron}{Definition (II)}
+    \begin{center}
+    	\includegraphics[width=0.6\paperheight]{figs/mlp.png}\\
+		\tiny \href{https://www.oreilly.com/library/view/neural-networks-and/9781492037354/ch01.html}{(Source)}
+    \end{center}
 \end{frame}
+
+%\subsection{Separability}
+%\begin{frame}{Feedforward Networks}{Separability}
+%    \begin{center}
+%	    \includegraphics[width=0.9\linewidth]{figs/sep.png}
+%    \end{center}
+
+%	\centering \href{https://github.com/dfbarrero/aiCourse/raw/master/ann/artificialNeuron.xlsx}{(A MLP in Excel)}
+%\end{frame}
+
+
+
 
 %\begin{frame}{Artificial Neural Networks}{What is a artificial neural network (III)}
-\begin{frame}[plain]{}{}
-\vspace{-0.2cm}
-\begin{center}
-    \begin{columns}
- 	   \column{.2\textwidth}
-	\href{http://www.asimovinstitute.org/neural-network-zoo/}{(More info)}
- 	   \column{.8\textwidth}
-	\includegraphics[width=0.7\linewidth]{figs/neuralnetworks.png}
-	\end{columns}
-\end{center}
-\end{frame}
+%\begin{frame}[plain]{}{}
+%\vspace{-0.2cm}
+%\begin{center}
+%    \begin{columns}
+% 	   \column{.2\textwidth}
+%	\href{http://www.asimovinstitute.org/neural-network-zoo/}{(More info)}
+% 	   \column{.8\textwidth}
+%	\includegraphics[width=0.7\linewidth]{figs/neuralnetworks.png}
+%	\end{columns}
+%\end{center}
+%\end{frame}
 
-\subsection{Application examples}
-\begin{frame}{Artificial Neural Networks}{Application examples (I)}
+\subsection{MLP for regression}
+
+\begin{frame}{The Multilayer Perceptron}{MLP for regression (I)}
+	One output neuron for each output dimension\\
 	\centering\includegraphics[width=0.9\linewidth]{figs/control.png}
 \end{frame}
 
-\begin{frame}{Artificial Neural Networks}{Application examples (II)}
+\begin{frame}{The Multilayer Perceptron}{MLP for regression (II)}
 	\centering\includegraphics[width=0.9\linewidth]{figs/robot.png}
 \end{frame}
 
-\begin{frame}{Artificial Neural Networks}{Application examples (III)}
+\begin{frame}{The Multilayer Perceptron}{MLP for regression (III)}
+	You usually do not want to limit the output
+	\begin{itemize}
+		\item Output layer with linear activation
+		\item ReLu allowed for strictly positive output
+	\end{itemize}
+
+	Loss function as in any regression
+	\begin{itemize}
+		\item Mean Squared Error (MSE) by default
+		\item Mean Absolute Error (MAE) is less sensitive to outlayers
+	\end{itemize}
+	In ANN, a loss function is an error function used to train a network
+\end{frame}
+
+\subsection{MLP for classification}
+
+\begin{frame}{The Multilayer Perceptron}{MLP for classification (I)} 
+	Binary classification
+	\begin{itemize}
+		\item One output neuron
+		\item Sigmoid activation
+		\item The output can be interpreted as a positive class probability
+	\end{itemize}
+
+	\centering \input{figs/ann.tex}
+\end{frame}
+
+\begin{frame}{The Multilayer Perceptron}{MLP for classification (II)} 
+    \begin{columns}
+ 	\column{.5\textwidth}
+	\begin{flushleft}
+	Multilabel classification
+	\begin{itemize}
+		\item One output neuron per label
+		\item Labels are not mutually exclusive
+		\item Sigmoid activation
+	\end{itemize}
+	%Cross-entropy loss function
+	\end{flushleft}
+
+ 	\column{.5\textwidth}
+    	\centering \includegraphics[width=0.8\linewidth]{figs/multilabel.jpg}\\
+    \end{columns}
+
+    \bigskip 
+
+    \centering \includegraphics[width=0.7\linewidth]{figs/multilabel-example.jpg}\\
+		\tiny \href{https://www.analyticsvidhya.com/blog/2021/07/demystifying-the-difference-between-multi-class-and-multi-label-classification-problem-statements-in-deep-learning/}{(Source)}
+\end{frame}
+
+\begin{frame}{The Multilayer Perceptron}{MLP for classification (III)} 
+    \begin{columns}
+ 	\column{.5\textwidth}
+	Multi-class classification
+	\begin{itemize}
+		\item Mutually exclusive label $\Rightarrow$ Probabilities are not independent
+		\item One output neuron per label
+		\item Softmax activation
+	\end{itemize}
+	
+	 \medskip
+
+    	\centering \includegraphics[width=0.6\linewidth]{figs/multiclass.jpg}\\
+		\tiny \href{https://www.analyticsvidhya.com/blog/2021/07/demystifying-the-difference-between-multi-class-and-multi-label-classification-problem-statements-in-deep-learning/}{(Source)}
+
+ 	\column{.5\textwidth}
+    	\centering \includegraphics[width=0.6\paperheight]{figs/mlp-softmax.png}\\
+		\tiny \href{https://www.oreilly.com/library/view/neural-networks-and/9781492037354/ch01.html}{(Source)}
+	\end{columns}
+
+\end{frame}
+
+\begin{frame}{The Multilayer Perceptron}{MLP for classification (IV): Example 1} 
+    	\centering \includegraphics[width=0.8\paperheight]{figs/mlp-multiclass.jpg}\\
+		\tiny \href{https://towardsdatascience.com/creating-a-multilayer-perceptron-mlp-classifier-model-to-identify-handwritten-digits-9bac1b16fe10}{(Source)}
+\end{frame}
+
+\begin{frame}{The Multilayer Perceptron}{MLP for classification (IV): Example 2} 
     \begin{columns}
  	   \column{.5\textwidth}
 	\centering\includegraphics[width=\linewidth]{figs/world.png}
@@ -665,10 +798,17 @@
     \centering \scriptsize\href{https://en.wikibooks.org/wiki/Cyberbotics\%27\_Robot\_Curriculum/}{(Source)}
 \end{frame}
 
-\begin{frame}{Artificial Neural Networks}{Application examples (IV)}
+\begin{frame}{The Multilayer Perceptron}{Autoencoders}
 	\centering\includegraphics[width=0.75\linewidth]{figs/autoencoder.png}\\\smallskip
 	\centering\includegraphics[width=0.3\linewidth]{figs/autoencoder2.png}\\
 	\scriptsize\href{http://i-systems.github.io/HSE545/machine\%20learning\%20all/KIMM/06\_KIMM\_Autoencoder.html}{(Source)}
+\end{frame}
+
+\subsection{Demo}
+\begin{frame}{The Multilayer Perceptron}{Demo}
+    \begin{center}
+	\href{http://playground.tensorflow.org/}{(Online demo)}
+    \end{center}
 \end{frame}
 
 %\subsection{Topologies}
@@ -735,81 +875,15 @@
 %	\end{center}
 %\end{frame}
 
-\section{Feedforward networks}
-\subsection{Definition}
-\begin{frame}{Feedforward networks}{Definition (I)}
-	Neurons are arranged in \alert{layers}
-	\begin{description}
-	\item[\textit{Input}] Which consists of any normalized data
-	\item[\textit{Output}] Which are the net outcome
-	\item[\textit{Hidden}] (Optional) No direct interaction
-	\end{description}
 
-	Also known as \textbf{multilayer perceptron} (MLP)
+\section{Gradient Descent}
+\subsection{Motivation}
 
-	\bigskip
-
-    \begin{columns}
- 	   \column{.2\textwidth}
- 	   \column{.6\textwidth}
-            \input{figs/ann.tex}
- 	   \column{.2\textwidth}
-    \end{columns}
-\end{frame}
-
-\begin{frame}{Feedforward networks}{Definition (II)}
-	The input layer
+\begin{frame}{Gradient Descent}{Motivation (I)}
+    In supervised learning we have the desired outputs
 	\begin{itemize}
-	\item Introduces input values into the network
-	\item No activation function or other processing
+	\item ... so we can compare the desired output with the observed one
 	\end{itemize}
-	The hidden layer(s)
-	\begin{itemize}
-	\item Perform classification of features
-	\item Two hidden layers are sufficient to solve any problem
-	\item Features imply more layers may be better
-	\end{itemize}
-	The output layer
-	\begin{itemize}
-	\item Functionally just like the hidden layers
-	\item Outputs are passed on to the world outside the neural network
-	\end{itemize}
-\end{frame}
-
-\subsection{Demo}
-\begin{frame}{Feedforward Networks}{Demo}
-    \begin{center}
-	\href{http://playground.tensorflow.org/}{(Online demo)}
-    \end{center}
-\end{frame}
-
-\subsection{Separability}
-\begin{frame}{Feedforward Networks}{Separability}
-    \begin{center}
-	    \includegraphics[width=0.9\linewidth]{figs/sep.png}
-    \end{center}
-
-	\centering \href{https://github.com/dfbarrero/aiCourse/raw/master/ann/artificialNeuron.xlsx}{(A MLP in Excel)}
-\end{frame}
-
-\subsection{Bias in a MLP}
-\begin{frame}{Feedforward Networks}{Bias in a MLP}
-    \begin{center}
-	    \includegraphics[width=0.6\paperheight]{figs/bias.png}\\
-		\tiny \href{https://scikit-learn.org/stable/modules/neural\_networks\_supervised.html}{(Source)}
-    \end{center}
-\end{frame}
-
-
-\section{Training algorithms}
-\subsection{Problem statement}
-
-\begin{frame}{Training algorithms}{Problem statement (I)}
-    ANNs can perform different tasks
-    \begin{itemize}
-        \item Classification, regression, others
-    \end{itemize}
-    Classification (or supervised learning) uses a \textit{training set}
 
 	\begin{columns}[c]
  	   \column{.10\textwidth}
@@ -820,52 +894,63 @@
             \begin{table}[]
             \centering
             \begin{tabular}{lll|l|l}\hline
-              $A_1$ & $A_2$ & $A_3$ & O & Y \\
+		    $x_1$ & $x_2$ & $x_3$ & $\hat{y}$ & $y$ \\
                \hline
               $1.1$ & $2.5$ & $4.5$ & $0.2$ & $-0.1$   \\
               $0.9$ & $2.4$ & $1.2$ & $0.5$ & $0.4$  \\
               $1.0$ & $2.0$ & $9.9$ & $0.4$ & $1.2$ \\\hline
             \end{tabular}
-            \end{table}
+	    \end{table}
  	   \column{.10\textwidth}
     \end{columns}
-    Toss function: Measure of the error
+
+    \alert{Toss function}: Measure of the error
         \begin{itemize}
-        	\item Y and O are the desired and observed outputs
-		\item Usually mean squared error (MSE): $f(w) = E = \frac{1}{2} (y-o)^2$
+		\item Any error measure can be used, there are many available
+		\item Usually mean squared error (MSE) 
         \end{itemize}
+
+	\begin{equation*}
+		MSE = \frac{1}{n} \sum_i(y_i-\hat{y}_i)^2 \Rightarrow MSE = f(\vec{\theta})
+	\end{equation*}
+	where $\vec{\theta}$ is our network (its weights and biases)
 \end{frame}
 
-\subsection{Gradient descent algorithm}
-\begin{frame}{Training algorithms}{Problem statement (II)}
-		%\begin{equation*}
-		%E = \frac{1}{2} Err^2 = \frac{1}{2} \left[y-g\left(\sum_{j=0}^n w_j x_j\right)\right]^2
-		%\end{equation*}
-		%where
-		%\begin{flushleft}
-		%\begin{itemize}
-		%\item[$y$] Desired output
-		%\item[$w_j$] Weight connection $j$
-		%\item[$x_j$] Input $j$
-		%\end{itemize}
-		%\end{flushleft}
+\begin{frame}{Gradient Descent}{Motivation (II)}
+	Problem: Determine $\vec{\theta}$ that minimize $f(\vec{\theta})$
+	\begin{itemize}
+		\item This is a classical optimization problem
+		\item Any optimization algorithm can be used
+		\item ... in AI, optimization means search
+	\end{itemize}
 
-		Problem: Determine $\vec{w}$ that minimize $f(\vec{w})$
-		\begin{itemize}
-			\item Remember, $\vec{w}$ is our network
-			\item This is a classical optimization problem
-			\item Any optimization algorithm can be used
-			\item ... in AI, optimization means search
-		\end{itemize}
-		We do know anatically $f(\vec{w})$ $\Rightarrow$ Optimization based on gradients
+	In DL, our network may have millions of parameters
+	\begin{itemize}
+		\item We do know anatically $f(\vec{\theta})$
+		\item Optimization based on gradients: \alert{Gradient Descent}
+	\end{itemize}
+	Gradient Descent is a general optimization algorithm
+	\begin{itemize}
+		\item Not limited to train neural networks
+		\item Widely used, for instance, to fit lineal models
+	\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Training algorithms}{Gradient Descent (I)}
+\subsection{Overview}
+
+{\blackSlide
+\begin{frame}[plain]{Gradient Descent}{Overview}
+	\centering\includegraphics[width=\linewidth]{figs/mountain.jpg}\\
+	\scriptsize\href{https://flickr.com/photos/pnglife/2362494258/in/photolist-8vGnwi-Mp7XNw-ozKpZv-4ALpeC-axW8KB-23DBJYt-frJNKt-yzPoCX-4LqDab-axf3zv-or4KtC-oqHW4q-axf5yp-23YRq9h-VNJWrs-8McrVM-dNbJXY-5sDfpy-o3SjX-qF1rGP-cfAqTh-YhNXcj-pECdqe-cfAqLE-BRziN1-22w1wBv-6rR9NW-f5iic4-82Vd2C-hzy676-HG1zW6-pT8N-RDfrcf-axf8x8-WKv575-w9JSfr-pT4H-bNwyCT-Cxjb7-bUef42-frJQ4v-Am2QCd-axXouW-axhMph-VqaQum-g78JD3-qtRE5V-egjam3-f9YgJ4-SVGSpe/}{(Source)}
+\end{frame}
+}
+
+\begin{frame}{Gradient Descent}{Gradient Descent (I)}
 	Calculate the gradient of the loss function with respect weights
 	\begin{itemize}
 		\item Adjust weights along gradient direction
 		\item Gradient provides the direction
-		\item $\alpha$ is the \alert{learning rate} ($|\alpha|<1$)
+		\item $\eta$ is the \alert{learning rate}
 	\end{itemize}
 
 	\begin{columns}[c]
@@ -873,279 +958,61 @@
 
 		\begin{block}{Gradient descent}
 		\begin{algorithmic}[1]
-		\State $\vec{w} \gets random()$
+		\State $\vec{\theta} \gets random()$
 		\While{Not converged}
-			\ForAll {$w_i \in \vec{w} $}
-			\State $w_i \gets w_i - \alpha \frac{\partial}{\partial w_i} f(\vec{w})$
+			\ForAll {$\theta_i \in \vec{\theta} $}
+			\State $\theta_{i+1} \gets \theta_i - \eta \frac{\partial}{\partial \theta_i} f(\vec{\theta})$
 			\EndFor
 		\EndWhile
 		\end{algorithmic}
-
 		\end{block}
 
- 	   \column{.10\textwidth}
+ 	   %%\column{.10\textwidth}
  	   \column{.40\textwidth}
-
-		\includegraphics[width=\linewidth]{figs/descent.png}\\
-
+		\includegraphics[width=\linewidth]{figs/descent.png}
 	\end{columns}
 \end{frame}
 
-
-%\begin{frame}{Training algorithms}{Gradient Descent (I)}
-%	Calculate the gradient of the loss function with respect weights
-%	\begin{itemize}
-%		\item Adjust weights along gradient direction
-%		\item Apply the chain rule
-%	\end{itemize}
-%	Given the error
-%		\begin{equation*}
-%		E = \frac{1}{2} Err^2
-%		\end{equation*}
-%	Take partial derivatives
-%		\begin{equation*}
-%		\begin{split}
-%		\frac{\partial E}{\partial w_j} &= Err \frac{\partial Err}{\partial w_j}\\
-%										&= Err \frac{\partial}{\partial w_j} g\left(y-\sum_{j=0}^n w_j x_j\right)\\
-%										&= -Err \times g'(w) \times x_j
-%		\end{split}
-%		\end{equation*}
-%\end{frame}
-
-
-
-%\begin{frame}{Training algorithms}{Gradient Descent (II)}
-%	\small{
-%	\begin{columns}
-%	\column{0.50\textwidth}
-%		Weight update
-%		\begin{equation*}
-%		w_{j}^{k+1} = w_{j}^k + \alpha \times Err \times g'(w) \times x_j
-%		\end{equation*}
-%		with
-%		\begin{flushleft}
-%		\begin{itemize}
-%		\item[$\alpha$] Learning rate ($|\alpha|<1$)
-%		\item[$err$] Difference desired and current output
-%		\item[$g'$] Derivate of activation function
-%		\item[$x_j$] Input $j$
-%		\end{itemize}
-%		\end{flushleft}
-%		Each iteration is named \alert{epoch}
-%	\column{0.50\textwidth}
-%		\begin{block}{Learning algorithm (single neuron)}
-%		\begin{enumerate}
-%		\item Apply input signal and compute outout
-%		\item If output $==$ desired output, do nothing
-%		\item If output $<$ desired output, increase weights
-%		\item If output $>$ desired output, decrease weights
-%		\end{enumerate}
-%		\end{block}
-%	\end{columns}
-%	}
-%\end{frame}
-
-\begin{frame}{Training algorithms}{Gradient Descent (II)}
-    \begin{columns}
-    \column{0.50\textwidth}
-	Each iteration is named \alert{epoch}
-	\begin{center}
-	\includegraphics[width=\linewidth]{figs/nn_learncurve.png}\\
-	\scriptsize \href{http://sujitpal.blogspot.com.es/2014/07/handwritten-digit-recognition-with.html}{(Source)}
-	\end{center}
-
-    \column{0.50\textwidth}
-	\vspace{-0.5cm}
-	\begin{center}
-        Learning rate\\
-	\includegraphics[width=0.8\linewidth]{figs/nn_learning.png}\\
-	\includegraphics[width=0.8\linewidth]{figs/nn_learning2.png}\\
-	\scriptsize \href{http://www.turingfinance.com/misconceptions-about-neural-networks/}{(Source)}
-	\end{center}
-     \end{columns}
-\end{frame}
-
-\subsection{Stochastic Gradient Descent}
-\begin{frame}{Training algorithms}{Stochastic Gradient Descent (I)}
-	SDG approximates the gradient sampling the dataset
-		\begin{description}
-		\item[On-line] One sample
-		\item[Mini-batch] Several samples
-		\item[Batch] All the samples (Gradient Descent)
-		\end{description}
-	%Weights update rule: $w^{k+1} = w^k - \alpha \nabla g(in)$
-	%	\begin{itemize}
-	%		\item where $\alpha$ is the learning rate
-	%	\end{itemize}
-    	Computations are faster ...
-	\begin{itemize}
-		\item ... but gradient estimation looses accuracy
-	\end{itemize}
-
-	\centering
-	\includegraphics[width=0.4\linewidth]{figs/sdg.png}\\
-	\scriptsize \href{https://wikidocs.net/3413}{(Source)}
-\end{frame}
-
-\begin{frame}{Training algorithms}{Stochastic Gradient Descent (II)}
-    Usually, a \alert{momentum} is introduced as
-	\begin{equation*}
-	w^{k+1} = w^k - \alpha z^{k+1}
-        \end{equation*}
-with
-	\begin{equation*}
-	z^{k+1} = \beta z^k + \nabla g(in)
-        \end{equation*}
-    where ...
-    \begin{itemize}
-	\item $\alpha$ is the learning rate
-	\item $\beta$ is the momentum strength
-        \item If $\beta = 0$ then gradient descent
-    \end{itemize}
-
-    \href{http://distill.pub/2017/momentum/}{(On-line demo)}
-
-\end{frame}
-
-\subsection{Other optimization algorithms}
-\begin{frame}{Training algorithms}{Other optimization algorithms (I)}
-	\begin{columns}
-	\column{0.50\textwidth}
-		Other second derivative-based optimization algorithms
+\begin{frame}{Gradient Descent}{Gradient Descent (II)}
+	\begin{columns}[c]
+ 	   \column{.50\textwidth}
+		Alternative notation: 
 		\begin{itemize}
-			\item Newton's method
-			\item Quasi-Newton's method
-			\item Levenberg-Marquardt method
-			\item Conjugate Gradient
+		\item[] $\vec{\theta}_{\text{next step}} = \vec{\theta} - \eta \nabla_{\theta} f(\vec{\theta})$
 		\end{itemize}
 
-	\column{0.50\textwidth}
-		\begin{center}
-			\includegraphics[width=\linewidth]{figs/memory-speed.png}\\
-			\scriptsize \href{https://www.neuraldesigner.com/blog/5_algorithms_to_train_a_neural_network}{(Source)}
-		\end{center}
+ 	   \column{.50\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figs/gradient_descent.png}\\
+		\scriptsize \href{http://uc-r.github.io/gbm_regression}{(Source)}
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Training algorithms}{Other optimization algorithms (II)}
-	Learning reate / momentum  adaptative methods
+\subsection{Learning rate}
+\begin{frame}{Gradient Descent}{Learning rate}
+	The learning rate is a an important hyperparameter
 	\begin{itemize}
-		\item AdaGrad - Adaptative Gradient Algorithm
-		\item RMSProp - Root Mean Square Propagation
-		\item Adam - Adaptive Moment Estimation
+		\item Small learning rate $\Rightarrow$ Slow convergence
+		\item Large learning rate $\Rightarrow$ Jump across the valley
 	\end{itemize}
+
+	\bigskip
+
+	\centering
+	\includegraphics[width=0.45\linewidth]{figs/nn_learning.png}
+	\includegraphics[width=0.45\linewidth]{figs/nn_learning2.png}\\
+	\scriptsize \href{http://www.turingfinance.com/misconceptions-about-neural-networks/}{(Source)}
 \end{frame}
 
-\subsection{Backpropagation}
+\subsection{Gradient Descent problems}
 
-%\begin{frame}{Training algorithms}{Backpropagation algorithm (I)}
-%Efficient learning algorithm for multilayer perceptrons. Three steps
-%\begin{enumerate}
-%\item \textbf{Feed-forward step}. Feed input, compute output and error
-%\item \textbf{Feed-backward step}. Compute individual contribution to error
-%\item \textbf{Adjust weights}. Modify weights to minimize error: Input, output and hidden layers
-%\end{enumerate}
-%\end{frame}
-
-%\begin{frame}{Training algorithms}{Backpropagation algorithm (II)}
-%    \begin{columns}
-% 	   \column{.50\textwidth}
-%	\centering\includegraphics[width=\linewidth]{figs/russell.png}
-%
-% 	   \column{.50\textwidth}
-%	Output layer: Same as single neuron
-%	\begin{equation*}
-%	W_j \leftarrow W_j + \alpha \times Err \times g'(in) \times x_j
-%	\end{equation*}
-%	Define modified error as $\Delta_i = Err_i \times g'(in_i) $, then
-%	\begin{equation*}
-%	W_{j,i} \leftarrow W_{j,i} + \alpha \times a_j \times \Delta_i
-%	\end{equation*}
-%	\end{columns}
-%\end{frame}
-
-\begin{frame}{Training algorithms}{Backpropagation}
-%Hidden layer: Propagate error
-%\begin{equation*}
-%W_{k,j} \leftarrow W_{k,j} + \alpha \times a_k \times \Delta_j
-%\end{equation*}
-%where
-%\begin{equation*}
-%\Delta_j = g'(in) \times \sum_j W_{j,i}\Delta_i
-%\end{equation*}
-
-        Backpropagation is an efficient algorithm to compute gradients
-        \begin{itemize}
-                \item It applyes the chain rule to propagate errors
-		\item Implicit in optimization algorithms
-        \end{itemize}
-
-	\begin{block}{Backpropagation algorithm}
-	\begin{enumerate}
-	\item Compute output
-	\item Compute error
-	\item For each layer, repeat the following steps
-	\begin{enumerate}
-		\item Propagate errors backwards
-		\item Update weights between two layers
-	\end{enumerate}
-	\end{enumerate}
-	\end{block}
+\begin{frame}{Gradient Descent}{Gradient Descent problems (I)}
+	GD is sensitive to features scaling\\
+	\centering \includegraphics[width=0.8\linewidth]{figs/gd-scaling.png}\\
+	\scriptsize \href{https://www.researchgate.net/figure/Gradient-descent-with-and-without-input-feature-scaling-Geron-2019-On-the-left-are_fig4_357829499}{(Source)}
 \end{frame}
 
-%\subsection{Backpropagation algorithm formalization}
-%\begin{frame}{Training algorithms}{Backpropagation algorithm formalization (I)}
-%Network error: $E = \frac{1}{2} \sum_j (y_{i} - a_i)^2$, with
-%\begin{flushleft}
-%\begin{description}
-%	\item{$E$} network error
-%	\item{$y_{i}$} desired output at neuron $i$
-%	\item{$a_{i}$} actual output at neuron $j$
-%\end{description}
-%\end{flushleft}
-%Single neuron activation
-%\begin{equation*}
-%a_i=g\left(\sum_i w_{ij} a_j\right)
-%\end{equation*}
-%\begin{flushleft}
-%\begin{description}
-%	\item{$w_{ij}$} weight between neurons $i$ and $j$
-%	\item{$o_{pi}$} activation from output $i$
-%\end{description}
-%\end{flushleft}
-%and its output $o_{pj} = f_j(net_{pj})$
-%\end{frame}
-
-%\begin{frame}{Training algorithms}{Backpropagation algorithm formalization (II)}
-%We try to minimize error in the output layer, so
-%\begin{equation*}
-%\begin{split}
-%\frac{\partial E}{\partial W_{j,i}} & = \frac{\partial}{\partial W_{j,i}}\left[ \frac{1}{2} \sum_i (y_i-a_i)^2\right] = -(y_i-a_i) \frac{\partial a_i}{\partial W_{j,i}}\\
-% & =  -(y_i-a_i) \frac{\partial g(in_i)}{\partial W_{j,i}} = -(y_i-a_i) g'(in) \frac{\partial in_i}{\partial W_{j,i}} \\
-% & = -(y_i-a_i) g'(in) \frac{\partial }{\partial W_{j,i}} \left( \sum_j W_{j,i} a_j \right) \\
-% & = -(y_i-a_i) g'(in) a_j = -a_j \Delta_i
-%\end{split}
-%\end{equation*}
-%\end{frame}
-
-%\begin{frame}[plain]{Training algorithms}{Backpropagation algorithm formalization (III)}
-%\note{Las entradas ak influyen en las activaciones de aj, por lo que los errores se deben sumar. De ahi viene el sumatorio que aparece}
-%Similarly, we minimize error in the hidden layer
-%\small
-%\begin{equation*}
-%\begin{split}
-%\frac{\partial E}{\partial W_{k,j}} & = -\sum_i(y_i-a_i) \frac{\partial a_i}{\partial W_{k,j}}\\
-% & =  -\sum_i(y_i-a_i) \frac{\partial g(in_i)}{\partial W_{k,j}} = -\sum_i(y_i-a_i) g'(in) \frac{\partial in_i}{\partial W_{k,j}} \\
-% & = -\sum_i \Delta_i \frac{\partial }{\partial W_{k,j}} \left( \sum_j W_{j,i} a_j \right) \\
-% & = -\sum_i \Delta_i W_{j,i} \frac{\partial a_j}{\partial W_{k,j}} = -\sum_i \Delta_i W_{j,i}\frac{\partial g(in_i)}{\partial W_{k,j}}\\
-% & = - \sum_i \Delta_i W_{j,i} g'(in) \frac{\partial in_j}{\partial W_{k,j}} = - \sum_i \Delta_i W_{j,i} g'(in) \frac{\partial}{\partial W_{k,j}}\left(\sum_k W_{k,j} a_k\right)\\
-% & = - \sum_i \Delta_i W_{j,i} g'(in) a_k = -a_k \Delta_i
-%\end{split}
-%\end{equation*}
-%\end{frame}
-
-\subsection{Learning problems}
-\begin{frame}{Training algorithms}{Learning problems}
+\begin{frame}{Gradient Descent}{Gradient Descent problems (II)}
     \begin{columns}
 	   \column{.40\textwidth}
 		Potential problems
@@ -1156,6 +1023,11 @@ with
 		\item Missing good minima
 		\end{itemize}
 
+		GD uses the whole dataset
+		\begin{itemize}
+		\item It is slow ... 
+		\item ... inviable in practice
+		\end{itemize}
 	   \column{.60\textwidth}
 	 \begin{center}
 	\includegraphics[width=\linewidth]{figs/problems.png}
@@ -1163,33 +1035,77 @@ with
    \end{columns}
 \end{frame}
 
-\begin{frame}{Training algorithms}{Learning problems: Under and overfitting (I)}
+\subsection{Stochastic Gradient Descent}
+\begin{frame}{Gradient Descent}{Stochastic Gradient Descent (I)}
+	SDG approximates the gradient sampling the dataset
+	\begin{description}
+		\item[On-line] One sample (Stochastic Gradient Descent, SGD)
+		\item[Mini-batch] Several samples (named minibatches)
+		\item[Batch] All the samples (Gradient Descent)
+	\end{description}
+
+    	Computations are faster ...
+	\begin{itemize}
+		\item ... but gradient computations looses accuracy
+	\end{itemize}
+
+	\centering
+
     \begin{columns}
-	   \column{.50\textwidth}
-		\alert{Underfitting}: Does not learn
-            \begin{itemize}
-                \item Topology too simple
-            \end{itemize}
-
-		\alert{Overfitting}: Memorizes samples
-            \begin{itemize}
-                \item Topology too complex
-                \item Perhaps, the most serious concern in ML
-                \item The net fails when exposed to new data
-            \end{itemize}
-
-	   \column{.50\textwidth}
-            \begin{center}
-			\includegraphics[width=\linewidth]{figs/fitting.jpg}\\
-			\scriptsize \href{https://www.youtube.com/watch?v=dBLZg-RqoLg}{(Source)}
-            \end{center}
-   \end{columns}
+    \column{0.50\textwidth}
+	\centering \includegraphics[width=0.9\linewidth]{figs/sdg.png}\\
+	\scriptsize \href{https://wikidocs.net/3413}{(Source)}
+    \column{0.50\textwidth}
+	\centering \includegraphics[width=0.9\linewidth]{figs/sgd-comparison.png}\\
+	    \scriptsize \href{https://github.com/tuitet/Hands-On-Machine-Learning-with-Scikit-Learn-Keras-and-TensorFlow-3rd-Edition/blob/main/04_training_linear_models.ipynb}{(Source)}
+    \end{columns}
 \end{frame}
 
-\begin{frame}{Training algorithms}{Learning problems: Under and overfitting (II)}
-       Solution: Evaluate generalization capabilities
+\begin{frame}{Gradient Descent}{Stochastic Gradient Descent (II)}
+    In practice we use mini-batch SGD
+    \begin{itemize}
+	 \item GPUs reduce dramatically computation time
+    \end{itemize}
+
+    \begin{columns}
+    \column{0.20\textwidth}
+    \column{0.30\textwidth}
+	\includegraphics[width=\linewidth]{figs/4090.jpg}
+
+    \column{0.50\textwidth}
+	\includegraphics[width=\linewidth]{figs/jetson.jpg}
+   \end{columns}
+
+    The batch size is one of the most important hiperparameters 
+    \begin{itemize}
+	\item Best performance with large batch sizes
+	\item Erratic gratients (or event randomness) actually can help to scape from local minima
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Gradient Descent}{Stochastic Gradient Descent (III)}
+    Each iteration is named \alert{epoch}
+    \begin{itemize}
+	\item Usually, an epoch involves the algorithm to visit the whole training set
+	\item We really want to visualize the \textit{learning curve}
+    \end{itemize}
+
+    \begin{columns}
+    \column{0.50\textwidth}
+	\includegraphics[width=\linewidth]{figs/loss.png}
+	\centering \scriptsize \href{https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/}{(Source)}
+
+    \column{0.50\textwidth}
+	\includegraphics[width=\linewidth]{figs/keras-output.png}\\
+    \end{columns}
+\end{frame}
+
+\subsection{Early stopping}
+\begin{frame}{Gradient Descent}{Early stopping}
+	\textit{Early stopping}: Stop training when the network begins to overfit
             \begin{itemize}
-                \item Split training and validation sets and measure errors
+                \item Compare the loss in train and test to detect overfitting
             \end{itemize}
 
             \begin{center}
@@ -1198,12 +1114,105 @@ with
             \end{center}
 \end{frame}
 
-\begin{frame}{Acknowlegements}
+\section{Backpropagation}
+\begin{frame}{Backpropagation}
+	Efficient algorithm to compute gradients
+        \begin{itemize}
+		\item Proposed in 1986
+		\item First practical ANN training algorithm
+                \item It uses the chain rule to propagate errors
+		\item Automatic computation of gradients
+		\item It creates a computation graph (TensorFlow takes its name from this)
+        \end{itemize}
+
+	Implicit in ANN/DL packages
 	\begin{itemize}
-		\item Jesus Aguilar Ruiz, Pablo de Olavide, Seville, Spain
-		\item Daniel Rodr\'iguez, Universidad de Alcal\'a, Alcal\'a de Henares, Spain
+		\item You will find it as SGD
+		\item ANN/DL packages name the optimization algorithm as 'optimizers'
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Backpropagation}
+	\begin{columns}
+	\column{0.50\textwidth}
+	\begin{block}{Backpropagation}
+	\begin{enumerate}
+	\item \textbf{Feed-forward step}. Feed input, one mini-batch at a time. Compute output and error
+	\item \textbf{Feed-backward step}. Compute individual contribution to error (gradients) using the chain rule
+	\item \textbf{Adjust weights}. Perform a Gradient Descent step using the computed gradients
+	\end{enumerate}
+	\end{block}
+
+	\column{0.50\textwidth}
+		%\includegraphics[width=\linewidth]{figs/network2.png}
+		%\tiny{\href{https://tex.stackexchange.com/questions/540287/tikz-randomly-drop-connections-in-neural-network}{(Source)}}
+		\centering \input{figs/ann-optimization.tex}
+	\end{columns}
+\end{frame}
+
+\section{Other optimization algorithms}
+\subsection{Momentum optimization}
+
+\begin{frame}{Other optimization algorithms}{Momentum optimization}
+    SGD does not take care about past gradients
+	\begin{equation*}
+		\vec{\theta} \leftarrow \vec{\theta} - \eta \nabla_{\theta} J(\vec{\theta})
+	\end{equation*}
+    Usually, a \alert{momentum} vector is introduced as
+	\begin{equation*}
+		\vec{m} \leftarrow \beta \vec{m} - \eta \nabla_\theta J(\vec{\theta})
+        \end{equation*}
+	\begin{equation*}
+		\vec{\theta} \leftarrow \vec{\theta} + \vec{m}
+        \end{equation*}
+    where ...
+    \begin{itemize}
+	\item $\eta$ is the learning rate
+	\item $\beta$ is the momentum strength
+		\begin{itemize}
+        		\item If $\beta = 0$ then gradient descent
+			\item $\beta=0.9$ uses to be a good default
+		\end{itemize}
+    \end{itemize}
+
+    \href{http://distill.pub/2017/momentum/}{(On-line demo)}
+\end{frame}
+
+\begin{frame}{Training algorithms}{Other optimization algorithms (II)}
+	Learning reate / momentum  adaptative methods
+	\begin{itemize}
+		\item Nesterov Accelerated Gradient - Modified momentum
+		\item AdaGrad - Adaptative Gradient Algorithm
+		\item RMSProp - Root Mean Square Propagation
+		\item Adam - Adaptive Moment Estimation
+			\begin{itemize}
+				\item Adaptative learning rate
+				\item Default choice in real-word problems
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\subsection{Second order optimization algorithms}
+\begin{frame}{Training algorithms}{Second order optimization algorithms}
+	\begin{columns}
+	\column{0.50\textwidth}
+		Other second derivative-based optimization algorithms
+		\begin{itemize}
+			\item Newton's method
+			\item Quasi-Newton's method
+			\item Levenberg-Marquardt method
+			\item Conjugate Gradient
+		\end{itemize}
+		They are never used in DL
+	\column{0.50\textwidth}
+		\begin{center}
+			\includegraphics[width=\linewidth]{figs/memory-speed.png}\\
+			\scriptsize \href{https://www.neuraldesigner.com/blog/5_algorithms_to_train_a_neural_network}{(Source)}
+		\end{center}
+	\end{columns}
+\end{frame}
 
 \end{document}
+
+
+
