@@ -722,7 +722,7 @@
 		\item Mean Squared Error (MSE) by default
 		\item Mean Absolute Error (MAE) is less sensitive to outlayers
 	\end{itemize}
-	In ANN, a loss function is an error function used to train a network
+	A loss function is an error function used to train / evaluate a network
 \end{frame}
 
 \subsection{MLP for classification}
@@ -880,9 +880,9 @@
 \subsection{Motivation}
 
 \begin{frame}{Gradient Descent}{Motivation (I)}
-    In supervised learning we have the desired outputs
+    In supervised learning we have the target outputs ...
 	\begin{itemize}
-	\item ... so we can compare the desired output with the observed one
+	\item ... so we can compare them with the observed one
 	\end{itemize}
 
 	\begin{columns}[c]
@@ -907,7 +907,7 @@
     \alert{Toss function}: Measure of the error
         \begin{itemize}
 		\item Any error measure can be used, there are many available
-		\item Usually mean squared error (MSE) 
+		\item Usually MSE or MAE (among others ...)
         \end{itemize}
 
 	\begin{equation*}
@@ -917,7 +917,7 @@
 \end{frame}
 
 \begin{frame}{Gradient Descent}{Motivation (II)}
-	Problem: Determine $\vec{\theta}$ that minimize $f(\vec{\theta})$
+	Problem: Determine $\vec{\theta}$ that minimizes $f(\vec{\theta})$
 	\begin{itemize}
 		\item This is a classical optimization problem
 		\item Any optimization algorithm can be used
@@ -961,7 +961,7 @@
 		\State $\vec{\theta} \gets random()$
 		\While{Not converged}
 			\ForAll {$\theta_i \in \vec{\theta} $}
-			\State $\theta_{i+1} \gets \theta_i - \eta \frac{\partial}{\partial \theta_i} f(\vec{\theta})$
+			\State $\theta_{i} \gets \theta_i - \eta \frac{\partial}{\partial \theta_i} f(\vec{\theta})$
 			\EndFor
 		\EndWhile
 		\end{algorithmic}
@@ -978,7 +978,7 @@
  	   \column{.50\textwidth}
 		Alternative notation: 
 		\begin{itemize}
-		\item[] $\vec{\theta}_{\text{next step}} = \vec{\theta} - \eta \nabla_{\theta} f(\vec{\theta})$
+		\item[] $\vec{\theta} = \vec{\theta} - \eta \nabla_{\theta} f(\vec{\theta})$
 		\end{itemize}
 
  	   \column{.50\textwidth}
@@ -1040,14 +1040,11 @@
 	SDG approximates the gradient sampling the dataset
 	\begin{description}
 		\item[On-line] One sample (Stochastic Gradient Descent, SGD)
-		\item[Mini-batch] Several samples (named minibatches)
+		\item[Mini-batch] Several samples (named mini-batches)
 		\item[Batch] All the samples (Gradient Descent)
 	\end{description}
 
-    	Computations are faster ...
-	\begin{itemize}
-		\item ... but gradient computations looses accuracy
-	\end{itemize}
+   	Computations are faster but gradient computations looses accuracy
 
 	\centering
 
@@ -1076,13 +1073,13 @@
 	\includegraphics[width=\linewidth]{figs/jetson.jpg}
    \end{columns}
 
-    The batch size is one of the most important hiperparameters 
+    The batch size is one of the most important hyperparameters 
     \begin{itemize}
 	\item Best performance with large batch sizes
-	\item Erratic gratients (or event randomness) actually can help to scape from local minima
+    \item Batch size limited by VRAM (GPU RAM)
+	\item Erratic gratients (or event randomness) could help to scape from local minima
     \end{itemize}
 \end{frame}
-
 
 \begin{frame}{Gradient Descent}{Stochastic Gradient Descent (III)}
     Each iteration is named \alert{epoch}
@@ -1100,6 +1097,17 @@
 	\includegraphics[width=\linewidth]{figs/keras-output.png}\\
     \end{columns}
 \end{frame}
+
+\begin{frame}{Gradient Descent}{Stochastic Gradient Descent (IV)}
+    There are advanced tools to visualize learning curves, among other cool metrics
+    \begin{itemize}
+        \item The most widely known is TensorBoard
+    \end{itemize}
+
+	\includegraphics[width=0.8\linewidth]{figs/tensorboard.png}
+\end{frame}
+
+
 
 \subsection{Early stopping}
 \begin{frame}{Gradient Descent}{Early stopping}
