@@ -6,6 +6,8 @@ NAME=ann
 TEX=xelatex -interaction nonstopmode -halt-on-error -file-line-error
 FILENAME=$(NAME).tex
 
+#$(info ************  MCYTE DESACTIVADO ************)
+
 .PHONY: all clean view
 
 all: $(TARGETS)

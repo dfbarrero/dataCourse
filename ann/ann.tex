@@ -367,7 +367,7 @@
 			 $a_1$ & $a_2$ & $y$ \\\hline
 			 $0$ & $0$ & $0$ \\
 			 $0$ & $1$ & $1$ \\
-			 $1$ & $0$ & $0$ \\
+			 $1$ & $0$ & $1$ \\
 			 $1$ & $1$ & $1$ \\
 			 \end{tabular}
  	   \column{.30\textwidth}
@@ -381,7 +381,7 @@
 			 \end{tabular}
     \end{columns}
 	\bigskip
-	\centering \href{https://github.com/dfbarrero/aiCourse/raw/master/ann/artificialNeuron.xlsx}{(A neuron in Excel)}
+	\centering \href{https://github.com/dfbarrero/dataCourse/raw/master/ann/artificialNeuron.xlsx}{(A neuron in Excel)}
 \end{frame}
 
 \begin{frame}{Artificial neurons}{Definition of neuron (alternative version)}
@@ -801,7 +801,7 @@
 \begin{frame}{The Multilayer Perceptron}{Autoencoders}
 	\centering\includegraphics[width=0.75\linewidth]{figs/autoencoder.png}\\\smallskip
 	\centering\includegraphics[width=0.3\linewidth]{figs/autoencoder2.png}\\
-	\scriptsize\href{http://i-systems.github.io/HSE545/machine\%20learning\%20all/KIMM/06\_KIMM\_Autoencoder.html}{(Source)}
+	\scriptsize\href{https://blog.keras.io/building-autoencoders-in-keras.html}{(Source)}
 \end{frame}
 
 \subsection{Demo}
@@ -904,7 +904,7 @@
  	   \column{.10\textwidth}
     \end{columns}
 
-    \alert{Toss function}: Measure of the error
+	\alert{Loss function} (\textit{función de pérdida}): Measure of the error
         \begin{itemize}
 		\item Any error measure can be used, there are many available
 		\item Usually MSE or MAE (among others ...)
@@ -926,7 +926,7 @@
 
 	In DL, our network may have millions of parameters
 	\begin{itemize}
-		\item We do know anatically $f(\vec{\theta})$
+		\item We do know analytically $f(\vec{\theta})$
 		\item Optimization based on gradients: \alert{Gradient Descent}
 	\end{itemize}
 	Gradient Descent is a general optimization algorithm
@@ -1037,7 +1037,7 @@
 
 \subsection{Stochastic Gradient Descent}
 \begin{frame}{Gradient Descent}{Stochastic Gradient Descent (I)}
-	SDG approximates the gradient sampling the dataset
+	SGD approximates the gradient sampling the dataset
 	\begin{description}
 		\item[On-line] One sample (Stochastic Gradient Descent, SGD)
 		\item[Mini-batch] Several samples (named mini-batches)
@@ -1058,7 +1058,7 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Gradient Descent}{Stochastic Gradient Descent (II)}
+\begin{frame}{Gradient Descent}{Stochastic Gradient Descent(II)}
     In practice we use mini-batch SGD
     \begin{itemize}
 	 \item GPUs reduce dramatically computation time
@@ -1186,8 +1186,8 @@
     \href{http://distill.pub/2017/momentum/}{(On-line demo)}
 \end{frame}
 
-\begin{frame}{Training algorithms}{Other optimization algorithms (II)}
-	Learning reate / momentum  adaptative methods
+\begin{frame}{Training algorithms}{Other optimization algorithms}
+	Learning rate / momentum  adaptative methods
 	\begin{itemize}
 		\item Nesterov Accelerated Gradient - Modified momentum
 		\item AdaGrad - Adaptative Gradient Algorithm
