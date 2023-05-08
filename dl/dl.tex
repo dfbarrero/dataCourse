@@ -158,35 +158,73 @@
 	\begin{itemize}
         \item High number of parameters to optimize
 		\item More layers $\Rightarrow$ more local optima $\Rightarrow$ more difficult training
-		\item Gradient vanishing
-	\end{itemize}
+	\item Large datasets
+	\item Gradient vanishing / exploding
 
+	\medskip
 	\centering
-	\includegraphics[width=0.6\textwidth]{figs/gradients.png}\\
-%	\scriptsize\href{http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf?source=post\_page---------------------------}{(Source)}\\
-
-	\normalsize
-	\flushleft
-	Need of tricks
-	\begin{itemize}
-		\item Careful weights initialization
-		\item ReLU and Leaky ReLU activation functions
-		\item Regularization through \alert{dropout}
-        \item Clever design of the network to minimize parameters
+	\includegraphics[width=0.7\textwidth]{figs/gradients.png}\\
+	%\scriptsize\href{http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf?source=post\_page---------------------------}{(Source)}\\
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Deep Learning (II)}
-	In Deep Learning, we think in layers
+	Need of tricks to train deep networks
+	\begin{itemize}
+		\item Careful weights initialization
+			\begin{itemize}
+			\item Glorot and He initialization, LeCun initialization
+			\end{itemize}
+		\item Non-saturating activation functions
+			\begin{itemize}
+			\item Sigmoid activation is problematic
+			\item ReLU and Leaky ReLU activation functions
+			\end{itemize}
+		\item Batch normalization
+		\item Transfer learning/ pretained models
+	\end{itemize}
+		\centering \includegraphics[width=0.7\textwidth]{figs/transfer.jpg}\\
+	\scriptsize\href{https://www.analyticssteps.com/blogs/how-transfer-learning-done-neural-networks-and-convolutional-neural-networks}{(Source)}\\
+\end{frame}
+
+\begin{frame}{Deep Learning (III)}
+    \begin{columns}
+ 	   \column{.50\textwidth}
+		\begin{itemize}
+		\item Unsupervised pretraining
+		\item Regularization
+			\begin{itemize}
+				\item L1, L2 and \alert{dropout}
+			\end{itemize}
+		\item Faster optimizers
+			\begin{itemize}
+				\item AdaGrad, Adam, RMSProp
+			\end{itemize}
+		\item \alert{Data augmentation} 
+			\begin{itemize}
+				\item Creates modified copies of the dataset
+				\item It increases the number of samples
+			\end{itemize}
+        	\item Clever design of the network to minimize parameters
+	\end{itemize}
+
+ 	   \column{.50\textwidth}
+	    	\centering \includegraphics[width=\linewidth]{figs/augmentation.png}\\
+	    \scriptsize\href{https://medium.com/nanonets/how-to-use-deep-learning-when-you-have-limited-data-part-2-data-augmentation-c26971dc8ced}{(Source)}\\
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Deep Learning (IV)}
+	In Deep Learning, we use to think in layers
 	\begin{itemize}
 		\item Data input layers
 		\item Output layers
-        \item Fully connected (classic)
-        \item Convolutional layers
-        \item Max-pooling
-        \item Recurrent layers
-        \item Dropout layers
-        \item More ...
+        	\item Fully connected (classic)
+        	\item Convolutional layers
+        	\item Max-pooling
+        	\item Recurrent layers
+        	\item Dropout layers
+        	\item More ...
 	\end{itemize}
 
     \vspace{-3.5cm}
@@ -217,11 +255,11 @@
         \item Its behaviour can be learnt
 	\end{itemize}
 
-    \bigskip 
-	\centering 1D convolution \\
-    \bigskip 
+    %\bigskip 
+%	\centering 1D convolution \\
+%    \bigskip 
 
-	\includegraphics[width=0.5\textwidth]{figs/1dconv.png}
+%	\includegraphics[width=0.5\textwidth]{figs/1dconv.png}
 \end{frame}
 
 \begin{frame}{Convolutional Neural Networks}{Convolutional layers (II)}
@@ -312,8 +350,8 @@
 \end{frame}
 }
 
-\subsubsection{CNN architectures}
-\begin{frame}{Convolutional Neural Networks}{CNN architectures: other}
+\subsubsection{Other CNN architectures}
+\begin{frame}{Convolutional Neural Networks}{Other CNN architectures}
     \begin{columns}
  	   \column{.30\textwidth}
     Other CNN architectures
@@ -328,6 +366,8 @@
     \end{itemize}
 
  	   \column{.70\textwidth}
+	Performance on Imagenet
+	    \smallskip
     \begin{tabular}{l|l|l|l}
     Model & Acc. & Parameters & Depth\\\hline
     VGG16       & $0.901$ & $138.357.544$ & 23 \\
@@ -339,17 +379,106 @@
     \bigskip
 
     Famous generative deep networks
-    \bigskip
-
+    \smallskip
     \begin{tabular}{l|l}
     Model & Parameters  \\\hline
     GTP-2 & 1.5 billion (1,500,000,000) \\
     GTP-3 & 175 billion (175,000,000,000) \\
-    Dall-E& 12 billion (12.000.000.000)   
+    Dall-E 2& 12 billion (12.000.000.000) \\
+    ChatGPT& Unknown\\
     \end{tabular}
 
     \end{columns}
 \end{frame}
+
+\subsection{Classification and localization}
+\begin{frame}{Convolutional Neural Networks}{Classification and localization}
+	Localization: Predict a bounding box around the object
+    	\begin{itemize}
+    		\item Classification as a regression problem: X, Y, width and height
+        	\item Four output units per class
+    	\end{itemize}
+
+    We need annotation tools
+    \begin{itemize}
+	    \item \href{https://www.robots.ox.ac.uk/~vgg/software/via/}{(VGG Image annotator)}, \href{https://github.com/heartexlabs/labelImg}{(LabelImg)}, \href{(https://imglab.in/)}{(ImgLab)}	
+    \end{itemize}
+
+    \begin{columns}
+ 	   \column{.10\textwidth}
+ 	   \column{.4\textwidth}
+        	\includegraphics[width=\textwidth]{figs/localization-2.png}
+ 	   \column{.05\textwidth}
+ 	   \column{.35\textwidth}
+        \includegraphics[width=\textwidth]{figs/localization.png}
+ 	   \column{.10\textwidth}
+    \end{columns}
+	    \centering
+	\scriptsize\href{https://medium.com/@rajshekhar_k/object-localization-series-2-1-basic-object-classification-with-localization-3c8e35fbd0f1}{(Source)}
+\end{frame}
+
+\subsection{Object detection}
+\begin{frame}{Convolutional Neural Networks}{Object detection}
+	\flushleft Object detection: Classify and localize multiple objects in an image \\ 
+        \centering \includegraphics[width=0.6\textwidth]{figs/detection.jpg}\\
+	\scriptsize\href{https://dev.to/sally20921/basics-of-object-detection-part-1-1i52}{(Source)}
+
+	\normalsize
+
+    \begin{columns}
+ 	   \column{.60\textwidth}
+	\flushleft Old approach: Slide across a single object CNN\\
+	\begin{itemize}
+		\item The image must pass through the CNN several times
+		\item Bad for real-time applications
+	\end{itemize}
+        
+ 	   \column{.40\textwidth}
+        \centering \includegraphics[width=\textwidth]{figs/object}\\
+	\scriptsize\href{http://powerunit-ju.com/wp-content/uploads/2021/04/Aurelien-Geron-Hands-On-Machine-Learning-with-Scikit-Learn-Keras-and-Tensorflow_-Concepts-Tools-and-Techniques-to-Build-Intelligent-Systems-OReilly-Media-2019.pdf}{(Source)}
+    \end{columns}
+\end{frame}
+
+\subsubsection{Object detection: You Only Look Once (YOLO)}
+\begin{frame}{Convolutional Neural Networks}{Object detection: You Only Look Once (YOLO)}
+    \begin{columns}
+ 	   \column{.60\textwidth}
+	YOLO is a fast architecture for real-time object detection
+	\begin{itemize}
+		\item Several versions proposed by different teams
+		\item Valid for video object detection
+		\item Several implementations
+		\item \href{https://github.com/ultralytics/ultralytics}{(Yolo v8)}
+		\item YOLO supports image segmentation
+	\end{itemize}
+
+ 	   \column{.40\textwidth}
+        \centering \includegraphics[width=\textwidth]{figs/yolo-pedestrians.png}\\
+	\scriptsize\href{https://neptune.ai/blog/object-detection-with-yolo-hands-on-tutorial}{(Source)}\\
+
+        \includegraphics[width=\textwidth]{figs/yolov3.jpg}\\
+	\scriptsize\href{https://github.com/yoyotv/YOLO-project}{(Source)}\\
+    \end{columns}
+\end{frame}
+
+\subsection{Semantic segmentation}
+\begin{frame}{Convolutional Neural Networks}{Semantic segmentation}
+    \begin{columns}
+ 	   \column{.60\textwidth}
+	\flushleft
+	Semantic segmentation: Pixel-level classification
+	\medskip
+	\centering
+        \includegraphics[width=\textwidth]{figs/segmentation.png}\\
+	\scriptsize\href{https://towardsdatascience.com/object-localization-in-overfeat-5bb2f7328b62}{(Source)}\\
+
+ 	   \column{.40\textwidth}
+    \includegraphics[width=\linewidth]{figs/semantic.png}\\
+	    \centering
+    \scriptsize\href{https://www.researchgate.net/figure/Example-of-2D-semantic-segmentation-Top-input-image-Bottom-prediction_fig3_326875064}{(Source)}\\
+	\end{columns}
+\end{frame}
+
 
 
 \section{Recurrent networks}
@@ -364,7 +493,7 @@
     Neurons have memory, or \textbf{state}
     \begin{itemize}
         \item Named \alert{cells}
-        \item In basic neurons, state is its output
+        \item In basic neurons, state and output are the same
     \end{itemize}
 
 	\begin{figure}
@@ -444,11 +573,20 @@
 \end{frame}
 
 \subsection{Advanced RNNs}
-\begin{frame}{Recurrent networks}{Advanced RNNs}
-      \begin{itemize}
-          \item Transformers
-          \item Encoder-decoder architectures
-      \end{itemize}
+\begin{frame}{Recurrent networks}{Advanced architectures}
+   \begin{columns}
+ 	   \column{.50\textwidth}
+      		\begin{itemize}
+	  	\item Attention networks
+		\item Transformers (and visual transformers)
+          	\item Encoder-decoder architectures
+      	    \end{itemize}
+ 
+ 	   \column{.50\textwidth}
+	    \includegraphics[width=\linewidth]{figs/attention.jpg}\\
+	    \scriptsize\href{https://blog.paperspace.com/attention-mechanisms-in-computer-vision-cbam/}{(Source)}\\
+    \end{columns}
+
 \end{frame}
 
 \subsection{RNNs cool applications}
@@ -514,29 +652,6 @@ señora dulcinea del toboso.
 	        \scriptsize\href{http://proceedings.mlr.press/v70/hadjeres17a/hadjeres17a.pdf}{(Source)}
     \end{columns}
 \end{frame}
-
-\section{Other topics}
-\begin{frame}{Other topics}
-	\begin{itemize}
-		\item Transfer learning, \href{https://keras.io/api/applications/}{(Keras zoo)}
-		\item Data augmentation
-        \item Semantic segmentation
-        \item Attention
-	\end{itemize}
-
-    \begin{columns}
- 	   \column{.30\textwidth}
-	    \centering \includegraphics[width=\linewidth]{figs/augmentation.png}\\
-	    \scriptsize\href{https://medium.com/nanonets/how-to-use-deep-learning-when-you-have-limited-data-part-2-data-augmentation-c26971dc8ced}{(Source)}\\
- 	   \column{.30\textwidth}
-	    \includegraphics[width=\linewidth]{figs/semantic.png}\\
-	    \scriptsize\href{https://www.researchgate.net/figure/Example-of-2D-semantic-segmentation-Top-input-image-Bottom-prediction_fig3_326875064}{(Source)}\\
- 	   \column{.30\textwidth}
-	    \includegraphics[width=\linewidth]{figs/attention.jpg}\\
-	    \scriptsize\href{https://blog.paperspace.com/attention-mechanisms-in-computer-vision-cbam/}{(Source)}\\
-    \end{columns}
-\end{frame}
-
 
 
 \section{Autoencoders}
@@ -687,6 +802,10 @@ señora dulcinea del toboso.
 	\centering\includegraphics[width=0.3\linewidth]{figs/vector-vae1.png}\quad
 	\centering\includegraphics[width=0.3\linewidth]{figs/vector-vae2.png}\\
 	\scriptsize\href{https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf}{(Source)}
+
+	\bigskip
+	\normalsize
+	\href{https://projector.tensorflow.org/}{(Embedding Projector)}
 \end{frame}
 
 \subsection{Generative models state-of-the-art}
