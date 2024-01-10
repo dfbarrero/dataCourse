@@ -1,26 +1,28 @@
 ## Contents
 
-0.- [Scientific programming in Python crash course](crash/)
+* [Scientific programming in Python crash course](crash/)
 
-1.- [Data Science tools in Python](tools/)
+* [Data Science tools in Python](tools/)
 
-2.- [NumPy](numpy/)
+* [NumPy](numpy/)
 
-3.- [Pandas](pandas/)
+* [Pandas](pandas/)
 
-4.- [Data visualization with Matplotlib and Seaborn](dataviz/)
+* [Data visualization with Matplotlib and Seaborn](dataviz/)
 
-5.- [Machine Learning Foundations](mlfoundations/)
+* [Machine Learning Foundations](mlfoundations/)
 
-6.- [Supervised learning](supervised/)
+* [Supervised learning](supervised/)
 
-7.- [Unsupervised learning](unsupervised/)
+* [Unsupervised learning](unsupervised/)
 
-8.- [Artificial Neural Networks](ann/)
+* [Artificial Neural Networks](ann/)
 
-9.- [Deep learning](dl/)
+* [Deep learning](dl/)
 
-10.- [Neuroevolution](neuroevolution/)
+* [Neuroevolution](neuroevolution/)
+
+* [Case studies](cases/)
 
 ## Practical assignments
 
