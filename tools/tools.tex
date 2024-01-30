@@ -163,7 +163,10 @@
 	   \texttt{Pandas}  & Package  & Dataframe support \\
 	   \texttt{Matplotlib} & Package & Data visualization \\
 	   \texttt{Seaborn} & Package & Data visualization with dataframes \\
-	   \texttt{Scikit-learn} & Package & AI/ML package for Python \\
+	   \texttt{Scikit-learn} & Package & AI/ML package for Python \\\hline
+	   \texttt{TensorFlow} & Package & Neural Networks for Python \\
+	   \texttt{Keras} & Package & Neural Networks for Python \\
+	   \texttt{PyTorch} & Package & Neural Networks for Python \\
 	   \hline
    \end{tabular}
 \end{frame}
@@ -204,7 +207,7 @@
 	   \begin{block}{Conda environment for Data Science}
 	   	\begin{enumerate}
 			\item \texttt{conda create --name ml}
-			\item \texttt{source activate ml}
+			\item \texttt{conda activate ml}
 			\item \texttt{conda install jupyter}
 			\item \texttt{conda install scikit-learn}
 			\item \texttt{conda install matplotlib}
@@ -218,83 +221,141 @@
 		Activate environment: \\ \quad \texttt{source activate <env>}\\
 		Install package: \\ \quad \texttt{conda install <package>}\\
 		List packages: \\ \quad \texttt{conda list}\\
-		Remove environment: \\ \quad \texttt{conda env remove -n <env>}\\
+		Remove environment: \\ \quad \texttt{conda remove --name <env> --all}\\
 		Exit environment: \\ \quad \indent \texttt{conda deactivate}
 	\end{columns}
 \end{frame}
 
 \subsection{Python IDEs for Data Science}
-\begin{frame}{The data scientist toolkit}{Python IDEs for Data Science (I)}
+\begin{frame}[t]{The data scientist toolkit}{Python IDEs for Data Science}
     \begin{columns}[t]
- 	   \column{.25\textwidth}
+ 	   \column{.33\textwidth}
 	   \centering \textbf{iPython}\\
-	   iPython = Interactive Python
+	   	iPython = Interactive Python\\
    		\begin{itemize}
 		\item Extended funcionality
 		\item Enhanced UI
 		\item External editor
 		\end{itemize}
 
-		Running iPython:\\
-		\texttt{\$ ipython}
-
- 	   \column{.25\textwidth}
-	   \centering \textbf{Jupyter}\\
-		Python notebooks
-	\begin{itemize}
-		\item Web-based IDE
-		\item Documentation
-		\item Integration with GitHub
-		\item Uses iPython
-	\end{itemize}
-
-		Running Jupyter:\\
-		\texttt{\$ jupyter notebook}
-
-		\includegraphics[width=0.8\textwidth]{figs/jupyter.png}	
-
- 	\column{.25\textwidth}
+ 	\column{.33\textwidth}
 	   \centering \textbf{Spyder}\\
-		Matlab-like IDE
+		Matlab-like IDE\\
 		\begin{itemize}
 			\item Default IDE in Anaconda
 			\item Uses iPython
 		\end{itemize}
-        \bigskip
 
-		\includegraphics[width=0.8\textwidth]{figs/spyder-ide.png}	
-
- 	\column{.25\textwidth}
+ 	\column{.33\textwidth}
 	   \centering \textbf{Rodeo}\\
-		Python version of RStudio
+		Python version of RStudio\\
 		\begin{itemize}
 			\item Good for R developers
 			\item Not included in Anaconda
 			\item Uses iPython
 		\end{itemize}
-        
-        \bigskip
+	\end{columns}
 
-		\includegraphics[width=0.8\textwidth]{figs/rodeo.png}	
+	\bigskip
+
+    \begin{columns}
+ 	   \column{.33\textwidth}
+		Running iPython:\\
+		\texttt{\$ ipython}
+
+ 	\column{.33\textwidth}
+		\includegraphics[width=\textwidth]{figs/spyder-ide.png}	
+
+ 	\column{.33\textwidth}
+		\includegraphics[width=\textwidth]{figs/rodeo.png}	
 	\end{columns}
 \end{frame}
 
-\begin{frame}{The data scientist toolkit}{Python IDEs for Data Science (II)}
-    \begin{block}{Exercises}
-		Write a Python script that shows the multiplication table of the number 5. Write the script using each one of the following environments:
-   		\begin{enumerate}
-   		\item iPython + text editor of your choice.
-		\item Jupyter. 
+\subsection{Notebooks}
+
+\begin{frame}{The data scientist toolkit}{Notebooks (I)}
+    \begin{columns}[t]
+ 	   \column{.5\textwidth}
+	   \centering \textbf{Jupyter}\\
+		\flushleft Python notebooks\\
+	\begin{itemize}
+		\item Web-based IDE, uses iPython
+		\item Code, text and graphs
+		\item Integration with GitHub
+		\item Single notebook
+	\end{itemize}
+
+		\includegraphics[width=0.8\textwidth]{figs/jupyter.png}	\\
+
+		Running Jupyter:\\
+		\texttt{\$ jupyter notebook}
+
+ 	\column{.5\textwidth}
+	   \centering \textbf{Jupyter-lab}\\
+		\flushleft Multi-window Jupyter\\
+		\begin{itemize}
+			\item Latest version of Jupyter
+			\item Rich UI
+			\item Multiple notebooks
+			\item Uses iPython
+		\end{itemize}
+
+		\includegraphics[width=0.8\textwidth]{figs/jupyterlab.png}\\
+	Running Jupyter-lab:\\
+	\texttt{\$ jupyter-lab}
+
+	\end{columns}
+\end{frame}
+
+\begin{frame}{The data scientist toolkit}{Python IDEs for Data Science: Notebooks (II)}
+    \begin{columns}[t]
+ 	   \column{.5\textwidth}
+	   \centering \textbf{Google Colab}\\
+		\flushleft Hosted notebooks\\
+	\begin{itemize}
+		\item Includes a virtual machine
+		\item GPU/TPU support
+		\item Integration with Google Drive
+		\item Free version
+	\end{itemize}
+
+		\includegraphics[width=0.8\textwidth]{figs/colab.jpg}	\\
+
+		\href{https://colab.research.google.com/}{(Google Colab)}
+
+ 	\column{.5\textwidth}
+	   Other notebooks
+		\begin{itemize}
+			\item MS Visual Studio
+		\end{itemize}
+	\end{columns}
+\end{frame}
+
+\subsection{Exercises}
+
+\begin{frame}{The data scientist toolkit}{Exercises}
+    \begin{exampleblock}{Exercises}
+	Write a Python script that shows the multiplication table of the number 5. Write the script using each one of the following tools:
+   	\begin{enumerate}
+   	\item iPython + text editor of your choice.
+	\item Jupyter. 
             \begin{itemize}
                 \item Bonus track: Publish the notebook in GitHub.
             \end{itemize}
-		\item Spyder.
-		\item Rodeo (optional).
-		\end{enumerate}
-	\end{block}
+	\item Google Colab. 
+    	\item Spyder (optional).
+	\item Rodeo (optional).
+	\end{enumerate}
+     \end{exampleblock}
 \end{frame}
 
 \section{iPython}
+{
+\sectionheaderWhite %Enclose the frame with {} and add this command for white background in section header
+\begin{frame}{iPython}
+\end{frame}
+}
+
 \subsection{Basics}
 
 \begin{frame}{iPython}{Basics (I)}
@@ -310,6 +371,7 @@
     \end{itemize}
     Easy access to source code with `\texttt{??}'
     \begin{itemize}
+        \item \texttt{help??}
         \item Does not work with most buildin functions!
     \end{itemize}
 \end{frame}
@@ -390,17 +452,12 @@
 			\item \texttt{\%\%cpaste}: Paste several times
 		\end{itemize}
  	   \column{.5\textwidth}
-	       %\begin{block}{}
-		   %    \vspace{-0.2cm}
-		   %    \lstinputlisting{code/donothing.py}
-		   %    \vspace{-0.2cm}
-		   %\end{block}
 	   \begin{exampleblock}{}
 	   \vspace{-0.2cm}
-		\begin{lstlisting}
+		\begin{lstlisting}[language=Python]
 def donothing(x):
     return x
-		\end{lstlisting}
+\end{lstlisting}
 	   \vspace{-0.2cm}
 	   \end{exampleblock}
 
@@ -414,8 +471,8 @@ def donothing(x):
 	   \vspace{-0.2cm}
 	   \begin{verbatim}
 In [20]: %paste
-   def donothing(x):
- 	  return x
+    def donothing(x):
+        return x
 
 ## -- End pasted text --
 \end{verbatim}
@@ -435,7 +492,7 @@ to stop or use Ctrl-D.
 :       def donothing(x):
             return x:
 :--
-	   \end{verbatim}
+\end{verbatim}
 	   \vspace{-0.2cm}
 	   \end{exampleblock}
 	   \end{columns}
@@ -444,13 +501,14 @@ to stop or use Ctrl-D.
 
 \subsection{Running external code}
 \begin{frame}[fragile]{iPython}{Running external code: \texttt{\%run} and \texttt{\%timeit}}
-    \begin{columns}
+	\begin{columns}[t]
  	   \column{.4\textwidth}
 	   \texttt{\%run}: Execute script
 		\begin{itemize}
 			\item Many optional arguments
 			\item Checkout \texttt{\%run?}
 		\end{itemize}
+		\bigskip
 		\footnotesize{
 	   \begin{exampleblock}{}
 	   \vspace{-0.2cm}
@@ -459,7 +517,7 @@ In [40]: %run donothing.py
 
 In [41]: donothing(10)
 Out[41]: 10
-	   \end{verbatim}
+\end{verbatim}
 	   \vspace{-0.2cm}
 	   \end{exampleblock}
 		}
@@ -498,42 +556,50 @@ In [34]: %timeit [n ** 2 for n in range(2000)]
 \subsection{Input and output history}
 \begin{frame}[fragile]{iPython}{Input and output history (I)}
 	\begin{columns}
- 	   \column{.6\textwidth}
+ 	   \column{.5\textwidth}
 	iPython stores its history as objects
 	\begin{itemize}
 		\item \texttt{In}: Input commands
 			\begin{itemize}
-			\item List storing commands
+			\item \textit{List} storing commands
 			\end{itemize}
 		\item \texttt{Out}: Commands output
 			\begin{itemize}
-			\item Dictionary storing outputs
+			\item \textit{Dictionary} storing outputs
 			\item Not all commands have outputs
 			\end{itemize}
 	\end{itemize}
 
 	\vspace{-0.2cm}
 
- 	   \column{.4\textwidth}
+ 	   \column{.5\textwidth}
+		\footnotesize{
 	\begin{exampleblock}{}
-In [1]: import math
-
-In [2]: math.sin(2)
-
-Out[2]: 0.9092974268256817
-
-In [3]: math.cos(2)
-
-Out[3]: -0.4161468365471424
-
-In [4]: Out[2] ** 2 + Out[3] ** 2
-
-Out[4]: 1.0
+	   \vspace{-0.2cm}
+		\begin{verbatim}
+In [1]: a = 2
+In [2]: b = 2
+In [3]: a + 1
+Out[3]: 3
+In [4]: b + 1
+Out[4]: 3
+In [5]: Out[3] * Out[4]
+Out[5]: 9
+In [6]: len(In)
+Out[6]: 10
+In [7]: Out.keys()
+Out[7]: dict_keys([3, 4, 5, 6])
+\end{verbatim}
+	   \vspace{-0.2cm}
 	\end{exampleblock}
+}
 	\end{columns}
 \end{frame}
 
-\begin{frame}{iPython}{Input and output history (II)}
+\begin{frame}[fragile]{iPython}{Input and output history (II)}
+	\begin{columns}
+ 	   \column{.5\textwidth}
+
 	Fast access to history: Underscore (\_)
 	\begin{itemize}
 		\item Variable containing the last output
@@ -549,9 +615,36 @@ Out[4]: 1.0
 		\item Out[n] = \_n, with n=number
 		\item Example: \texttt{print(\_2)}
 	\end{itemize}
+
+ 	   \column{.5\textwidth}
+\footnotesize{
+	\begin{exampleblock}{}
+	   \vspace{-0.2cm}
+		\begin{verbatim}
+In [1]: a = 1
+In [2]: a + 1
+Out[2]: 2
+In [3]: a + 2
+Out[3]: 3
+In [5]: print(_)
+3
+In [6]: print(__)
+2
+In [7]: print(_2)
+2
+\end{verbatim}
+	   \vspace{-0.2cm}
+	\end{exampleblock}
+}
+\end{columns}
+\end{frame}
+
+\begin{frame}{iPython}{Input and output history (III)}
 	Magic command to show history
 		\begin{itemize}
 		\item \texttt{\%history}
+		\item \texttt{\%history -n}
+		\item \texttt{\%history?}
 		\end{itemize}
 	Supressing command output (\texttt{;})
 		\begin{itemize}
@@ -583,19 +676,21 @@ Out[4]: 1.0
 	\begin{columns}
  	   \column{.4\textwidth}
 	Problems with some shell commands
-	\begin{exampleblock}{}
+	\begin{alertblock}{}
+	   \vspace{-0.2cm}
+		\footnotesize{
+		\begin{verbatim}
 In [23]: !pwd
-
 /repositorios/pythonCourse
-
 
 In [24]: !cd ..
 
-
 In [25]: !pwd
-
 /repositorios/pythonCourse
-	\end{exampleblock}
+\end{verbatim}
+}
+	\vspace{-0.2cm}
+	\end{alertblock}
 	Some magic commands here to help
 	\begin{itemize}
 		\item \texttt{\%cd}, \texttt{\%ls}, \texttt{\%mkdir}, \texttt{\%pwd}, ...
