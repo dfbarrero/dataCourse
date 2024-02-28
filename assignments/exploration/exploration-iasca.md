@@ -28,8 +28,8 @@ Remember that the goal of an exploratory analysis is not to provide a definitive
 
 You may want to consider the following structure to guide your EDA.
 
-- Visualize your raw data.
 - First contact
+  - Visualize your raw data.
   - Count number of instances and attributes (rows and columns).
   - Identify your variables.
   - Find out if there are duplicates and NaNs and handle them.
