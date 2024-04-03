@@ -429,7 +429,7 @@
     \end{equation*}
     $\alpha$ controls the penalty (and model complexity)
 	\begin{itemize}
-		\item If $\alpha = 0$ Ridge becomes a regular linear regression
+		\item If $\alpha = 0$ Lasso becomes a regular linear regression
         \item Optimal $\alpha$ depends on the problem
 	\end{itemize}
 
@@ -488,7 +488,7 @@
                 Attributes:
                 \begin{itemize}
                     \item \texttt{coef\_}:  ndarray (n\_features, )
-                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{intercept\_}:  float, ndarray (n\_targets, )
                     %\item \texttt{n\_features\_in\_}: int
                 \end{itemize}
             \end{columns}
@@ -519,7 +519,7 @@
                 Attributes:
                 \begin{itemize}
                     \item \texttt{coef\_}:  ndarray (n\_features, )
-                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{intercept\_}:  float, ndarray (n\_targets, )
                     %\item \texttt{n\_features\_in\_}: int
                 \end{itemize}
             \end{columns}
@@ -550,7 +550,7 @@
                 Attributes:
                 \begin{itemize}
                     \item \texttt{coef\_}:  ndarray (n\_features, )
-                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{intercept\_}:  float, ndarray (n\_targets, )
                     \item \texttt{n\_features\_in\_}: int
                 \end{itemize}
             \end{columns}
@@ -582,7 +582,7 @@
                 Attributes:
                 \begin{itemize}
                     \item \texttt{coef\_}:  ndarray (n\_features, )
-                    \item \texttt{intercept\_}:  ndarray (n\_targets, )
+                    \item \texttt{intercept\_}:  float, ndarray (n\_targets, )
 %                    \item \texttt{n\_features\_in\_}: int
                 \end{itemize}
             \end{columns}
@@ -818,7 +818,7 @@
 
     Two strategies to prevent overfitting 
     \begin{itemize}
-        \item Pre-prunning: Stop the creation of the tree early accorgind to some criteria
+        \item Pre-prunning: Stop the creation of the tree early according to some criteria
             \begin{itemize}
                 \item Maximum depth, number of leaves, minimum number of points in a node, ...
                 \item Implemented in Scikit-Learn
@@ -844,8 +844,8 @@
 
 \subsection{Feature importance in trees}
 
-\begin{frame}{Decision Trees}{Analyzing decision trees}
-    \textbf{Feature importace} is a metric that summarizes features
+\begin{frame}{Decision Trees}{Analyzing decision trees: Feature importance}
+    \textbf{Feature importance} is a metric that summarizes features
     \begin{itemize}
         \item Number between 0 (not used at all) and 1 (perfect prediction)
         \item Feature importances sum to one
@@ -1108,7 +1108,7 @@
 
 \subsection{Gradient boosted regression trees}
 \begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (I)}
-    \alert{Gradient boosting} trees is an esemble of trees 
+    \alert{Gradient boosting} trees is an ensemble of trees 
     \begin{itemize}
         \item Based on boosting, builds trees in a serial manner
         \item One tree corrects the mistakes of the previous one
@@ -1230,7 +1230,7 @@
 
     Two big problems with hard margins
     \begin{itemize}
-        \item Most datasets are not linearly separable and outlayers
+        \item Most datasets are not linearly separable and outlaiers
     \end{itemize}
 
     We look for a balance between good fit and margin violations: C
@@ -1256,7 +1256,7 @@
             \includegraphics[width=\linewidth]{figs/svm-1.png}
  	    \column{.5\textwidth}
             \includegraphics[width=\linewidth]{figs/svm-2.png}
-            \centering $feature\_3 = feature\_1^2$
+            \centering $feature\_2 = feature\_1^2$
     \end{columns}
 \end{frame}
 
@@ -1309,7 +1309,7 @@
     where $|| \cdot ||$ denotes Euclidean distance and $\gamma$ is an hyperparameter
     \begin{itemize}
         \item $\gamma$ determines how far the influence of a single point reaches
-        \item Low $\gamma$, higher complexity
+        \item Low $\gamma$, lower complexity
     \end{itemize}
     Remember, $C$ is a regularization parameter
 \end{frame}
