@@ -1,0 +1,25 @@
+
+\usetikzlibrary{arrows,positioning,backgrounds}
+
+\tikzstyle{decision} = [diamond, draw, 
+    text width=1cm, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, node distance=3cm,
+	    text width=2cm, text centered, rounded corners]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{output} = [trapezium, trapezium left angle=70, trapezium right angle=-70]
+\tikzstyle{param} = [dotted]
+
+\begin{tikzpicture}[scale=0.8]
+	\node [block, output, node distance=1cm, text width=1.5cm] (data) {Dataset};
+	\node [block, right of=data] (center) {Train};
+	\node [block, output, right of=center] (model) {Model};
+	\node [block, param, below of=center, text width=2.5cm, node distance=1cm] (hyper) {Hyperparameters};
+	\node [block, param, below of=model, node distance=1cm] (param) {Parameters};
+
+	\path [line] (data) -- (center);
+	\path [line] (center) -- (model);
+	\path [line] (hyper) -- (center);
+	\path [line, -] (model) -- (param);
+	%\path [line] (evaluate) |- (errors);
+	%\path [line] (errors) -| (problem);
+\end{tikzpicture}

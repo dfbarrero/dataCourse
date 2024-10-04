@@ -587,17 +587,32 @@ air, moon roof, loaded",4799.00
 }{}
 
 \subsection{Machine Learning}
-\begin{frame}{The data analysis process}{Machine Learning}
-	Goal: Train an algorithm to perform a task
+\begin{frame}{The data analysis process}{Machine Learning (I)}
+	Our goal is to train a \alert{model}
 		\begin{itemize}
-		\item As result, we obtain a \alert{model} (or \alert{classifier} or \alert{predictor} depending on the context)
+		\item Model: representation of a pattern in a dataset
+			\begin{itemize}
+				\item also named \alert{classifier} or \alert{regressor} or \alert{predictor}, depending on the context
+			\end{itemize}
+		\item Models are trained with data
+		\item We want models able to \alert{generalize} to unseen data
+		\item \alert{Prediction}: using a model with unseen data
 		\end{itemize}
 
+	\bigskip
+
+	\begin{center}
+	\input{figs/model.tex}
+	\end{center}	
+	
+\end{frame}
+
+\begin{frame}{The data analysis process}{Machine Learning (II)}
 	Machine Learning training methods (or ML tasks)
 		\begin{itemize}
 		\item Supervised learning: \textbf{classification} and \textbf{regression}
 		\item Unsupervised learning: \textbf{clustering}, association, \textbf{dimensionality reduction} and anomality detection
-        \item Reinforcement learning
+        	\item Reinforcement learning
 		\item Many others
 		\end{itemize}
 
@@ -613,8 +628,9 @@ air, moon roof, loaded",4799.00
  	   	\column{.25\textwidth}
 		\end{columns}
 	 \end{flushright}
-
 \end{frame}
+
+
 
 \subsection{Learning evaluation}
 \begin{frame}{The data analysis process}{Learning evaluation (I)}
