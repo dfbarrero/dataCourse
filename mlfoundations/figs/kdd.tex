@@ -1,0 +1,40 @@
+
+\usetikzlibrary{arrows,positioning,backgrounds}
+
+\tikzstyle{decision} = [diamond, draw, 
+    text width=1cm, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, node distance=3cm,
+	    text width=2cm, text centered, rounded corners]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{output} = [block, dotted, trapezium, trapezium left angle=70,trapezium right angle=-70]
+
+\begin{tikzpicture}[scale=0.8]
+	\node [block, text width=1.5cm] (adquisition) {Data\\adquisition};
+	\node [block, right of=problem] (preprocessing) {Preprocessing};
+	\node [block, text width=1cm, node distance=2.5cm, right of=center] (train) {Train};
+	\node [decision, node distance=2cm, right of=train] (evaluate) {Evaluate};
+	\node [block, text width=1cm,  node distance=2cm, right of=evaluate] (deploy) {Explotation};
+	\coordinate [below of=train, node distance=1cm] (coordinateTrain);
+	\coordinate [below of=center, node distance=1cm] (coordinatePreprocessing);
+
+	\path [line] (adquisition) -- (preprocessing) coordinate [midway] (midAdquisition);
+	\path [line] (preprocessing) -- (train) coordinate [midway] (midPreprocessing);
+	\path [line] (train) -- (evaluate) coordinate [midway] (midTrain);
+	\path [line] (evaluate) -- (deploy) coordinate [midway] (midEvaluate);
+	\path [draw] (evaluate) |- (coordinateTrain);
+	\path [line] (coordinateTrain) -- (train);
+	\path [draw] (coordinateTrain) -- (coordinatePreprocessing);
+	\path [line] (coordinatePreprocessing) -- (preprocessing);
+
+	\node[output, above of=midAdquisition, node distance=1cm, text width=1cm] (data) {Data};
+	\path [line, dotted] (midAdquisition) -- (data);
+
+	\node[output, above of=midPreprocessing, node distance=1cm] (cleandata) {Clean data};
+	\path [line, dotted] (midPreprocessing) -- (cleandata);
+
+	\node[output, above of=midTrain, node distance=1cm, text width=1cm] (model) {Model};
+	\path [line, dotted] (midTrain) -- (model);
+
+	\node[output, above of=midEvaluate, node distance=1cm, text width=1cm] (metrics) {Metrics};
+	\path [line, dotted] (midEvaluate) -- (metrics);
+\end{tikzpicture}

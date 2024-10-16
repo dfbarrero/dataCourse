@@ -12,7 +12,7 @@
 	\node [block, right of=problem] (center) {Train};
 	\node [decision, right of=center] (evaluate) {Evaluate};
 	\node [block, below of=center, node distance=1cm] (errors) {Analyze errors};
-	\node [block, above of=evaluate, node distance=1cm] (launch) {Launch!};
+	\node [block, above of=evaluate, node distance=1cm] (launch) {Deploy};
 	\node [block, trapezium, trapezium left angle=70,trapezium right angle=-70, above of=center, node distance=1cm, text width=0.7cm] (data) {Data};
 
 	\path [line] (problem) -- (center);

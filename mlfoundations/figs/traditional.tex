@@ -12,7 +12,7 @@
 	\node [block, right of=problem] (center) {Write rules};
 	\node [decision, right of=center] (evaluate) {Evaluate};
 	\node [block, below of=center, node distance=1cm] (errors) {Analyze errors};
-	\node [block, above of=evaluate, node distance=1cm] (launch) {Launch!};
+	\node [block, above of=evaluate, node distance=1cm] (launch) {Deploy};
 
 	\path [line] (problem) -- (center);
 	\path [line] (center) -- (evaluate);

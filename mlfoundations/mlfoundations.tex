@@ -193,30 +193,36 @@
 \subsection{The alphabet soup of data analysis}
 \begin{frame}{Introduction}{The alphabet soup of data analysis}
 	\begin{columns}
+ 	   %\column{.10\textwidth}
  	   \column{.60\textwidth}
 	    \begin{center}
 	%\includegraphics[width=0.5\linewidth]{figs/terms.png}\\
     %\tiny{\href{https://www.quora.com/What-is-machine-learning-and-how-it-is-linked-to-Big-Data-Data-Mining}{(Source)}}
 
-	    \includegraphics[width=0.8\linewidth]{figs/comparativa.png}\\
+
+
+    \includegraphics[width=0.8\linewidth]{figs/comparativa.png}\\
         \tiny{\href{https://www.linkfluence.com/blog/ai-basics-how-ai-machine-learning-supercharge-social-media-marketing}{(Source)}}
 	    \end{center}
 
- 	\column{.40\textwidth}
+ 	\column{.4\textwidth}
 	Many related terms
 		\begin{itemize}
 		\item Artificial Intelligence
 		\item Machine Learning
+		\item Artificial Neural Networks
 		\item Deep Learning
 		\item Big Data
-        \end{itemize}
-    And new careers
-	    \begin{itemize}
+		\item LLMs
 		\item Data Science
-		\item Data scientist
-		\item Data engineer
-		\item ML engineer
-		\end{itemize}
+        \end{itemize}
+    %And new careers
+%	    \begin{itemize}
+%		\item Data scientist
+%		\item Data engineer
+%		\item ML engineer
+%		\end{itemize}
+% 	\column{.05\textwidth}
     \end{columns}
 \end{frame}
 
@@ -239,8 +245,10 @@
 \subsection{The big picture}
 \begin{frame}{The data analysis process}{The big picture}
 	\begin{center}
-	\includegraphics[width=0.8\linewidth]{figs/kdd.png}\\
-    \tiny{\href{https://www.researchgate.net/figure/The-steps-of-the-KDD-process_fig6_297734487}{(Source)}}
+
+	\input{figs/kdd.tex}\\
+	%\includegraphics[width=0.8\linewidth]{figs/kdd.png}\\
+    %\tiny{\href{https://www.researchgate.net/figure/The-steps-of-the-KDD-process_fig6_297734487}{(Source)}}
 	\end{center}
 
 	\begin{columns}
@@ -248,15 +256,15 @@
 		Steps in any ML application:
 		\begin{enumerate}
 			\item Data adquisition
-			\item Selection, cleaning and transformation (\alert{preprocessing})
+			\item \alert{Preprocessing}: Selection, cleaning and transformation
 			\item Machine Learning
 			\item Learning evaluation
 			\item Explotation
 		\end{enumerate}
 
  	  \column{.40\textwidth}
-	   \begin{block}{}
-	   		The goal in ML is to get a representation of those patterns
+	   \begin{block}{Model}
+   		Representation of patterns found in data
 	   \end{block}
 	\end{columns}
 \end{frame}
@@ -434,6 +442,7 @@ air, moon roof, loaded",4799.00
 	Goal: Prepare data for ML
 		\begin{itemize}
 		\item This phase is usually named \alert{preprocess}
+		\item It involves data selection, cleaning and transformation
 		\end{itemize}
 
 	ML requires a clean data table
@@ -460,7 +469,7 @@ air, moon roof, loaded",4799.00
 \end{frame}
 
 \begin{frame}[fragile]{The data analysis process}{Selection, cleaning and transformation (II)}
-	\begin{exampleblock}{Example: Bank data base}
+	\begin{exampleblock}{Example: Bank data base (tabular data)}
 	 \vspace{-0.3cm}
 	\begin{center}
 	\begin{tabular}{cccccc}\hline
@@ -476,7 +485,7 @@ air, moon roof, loaded",4799.00
 	 \vspace{-0.4cm}
 	 \end{exampleblock}
 
-	\begin{exampleblock}{Example: Robot sensors}
+	\begin{exampleblock}{Example: Robot sensors (multivariable time series}
 	 \vspace{-0.3cm}
 	\begin{center}
 	\begin{tabular}{cccccc}\hline
@@ -518,7 +527,7 @@ air, moon roof, loaded",4799.00
 \end{frame}
 
 \begin{frame}[fragile]{The data analysis process}{Selection, cleaning and transformation (IV)}
-	\begin{exampleblock}{Example: Text classification (bag-of-words representation)}
+	\begin{exampleblock}{Example: Natural Language Processing (bag-of-words representation)}
 	 \vspace{-0.2cm}
 	\begin{enumerate}
 		\item Original text\\
@@ -555,9 +564,6 @@ air, moon roof, loaded",4799.00
 \begin{frame}{The data analysis process}{Selection, cleaning and transformation (V)}
 	Preprocessing tasks
 		\begin{itemize}
-		\item Handle outliers (remove or leave them)
-		\item Sample data (in case there are too much)
-		\item Handle missing values
 		\item Remove irrelevant or redundant features (\alert{feature selection})
 			\begin{itemize} 
 			\item For instance, attributes ``social class'' and ``salary'' contain highly correlated information
@@ -570,6 +576,9 @@ air, moon roof, loaded",4799.00
 			\begin{itemize}
 				\item Discretization, normalization, numerization, ...
 			\end{itemize}
+		\item Handle outliers
+		\item Sample data
+		\item Handle missing values
 		\end{itemize}
 \end{frame}
 
@@ -589,22 +598,24 @@ air, moon roof, loaded",4799.00
 \subsection{Machine Learning}
 \begin{frame}{The data analysis process}{Machine Learning (I)}
 	Our goal is to train a \alert{model}
-		\begin{itemize}
-		\item Model: representation of a pattern in a dataset
+	\begin{itemize}
+		\item ... also named \textbf{classifier} or \textbf{regressor} or \textbf{predictor}, depending on the context
+		\item Models are learnt by learning algorithms
 			\begin{itemize}
-				\item also named \alert{classifier} or \alert{regressor} or \alert{predictor}, depending on the context
+				\item Models are represented by \alert{parameters}
+				\item Learning algorithms are configured with \alert{hyperparameters}
 			\end{itemize}
-		\item Models are trained with data
-		\item We want models able to \alert{generalize} to unseen data
-		\item \alert{Prediction}: using a model with unseen data
-		\end{itemize}
-
-	\bigskip
+	\end{itemize}
 
 	\begin{center}
 	\input{figs/model.tex}
 	\end{center}	
-	
+
+	Models are usually used to predict
+	\begin{itemize}
+		\item Prediction: using a model with unseen data
+		\item Models must be able to \alert{generalize} to unseen data
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{The data analysis process}{Machine Learning (II)}
@@ -630,13 +641,12 @@ air, moon roof, loaded",4799.00
 	 \end{flushright}
 \end{frame}
 
-
-
 \subsection{Learning evaluation}
 \begin{frame}{The data analysis process}{Learning evaluation (I)}
 	We do need to evaluate the trained model
 	\begin{itemize}
-		\item Models should perform well on new data
+		\item Models must perform well on new data $\Rightarrow$ generalization
+		\item Evaluation must, always, be performed on unseen data
 	\end{itemize}
 	A na\"ive and wrong approach. Why is it wrong?
 	\begin{enumerate}
@@ -669,6 +679,7 @@ air, moon roof, loaded",4799.00
 		Usually we use 10 folds 
 		\begin{itemize}
 			\item 10-fold cross validation (or 10-CV)
+			\item Used to get a reliable assessment of model performance
 		\end{itemize}
 
  	   \column{.50\textwidth}
@@ -753,26 +764,27 @@ air, moon roof, loaded",4799.00
 			\begin{itemize}
 			\item Supervised, unsupervised, semisupervised and Reinforcement Learning
 			\end{itemize}
-		\item Whether or not they can learn incrementally
+		\item The interpretation of the model
 			\begin{itemize}
-			\item Online vs. batch learning
-			\end{itemize}
-		\item When forecasting is done
-			\begin{itemize}
-			\item Nowcasting vr. forecasting
-			\end{itemize}
-		\item Type of analytics
-			\begin{itemize}
-			\item Descriptive, predictive or prescriptive
+			\item Predictive models (blackbox) vs. explicative models (whitebox)
 			\end{itemize}
 		\item The goal of the system
 			\begin{itemize}
 			\item Discriminative models vs. generative models
 			\end{itemize}
-		\item The interpretation of the model
+		\item Type of analytics
 			\begin{itemize}
-			\item Predictive models (blackbox) vs. explicative models (whitebox)
+			\item Descriptive, predictive or prescriptive
 			\end{itemize}
+		\item Whether or not they can learn incrementally
+			\begin{itemize}
+			\item Online vs. batch learning
+			\end{itemize}
+		%\item When forecasting is done
+	%		\begin{itemize}
+%			\item Nowcasting vr. forecasting
+%			\end{itemize}
+
 	\end{itemize}
 	%We focus on supervised and unsupervised model-based discriminative batch algorithms.
 \end{frame}
@@ -927,9 +939,9 @@ air, moon roof, loaded",4799.00
  	   \column{.70\textwidth}
 	   		\begin{exampleblock}{Decision rules}
 	   		\begin{lstlisting}[firstnumber=1, xleftmargin=10pt] 
-if colour = light  and  nuclei = 1 
-then cell = healthy   	
-			            
+if colour = light  and  nuclei = 1
+then cell = healthy 
+    
 if nuclei = 2  and  colour = dark
 then cell = cancerours
 
@@ -952,9 +964,9 @@ then cell = cancerours
  	   \column{.70\textwidth}
 	   		\begin{exampleblock}{Hierarchical decision rules}
 	   		\begin{lstlisting}[firstnumber=1, xleftmargin=10pt]
-if colour = light and nuclei = 1 
-then cell = healthy   	
-			            
+if colour = light and nuclei = 1
+then cell = healthy
+       
 else 
     if nuclei = 2 and colour = dark
     then cell = cancerous
