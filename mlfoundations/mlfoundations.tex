@@ -34,6 +34,7 @@
 \usepackage{pgfplots}
 \def\layersep{2.5cm}
 \usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows,shapes}
+\usetikzlibrary{decorations.text} % vocabulary.tex
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -64,7 +65,7 @@
 %% Opacidad de los logotipos
 \newcommand{\opacidad}{1}
 %% Descomentar para habilitar logotipo en pié de página de portada
-\renewcommand{\logoUno}{Images/isg.png}
+%\renewcommand{\logoUno}{Images/isg.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
 %\renewcommand{\logoDos}{Images/CCLogo.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
@@ -169,27 +170,6 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Definition}
-\begin{frame}{Introduction}{Definition (I)}
-
-	\begin{columns}
- 	   \column{.60\textwidth}
-	   \begin{block}{ML definition}
-		ML is the science (and art) of programming computers so they can \textit{learn from data}.
-
-		\hfill A. G\'eron, 2017
-		\end{block}
-	\end{columns}
-
-	\bigskip
-
-	Alternative definitions
-	\begin{itemize}
-	\item Machine Learning is the field of study that gives computers the ability to learn without being explicitly programmed. Arthur Samuel, 1959.
-	\item A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience. E. Tom Mitchell, 1997.
-	\end{itemize}
-\end{frame}
-
 \subsection{The alphabet soup of data analysis}
 \begin{frame}{Introduction}{The alphabet soup of data analysis}
 	\begin{columns}
@@ -199,10 +179,10 @@
 	%\includegraphics[width=0.5\linewidth]{figs/terms.png}\\
     %\tiny{\href{https://www.quora.com/What-is-machine-learning-and-how-it-is-linked-to-Big-Data-Data-Mining}{(Source)}}
 
+		\input{figs/vocabulary.tex}
 
-
-    \includegraphics[width=0.8\linewidth]{figs/comparativa.png}\\
-        \tiny{\href{https://www.linkfluence.com/blog/ai-basics-how-ai-machine-learning-supercharge-social-media-marketing}{(Source)}}
+    %\includegraphics[width=0.8\linewidth]{figs/comparativa.png}\\
+    %    \tiny{\href{https://www.linkfluence.com/blog/ai-basics-how-ai-machine-learning-supercharge-social-media-marketing}{(Source)}}
 	    \end{center}
 
  	\column{.4\textwidth}
@@ -224,6 +204,29 @@
 %		\end{itemize}
 % 	\column{.05\textwidth}
     \end{columns}
+\end{frame}
+
+
+
+\subsection{Definition}
+\begin{frame}{Introduction}{Definition (I)}
+
+	\begin{columns}
+ 	   \column{.60\textwidth}
+	   \begin{block}{ML definition}
+		ML is the science (and art) of programming computers so they can \textit{learn from data}.
+
+		\hfill A. G\'eron, 2017
+		\end{block}
+	\end{columns}
+
+	\bigskip
+
+	Alternative definitions
+	\begin{itemize}
+	\item Machine Learning is the field of study that gives computers the ability to learn without being explicitly programmed. Arthur Samuel, 1959.
+	\item A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience. E. Tom Mitchell, 1997.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Introduction}{Definition (II)}
@@ -604,6 +607,7 @@ air, moon roof, loaded",4799.00
 			\begin{itemize}
 				\item Models are represented by \alert{parameters}
 				\item Learning algorithms are configured with \alert{hyperparameters}
+				\item Number of parameters highly correlated with learning capacity
 			\end{itemize}
 	\end{itemize}
 
@@ -627,7 +631,6 @@ air, moon roof, loaded",4799.00
 		\item Many others
 		\end{itemize}
 
-	\vspace{-0.5cm}
 	 \begin{flushright}
 		\begin{columns}
  	   	\column{.25\textwidth}
