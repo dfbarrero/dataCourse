@@ -1,0 +1,39 @@
+\def\sizeA{120000}
+\def\sizeB{100190}
+\def\sizeC{80030}
+\def\sizeD{60540}
+\def\sizeE{40540}
+
+
+\begin{tikzpicture}[x=3cm, y=3cm,
+  textDiscLabel/.style={%
+    decorate,
+    decoration={%
+        text along path,%
+        text align=center,
+        reverse path=true,%
+        raise=-2ex,%
+        text={#1}}
+  }]
+
+ \pgfmathsetmacro{\dRatio}{(\sizeD sp)/(\sizeA sp)}
+  \pgfmathsetmacro{\cRatio}{(\sizeC sp)/(\sizeA sp)}
+  \pgfmathsetmacro{\bRatio}{(\sizeB sp)/(\sizeA sp)}
+  \pgfmathsetmacro{\eRatio}{(\sizeE sp)/(\sizeA sp)}
+
+  \draw [fill=azulUAH, azulUAH, postaction={textDiscLabel={Artificial Intelligence}}] 
+    (0,0) arc (-90:270:1) -- cycle;
+
+  \draw [fill=azulUAH!80, azulUAH!80, postaction={textDiscLabel={Machine Learning}}] 
+    (0,0) arc (-90:270:\bRatio) -- cycle;
+
+  \draw [fill=azulUAH!60, azulUAH!60, postaction={textDiscLabel={Artificial Neural Networks}}] 
+    (0,0) arc (-90:270:\cRatio) -- cycle;
+
+  \draw [fill=azulUAH!40, azulUAH!40, postaction={textDiscLabel={Deep Learning}}] 
+    (0,0) arc (-90:270:\dRatio) -- cycle;
+
+  \draw [fill=azulUAH!20, azulUAH!20, postaction={textDiscLabel={LLMs}}] 
+    (0,0) arc (-90:270:\eRatio) -- cycle;
+
+\end{tikzpicture}
