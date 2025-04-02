@@ -780,13 +780,20 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}[plain]{Decision Trees}{Building decision trees (III)}
-    We need a measure of `impurity'
+\begin{frame}{Decision Trees}{Building decision trees (III)}
+    We need a measure of `impurity': Gini and entropy
+
     \begin{itemize}
-        \item Gini: $G(Q_m) = \sum_k p_{mk} (1 - p_{ml})$
-        \item Entropy: $H(Q_m) = - \sum_k p_{mk} log(p_{ml})$
+    \item Let $C$ be the number of classes and $p_i$ is the probability of class $i$ in the dataset $S$
+        \item Gini: $G(S) = 1 - \sum_i^C p_i^2$
+        \item Entropy: $H(S) = - \sum_i^C p_i \log_2 p_i$
     \end{itemize}
-    where $p_{mk}$ is the propotion of class $k$ in node $m$, and $Q_m$ the data in node $m$
+
+    Both measures are used to learn trees
+    \begin{itemize}
+        \item Gini is faster
+        \item Entropy is preferred with unbalanced datasets
+    \end{itemize}
 \end{frame}
 
 
