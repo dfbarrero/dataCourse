@@ -64,7 +64,7 @@
 %% Opacidad de los logotipos
 \newcommand{\opacidad}{1}
 %% Descomentar para habilitar logotipo en pié de página de portada
-\renewcommand{\logoUno}{Images/isg.png}
+%\renewcommand{\logoUno}{Images/isg.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
 %\renewcommand{\logoDos}{Images/CCLogo.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
@@ -171,6 +171,7 @@
 \begin{frame}{Deep Learning (II)}
 	Need of tricks to train deep networks
 	\begin{itemize}
+		\item Unsupervised pretraining
 		\item Careful weights initialization
 			\begin{itemize}
 			\item Glorot and He initialization, LeCun initialization
@@ -180,7 +181,6 @@
 			\item Sigmoid activation is problematic
 			\item ReLU and Leaky ReLU activation functions
 			\end{itemize}
-		\item Batch normalization
 		\item Transfer learning/ pretained models
 	\end{itemize}
 		\centering \includegraphics[width=0.7\textwidth]{figs/transfer.jpg}\\
@@ -191,7 +191,7 @@
     \begin{columns}
  	   \column{.50\textwidth}
 		\begin{itemize}
-		\item Unsupervised pretraining
+		\item Batch normalization
 		\item Regularization
 			\begin{itemize}
 				\item L1, L2 and \alert{dropout}
@@ -219,7 +219,7 @@
 	\begin{itemize}
 		\item Data input layers
 		\item Output layers
-        	\item Fully connected (classic)
+        	\item Fully connected (or dense)
         	\item Convolutional layers
         	\item Max-pooling
         	\item Recurrent layers
@@ -322,6 +322,7 @@
 \begin{frame}{Convolutional Neural Networks}{Dropout layer}
 	\alert{Dropout} is a regularization technique for neural networks
 	\begin{itemize}
+        \item Applied during trainning
 		\item Dropout deactivates a neuron with probability $p$ for each iteration
 	\end{itemize}
 
@@ -384,8 +385,7 @@
     Model & Parameters  \\\hline
     GTP-2 & 1.5 billion (1,500,000,000) \\
     GTP-3 & 175 billion (175,000,000,000) \\
-    Dall-E 2& 12 billion (12.000.000.000) \\
-    ChatGPT& Unknown\\
+    GPT-4 & 1.5 trillion\\
     \end{tabular}
 
     \end{columns}
@@ -557,20 +557,20 @@
     \end{columns}
 \end{frame}
 
-\subsection{GRU networks}
-\begin{frame}{Recurrent networks}{GRU}
-    \begin{columns}
- 	   \column{.50\textwidth}
-            GRU: Gated Recurrent Unit
-            \begin{itemize}
-                \item Simplification of LSTM
-                \item Seems to perform as well as LSTM
-            \end{itemize}
- 	   \column{.50\textwidth}
-            \centering \includegraphics[width=\textwidth]{figs/GRU.png}\\
-	        \scriptsize\href{https://en.wikipedia.org/wiki/Gated_recurrent_unit}{(Source)}
-    \end{columns}
-\end{frame}
+%\subsection{GRU networks}
+%\begin{frame}{Recurrent networks}{GRU}
+%    \begin{columns}
+% 	   \column{.50\textwidth}
+%            GRU: Gated Recurrent Unit
+%            \begin{itemize}
+%                \item Simplification of LSTM
+%                \item Seems to perform as well as LSTM
+%            \end{itemize}
+% 	   \column{.50\textwidth}
+%            \centering \includegraphics[width=\textwidth]{figs/GRU.png}\\
+%	        \scriptsize\href{https://en.wikipedia.org/wiki/Gated_recurrent_unit}{(Source)}
+%    \end{columns}
+%\end{frame}
 
 \subsection{Advanced RNNs}
 \begin{frame}{Recurrent networks}{Advanced architectures}
@@ -737,8 +737,7 @@ señora dulcinea del toboso.
 
 \subsection{GAN}
 
-\subsection{Advanced topics}
-\begin{frame}{Advanced topics}{Generative networks: GAN (I)}
+\begin{frame}{Advanced topics}{Generative networks: GAN}
 	\centering\includegraphics[width=0.7\linewidth]{figs/gan.png}\\
 	\scriptsize\href{https://www.oreilly.com/library/view/java-deep-learning/9781788997454/60579068-af4b-4bbf-83f1-e988fbe3b226.xhtml}{(Source)}\\
 
@@ -746,18 +745,18 @@ señora dulcinea del toboso.
     \begin{flushleft}
    Examples:\\
     \begin{itemize}
-        \item \href{https://thispersondoesnotexist.com/}{(Faces)}, \href{https://thisartworkdoesnotexist.com/}{(art)}, \href{http://www.thisworddoesnotexist.com/}{(Words)}, \href{https://thesecatsdonotexist.com/}{(cats)}
+        \item \href{https://thispersondoesnotexist.com/}{(Faces)}, \href{http://www.thisworddoesnotexist.com/}{(Words)}, \href{https://thesecatsdonotexist.com/}{(cats)}
     \end{itemize}
     \end{flushleft}
 \end{frame}
 
-\begin{frame}{Advanced topics}{Generative networks: GAN (II)}
-    \centering GauGAN \href{https://www.nvidia.com/en-us/studio/canvas/}{(Demo)}\\
-	\includegraphics[width=0.9\linewidth]{figs/gaugan.jpeg}
-\end{frame}
+%\begin{frame}{Advanced topics}{Generative networks: GAN (II)}
+%    \centering GauGAN \href{https://www.nvidia.com/en-us/studio/canvas/}{(Demo)}\\
+%	\includegraphics[width=0.9\linewidth]{figs/gaugan.jpeg}
+%\end{frame}
 
 \subsection{VAE}
-\begin{frame}{Advanced topics}{Variational Autoencoders (I)}
+\begin{frame}{Advanced topics}{Variational Autoencoders}
 	\centering\includegraphics[width=0.85\linewidth]{figs/vae.png}\\
 	\scriptsize\href{https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf}{(Source)}
 
@@ -773,58 +772,65 @@ señora dulcinea del toboso.
 	\end{itemize}
 \end{frame}
 
+%\begin{frame}{Advanced topics}{Variational Autoencoders (II)}
+%	\centering\includegraphics[width=0.6\linewidth]{figs/vae-kl.png}\\
+%	\scriptsize\href{https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf}{(Source)}
+
+%	\smallskip
+
+%	\flushleft
+%	\normalsize
+
+%	We want a structured latent space
+%	\begin{itemize}
+%		\item Penalty based on \textit{Kullback-Leibler} (KL) divergence
+%			\begin{itemize}
+%				\item KL measures divergente between two probability distributions
+%			\end{itemize}
+%	\end{itemize}
+%\end{frame}
+
 \begin{frame}{Advanced topics}{Variational Autoencoders (II)}
-	\centering\includegraphics[width=0.6\linewidth]{figs/vae-kl.png}\\
-	\scriptsize\href{https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf}{(Source)}
-
-	\smallskip
-
-	\flushleft
-	\normalsize
-
-	We want a structured latent space
-	\begin{itemize}
-		\item Penalty based on \textit{Kullback-Leibler} (KL) divergence
-			\begin{itemize}
-				\item KL measures divergente between two probability distributions
-			\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Advanced topics}{Variational Autoencoders: semantics (I)}
-	Astonishing VAE feature: latent space has semantics!
+	Astonishing feature: latent space has semantics!
 	\centering\includegraphics[width=0.7\linewidth]{figs/faces.jpg}\\
 	\scriptsize\href{https://www.compthree.com/blog/autoencoder/}{(Source)}
 \end{frame}
 
 \begin{frame}{Advanced topics}{Variational Autoencoders: semantics (II)}
-	Another incredible VAE property: 'semantic' arithmetic operations
+	Another incredible property: `semantic' arithmetic operations\\
 	\centering\includegraphics[width=0.3\linewidth]{figs/vector-vae1.png}\quad
 	\centering\includegraphics[width=0.3\linewidth]{figs/vector-vae2.png}\\
 	\scriptsize\href{https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf}{(Source)}
+\end{frame}
 
-	\bigskip
+\subsection{Word embeddings}
+\begin{frame}{Advanced topics}{Word embeddings}
+	\centering\includegraphics[width=0.5\linewidth]{figs/word.jpg}\\
+	\centering\includegraphics[width=0.5\linewidth]{figs/queen-example.png}\\
+	\scriptsize\href{https://pantelis.github.io/cs634/docs/common/lectures/nlp/word2vec/}{(Source)}
+
 	\normalsize
 	\href{https://projector.tensorflow.org/}{(Embedding Projector)}
 \end{frame}
 
-\subsection{Generative models state-of-the-art}
-\begin{frame}{Advanced topics}{Generative models state-of-the art}
-	\centering Dall-E 2
-    \bigskip
-    \centering
-    \begin{columns}
- 	   \column{.50\textwidth}
-	        A raccoon astronaut with the cosmos reflecting on the glass of his helmet dreaming of the stars\\\medskip
-            \includegraphics[width=0.8\linewidth]{figs/racoon.jpg}\\
-	        \centering \scriptsize\href{https://bdtechtalks.com/2022/04/11/openai-dall-e-2/}{(Source)}
 
- 	   \column{.50\textwidth}
-	        Cosmic thoughts exploding\\\medskip
-            \includegraphics[width=0.8\linewidth]{figs/cosmic.jpg}\\
-	        \centering \scriptsize\href{https://t.co/mfgrJkYiy9}{(Source)}
-    \end{columns}
-\end{frame}
+%\subsection{Generative models state-of-the-art}
+%\begin{frame}{Advanced topics}{Generative models state-of-the art}
+%	\centering Dall-E 2
+%    \bigskip
+%    \centering
+%    \begin{columns}
+% 	   \column{.50\textwidth}
+%	        A raccoon astronaut with the cosmos reflecting on the glass of his helmet dreaming of the stars\\\medskip
+%            \includegraphics[width=0.8\linewidth]{figs/racoon.jpg}\\
+%	        \centering \scriptsize\href{https://bdtechtalks.com/2022/04/11/openai-dall-e-2/}{(Source)}
+
+% 	   \column{.50\textwidth}
+%	        Cosmic thoughts exploding\\\medskip
+%            \includegraphics[width=0.8\linewidth]{figs/cosmic.jpg}\\
+%	        \centering \scriptsize\href{https://t.co/mfgrJkYiy9}{(Source)}
+%    \end{columns}
+%\end{frame}
 
 \begin{frame}{Advanced topics}{Adversarial examples}
 	\centering\includegraphics[width=0.7\linewidth]{figs/adversarial.png}\\
