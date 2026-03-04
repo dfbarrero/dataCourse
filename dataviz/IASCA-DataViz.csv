@@ -1,7 +1,4 @@
-Id,Email,"Sexo biológico:
-","Peso en kilogramos (número entero)
-","Altura en centímetros (número entero)
-"
+Id,Email,"Sexo biológico:","Peso en kilogramos (número entero)","Altura en centímetros (número entero)"
 3,anonymous,Hombre,95,183
 4,anonymous,Mujer,58,162
 5,anonymous,Hombre,92,191
@@ -20,7 +17,6 @@ Id,Email,"Sexo biológico:
 18,anonymous,Mujer,59,163
 19,anonymous,Mujer,67,167
 20,anonymous,Mujer,66,1.61
-21,anonymous,Hombre,73,"1,75"
 23,anonymous,Hombre,66,170
 24,anonymous,Hombre,70,184
 25,anonymous,Mujer,53,157
