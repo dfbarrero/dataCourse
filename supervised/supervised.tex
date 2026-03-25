@@ -106,7 +106,7 @@
       \begin{enumerate}
          \item Extend supervised learning algorithms
          \item Apply supervised learning to real-world problems
-         \IfStrEq{\modo}{muii}{\item Introduce Scikit-Learn API for supervised algorithms}{}
+         \IfStrEq{\modo}{mcyte}{\item Introduce Scikit-Learn API for supervised algorithms}{}
       \end{enumerate} 
    \end{block}
 
@@ -134,8 +134,34 @@
 \end{frame}
 }
 
-\section[Generalization]{Generalization, overfitting and underfitting}
-\begin{frame}{Generalization, overfitting and underfitting}
+\section{Introduction}
+\subsection{Crash introduction to Scikit-Learn}
+\begin{frame}{Introduction}{Crash introduction to Scikit-Learn}
+    \begin{columns}
+ 	   \column{.50\textwidth}
+        Basic workflow in Scikit-Learn:
+        \begin{enumerate}
+    	\item Choose a class of model
+    	\item Choose hyperparameters
+        \item Arrange data
+        \item Fit the model (\texttt{fit()})
+        \item Evaluate the model
+            \begin{itemize}
+            \item For supervised learning, \texttt{predict}
+            \item For unsupervised learning, \texttt{transform}
+            \end{itemize}
+        \end{enumerate}
+
+ 	   \column{.50\textwidth}
+    \centering \includegraphics[width=\linewidth]{figs/scikit.png}\\
+    \end{columns}
+    \bigskip
+    \centering
+    \href{https://github.com/dfbarrero/dataCourse/blob/master/mlfoundations/scikit-learn.ipynb}{(Notebook)}
+\end{frame}
+
+\subsection[Generalization]{Generalization, overfitting and underfitting}
+\begin{frame}{Introduction}{Generalization, overfitting and underfitting}
     Generalization: accurate predictions on unseen data
     \begin{itemize}
 	\item i.e. there is no overfitting neither underfitting
@@ -197,7 +223,7 @@
 	\includegraphics[width=0.5\textwidth]{figs/k-complexity.png}
 \end{frame}
 
-\IfStrEq{\modo}{muii}{
+\IfStrEq{\modo}{mcyte}{
     \subsection{Scikit-Learn}
 
     \begin{frame}{k-Nearest Neighbors classifier}{Scikit-learn}
@@ -266,7 +292,7 @@
     \end{itemize}
 \end{frame}
 
-\IfStrEq{\modo}{muii}{
+\IfStrEq{\modo}{mcyte}{
     \subsection{Scikit-Learn}
 
     \begin{frame}{k-Nearest Neighbors regressor}{Scikit-learn}
@@ -302,7 +328,7 @@
 \subsection{Summary}
 \begin{frame}{k-Nearest Neighbors}{Summary}
 	\begin{center}
-	\begin{tabular}{cp{3cm}p{3cm}}\hline
+	\begin{tabular}{cp{2cm}p{4.5cm}}\hline
 	 	\texttt{Hyperparameters}  & \texttt{Advantages}  & \texttt{Disadvantages} \\\hline
 	 	$k$                       & Simple               & Slow with large datasets  \\
 	 	Distance                  & Baseline             & Bad performance with hundreds or more attributes  \\
@@ -348,7 +374,7 @@
 
 \subsection{Linear regression}
 \begin{frame}{Linear models}{Linear regression}
-    Different linear models for regression
+    Different learn algorithms for linear models
     \begin{itemize}
         \item The difference lies in how $\beta_i$ parameters are learned
     \end{itemize}
@@ -409,7 +435,7 @@
 
 \subsection{Ridge regression}
 \begin{frame}{Linear models}{Ridge regression}
-	Ridge regression (or L2 regularization) adds a new term to cost function
+	Ridge regression (or L2 regularization) adds a new term to the cost function
     \begin{equation*}
         MSE + \alpha \sum_{i=1}^n \beta_i^2
     \end{equation*}
@@ -472,10 +498,10 @@
     \centering \includegraphics[width=0.7\linewidth]{figs/lasso.png}
 \end{frame}
 
-\IfStrEq{\modo}{muii}{
+\IfStrEq{\modo}{mcyte}{
     \subsection{Scikit-Learn}
 
-    \begin{frame}{Linear models}{Scikit-learn (I)}
+    \begin{frame}{Linear models}{Scikit-learn: Linear}
         \begin{exampleblock}{\texttt{sklearn.linear\_model.LinearRegression}}
          \medskip
 
@@ -505,7 +531,7 @@
         \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html}{(Scikit-Learn reference)}
     \end{frame}
 
-    \begin{frame}{Linear models}{Scikit-learn (II)}
+    \begin{frame}{Linear models}{Scikit-learn: Ridge}
         \begin{exampleblock}{\texttt{sklearn.linear\_model.Ridge}}
          \medskip
 
@@ -536,7 +562,7 @@
         \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html}{(Scikit-Learn reference)}
     \end{frame}
 
-    \begin{frame}{Linear models}{Scikit-learn (III)}
+    \begin{frame}{Linear models}{Scikit-learn: Lasso}
         \begin{exampleblock}{\texttt{sklearn.linear\_model.Lasso}}
          \medskip
 
@@ -567,7 +593,7 @@
         \centering \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html}{(Scikit-Learn reference)}
     \end{frame}
 
-    \begin{frame}{Linear models}{Scikit-learn (IV)}
+    \begin{frame}{Linear models}{Scikit-learn: ElasticNet}
         \begin{exampleblock}{\texttt{sklearn.linear\_model.ElasticNet}}
          \medskip
 
@@ -895,7 +921,7 @@
     \end{columns}
 \end{frame}
 
-\IfStrEq{\modo}{muii}{
+\IfStrEq{\modo}{mcyte}{
     \subsection{Scikit-Learn}
 
     \begin{frame}{Decision Trees}{Scikit-learn}
@@ -1061,7 +1087,7 @@
     \end{columns}
 \end{frame}
 
-\IfStrEq{\modo}{muii}{
+\IfStrEq{\modo}{mcyte}{
     \subsection{Scikit-Learn}
 
     \begin{frame}{Ensembles of Decision Trees}{Ensembles of Decision Trees : Scikit-learn}
@@ -1144,15 +1170,15 @@
     \end{itemize}
 \end{frame}
 
-\IfStrEq{\modo}{muii}{
+\IfStrEq{\modo}{mcyte}{
 
-\begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (II)}
-    Feature importances with cancer dataset\\
-    \bigskip
-    \centering \includegraphics[width=0.8\linewidth]{figs/gradientboosting.png}\\
-    \medskip
-    \flushleft The \href{https://xgboost.ai/}{(XGBoost)} package provides a high performance implementation of gradient boosted trees
-\end{frame}
+%\begin{frame}{Ensembles of Decision Trees}{Gradient boosted regression trees (II)}
+%    Feature importances with cancer dataset\\
+%    \bigskip
+%    \centering \includegraphics[width=0.8\linewidth]{figs/gradientboosting.png}\\
+%    \medskip
+%    \flushleft The \href{https://xgboost.ai/}{(XGBoost)} package provides a high performance implementation of gradient boosted trees
+%\end{frame}
 
     \subsection{Scikit-Learn}
 
@@ -1341,7 +1367,7 @@
     \includegraphics[width=0.9\linewidth]{figs/svm-scale.png}
 \end{frame}
 
-\IfStrEq{\modo}{muii}{
+\IfStrEq{\modo}{mcyte}{
     \subsection{Scikit-Learn}
 
     \begin{frame}{Support Vector Machines}{Scikit-learn}
@@ -1390,6 +1416,82 @@
 	\end{tabular}
 	\end{center}
 \end{frame}
+
+
+\section{Other approaches}
+\begin{frame}[fragile]{Other approaches (I)}
+    \begin{center}
+         \begin{columns}
+ 	        \column{.5\textwidth}
+        \centering Semi-supervised learning\\
+    	\begin{tabular}{cccccc}\hline
+    	 	$f_1$     & $f_2$     & $\cdots$ & $f_n$     & $y$\\\hline
+    	 	$a_{1,1}$ & $a_{2,1}$ & $\cdots$ & $a_{n,1}$ &  \\
+    	 	$a_{1,2}$ & $a_{2,2}$ & $\cdots$ & $a_{n,2}$ & $y_1$ \\
+    	 	$a_{1,3}$ & $a_{2,3}$ & $\cdots$ & $a_{n,3}$ &  \\
+    	 	$a_{1,4}$ & $a_{2,4}$ & $\cdots$ & $a_{n,4}$ & $y_2$ \\
+    	 	$a_{1,5}$ & $a_{2,5}$ & $\cdots$ & $a_{n,5}$ &  \\
+    	 	\hline
+    	\end{tabular}
+
+ 	        \column{.5\textwidth}
+        \centering Weakly-supervised learning\\
+    	\begin{tabular}{cccccc}\hline
+    	 	$f_1$     & $f_2$     & $\cdots$ & $f_n$     & $y$\\\hline
+    	 	$a_{1,1}$ & $a_{2,1}$ & $\cdots$ & $a_{n,1}$ & $y_1 + \epsilon$ \\
+    	 	$a_{1,2}$ & $a_{2,2}$ & $\cdots$ & $a_{n,2}$ & $y_2 + \epsilon$ \\
+    	 	$a_{1,3}$ & $a_{2,3}$ & $\cdots$ & $a_{n,3}$ & $y_3 + \epsilon$ \\
+    	 	$a_{1,4}$ & $a_{2,4}$ & $\cdots$ & $a_{n,4}$ & $y_4 + \epsilon$ \\
+    	 	$a_{1,5}$ & $a_{2,5}$ & $\cdots$ & $a_{n,5}$ & $y_5 + \epsilon$ \\
+    	 	\hline
+    	\end{tabular}
+        \end{columns}
+
+        \bigskip
+
+	    \begin{center}
+        \centering Active learning\\
+    	\begin{tabular}{cccccc}\hline
+    	 	$f_1$     & $f_2$     & $\cdots$ & $f_n$     & $y$\\\hline
+    	 	$a_{1,1}$ & $a_{2,1}$ & $\cdots$ & $a_{n,1}$ &  \\
+    	 	$a_{1,2}$ & $a_{2,2}$ & $\cdots$ & $a_{n,2}$ & $y_1$ \\
+    	 	$a_{1,3}$ & $a_{2,3}$ & $\cdots$ & $a_{n,3}$ &  \\
+    	 	$a_{1,4}$ & $a_{2,4}$ & $\cdots$ & $a_{n,4}$ & $y_2$ \\
+    	 	$a_{1,5}$ & $a_{2,5}$ & $\cdots$ & $a_{n,5}$ & ?\\
+    	 	\hline
+    	\end{tabular}
+    	\end{center}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Other approaches (II)}
+    \begin{center}
+        Federated learning\\
+
+        Agent 1
+    	\begin{tabular}{cccccc}\hline
+    	 	$f_1$     & $f_2$     & $\cdots$ & $f_n$     & $y$\\\hline
+    	 	$a_{1,1}$ & $a_{2,1}$ & $\cdots$ & $a_{n,1}$ & $y_1$ \\
+    	 	$a_{1,2}$ & $a_{2,2}$ & $\cdots$ & $a_{n,2}$ & $y_2$ \\
+    	 	$a_{1,3}$ & $a_{2,3}$ & $\cdots$ & $a_{n,3}$ & $y_3$ \\
+    	 	$a_{1,4}$ & $a_{2,4}$ & $\cdots$ & $a_{n,4}$ & $y_4$ \\
+    	 	$a_{1,5}$ & $a_{2,5}$ & $\cdots$ & $a_{n,5}$ & $y_5$ \\
+    	 	\hline
+    	\end{tabular}
+
+        Agent 2
+    	\begin{tabular}{cccccc}\hline
+    	 	$f_1$     & $f_2$     & $\cdots$ & $f_n$     & $y$\\\hline
+    	 	$a'_{1,1}$ & $a'_{2,1}$ & $\cdots$ & $a'_{n,1}$ & $y'_1$ \\
+    	 	$a'_{1,2}$ & $a'_{2,2}$ & $\cdots$ & $a'_{n,2}$ & $y'_2$ \\
+    	 	$a'_{1,3}$ & $a'_{2,3}$ & $\cdots$ & $a'_{n,3}$ & $y'_3$ \\
+    	 	$a'_{1,4}$ & $a'_{2,4}$ & $\cdots$ & $a'_{n,4}$ & $y'_4$ \\
+    	 	$a'_{1,5}$ & $a'_{2,5}$ & $\cdots$ & $a'_{n,5}$ & $y'_5$ \\
+    	 	\hline
+    	\end{tabular}
+ 	\end{center}
+\end{frame}
+
 
 
 %\subsection{ARIMA}
