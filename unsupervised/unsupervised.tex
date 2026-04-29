@@ -378,26 +378,30 @@
 \end{frame}
 
 \begin{frame}{Other clustering algorithms}{Gaussian Mixure Model (GMM) (II)}
-    Gaussian parameters are fit with the Expectation-Maximization (E-M) algorithm
-       \begin{itemize}
+        Gaussian parameters are fit with the Expectation-Maximization (E-M) algorithm
+            \begin{itemize}
             \item E-M is a generalization of K-means
-       \end{itemize}
+            \end{itemize}
+       GMM is a \textbf{generative model}
+            \begin{itemize}
+            \item The model is a probability distribution $\Rightarrow$ Just sample the distribution
+            \end{itemize}
 
-    \begin{block}{Expectation-Maximization algorithm}
-    \begin{enumerate}
-       \item Init parameters randomly
-       \item Expectation step: Assign each instance to a cluster
-            \begin{itemize}
-            \item Assignment is probabilistic
-            \end{itemize}
-       \item Maximization step: Update cluster parameters
-            \begin{itemize}
-            \item Each cluster is updated using \textit{all} the data
-            \item Instances contribution to a cluster parameters is weighted by the probability that it belongs to it
-            \end{itemize}
-       \item Go to 2
-    \end{enumerate} 
-    \end{block}
+    %\begin{block}{Expectation-Maximization algorithm}
+    %\begin{enumerate}
+    %   \item Init parameters randomly
+    %   \item Expectation step: Assign each instance to a cluster
+    %        \begin{itemize}
+    %        \item Assignment is probabilistic
+    %        \end{itemize}
+    %   \item Maximization step: Update cluster parameters
+    %        \begin{itemize}
+    %        \item Each cluster is updated using \textit{all} the data
+    %        \item Instances contribution to a cluster parameters is weighted by the probability that it belongs to it
+    %        \end{itemize}
+    %   \item Go to 2
+    %\end{enumerate} 
+    %\end{block}
 
     GMM can be seen as a fuzzy clustering algorithm
 \end{frame}
@@ -490,7 +494,7 @@
 	DBSCAN: Density-Based Spatial Clustering of Applications with Noise
 	\begin{itemize}
 		\item Identifies high density regions (dense regions) in feature space
-        \item Asumtion: Clusters form dense regions separated by empty areas
+        \item Asumption: Clusters form dense regions separated by empty areas
 	\end{itemize}
     Hyperparameters
     \begin{itemize}
@@ -607,11 +611,11 @@
     \begin{center}
 	\includegraphics[width=0.7\linewidth]{figs/agglomerative.png}\\
     \end{center}
-    \medskip
+    %\medskip
 
     We need a similarity measure between two clusters
     \begin{itemize}
-        \item \textit{Ward}: Variance within merged clusters. Leads to equally sized clusters
+        %\item \textit{Ward}: Variance within merged clusters. Leads to equally sized clusters
         \item \textit{Average}: Average distances 
         \item \textit{Complete}: Maximun distance 
         \item \textit{Single}: Minimum distance
@@ -619,11 +623,11 @@
 \end{frame}
 
 \begin{frame}{Other clustering algorithms}{Agglomerative clustering (II)}
-    Agglomerative clustering is a special case of hierarchical clustering
+    Agglomerative clustering is a special case of \alert{hierarchical clustering}
     
     \bigskip
 
-	\centering Dendrogram\\ \includegraphics[width=0.5\linewidth]{figs/dendrogram.png}
+	\centering \textbf{Dendrogram}\\ \includegraphics[width=0.5\linewidth]{figs/dendrogram.png}
 
 	\includegraphics[width=0.7\linewidth]{figs/agglomerative.png}\\
 	\scriptsize\href{https://stackoverflow.com/questions/8016313/agglomerative-clustering-in-matlab}{(Source)}

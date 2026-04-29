@@ -1,5 +1,5 @@
 # Customize these two lines
-TARGETS=mcyte muii # Courses to compile
+TARGETS=mcyte # Courses to compile
 NAME=unsupervised
 
 # Do not touch
