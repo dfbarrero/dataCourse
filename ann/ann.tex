@@ -67,7 +67,7 @@
 %% Descomentar para habilitar logotipo en pié de página de portada
 %\renewcommand{\logoDos}{Images/CCLogo.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
-\renewcommand{\logoTres}{Images/ALogo.png}
+%\renewcommand{\logoTres}{Images/ALogo.png}
 %% Descomentar para habilitar logotipo en pié de página de portada
 %\renewcommand{\logoCuatro}{Images/ELogo.png}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,9 +103,9 @@
       \begin{enumerate}
          \item Describe biological neurons and networks
          \item Describe artifical neurons
-	 \item Introduce the MLP
+	     \item Introduce the MLP
          \item Understand the role of trainning in ANNs
-	 \item Understand MLP hyperparameters
+	     \item Understand MLP hyperparameters
       \end{enumerate} 
    \end{block}
 
@@ -158,13 +158,15 @@
 
 \subsection{History}
 \begin{frame}{Introduction}{History}
+    \vspace{-0.5cm}
     \begin{columns}
- 	   \column{.80\textwidth}
+ 	   \column{.75\textwidth}
 
 	\begin{itemize}
 	\item[1888] \textit{Ramón y Cajal}. Discovery of biological neurons
 	\item[1943] \textit{McCulloch \& Pitts}. First neural network designers
 	\item[1949] \textit{Hebb}. First learning rule
+	\item[1956] \textit{Dartmouth workshop}. AI is introduced 
 	\item[1958] \textit{Rosenblatt}. Perceptron
 	\item[1969] \textit{Minsky \& Papert}.  Perceptron limitation - Death of ANN
 	\note{Single layer perceonptrons cannot represent (learn) simple functions such as XOR
@@ -180,8 +182,9 @@
 	\item[20xx] ... AGI?
 	\end{itemize}
 
- 	   \column{.20\textwidth}
+ 	   \column{.25\textwidth}
 		\includegraphics[width=\linewidth]{figs/neuron-ryc.jpg}
+ 	   \column{.0\textwidth}
 	   \end{columns}
 \end{frame}
 
@@ -220,29 +223,30 @@
 %\end{frame}
 
 \begin{frame}{Introduction}{Biological neurons (I)}
+	\begin{columns}[c]
+	    \column{.2\textwidth}
+	    \column{.40\textwidth}
+			\includegraphics[width=\linewidth]{figs/neuron-bio.png}
+	    \column{.2\textwidth}
+			\includegraphics[width=\linewidth]{figs/sinapsis.jpg}
+	    \column{.2\textwidth}
+    \end{columns}
+
+	\medskip
 	%\centering\includegraphics[width=0.7\linewidth]{figs/neuronabio.png}\\
+
 	A neuron has a cell body (soma) ...
 		\begin{itemize}
 		\item ... a branching \textit{input} structure (dendrite) and 
 		\item ... a branching \textit{output} structure (axon)
 		\item ... an axon termination named \textit{synapses}
 		\end{itemize}
-	An \textit{action potential} (or signal) may propagate from dentrites to synapses
+
+	A signal may propagate from dentrites to synapses
 		\begin{itemize}
 		\item The synapses release a chemical named \textit{neurotransmitter}
-		\item Given enougth neurotransmitters, a new neuron can fire
+		\item Given enougth neurotransmitters, a neuron fires
 		\end{itemize}
-
-	\medskip
-
-	\begin{columns}[c]
-	    \column{.1\textwidth}
-	    \column{.50\textwidth}
-			\includegraphics[width=\linewidth]{figs/neuron-bio.png}
-	    \column{.3\textwidth}
-			\includegraphics[width=\linewidth]{figs/sinapsis.jpg}
-	    \column{.1\textwidth}
-    \end{columns}
 \end{frame}
 
 \begin{frame}{Introduction}{Biological neurons (II)}
@@ -250,8 +254,8 @@
 	    \column{.7\textwidth}
 		A neuron only fires if its input signal exceeds a threshold
 		\begin{itemize}
-		\item Good connections allowing a large signal
-		\item Slight connections allowing a weak signal
+		%\item Good connections allowing a large signal
+		%\item Slight connections allowing a weak signal
 		\item Synapses may be either excitatory or inhibitory
 		\end{itemize}
 
@@ -277,7 +281,8 @@
 
     \input{figs/neuron.tex}
 
-	\bigskip
+	\medskip
+
     \begin{columns}
  	   \column{.60\textwidth}
 		\begin{description}
